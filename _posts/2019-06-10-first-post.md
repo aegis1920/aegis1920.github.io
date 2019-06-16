@@ -3,7 +3,6 @@ layout: post
 title:  "첫 글"
 category: blog
 date:   2019-06-10 15:11:33 +0900
-categories: jekyll update
 ---
 
 ## 첫 글인데 할 말이 많다.

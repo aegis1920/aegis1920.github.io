@@ -10,6 +10,7 @@ github_username: aegis1920
 # Build settings
 markdown: kramdown
 
+
 collections:
     wiki:
         output: true
@@ -18,6 +19,8 @@ collections:
 kramdown:
     input: GFM
     syntax_highligter: rouge
+
+
 
 plugins:
   - jekyll-feed

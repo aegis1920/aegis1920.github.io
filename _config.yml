@@ -4,8 +4,9 @@ description: >-
     안녕하세요? 방문해주셔서 감사합니다^^
 baseurl: "" 
 url: "" 
-twitter_username: jekyllrb
 github_username: aegis1920
+
+permalink: /:title
 
 # Build settings
 markdown: kramdown
@@ -22,3 +23,5 @@ kramdown:
 plugins:
   - jekyll-feed
 
+
+ 

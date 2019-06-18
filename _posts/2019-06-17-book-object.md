@@ -1,7 +1,7 @@
 ---
 layout  : post
 title   : "객체지향의 사실과 오해를 읽고..."
-category: blog
+category: book
 date    : 2019-06-17 00:24:43 +0900
 ---
 * TOC

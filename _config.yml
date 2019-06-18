@@ -6,15 +6,8 @@ baseurl: ""
 url: "" 
 github_username: aegis1920
 
-permalink: /:title
-
 # Build settings
 markdown: kramdown
-
-collections:
-    wiki:
-        output: true
-        permalink: /:collection/:path/
 
 kramdown:
     input: GFM

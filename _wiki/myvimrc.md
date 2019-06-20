@@ -3,7 +3,7 @@ layout  : wiki
 title   : "내 vimrc"
 summary : 
 date    : 2019-06-19 17:23:47 +0900
-updated : 2019-06-19 17:24:55 +0900
+updated : 2019-06-20 16:11:44 +0900
 tags    : 
 toc     : true
 public  : true

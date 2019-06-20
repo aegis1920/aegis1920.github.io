@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-06-20 15:40:27 +0900
+updated : 2019-06-20 17:45:34 +0900
 tags    : index
 toc     : true
 public  : true
@@ -43,8 +43,12 @@ latex   : false
 * [[study]]
     * [[excel]]
     * [[open-source-guide]]
+    * [[Clean-Code]]
+    * [[get-vs-post]]
+    * [[about-scanf]]
 * [[vim]]
     * [[myvimrc]]
+    * [[vim-study]]
 * [[what]]
     * [[annotation]]
     * [[arduino]]
@@ -66,6 +70,9 @@ latex   : false
     * [[Spring]]
     * [[Mybatis]]
     * [[Vue]]
-    * 
+    * [[Linux]]
+    * [[PLSQL]]
+    * [[OS]]
+    * [[AI]]
 * [[blog]]
     * [[first-post]]

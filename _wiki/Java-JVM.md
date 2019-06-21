@@ -3,7 +3,7 @@ layout  : wiki
 title   : Java와 JVM
 summary : 
 date    : 2019-06-20 14:43:30 +0900
-updated : 2019-06-20 14:44:02 +0900
+updated : 2019-06-21 13:43:16 +0900
 tags    : 
 toc     : true
 public  : true
@@ -147,3 +147,80 @@ java project를 만들고 package가 있다. 그 안으로 들어가면 src와 b
 
 - <https://d2.naver.com/helloworld/1329>
 - 책 : 객체중심 Java (강요천 지음)
+
+
+-   **JVM**
+    
+    -   **Java Virtual Machine의 약자.**  Java로 개발한 프로그램을 컴파일하여 만들어지는 바이트코드를 실행시키기 위한 가상머신. JRE(Java Runtime Environment)에 포함되어 있다.  **Java 소스 코드(.java)는 javac 컴파일러를 거쳐 바이트코드(.class)로 변환되며, 이 바이트 코드는 JRE에 들어있는 java classloader에 의해 JVM으로 적재되고 JVM은 적재된 바이트 코드를 JIT 컴파일 방식으로 실행한다.**  운영체제 위에서 JVM이 실행되기 때문에 JVM만으로는 하드웨어를 제어하는 일은 할 수 없지만 JNI를 통하면 가능하다. Java Virtual Machine이라고 해서 비단 Java 언어만 가능한 게 아니고 코틀린이나 스칼라 코드를 컴파일해도 읽을 수 있다. JVM은 메모리의 접근을 가상 머신 차원에서 관리하고 있으므로 런타임에 최적화가 가능하다. (JVM은 GC를 수행하여 할당되었다가 더 이상 쓰이지 않는 메모리를 자동으로 회수한다.) 하지만 이에 따른 JIT 컴파일 시간, 가비지 컬렉션을 위한 시간 등이 필요하므로 근본적인 한계가 있다.
+        
+    -   **JVM은 크게 Class loader**(Loading, Linking, Initialization)**, Execution Engine**(Interpreter, JIT compiler, Garbage Collector)**, Runtime Data Area**(Thread, Heap, Method Area)**로 구성되어 있다.**
+        
+    -   **JVM은 어떻게 메모리를 할당할까?**  
+        ![](https://upload.wikimedia.org/wikipedia/commons/d/dd/JvmSpec7.png)
+        
+        **1. Class loader가 클래스 파일(바이트 코드)을 JVM으로 전달한다.**
+        
+        ```
+          1. Loading
+        
+              * Load가 되면 Verify(보안 검사)를 한다. 외부에서 들어온 .class 파일을 막아준다.
+        
+          2. Linking
+        
+              * Prepare에서는 진짜 메모리를 할당해준다.
+        
+              * Resolve에서는 메모리 구조상에서 수정 작업을 최종적으로 실행한다.
+        
+          3. Initialization
+        
+              * Initialize class 파일에서 지정된 클래스 변수를 할당한다.
+        
+        ```
+        
+        **2. 로딩된 클래스 파일(바이트 코드)은 Execution Engine에 의해 해석된다.**
+        
+        ```
+          * Interpreter 방식 or JIT 방식ㅡ로 해석
+        
+        ```
+        
+        **3. 해석된 클래스 파일은 Runtime Data Area에 들어가고 실행된다.**
+        
+        ```
+          * Thread - 멀티 스레드가 가능하고 모든 스레드는 Heap과 Method Area를 공유한다.
+        
+              * PC register - 스레드가 시작될 때 생성되며 현재 수행 중인 JVM 명령의 주소를 갖는다.
+        
+              * JVM Stack - 지역 변수나, 임시 데이터, 스레드나 메소드의 정보를 저장( {}블록이 끝나는 순간 사라집니다)
+        
+              * Native method stack - 바이트 코드가 아닌 기계어로 작성된 프로그램을 실행시키는 영역. JAVA는 JNI로 코드를 변환해 C code를 실행시킬 때 여기로 들어간다.
+        
+          * Heap - 인스턴스를 저장하는 가상 메모리 공간. new 연산자로 생성된 인스턴스(객체)와 배열을 저장한다. GC(Garbage Collection)가 지배하여 메모리 관리를 한다.
+        
+              * New/Young - 인스턴스들이 최초로 생성되고 저장된다.
+        
+              * Tenured - Young에서 지내다가 쓸모 없어진 얘들이 온다.
+        
+              * Permarnant(old) - 생성된 인스턴스들의 주소값이 저장된 공간. 클래스나 메소드의 meta 정보가 저장되는 영역. reflection을 사용하여 동적으로 클래스가 로딩되는 경우에 사용된다.
+        
+          * Method Area(=Class area, Static area)
+        
+              * Method area - 클래스 정보를 처음 메모리 공간에 올릴 때 초기화되는 대상을 저장하기 위한 메모리 공간. Static을 붙이면 가장 먼저 할당되니 여기로 오고 마찬가지로 Main 메소드도 여기로 온다. 클래스가 사용되면 해당 클래스 파일을 읽어서 해당하는 인스턴스 변수, 메소드 등을 여기에 저장한다.
+        
+              * Runtime constant pool - 상수 자료형을 저장하여 참조하고 중복을 막는 역할
+        
+        ```
+        
+        **4. GC가 작동하여 메모리를 관리한다.**
+        
+    -   **그렇다면 JVM의 세상은 항상 평화로울까?**
+        
+        -   GC의 stop-the-world도 있고 뭣도 모르고 만든 클래스가 JVM의 세상을 어지럽힐 수 있다. 이 클래스들을 해결하려면 Profiling을 해줘야 한다. 클래스로더에 hook class를 적용하면 클래스가 로딩될 때 클래스의 수행 시간을 측정하게 된다. 이렇게 하면 Memory Leak, Infinite Loop로 인한 OutOfMemoryError, Process Of Hanging을 피할 수 있다. profiling을 하려면 JConsole이나 VisualVm을 사용하면 된다.
+
+출처
+
+-   [https://d2.naver.com/helloworld/1329](https://d2.naver.com/helloworld/1329)
+    
+-   책 : 객체중심 Java (강요천 지음)
+
+

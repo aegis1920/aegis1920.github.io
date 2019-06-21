@@ -3,7 +3,7 @@ layout  : wiki
 title   : XML
 summary : 
 date    : 2019-06-20 15:13:26 +0900
-updated : 2019-06-20 15:14:00 +0900
+updated : 2019-06-21 13:38:54 +0900
 tags    : 
 toc     : true
 public  : true
@@ -282,3 +282,206 @@ compareTo()함수. this.name과 other.getName()에서 아스키코드값을 봐�
 Collections에 있기도 있다. 근데 내림차순을 하고 싶을 때 못 한다. 정렬할 때 함께 넘김. 상황에 따라 다른 정렬을 하고 싶을 때는... 
 
 일단 인터페이스 comparable
+
+
+# XML(eXtensible Markup Language)
+
+W3C에서 여러 특수 목적의 마크업 언어를 만드는 용도에서 권장되는  **다목적 마크업 언어**이다.
+
+예를 들어, CPU 2.83GHz라는 데이터를 표기할 때 어디서부터가 데이터명이고 어디부터가 실제 데이터인지 표시할 수 있는 방법이 없는데 XML을 이용하면 CPU은 데이터 명이 되고 2.83은 데이터 값이 된다. 이렇게 사용자가 직접 태그 자체를 정의할 수 있으며 데이터를 보여주는 목적이 아니라  **데이터를 저장하고 전달할 목적**으로 만들어졌다.
+
+원래 동일한 목적으로 SGML이라는 것이 인터넷보다 빠르게 등장했으나 여기에 인터넷 환경과 컴퓨팅 환경에 맞게 확장한 것이 XML이다. 모든 XML 문서는  **유니코드 문자**로 이루어져 있어 수많은 종류의 데이터를 유연하고 자유롭게 기술하는데 적용할 수 있고 다양한 용도로 응용할 수 있으며 인터넷으로 연결된 시스템끼리 쉽게 식별 가능한 데이터를 주고받을 수 있다.
+
+## XML의 목적
+
+-   XML은 시스템 간의 데이터 교환을 위해 만들어졌다. 서로 호환되지 않는 시스템 간의 데이터 교환에도 괜찮을까?
+    
+-   XML은 데이터를  **텍스트 형식으로 저장**하므로 소프트웨어나 하드웨어에 독립적으로 데이터를 저장하고 전달할 수 있다.
+    
+
+## XML의 구조
+
+-   XML은  **트리 형태의 계층 구조**를 가지고 있다.
+    
+-   그 다음부터는 HTML 처럼 부모와 자식관계처럼 나눠지면 된다.
+    
+
+## XML의 선언
+
+-   XML 문서는 맨 첫 줄에 태그를 사용해서 XML 문서임을 명시해야 한다. 이것을  **XML prolog**라고 한다. (심지어 첫 줄에 주석도 오면 안 된다.)
+    
+-   `<?xml version="XML문서버전" encoding="문자셋" standalone="yes|no"?>`
+    
+    -   보통  `<?xml version="1.0" encoding="UTF-8"?>`  이라고 쓴다.
+-   standalone속성은 XML 문서가 외부 DTD와 같은 외부 소스의 데이터에 의존하고 있는 문서인지 아닌지를 XML 파서에 알려주는 역할을 한다. 기본값은 no이며 yes로 설정하면 이 문서를 파싱할 때 참조해야 할 외부 소스가 없다는 걸 의미한다.
+    
+
+## XML의 문법
+
+-   모든 XML 요소는 종료 태그를 가져야 한다. 빈 태그에도 /를 추가해야된다.
+    
+-   XML 태그는 대소문자를 구분한다.
+    
+-   속성값은 반드시 따옴표로 감싸야 한다.
+    
+-   띄어쓰기를 인식한다.
+    
+-   XML 엔티티가 미리 정의되어 있다. (<, >, &, ", ')
+    
+
+## XML의 주석
+
+-   <!-- -->
+    
+-   XML의 프롤로그, 속성 값 내부, 주석 안에는 주석을 작성할 수 없다.
+    
+
+## XML의 요소
+
+-   XML 요소의 이름에는 공백을 포함할 수 없다.
+    
+-   예약어인 XML, xml, Xml 등은 요소의 이름으로 사용할 수 없다.
+    
+-   `<hello>hello world</hello>`
+    
+
+## XML의 속성
+
+-   XML 속성은  **XML 요소에 대한 추가적인 정보를 제공**해주며 해당 요소의 특징을 정의한다.
+    
+-   요소에 속성 값을 주면 <요소이름 속성1=“속성값” …/> 가 된다.
+    
+-   `<student><name>홍길동</name></student>와 <student name="홍길동"></student>`
+    
+-   위 두 가지는 결과적으로 완전히 같은 정보를 제공한다. 그러나 속성은 여러 개의 값을 가질 수 없으며, 요소처럼 손쉽게 확장할 수 없다. 게다가 XML 트리에도 포함되지 않아서 다양한 용도로 활용할 수 없다.
+    
+
+## XML 네임스페이스(namespace)
+
+-   서로 다른 XML 문서를 통합하려고 할 때 같은 이름을 가진 요소로 인해 충돌이 발생할 수 있다. 같은 요소 이름으로 인해 HTML 문서와 통합할 때도 충돌이 날 수 있다.
+    
+-   Prefix를 사용하면 충돌을 피할 수 있다.
+    
+-   Prefix만 써보자.
+    
+
+```xml
+<h:table>
+  <h:tr>
+    <h:td>Apples</h:td>
+    <h:td>Bananas</h:td>
+  </h:tr>
+</h:table>
+
+<f:table>
+  <f:name>African Coffee Table</f:name>
+  <f:width>80</f:width>
+  <f:length>120</f:length>
+</f:table>
+
+```
+
+-   XML에서 접두사에 namespace라는 걸 이용하여 위와 같은 이름의 충돌을 방지할 수 있다. (더 고유하게 만들 수 있다.)
+    
+    -   **`<요소이름 xmlns:prefix="URI">`**
+
+```xml
+<root>
+
+<h:table xmlns:h="http://www.w3.org/TR/html4/">
+  <h:tr>
+    <h:td>Apples</h:td>
+    <h:td>Bananas</h:td>
+  </h:tr>
+</h:table>
+
+<f:table xmlns:f="https://www.w3schools.com/furniture">
+  <f:name>African Coffee Table</f:name>
+  <f:width>80</f:width>
+  <f:length>120</f:length>
+</f:table>
+
+</root>
+
+```
+
+-   XML 네임스페이스는 요소의 이름과 속성의 이름을 하나의 그룹으로 묶어 이름에 대한 충돌을 해결한다.
+    
+-   접두사만 써도 되는데 namespace까지 쓰는 이유는 접두사 만으로는 다른 파일과 같을 경우가 있을 수 있고 그러한 이유에서 URI까지 쓰게 되는 것이다. 그래서 이런 XML 네임스페이스는 URI(Uniform Resource Identifiers)로 식별된다.
+    
+-   이렇게 XML 요소에 네임스페이스가 선언되면, 해당 요소의 모든 자식 요소에도 같은 네임스페이스가 선언된다.
+    
+-   루트 요소에 namespace를 써도 된다.
+    
+
+```xml
+<root xmlns:h="http://www.w3.org/TR/html4/" xmlns:f="https://www.w3schools.com/furniture">
+</root>
+
+```
+
+## XML 문서의 종류
+
+-   **Well-formed 문서**  :  **XML의 기본 문법을 만족하는 수준**으로 되어있는 문서. 모든 구문을 허용하기 때문에 XML처럼 보이기는 하지만 형식이 제각각이라서 실제로 데이터 교환 수단으로 바로 쓰기는 어렵다. 예를 들어, 한 요소가 닫기 태그와 자체 닫기 없이 열기 태그를 가지고 있으면 Well-formed 문서라 부르지 않는다. 즉, Well-formed가 아닌 문서는 XML이 아니다.
+    
+-   **Valid XML 문서**  :  **XML 문서의 형식(DTD, XML ScheMA)**  (쉽게 말하면 몇 가지 의미적 규칙들)을 만족하도록 작성된 XML 문서. 문서의 형식 정의는 XML 문서 자체에 포함되었을 수도, 다른 문서에 존재할 수도, 아니면 다른 문서로 존재할 수도, 아니면 다른 컴퓨터에 존재할 수도 있다. 예를 들어, 어느 문서가 정의되지 않은 태그를 포함하고 있으면 Valid된 것이 아니다. 문서 형식 정의는 과거에 DTD가 많이 사용되었지만, 2000년대 중후반 이후 XML Schema를 주로 사용한다.
+    
+
+## XML 파서
+
+-   XML 파서란 응용프로그램이 XML 문서를 읽을 수 있도록 인터페이스를 제공해주는 라이브러리나 패키지를 의미한다. XML 파서는 XML 문서가 적합한 형식을 갖추고 있는지와  **문법상의 오류가 있는지 검사**한다. 대부분의 주요 웹 브라우저는 모두 XML 파서를 내장하고 있다. XML 파서의 최종 목적은 XML 문서를 응용프로그램이 읽을 수 있는 코드로 변환하는 것이다.
+    
+-   **XML 파서의 종류**
+    
+    -   **DOM**  :  **XML 문서가 전부 메모리로 올라가 객체 모델로 생성**된다. W3C의 공식 표준이며, W3C가 표준화한 API들의 기반이다. 문서가 통째로 메모리에 올라가 조직화되기 때문에 문서 요소를 임의적으로 접근하고 사용하는데 적합하다. 그러나 또 논리 구조를 통으로 메모리에 올려놓고 연산하기 때문에 XML 데이터 양이 크면 메모리 부족으로 인해 고생하게 된다.
+        
+    -   **SAX**  : XML 문서를 애플리케이션에서 사용하기 위한 API. DOM에 비해 저수준의 인터페이스를 가지고 있으며 처리해야 할 파일이 클 때 적합하다. XML의 구조에 따라 이벤트가 발생되며, 프로그래머는 이 이벤트를 처리하는  **이벤트 핸들러를 작성하여 필요한 데이터를 추출**할 수 있다. 당연하게도 메모리에 올려버리는 DOM보다는 못하지만 이런 이벤트 기반 처리 방식은 읽어서 처리해야 하는 XML 데이터가 매우 클 때 장점으로 작용한다. 데이터베이스에 입력하는데 SAX를 쓰고 데이터 조작은 해당 저장공간에서 하면 되니까.
+        
+
+## Displaying XML
+
+-   XML은 정보를 저장하고 전달하는 용도로만 쓰이고 보여주는 용도로 쓰이지 않는다. CSS로 보여줄 순 있지만 CSS로 XML을 포맷하는 건 추천하지 않는다. Javascript나 XSLT가 좋은 방법이다.
+
+## XMLHttpRequest
+
+-   최근의 모든 브라우저들은 서버로 요청하기위해 XMLHttpRequest object를 내장하고 있습니다.
+
+### The XMLHttpRequest Object
+
+-   XMLHttpRequest Object는 웹 서버로 데이터를 요청하기 위해 쓰인다.
+    
+-   XMLHttpRequest Object는 개발자들에게 꿈이었다. 왜냐하면
+    
+    -   페이지를 새로고침(reload) 없이 update할 수 있다.
+        
+    -   페이지가 load되고 나서 서버로 데이터를 요청할 수 있다.
+        
+    -   페이지가 load되고 나서 서버로부터 데이터를 받을 수 있다.
+        
+    -   서버로 데이터를 전송할 수 있다.
+        
+
+### XMLHttpRequest example
+
+```javascript
+//XMLHttpRequest 객체를 만들어서 xhttp라는 변수에 넣습니다.
+var xhttp = new XMLHttpRequest();
+//onreadystatechange 속성은 XMLHttpRequest 객체의 상태가 변경될 때마다 실행할 함수를 지정합니다.
+xhttp.onreadystatechange = function() {
+//readyState 속성이 4이고 status 속성이 200이면 응답준비가 완료됩니다.
+    if (this.readyState == 4 && this.status == 200) {
+//responseText 속성은 서버 응답을 텍스트 문자열로 반환합니다.
+       document.getElementById("demo").innerHTML = xhttp.responseText;
+	}
+};
+xhttp.open("GET", "*filename*", true);
+xhttp.send();
+
+```
+
+#### Reference
+
+-   [https://namu.wiki/w/나무위키:대문](https://namu.wiki/w/%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4:%EB%8C%80%EB%AC%B8)
+-   [https://www.w3schools.com/xml/default.asp](https://www.w3schools.com/xml/default.asp)
+
+

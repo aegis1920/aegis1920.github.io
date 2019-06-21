@@ -3,7 +3,7 @@ layout  : wiki
 title   : python
 summary : 
 date    : 2019-06-21 09:26:38 +0900
-updated : 2019-06-21 09:28:34 +0900
+updated : 2019-06-21 13:21:55 +0900
 tags    : 
 toc     : true
 public  : true
@@ -715,4 +715,185 @@ fruitFrame = DataFrame(fruitData)
 3.	칼럼 순서 지정
 
 AI zip을 풀고 vmware로 실행한 후, 비밀번호 a1234567890을 쳐서 들어간다.
+
+
+# my blog python post
+
+# 간단한 Python 예제입니다.
+
+전화번호부를 아주 간단하게 만드는 예제입니다. 메모리에 저장하고 삭제할 수 있습니다. 주석은 생각나는대로 썼습니다.
+
+```python
+# -- coding: utf-8 --
+"""
+Created on Wed Dec 20 15:30:24 2017
+
+@author: Bean
+"""
+#
+    
+    
+class Contact:  #Contact 클래스 정의
+
+    def __init__(self, name, phone_number, e_mail, addr):   #변수에 쉽게 초기화 하기 위해서
+        #가지고 있는 init 함수.(생성자 함수)
+        self.name =name
+        self.phone_number = phone_number
+        self.e_mail = e_mail
+        self.addr = addr
+        
+    def print_info(self):   #그 정보를 가지고 출력하는 함수.
+        print("Name : ", self.name)
+        print("Phone_number : ", self.phone_number)
+        print("e_mail : ", self.e_mail)
+        print("addr : ", self.addr)
+        print()
+    
+
+def set_contact():  #
+    name = input("Name: ")
+    phone_number = input("Phone number: ")
+    e_mail = input("E-mail: ")
+    addr = input("Address: ")
+    contact = Contact(name, phone_number, e_mail, addr)
+    #입력한 변수들을 클래스의 인스턴스에 넣어서 초기화
+    #순서를 바꾸면 안 된다. contact 객체에 넣고 return한다. 
+    #main함수에 없는 이유는 재사용성을 높이기 위해서. 
+    return contact
+
+def print_menu():   #메뉴 출력
+    print("1. 연락처 입력")
+    print("2. 연락처 출력")
+    print("3. 연락처 삭제")
+    print("4. 연락처 저장")
+    print("5. 종료")
+
+    menu = input("메뉴선택: ")
+    return int(menu)    #int를 해준 이유는 우리가 까만 화면에서 입력할 때 문자열로 들어가기 때문이다. 
+                        #예를 들어 1을 입력하면 '1' 이런 식으로 들어가기 때문에 정수로 바꿔줘야
+           Google 캘린더             # ==으로 비교하기가 쉽다. 
+
+def delete_contact(contact_list, name):     #contact_list와 name을 받는다. 
+    for i, contact in enumerate(contact_list):  #열거타입으로 contact_list를 만든다. list는 데이터들이 흩어져도 상관없어. 값만 넣는다. enum은 쭉 줄 서있어.
+        #일단 for문의 정의는 in뒤에 있는 얘들을 하나씩 가져다가 앞에다 넣는다.
+#        그런데 i, contact 둘이 있는 이유는 enumerate가 딕셔너리 형태이기 때문이다. 그래서 i는 키가되고 contact는 value가 된다.
+        if contact.name == name:    #객체의 name값과 사용자가 입력한 name값. 인덱스를 비교해서 
+            del contact_list[i]     #이름을 알아도 그 리스트의 위치는 모르니까. 인덱스를 알아야 하니까 enumerate
+
+#enumerate를 쓰지 않고 하는 법.
+            #i = -1
+#    for i, contact in enumerate(contact_list):  #열거타입으로 contact_list를 만든다. list는 데이터들이 흩어져도 상관없어. 값만 넣는다. enum은 쭉 줄 서있어.
+            #i = i+1
+#        if contact.name == name:               
+#                del contact_list[i]
+
+            
+            #c1 = Contact('a', '010', 'a', 'a')
+            #c2 = Contact('a', '010', 'a', 'a')
+            #id로 c1과 c2를 확인해보면 다르다. 그래서 객체를 비교해서 지우면 안 된다. 
+
+def print_contact(contact_list):    #주소록 정보가 출력된다. contact_list를 받아서 for 문으로 돌린다.
+    for contact in contact_list:
+        contact.print_info()        #출력한다.
+
+
+
+def store_contact_fwrite(contact_list):
+#  파일을 열고 써야되니까 wt. 텍스트모드로 쓴다.
+    #4줄씩 읽으니까 4줄씩 해야된다. 
+    f = open("contact_db.txt", "wt")
+    for contact in contact_list:
+#    contact는 객체로 받는다는 소리. 반복하는데 그 변수가 객체다. 
+#   개행을 각자 넣어줘야 한다.
+        f.write(contact.name + '\n')
+        f.write(contact.phone_number + '\n')
+        f.write(contact.e_mail + '\n')
+        f.write(contact.addr + '\n')
+    f.close()
+
+def load_contact_fwrite(contact_list):
+    f = open("contact_db.txt", "rt")
+#    readlines()는 모든 행을 저장한다. 5명이면 20줄이 저장된다. 
+    lines = f.readlines()   #lines에는 리스트가 들어간다. 총 4개. 개행까지 포함한 문자열로.
+    num = len(lines) / 4    # 4 / 4인데 나누면 float연산이 된다. 1.0이 나와서 num에는 1.0이 들어간다. 
+    num = int(num)          # 1.0을 정수로 고쳐주기 위해서 int를 써준다.
+    
+    #주소록의 개수만큼 돌아라. 
+    for i in range(num):
+        name = lines[4*i].rstrip('\n')  #rstrip은 맨 오른쪽의 문자를 없앤다는 뜻. 즉, 개행을 없앤다. \n을 지워주기 위해서.
+        #왜? 데이터 안에 개행이 있으면 안 되니까. 나중에 출력할 때 줄바꿈이 더 되기도 하고. 
+        # 만약에 중간에 개행이 있다면 replace를 써줘야 한다. 
+        phone = lines[4*i+1].rstrip('\n')
+        email = lines[4*i+2].rstrip('\n')
+        addr = lines[4*i+3].rstrip('\n')
+        contact = Contact(name, phone, email, addr)
+        contact_list.append(contact)
+    f.close()
+
+def store_contact_print(contact_list):
+    f = open("contact_db.txt", "wt")
+    for contact in contact_list:
+#        print는 가변인자라서 여러 변수를 써도 된다. contact를 하나씩 빼온다. 한 행 안의 파일이 ,로 구분되어 있는 파일(cvs), sep의 default는 ' ' end의 디폴트는
+#        'n'이고 파일에 저장해야 하니까 file=f.
+        print(contact.name, contact.phone_number, contact.e_mail, contact.addr, file=f, sep=',')
+    f.close()
+    
+
+
+def load_contact_print(contact_list):   #얘네들은 call by reference이다. contact_list.append이니까. 이 라인에 있는 파라미터(contact_list)에 가서 넣는 것이다.
+    f = open("contact_db.txt", "rt")
+    lines = f.readlines() #readlines는 모든 행을 다 읽는데 리스트로 들어가서 ['ㅁ,ㄴ,ㅇ,ㄹ', 'ㅁ,ㄴ,ㅇ,ㄹ',]이런 식...''안에는 문자열이다. 
+    for line in lines:  #lines 리스트 안에 있는 만큼 line을 실행. line도 리스트가 된다. 
+        data = line.split(',')  #구분 기호를 집어넣는다. split은 기본이 공백이다. Line이 리스트니까 공백을 구분 단위로 한다. 
+        contact = Contact(data[0], data[1], data[2], data[3])   #0번째는 이름, 1번째는 전화번호... 칼럼이 늘어나면 그대로 다시 넣어줘야 한다. 
+        contact_list.append(contact)
+
+    f.close()
+
+def store_contact_pickle(contact_list):
+    f = open("contact_db.data", "wb")   #바이너리 파일로 불러올 때는 확장자도 바꿔줘야 한다.
+    import pickle #굳이 맨 위에 정의하지 않아도 된다. 
+    pickle.dump(contact_list, f)    #꺼내서 하나하나씩 저장할 필요가 없다. 리스트 통째로 저장한다.
+    f.close()
+    
+def load_contact_pickle():  #파라미터가 굳이 필요없다. call by value처럼 동작하기 때문에
+    f = open("contact_db.data", "rb")
+    import pickle
+    contact_list = pickle.load(f)   # 통째로 받아와서 다시 저장한다. .을 안 찍고 =으로 받기 때문에 이전 게 사라지고 새로운 객체가 들어온다.
+#   객체 형태로 모두 들어간다. 리스트형태로 모두 들어간다. 
+    f.close()
+    return contact_list #왜 굳이 return을 해야될까? 객체니까 contact_list의 주소값을 전달해준다. 
+    
+
+    
+def main():
+    contact_list = []   #contact_list를 리스트로 지정해준다. 
+    print(contact_list)
+    try:
+        contact_list = load_contact_pickle()
+    except OSError as e:
+        print(e)
+    while 1:    #무한 루프로 돌게 한다. 사용자가 입력을 안 한다고 할 때까지 입력을 받아야 하니까.
+        menu = print_menu()    #메뉴를 화면에 띄워야 하니까.  #print_menu에서 리턴된 정수 menu를 다시 menu변수에 넣는다. 
+        if menu == 1:   #연락처 입력
+            contact = set_contact()     
+            contact_list.append(contact)    #추가한다.
+        elif menu == 2:     #연락처 출력
+            print_contact(contact_list)
+        elif menu == 3:     #연락처 삭제
+            name = input("Name: ")
+            delete_contact(contact_list, name)  
+        elif menu == 4:     #연락처 저장
+            store_contact_pickle(contact_list)
+        elif menu == 5:     #종료
+            break
+        else:
+            break
+    
+    
+if __name__ == "__main__":  #다른 모듈에 의해 import될 때 여기 있는 main이 먼저 호출되면 안 되니까. 
+                            #스스로 실행될 때만 이 main이 실행되게 하려고. 
+    main()
+
+```
 

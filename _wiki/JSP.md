@@ -3,7 +3,7 @@ layout  : wiki
 title   : JSP
 summary : 
 date    : 2019-06-20 15:28:28 +0900
-updated : 2019-06-20 15:28:46 +0900
+updated : 2019-06-21 13:45:56 +0900
 tags    : 
 toc     : true
 public  : true
@@ -141,3 +141,86 @@ getParameter()와 getAttribute()의 차이 겟파라미터는 화면상에 이�
 
 
 프로젝트 -> 사실 전체적으로 ArrayList<>를 쓰는 게 훨씬 편하다. 나중에 불러올 때도 크기가 1개인 것으로도 불러올 수 있으니까. 
+
+# Servlet이란?
+
+## Java Servlet(Server side applet)
+
+-   java를 사용하여 웹 페이지를 동적으로 생성하는 서버측 프로그램. 웹 서버의 성능을 향상하기 위해 사용되는 자바 클래스의 일종이다. JSP는 HTML 문서 안에 Java 코드가 있지만 Servlet은 자바 코드 안에 HTML을 포함하고 있다. 얘는 Tomcat 위에서 동작한다고 생각하면 된다.
+    
+-   일반적인 자바 클래스와 비교할 때 서블릿은 반드시 javax.servlet.Servlet 인터페이스를 구현해서 작성해야만 하고, 입력과 출력을 HTTP 프로토콜의 요청과 응답의 형태로만 다룬다.
+    
+-   서블릿 자체가 자바로 만들어졌기 때문에 플랫폼에 독립적이며, 스레드 기반의 요청 처리 방식을 선택 사용자가 많아도 부하가 없다. 그러나 서블릿 만으로는 코드가 길어져 너무 비효율적이었던 것이다. 그래서 이 대체안이 JSP이다.
+    
+
+# JSP란?
+
+JSP는 JavaServerPages의 약자로 Java를 이용한 서버 사이드 스크립트 언어이다. 확장자는 .jsp이다. 같은 부류에 속하는 것으로 PHP, ASP가 있다.
+
+## 왜 JSP를 쓸까?
+
+-   쉽게 말해서 Servlet으로 코딩이 가능하긴 하지만 Java 코드 안에 HTML 코드가 들어가있기 때문에 코딩하기가 매우 복잡해서 JSP가 나오게 됐다.
+-   가령, Servlet에서 태그를 전송하기 위해 reponse.getWrite()를 사용해 PrintWriter 객체를 얻어와서 write()메소드를 통해 보내야 한다. 쓰기가 힘드니 유지보수도 힘들어서 JSP가 만들어졌다.
+-   그리고 JSP도 MVC 패턴을 적용할 수 있는데 JSP(View), 자바빈즈(Model), 서블릿(Controller)을 이용해 쉽게 구현할 수 있다.
+
+## JSP를 어떻게 쓸까?
+
+-   ASP와 마찬가지로  **<% … %>**  로 둘러싸인 스크립트 영역(이를 JSP태그인 scriptlet이라고 한다) 이 있으며, 실행 시에 이 스크립트 영역(.jsp)들이 javax.servlet.http.HttpServlet 클래스를 상속받은 자바 소스코드(.java)로 변환된 다음 컴파일(.class)되어 Servlet Container에 담기고 난 뒤에 Servlet 객체가 생성되고 난 뒤에야 실행된다. 스크립트 영역이 .jsp 파일을 Servlet 클래스로 변환하고 실행시켜 주는 역할을 하는 프로그램이  **Servlet Container(대표적으로 톰캣)**  이다. 이 Servelt Container도 자바 클래스이기 때문에 모든 자바 라이브러리를 끌어다 쓸 수 있다. 즉, JSP도 결국 Servlet이 된다.
+
+## 자세한 JSP의 동작 원리는?
+
+1.  사용자가 자신의 웹 브라우저에서 어떤 주소(http://???/index.jsp)의 링크를 누른다.
+    
+2.  HTTP 프로토콜의 형태인 HTTP요청(Request)이 WAS(Web Application Server)로 간다.
+    
+3.  WAS는 HTTP 요청(Request)을 보고 확장자가 .jsp로 되어있으니 Servlet Container에게 요청을 넘긴다.
+    
+4.  Servlet Container는 해당 .jsp를 자바 소스코드(.java 즉 Servlet)로 바꾸고 .class로 컴파일한다.
+    
+5.  .class가 실행되고 Servlet Container는 요청(Request)이 어떤 서블릿 클래스를 필요로 하는지 배포서술자(DD = web.xml)을 통해 알아낸다.
+    
+6.  만약 요청된 서블릿 클래스가 Servlet Container에서 실행된 적이 없다면 그 요청된 서블릿 클래스는 인스턴스를 생성하고(메모리에 로드하고) Servlet Container는 init() 메소드를 호출한다.
+    
+7.  요청된 서블릿 클래스가 Servlet Container에서 실행된 적이 있다면 새로 인스턴스를 생성하지 않고 스레드 하나만 생성된다.(그냥 바로 service() 메소드로 가는 것)
+    
+8.  그래서 Servlet Container마다 인스턴스가 하나만 있다.
+    
+9.  Init() 메소드로 인해 초기화가 되고 스레드 하나가 생성된다.
+    
+10.  스레드가 생성되면 각 Thread에서 service() 메소드가 호출된다. (service() 메소드를 호출하는 동작 역시 Servlet Container의 역할이다.)
+    
+11.  Servlet Container는 javax.servlet.ServletRequest 객체와 javax.servlet.ServletResponse 객체를 생성하고 이 두 객체를 service() 메소드에 인수로 전달한다. (ServletRequest를 상속(extend)받는 interface는 특정 프로토콜 데이터를 제공할 수 있다. 예를 들어서 HTTP 데이터 같은 경우, HttpServletRequest에서 제공된다, 그리고 HttpServletResponse는 HTTP 헤더나 쿠키에 엑세스 할 수 있다)
+    
+12.  Service() 메소드는 HTTP 프로토콜 방식에 따라 POST 방식이면 doPost()를, GET방식이면 doGet()을 호출한다. (doPost(), doGet()은 javax.servlet.HttpServlet 안에 있고 doPost, doGet의 인자로 HttpServletRequest 객체가 온다)
+    
+13.  나온 결과물을 Servletresponse 객체에 캡슐화한다.
+    
+14.  결과물이 담겨진 객체는 클라이언트로 HTTP 응답(Response) 형태로 전송된다.
+    
+15.  다 끝났거나 웹 어플리케이션 실행이 멈출 때, 서블릿이 사용한 자원을 초기화시킬 때 destory() 메소드를 호출시켜 객체들을 소멸한 후, 스레드를 종료한다.
+    
+
+### JSP에서 영역과 속성
+
+-   JSP에서 제공하는 내장 객체들 중  **request, page, session, application**  객체들은 해당 객체에 정의된 유효 범위 안에서 필요한 데이터를 저장하고 읽어 들임으로써 서로 공유할 수 있는 특정한 영역을 가지고 있다. 즉 requset는 클라이언트의 요청이 처리되는 동안 유효하고, session은 세션이 유지되는 동안 즉, 하나의 브라우저에 1개의 세션이 생성되니 하나의 브라우저를 끄기 전까지 유효하다. 그리고 application은 웹 어플리케이션이 실행되고 있는 동안(서버가 종료될 때까지), page는 해당 페이지가 클라이언트에 서비스를 제공하는 동안에만 유효하다.
+
+## Servlet과 JSP
+
+-   Servlet에서는 내장 객체가 없고 완전한 자바라서 session을 사용할 때 HttpSession클래스에서 session 객체를 만들어서 사용해야 하지만 JSP에서는 session 객체를 바로 생성할 수 있도록 해준다.
+    
+-   .jsp 파일이 자동 변환된 Servlet 코드로 여러 객체들이 _jspService() 메소드 내부에 자동으로 구현되어 있다.
+    
+-   request.setCharacterEncoding(“utf-8”); 이 자체는 request 객체를 통해 넘어오는 파라미터 중 한글이 있기 때문에 한글 처리를 위한 코드다.
+    
+-   forward 태그를 이용해서 이동할 페이지에 추가적으로 파라미터를 넘겨줄 수 있다. 즉, 현재 페이지 요청과 응답에 관한 처리권을 이동할 페이지로 영구적으로 넘기는 기능을 한다.
+    
+-   include 액션 태그를 만나면 include되는 페이지로 제어권이 넘어가고 include된 페이지를 로딩한다. 로딩이 끝나면 로딩된 결과를 메인 페이지에 삽입하고 메인 페이지의 다음 라인부터 다시 로딩한다.
+    
+-   JSP의 주석처리도 <%-- --%>로 해야 나중에 소스상에서도 보이지 않는다. 오 하게되면 주석상에서도 보이게 된다.
+    
+-   톰캣(WAS)에서 배포를 하려면 웹 어플리케이션 프로젝트를 압축한 WAR파일로 만든 후에 webapps 폴더에 넣어주면 톰캣이 알아서 압축을 해제하고 배포해줍니다. 또는 server.xml을 변경해서 만들어줄 수 있습니다.
+    
+-   그리고 WAS에 따라 지원하는 JSP 및 Servlet 스펙의 버전이 달라집니다. 그 이유는 JSP는 Servlet으로 변환되어 실행되기 때문입니다. 그래서 톰캣 서버같은 경우 버전을 잘 살피고 실행해야됩니다.
+
+
+

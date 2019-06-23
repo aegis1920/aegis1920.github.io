@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-06-20 17:45:34 +0900
+updated : 2019-06-23 16:36:07 +0900
 tags    : index
 toc     : true
 public  : true

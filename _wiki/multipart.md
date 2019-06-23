@@ -3,7 +3,7 @@ layout  : wiki
 title   : multipart 
 summary : 
 date    : 2018-05-15 16:13:39 +0900
-updated : 2019-06-19 17:29:39 +0900
+updated : 2019-06-21 13:25:41 +0900
 tags    : 
 toc     : true
 public  : true
@@ -216,4 +216,135 @@ Content-Range: bytes 300-400/1270
 
 --3d6b6a416f9b5--
 
+# my blog post
 
+
+# HTTP Multipart
+
+Multipart는 HTTP를 통해 File을 SERVER로 전송하기 위해 사용되는 Content-type입니다.
+
+간단하게 HTTP(request와 response 둘 다)는 4개로 나눌 수 있습니다.
+
+1.  Request line
+2.  HTTP Header
+3.  Empty line
+4.  Message body
+
+여기서 Message body에 들어가는 데이터 타입을 HTTP Header에 명시해줄 수 있는데 명시할 수 있도록 해주는 필드가 바로 Content-type입니다. 그리고 바로 이 Content-type 필드에 MIME 타입을 기술해줄 수 있는데 여러 MIME 타입 중 하나가 바로 Multipart입니다.
+
+## MIME(Multipurpose Internet Mail Extensions)
+
+### MIME의 유래와 정의
+
+-   기본적으로 E-mail(전자우편) 전송 프로토콜인 SMTP는 7비트 ASCII 문자만을 지원합니다. 그러나 ASCII 문자는 영어밖에 표현할 수 없기에 영어 이외의 언어로 쓰인 E-mail은 제대로 전송될 수 없었습니다. 이를 위해 탄생한 것이 MIME입니다.
+    
+-   MIME은 ASCII가 아닌 문자 인코딩을 이용해 영어가 아닌 다른 언어로 된 E-mail을 보낼 수 있는 방식을 정의합니다. 또한 그림, 음악, 영화 같은 8비트짜리 이진 파일을 전자 우편으로 보낼 수 있도록 합니다. 즉, e-mail을 위한 인터넷 표준 포맷인 것입니다.
+    
+-   MIME 타입은 본래 E-Mail을 위해 정의된 것이지만, HTTP, SIP와 같은 인터넷 프로토콜에서 함께 사용하고 있습니다.
+    
+-   MIME은 메세지의 종류를 나타내는  **Content-type**, 메세지 인코딩 방식을 나타내는 content-transfer-encoding과 같은 추가적인 E-mail 헤더를 정의합니다.
+    
+-   메세지를 MIME 형식으로 변환하는 것은 E-mail 프로그램이나 서버 상에서 자동으로 이루어집니다.
+    
+-   MIME은 확장가능합니다. MIME 표준은 새로운 Content-type과 또 다른 MIME 속성 값을 등록할 수 있는 방법을 정의하고 있습니다.
+    
+
+### MIME의 구조
+
+-   MIME 헤더
+    
+    -   MIME-Version
+        
+        -   MIME-Version: 1.0
+            
+        -   해당 메세지가 MIME 형식임을 나타냅니다.
+            
+    -   Content-Type
+        
+        -   Content-Type: text/plain
+            
+        -   HTTP Message body에 들어가는 데이터 타입과 서브 타입을 나타냅니다.
+            
+        -   multipart 타입을 통해 MIME은 트리 구조의 메세지 형식을 정의할 수 있습니다.
+            
+            -   어떤 것이 첨부된 텍스트(multipart/mixed)
+                
+            -   텍스트와 HTML과 같이 다른 포맷을 함께 보낸 메세지(multipart/alternative) 등등…
+                
+-   Encoded-Word
+    
+    -   RFC 2822의 정의에 따르면, 메세지 헤더와 그 값은 항상 ASCII 문자를 사용해야 합니다. ASCII가 아닌 헤더 값은 encoded-word 문법에 따라 인코딩해야 합니다.
+-   Multipart 메세지
+    
+    -   서로 붙어있는 여러 개의 메세지를 포함하여 하나의 복합 메세지로 보내집니다.
+        
+    -   MIME multipart 메세지는 “Content-type:” 헤더에 boundary 파라미터를 포함합니다.
+        
+        -   boundary는 메세지 파트를 구분하는 역할을 하며, 메세지의 시작과 끝 부분에도 나타납니다
+            
+        -   첫 번째 boundary 전에 나오는 내용은 MIME을 지원하지 않는 클라이언트를 위해 제공됩니다.
+            
+        -   boundary를 선택하는 것은 클라이언트의 몫입니다. 보통 무작위의 문자를 선택해서 메세지의 본문과 충돌을 피합니다.
+            
+    -   멀티파트 폼 제출
+        
+        -   HTTP form을 채워서 제출하면, 가변 길이 텍스트 필드와 업로드 될 객체는 각각 멀티파트 본문을 구성하는 하나의 파트가 되어 보내집니다. 멀티파트 본문은 여러 다른 종류와 길이의 값으로 채워진 form을 허용합니다.
+            
+        -   multipart/form-data : 사용자가 양식을 작성한 결과 값의 집합을 번들로 만드는데 사용됩니다.
+            
+
+### Ex)
+
+```html
+<form action="http://server.com/cgi/handle"
+ 	enctype="multipart/form-data"
+ 	method="post">
+<p>
+What is your name? <input type="text" name="submit-name"><br>
+What files are you sending? <input type="file" name="files"><br>
+<input type="submit" value="Send">
+<input type="reset">
+</form>
+
+```
+
+-   사용자가 텍스트 필드에 "Sally"라고 입력하고, "essayfile.txt"를 선택했다면 user agent는 아래와 같은 데이터를 돌려보낼 것입니다.
+
+```
+Content-Type: multipart/form-data; boundary=AaB03x
+--AaB03x
+Content-Disposition: form-data; name="submit-name"
+Sally
+--AaB03x
+Content-Disposition: form-data; name="files"; filename="essayfile.txt" Content-Type: text/plain
+...contents of _essayfile.txt_...
+--AaB03x--
+
+```
+
+-   마지막 boundary에는 마지막에 --가 붙습니다.
+-   사용자가 두번째 파일로 "imagefile.gif"를 선택했다면 user agent는 그 부분을 아래와 같이 생성할 것입니다.
+
+```
+Content-Type: multipart/form-data; boundary=AaB03x
+--AaB03x
+Content-Disposition: form-data; name="submit-name"
+Sally
+--AaB03x
+Content-Disposition: form-data; name="files" 
+Content-Type: **multipart/mixed**; boundary=BbC04y 
+--BbC04y
+Content-Disposition: file; filename="essayfile.txt" Content-Type: text/plain
+...contents of essayfile.txt...
+--BbC04y
+Content-Disposition: file; filename="imagefile.gif" Content-Type: image/gif
+Content-Transfer-Encoding: binary
+...contents of imagefile.gif...
+--BbC04y--
+--AaB03x-- 
+
+```
+
+[http://eminentstar.tistory.com/47](http://eminentstar.tistory.com/47)
+
+[http://mkil.tistory.com/273](http://mkil.tistory.com/273)

@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-06-20 17:04:04 +0900
+updated : 2019-06-21 15:45:17 +0900
 tags    : 
 toc     : true
 public  : true

@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-06-23 16:36:07 +0900
+updated : 2019-06-23 16:38:30 +0900
 tags    : index
 toc     : true
 public  : true
@@ -40,19 +40,25 @@ latex   : false
         * [[Java-generic]]
         * [[Java-lambda]]
         * [[Java-NIO]]
+    * [[Python]]
 * [[study]]
     * [[excel]]
     * [[open-source-guide]]
     * [[Clean-Code]]
     * [[get-vs-post]]
     * [[about-scanf]]
+    * [[JSP1.2-JSP2.0]]
+    * [[NA-NULL-in-R]]
+    * [[HTML5-and-DTD]]
+    * [[Java-System_out_println]]
+    * [[Ruby-bundle]]
 * [[vim]]
     * [[myvimrc]]
     * [[vim-study]]
 * [[what]]
     * [[annotation]]
     * [[arduino]]
-    * http
+    * [[http]]
         * [[multipart]]
     * [[git]]
     * [[XML]]
@@ -70,9 +76,19 @@ latex   : false
     * [[Spring]]
     * [[Mybatis]]
     * [[Vue]]
+    * [[Compiler]]
+    * [[Network]]
     * [[Linux]]
     * [[PLSQL]]
     * [[OS]]
     * [[AI]]
+    * [[DTD]]
+    * [[XPath]]
+    * [[XSLT]]
+    * [[Project]]
 * [[blog]]
     * [[first-post]]
+    * [[SW-vision-tour]]
+    * [[DEVIEW-2018-review]]
+    * [[google-search-knowhow-seminar]]
+    * [[ms-chatbot-seminar]]

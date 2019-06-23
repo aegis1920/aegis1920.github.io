@@ -3,7 +3,7 @@ layout  : wiki
 title   :  java.lang과 java.util 관련 클래스들
 summary : 
 date    : 2019-06-20 14:55:45 +0900
-updated : 2019-06-20 15:12:12 +0900
+updated : 2019-06-21 13:39:54 +0900
 tags    : 
 toc     : true
 public  : true
@@ -331,4 +331,100 @@ public class St_ex1 {
 - <http://sunphiz.me/wp/archives/tag/keystore>
 - <https://stackoverflow.com/questions/44178138/what-is-the-difference-between-heap-memory-and-string-constant-pool-in-java>
 - <https://docs.oracle.com/javase/7/docs/api/overview-summary.html>
+
+
+
+
+# String str =" "과 String str = new String(" ")의 차이?
+
+잘 쓰다가 뭐가 다르다는 건지 궁금해서 찾아보기로 했다. 증명하기 위해서 계속 찾아보니 답이 나왔다.
+
+## String
+
+-   String을 이용하는 방법에는 두 가지 방식이 있다.
+    
+    -   **New 연산자를 이용한 방식( String str = new String("hello"); )**
+        
+        -   new를 쓰면  **Heap 영역**에 할당된다. 그래서 같은 문자열이더라도 다른 객체라서 선언한 만큼의 새로운 객체가 메모리에 올라간다.
+    -   **리터럴을 이용한 방식( String str = "hello"); )**
+        
+        -   **String constant pool(상수 영역)**이라는 영역에 할당된다.
+            
+            -   String을 리터럴로 선언하면 내부적으로 String의 intern() 메소드가 호출된다. Intern() 메소드는 주어진 문자열이 string constant pool에 존재하는지 검색한다. 있다면 그 주소값을 반환하고 없다면 string constant pool에 넣고 새로운 주소값을 반환한다. 그래서 메모리에는 하나만 올라가게 된다.
+
+> Java6까지 string constant pool의 위치가 Perm이었지만 java7이후  **Heap으로 변경됐다.**  Perm은 고정된 사이즈고 Runtime에 사이즈가 확장되지 않아서 변경됐다고 한다.
+
+-   **리터럴(literal)**
+    
+    -   변수 및 상수에 저장되는 값 자체. 즉, 공간이 아니라 그 값. 정수 리터럴, 문자열 리터럴, 배열 리터럴 등등이 있다.
+
+### 궁금증
+
+나는 인스턴스가 생성될 때 hashcode가 생성되니 hashcode로 비교한다고 생각해서 비교를 해봤다.
+
+```java
+package hello_ex1;
+
+public class St_ex1 {
+
+	public static void main(String[] args)  {
+
+		String str1 = "hello";
+		String str2 = "hello";
+
+		String str3 = new String("hello");
+		String str4 = new String("hello");
+
+		System.out.println(str1.hashCode());	
+		System.out.println(str2.hashCode());	
+		System.out.println(str3.hashCode());	
+		System.out.println(str4.hashCode());	
+	}
+}
+
+```
+
+내가 생각했던 결과는 리터럴로 만들어진  `str1.hashCode()`와  `str2.hashCode()`가 같고 new로 만들어진  `str3.hashCode()`와  `str4.hashCode()`는 둘 다 다를 거라고 생각했다. 그러나 결과는 Run해보니 hashcode 값이 모두 같았다. hashCode가 객체의 고유한 해쉬값을 갖고오는 거 아니었나? 다시 찾아봤다.
+
+## hashCode() in java
+
+-   hashCode()는 Object 클래스에 있어서 모든 클래스는 hashCode 메소드를 제공할 수 있다.
+-   이 메소드는 Heap에 있는 클래스 인스턴스(즉, 인스턴스)에 저장된 데이터를 단일 해시값(32비트)으로 만든다.
+-   기술적으로 Java에서 hashCode()는 기본적으로 JVM에 Native Code로 구현되어 있다.
+-   **Integer 클래스나 String 클래스 같은 경우, 같은 멤버 값에 대해서 같은 hashcode가 나올 수 있도록 오버라이딩 되어있다. (그래서 String str1 = new String("hello")의 hashCode() 값이나 String str1 = new String("hello")의 hashCode() 값이나 같다.)**
+
+찾아보니 오버라이딩하지 않는 hashcode를 찾아주는 메소드가 따로 있었다. identityHashCode()라는 메소드를 사용해보자.
+
+```java
+package hello_ex1;
+
+public class St_ex1 {
+
+	public static void main(String[] args)  {
+
+		String str1 = "hello";
+		String str2 = "hello";
+
+		String str3 = new String("hello");
+		String str4 = new String("hello");
+		
+		System.out.println(System.identityHashCode(str1));
+		System.out.println(System.identityHashCode(str2));
+		System.out.println(System.identityHashCode(str3));
+		System.out.println(System.identityHashCode(str4));
+
+```
+
+위 코드를 실행해보니 str1과 str2의 hashcode값은 똑같이 나오고 str3와 str4의 hashcode값은 다르게 나온다. 드디어 원하는 값이 나왔다.
+
+> 그러나 String.hashCode()에서 String이 다르다고 hashCode()가 항상 유일한 값을 반환하지는 않는다. ASCII code 값을 이용해 비트 연산의 합으로 hash를 만드니 길이가 길다고 해서 달라지는 게 아니다. 예를 들어,  [Z@S.ME](mailto:Z@S.ME)와 Z@RN.E는 같은 hashCode 값을 반환한다.
+
+출처
+
+-   [http://sunphiz.me/wp/archives/tag/keystore](http://sunphiz.me/wp/archives/tag/keystore)
+-   [https://stackoverflow.com/questions/44178138/what-is-the-difference-between-heap-memory-and-string-constant-pool-in-java](https://stackoverflow.com/questions/44178138/what-is-the-difference-between-heap-memory-and-string-constant-pool-in-java)
+-   [https://docs.oracle.com/javase/7/docs/api/overview-summary.html](https://docs.oracle.com/javase/7/docs/api/overview-summary.html)
+
+
+
 

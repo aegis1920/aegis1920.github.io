@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-06-20 15:39:35 +0900
+updated : 2019-06-21 13:44:56 +0900
 tags    : 
 toc     : true
 public  : true
@@ -645,7 +645,1133 @@ resources에는 정적 리소스들 html, css 등...
 
 
 
+<Spring Framework>
 
+  
+
+- 프레임워크란?
+
+  
+
+- 프레임워크란 특정한 목적에 맞게 프로그래밍을 쉽게 하기 위한 틀.
+
+  
+
+- Spring Framework를 배울 때
+
+  
+
+- 스프링 프레임워크의 기능을 모두 익히려고 하지 말자. 너무 많으니 그냥 필요할 때 가져다 쓰면 된다.
+
+- 가볍게 학습을 하고 그걸 가지고 프로젝트를 여러 개 해보면 된다.
+
+  
+
+- Spring Framework란?
+
+  
+
+- 부가적인 설정들을 최소화하기 위해서 자바 언어 코딩에 최적화되어 있는 틀
+
+- spring = eclipse + STS(플러그인)
+
+  
+
+- Spring project 만들기
+
+  
+
+- JDK 설치 -> tomcat 설치 -> eclipse 설치 -> 환경변수 설정 -> tomcat 설정(server locations를 tomcat installation, server options를 sepearate xml로, 포트 충돌 가능성이 있으니 포트를 8181로 설정) -> market에서 STS 설치
+
+  
+
+- 2강 19분 31초
+
+- Property에 있는 걸 set메소드로 해주는 것.
+
+- setter 메소드가 있기 때문에 xml 파일이 존재하는 것.
+
+- <Property name="firstNum">
+
+-
+
+- spring bean configuration files가 xml 파일이다.
+
+  
+
+- ArrayList<String> 타입은 인터페이스인 list에 상속된 arraylist 클래스이니까. list라고 적습니다.
+
+- 생성자()와 setter()가 아니라 Java 파일로도 의존성 주입이 가능하다.
+
+- 생성자는 constructor-arg
+
+- setter는 property
+
+  
+
+- DI 사용에 따른 장점
+
+  
+
+- 자바 코드에다가 쓰면 되는데 왜 굳이 xml에다 정의를 해서 쓸까?
+
+  
+
+- 작은 규모의 프로젝트에서는 잘 모릅니다. 그러나 규모가 커지고 유지보수 업무가 발생하면 DI를 이용한 개발의 장점을 느낄 수 있다.
+
+- ctx를 선언한 Java 코드는 손을 대지 않고 xml 파일에서만 바꿔주면 된다.
+
+- 14분
+
+  
+
+  
+
+-
+
+- 전자정부표준프레임워크
+
+  
+
+- 한국정보화진흥원에서 만든 웹 기반 어플리케이션 프레임워크로서 정부 및 공공기관, 공기업 등의 웹 사이트에 자주 쓰이는 공통 기능들을 Spring 프레임워크와 유명 java 라이브러리(iBatis/myBatis, jackson, apache commons등)을 가지고 미리 만들어 놓은 공통 컴포넌트와 개발환경, 실행환경, 운영환경, 관리환경 등으로 구성되어 있다.
+
+- 개발 프레임워크의 표준 정립으로 응용 소프트웨어의 표준화, 품질 및 재사용성 향상을 목표로 하고 있다.
+
+  
+
+- 프레임워크
+
+  
+
+- 어떤 목적을 달성하기 위해 복잡하게 얽혀있는 문제를 해결하기 위한 구조
+
+- 소프트웨어 개발에 있어 하나의 뼈대 역할
+
+- 클래스와 라이브러리가 합쳐진 형태.
+
+- 재사용 가능한 수많은 클래스들과 라이브러리들을 융합한 채로 처음부터 제공해준다. 그래서 여러 개의 표준을 만들지 않아도 되니 개발자의 피곤함을 덜어준다.
+
+- Spring, Apache 시리즈(Sling, Structs 2, Wicket), JWT, Django, Flask, Ruby on rails, Laravel, Codeigniter, CakePHP, Symfony, Zend-Skeleton, Bootstrap, .net Framework, Qt, Express.js, AngularJS, Angular, Vue.js
+
+  
+
+- Spring 프레임워크
+
+  
+
+- 자바 플랫폼을 위한 오픈소스 애플리케이션 프레임워크
+
+- JSP로 시스템을 구축한다면 반드시 사용되는 프레임워크
+
+- 스프링 프레임워크의 특징
+
+  
+
+- POJO(Plain Old Java Object) : POJO는 Java EE를 사용하면서 무거운 객체를 만드는 것에 반발하면서 나타난 용어이다. 별도의 프레임워크 없이 Java EE를 사용할 때에 비해 특정 인터페이스를 직접 구현하거나 상속받을 필요가 없어 기존 라이브러리를 지원하기가 용이하고, 객체가 가볍다.
+
+- AOP(Aspect Oriented Programming) : 로깅, 트랜잭션, 보안 등 여러 모듈에서 공통적으로 사용하는 기능을 분리하여 관리할 수 있다. AspectJ를 포함하여 사용할 수 있고, 스프링에서 지원하는 실행에 조합하는 방식도 지원한다.
+
+- DI(Dependency Injection) : 프로그래밍에서 구성요소 간의 의존 관계가 소스코드 내부가 아닌 외부의 설정 파일을 통해 정의되는 방식이다. 코드 재사용을 높이고 모듈간의 결합도도 낮춘다. 계층, 서비스 간에 의존성이 존재하는 경우 스프링 프레임워크가 서로 연결시켜준다.
+
+- IoC(Inversion of Control) : 개발자가 작성한 프로그램이 외부 라이브러리의 코드를 호출해서 작동하는 게 아니라 반대로 외부 라이브러리 코드(스프링)가 개발자의 코드를 호출하는 것. 제어권이 프레임워크에게 있어 필요에 따라 스프링 프레임워크가 사용자의 코드를 호출한다.
+
+- 생명주기 : 스프링 프레임워크는 경량 컨테이너로 Java 객체의 생성, 소멸을 직접 관리하며 필요한 객체만 사용할 수 있다
+
+- 다양한 서비스 : myBatis와 같은 데이터베이스 처리 라이브러리나 tiles 같은 유용한 인터페이스를 제공한다.
+
+  
+
+- 구조
+
+  
+
+- Core : IoC와 DI 기능을 제공한다.
+
+- DAO : JDBC 추상 계층을 제공한다.
+
+- ORM : JPA, myBatis, Hibernate와 같은 ORM API들과 통합할 수 있는 기능을 제공했다.
+
+- AOP : 스프링 프레임워크에서 제공하는 AOP 패키지를 제공한다.
+
+- Web : Spring Web MVC, Strcts, WebWork 등 웹 어플리케이션 구현에 도움되는 기능을 제공한다.
+
+  
+
+- Apache commons
+
+  
+
+- 언어와 상관없이 공통모듈들을 개발하기 위한 최상위 프로젝트로 있었지만 프로젝트가 모이지 않아 활성화되지 않아 문을 닫았다. 그러나 활발한 활동을 하며 프로젝트가 늘어나고 있던 jakarta Commons와 XML commons, web service commons 등의 자바 관련 프로젝트들이 최상위 프로젝트로 옮겨오면서 현재는 자바 언어 관련 재사용 가능한 컴포넌트를 개발하는 프로젝트로 이어지고 있다.
+
+  
+
+- iBatis
+
+  
+
+- SQL에 기반한 데이터베이스와 자바, 닷넷, 루비 등을 연결시켜주는 프레임워크다. 이러한 연결은 프로그램의 소스코드에서 SQL 문장을 분리하여 별도의 XML 파일로 저장하고, 별도의 XML 파일로 저장하고 이 둘을 서로 연결시켜 주는 방식으로 작동한다.
+
+- 사용자가 SQL 문장을 만들면 그에 적합한 객체 모델을 생성하는 방식으로 작동한다.
+
+- iBatis 개발자들은 구글로 옮겨서 Mybatis가 되었다. atis
+
+  
+
+- Mybatis
+
+  
+
+- XML 서술자나 annotation을 사용하여 저장 프로시저나 SQL 문으로 객체들을 연결시킨다.
+
+  
+
+- Maven
+
+  
+
+- maven은 java 기반 프로젝트의 라이프 사이클 관리를 목적으로 하는 빌드 도구이다. 이에 따라 컴파일과 build를 동시에 수행, 테스트를 병행하거나 서버 측 Deploy 자원을 관리할 수 있는 환경을 제공한다. 또한 라이브러리 관리 기능도 내포하고 있다. Java로 개발하다 보면 다양한 라이브러리를 필요로 하게 되는데, pom.xml 파일에 필요한 라이브러리만 적으면 Maven이 알아서 다운받고 설치해주고 경로까지 지정해준다.
+
+- 그러나 maven에서 기본적으로 지원하지 않는 빌드 과정을 추가해야 하는 경우 상당한 고생이 따른다.
+
+  
+
+- deploy
+
+  
+
+- 만들어진 프로그램을 서비스 위치로 보내는 작업
+
+  
+
+- Groovy
+
+  
+
+- Java를 발전시킨 객체 지향 프로그래밍 언어. 2015년부터 아파치 소프트웨어 재단이 관리하고 있다. Java와 문법이 거의 동일하다. 차이점이라면 public, private 등의 접근 레벨 지시자나 세미 콜론 등이 옵션이라는 것. 특히 Gradle을 이용한 빌드 배포를 하려면 반드시 배워야 한다. JVM 위에서 그대로 돌아가기 때문에 Java API도 문제없이 사용이 가능하다. IDE 역시 Java를 지원하면 Groovy도 지원하는 경우가 많다.
+
+  
+
+- 의존성 주입(Dependency Injection)
+
+  
+
+- 프로그래밍에서 구성요소간의 의존 관계가 소스코드 내부가 아닌 외부의 설정 파일등을 통해 정의되게 하는 디자인 패턴 중 하나이다.
+
+- 의존 관계 설정이 컴파일시가 아닌 실행시에 이루어져 모듈간의 결합도를 낮출 수 있습니다.
+
+- 예시(사람 객체 만들기)
+
+  
+
+- 보통 생각했을 때
+
+  
+
+- 머리A, 몸통, 팔, 다리 클래스 정의
+
+- 사람 클래스 정의
+
+- 사람 클래스 각각 필드에 머리A, 몸통, 팔, 다리 클래스를 합성
+
+- 머리A클래스를 변경했을 때 사람 클래스도 수정하면서 합성에 영향을 많이 끼침
+
+  
+
+- 의존성 주입으로 생각했을 때
+
+  
+
+- 머리A, 몸통, 팔, 다리 클래스 정의
+
+- 사람 클래스 정의
+
+- 사람클래스의 각각 필드와 머리A, 몸통, 팔, 다리 클래스의 의존성을 정의한 Bean Context를 작성
+
+- 머리A클래스를 변경했을 때 Bean Context에 있는 class만 변경해주면 됨. 사람 클래스에는 영향이 없다.
+
+  
+
+- MVC 패턴
+
+  
+
+- Model, View, Controller 세 가지 부분으로 이루어져 있다. Model은 자료(Data)를 생성, 저장, 처리하는 역할을 하는 부분이다. View는 Model로부터 받은 자료를 여러 가지 형태로 사용자에게 보여주는 역할을 한다. Controller는 소프트웨어의 흐름을 제어하는 것으로 View와 Model 사이에서 관계를 설정하여 주는 부분을 말한다. Controller는 Model이나 View가 바뀌더라도 수정없이 작동되어야 한다.
+
+  
+
+- Spring boot
+
+  
+
+- 스프링은 J2EE로 알려진 자바 엔터프라이즈 에디션을 경량화하려는 대안으로 시작했었다. 의존성 주입과 AOP를 활용해서 EJB의 기능을 POJO로 구현할 수 있게 했다.
+
+- 그러나 컴포넌트 코드 작성은 가볍지만 개발 구성은 무거웠다. 게다가 스프링에서 어떤 라이브러리를 프로젝트 빌드에 포함해야 하는지 결정하는 일은 까다롭다. 라이브러리 버전이 안 맞으면 모든 곳에서 호환성 문제가 생겼습니다.
+
+- Spring boot에서는 스프링 구성이 없다. web.xml도, 빌드 명세도 없다. 애플리케이션 서버도 없다. 애플리케이션을 실행하는 복잡한 과정은 스프링부트가 처리하고 개발자는 애플리케이션 코드만 작성하면 된다.
+
+- 스프링 부트의 핵심
+
+  
+
+- 자동 구성
+
+  
+
+- 스프링 부트가 애플리케이션 클래스 패스에서 H2 데이터베이스 라이브러리를 발견한다면 내장 H2 데이터베이스를 자동으로 구성합니다.
+
+- 스프링 부트에는 내장 데이터베이스와 JdbcTemplate 등 수많은 자동 구성이 있습니다.
+
+  
+
+- 스타터 의존성
+
+  
+
+- 의존성을 여러 개 추가해야 될 걸 스타터 의존성 하나만 추가하면 이 스타터 의존성이 기능에 필요한 다른 의존성을 모두 끌어와서 추가한다.
+
+- 그래서 스타터 의존성을 사용하면 필요한 라이브러리의 버전을 고민할 필요가 없다. 왜냐면 이미 스타터가 끌어오는 라이브러리 버전은 이미 테스트가 끝난 것이기 때문이다.
+
+  
+
+- 명령줄 인터페이스
+
+  
+
+- 스프링 부트 CLI를 이용하면 개발에 더 집중할 수 있다.
+
+  
+
+- 액추에이터
+
+  
+
+- 애플리케이션을 실행할 때 내부에서 어떤 일이 일어나는지 살펴볼 수 있다.
+
+  
+
+- RESTful
+
+  
+
+- REST 원리를 따르는 시스템
+
+  
+
+- REST
+
+  
+
+- Representational State Transfer.
+
+- www와 같은 분산 하이퍼 미디어 시스템을 위한 소프트웨어 아키텍처의 한 형식
+
+- 네트워크 아키텍처 원리의 모음. 즉, 자원을 정의하고 자원에 대한 주소를 지정하는 방법 전반을 일컫는다. 즉, 웹 상의 자료를 HTTP 위에서 SOAP이나 쿠키를 통한 세션 트랙킹 같은 별도의 전송 계층 없이 전송하기 위한 아주 간단한 인터페이스.
+
+- REST 아키텍처 형식을 따르면 HTTP나 WWW이 아닌 아주 커다란 소프트웨어 시스템을 설계하는 것도 가능하다.
+
+  
+
+- JSON
+
+- SOAP(아직 이해 못함)
+
+  
+
+- Simple Object Access Protocol.
+
+- HTTP, HTTPS, SMTP 등을 통해 XML 기반의 메세지를 컴퓨터 네트워크 상에서 교환하는 프로토콜.
+
+- 웹 서비스에서 기본적인 메세지를 전달하는 기반이 된다.
+
+- SOAP이 쓰는 메시지 패턴
+
+  
+
+- 원격 프로시저 호출(Remote Procedure Call) 패턴으로 클라이언트에서 서버쪽으로 메시지 요청
+
+- 서버는 메세지를 즉시 응답
+
+  
+
+- XML을 근간으로 헤더와 바디를 조합하는 디자인 패턴으로 설계되어 있다.
+
+  
+
+- HTTP
+
+  
+
+- Hyper Text Transfer Protocol
+
+- 하이퍼 텍스트를 빠르게 교환하기 위한 프로토콜의 일종으로 즉, HTTP는 서버와 클라이언트 사이에서 어떻게 메세지를 교환할 지를 정해놓은 규칙
+
+- 80번 포트를 사용하며 HTTP 구조는 요청과 응답으로 구성되어 있다.
+
+- 대부분 HTTP/1.1 버전이지만 HTTP/2가 공식으로 발표됐다.
+
+- HTTP는 FTP나 TELNET과 다르게 비연결식이다. 즉, HTTP는 클라이언트가 서버에 정보를 요청하고 서버로부터 응답 코드와 내용을 받으면 클라이언트와 연결을 종료한다. (Stateless)
+
+  
+
+- HTTPS
+
+  
+
+- TLS를 사용해 암호화된 연결을 하는 HTTP
+
+  
+
+- TLS(Transport Layer Security)
+
+  
+
+- 인터넷에서 정보를 암호화해서 송수신하는 프로토콜
+
+- SSL(Secure Socket Layer)에서 기반한 기술로 표준에 명시된 정식 명칭은 SSL이 아니라 TLS이다.
+
+- 서로의 신원을 확인하기 위해서 HandShake 과정을 거친다.
+
+- 서로가 어떤 TLS 버전을 사용가능한지 확인하고, 인증서를 사용해 서로 믿을 수 있는지 확인한 뒤, 서로 간의 통신에 쓸 암호를 교환한다. 그 다음부터는 서로 교환한 암호를 사용해 암호화된 통신을 하면 된다.
+
+- 암호화 통신인 만큼 속도상의 손해가 발생한다. 왜냐면 HTTPS로 연결된 페이지에 한 개라도 구성 요소 중 HTTP로 로드하는 것이 있다면 웹 브라우저가 "보안되지 않은 컨텐츠"라면서 보안 경고를 뿜어댄다.
+
+- TLS는 HTTP 뿐만 아니라 FTP, SMTP와 같은 여타 프로토콜까지 포함한다.
+
+- 사실 인증기관에서 주는 인증서는 제대로 확인되지 않은 인증서(Domain Validation 인증서)이기에 이 문제점을 고친 EV-SSL이라고 인증 조건이 매우 빡빡하고 발급 이용도 도메인 인증서에 비해 비싼 프로토콜이 있다.
+
+  
+
+- JSON(JavaScript Object Noatation)
+
+  
+
+- 속성-값의 쌍으로 이루어진 Data Object를 전달하기 위해 인간이 읽을 수 있는 텍스트를 사용하는 개방형 표준 포맷이다. 비동기 브라우저/서버 통신을 위해, 넓게는 XML을 대체하는 주요 데이터 포맷이다. 인터넷에서 자료를 주고 받을 때 그 자료를 표현하는 방법으로 알려져 있다.
+
+- []안에는 순서가 있는 배열, {}안에는 속성명이 있는 객체를 의미하며 객체 안에 객체를 넣을 수도 있어서 XML 처럼 복잡한 구조 또한 표현이 가능하다.
+
+- 자바스크립트의 구문 형식을 따르지만 언어 독립형 데이터 포맷이다.
+
+- JSON은 ECMAScript5에서 기본 기능으로 내장되어 새롭게 출시되는 브라우저들 기준에서는 DOM을 통해 XML을 파싱하는 것보다 JavaScript 엔진에서 JSON을 메모리로 받는 쪽이 성능으로나 트래픽으로나 더 나은 선택이 됐다.
+
+- 그러나 확산되고 있다고 해도 어디까지나 웹 브라우저가 주가 되는 환경 위주로 퍼지고 있으며 그렇지 않은 곳에서는 여전히 XML이 사용된다.
+
+  
+
+  
+
+<전자정부표준프레임워크>
+
+  
+
+- pom.xml
+
+  
+
+- Project Object Model의 준말
+
+- Maven 설정 파일
+
+- 트리 구조로 구성되며 부모 요소의 속성들을 상속할 수 있다.
+
+- 필요한 라이브러리를 pom.xml의 <dependencies> 태그에 붙여넣으면 자동으로 *.jar 라이브러리들을 추가해준다.
+
+  
+
+- setting.xml
+
+  
+
+- Maven 빌드는 프로젝트의 컴파일, 테스트, 패키징을 모두 수행하고 그 결과를 제공한다. 메이븐을 먼저 하고 run해야한다.
+
+- IoC Container
+
+  
+
+- Inversion of Control(IoC) = 제어의 역전 현상
+
+  
+
+- 객체의 생성에서부터 생명주기의 관리까지 객체에 대한 제어권이 바뀌었다는 것을 의미.
+
+  
+
+- 프레임워크의 기본적인 기능.
+
+- 객체 생성 시, 객체가 참조하고 있는 타 객체에 대한 종속성을 소스 코드 내부에서 하드 코딩하는 것이 아닌, 소스 코드 외부에서 설정하게 함으로써, 유연성 및 확장성을 향상시킨다.
+
+- 원래 자바 객체를 생성하고 의존 관계를 연결시키는 작업에 대한 제어권은 어플리케이션에 있었지만 Servlet, EJB 등을 사용하는 경우 Servlet Container, EJB Container에게 제어권이 넘어간다.
+
+  
+
+- Bean
+
+  
+
+- spring framework에서 Bean은 어플리케이션을 구성하고, IoC container에 의해 관리되어 지는 객체를 의미한다. Bean들과 Bean들 간의 종속성은 container가 사용하는 설정 메타데이터(configuration metadata)에 의해 결정된다.
+
+  
+
+- 이 설정 정보는 'spring IoC container가 객체를 생성하고, 객체간의 종속성을 이어줄 수 있도록' 필요한 정보를 제공한다. 설정 정보는 일반적으로 xml 형태로 작성된다.
+
+- 그리고 이 설정 정보는 xml이 아닌 java annotation을 이용해도 설정이 가능하다.
+
+  
+
+- xml 형태 설정 정보의 기본적인 모습
+
+- <beans> 태그는 spring IoC container의 설정 정보를 나타내는 태그이다. <beans>태그 안 각각의 <bean> 태그는 spring IoC container가 생성하고, 관리할 객체의 정의를 나타낸다.
+
+- <import>태그를 사용하면 하나의 설정 정보 파일에서 다른 파일을 Import할 수 있다.
+
+  
+
+- resource 속성을 이용해서 xml 설정 파일의 위치를 나타낸다.
+
+  
+
+- container를 context 객체로 인스턴스화하면 getBean(String) 메소드를 사용해서 bean을 가져올 수 있다.
+
+- Container에서 사용하는 bean의 정의는 아래의 정보를 담고 있다.
+
+  
+
+- 클래스 이름 - bean의 실제 구현 클래스를 나타낸다.
+
+- 다른 bean에 대한 참조 - bean이 동작하기 위해 필요한 다른 bean 들에 대한 참조 정보(이런 참조를 collaborators or dependencies라고도 한다)
+
+- 기타 객체에 설정할 정보들 - connection pool을 관리하는 bean에서 사용할 connection의 개수, pool의 최대 크기 등등…
+
+- =>이런 정보들이 실제 <bean> 태그로 작성된다.
+
+  
+
+- 모든 bean 정의는 객체화를 위해 실제 Java Class가 필요하다.
+
+  
+
+- <bean> 태그 안에서 class 속성을 통해 java class를 설정한다.
+
+- 대부분의 경우 Container는 bean을 객체화하기 위해서 Java의 new 연산자를 사용한다.
+
+  
+
+- 종속성 삽입(=의존성 주입, Dependency Injection(DI))
+
+  
+
+- 일반적으로 클래스의 인스턴스를 MyClass myclass = new MyClass();로 생성합니다. 이 작업은 불편한 점이 있습니다. 자기 자신이 인스턴스를 만들던지, 자신이 직접 가서 찾아오던지 해야하고 이 인스턴스 생성 비용이 크거나, 여러 군데에서 사용하게되면 메모리에 계속 할당되고 일일이 생성해서 사용해야하는 불편함이 있습니다.
+
+- 그럴 때 인스턴스의 생성과 life-cycle 관리까지 컨테이너에 맡기는 것이 바로 의존성 주입입니다.
+
+- 즉, 자신이 그 객체를 필요할 때만 @autowired같이 어노테이션을 이용해 컨테이너로부터 주입받아서 사용하는 것입니다.
+
+- 이렇게 인스턴스의 생성 및 관리 주체가 '나' 자신이 아니라 '컨테이너'가 되기 때문에 IoC(Inversion Of Controls), 제어의 역전이 되는 것이고 그 방법론 중에 하나로 Dependency of Injection이 일어나는 것입니다.
+
+- 조금 자세히 이야기 하면 각 클래스 사이의 의존관계를 빈 설정(Bean Definition) 정보를 바탕으로 컨테이너가 자동적으로 연결해주는 것입니다. 컨테이너가 의존관계를 자동적으로 연결시켜주기 때문에 개발자들이 컨테이너 API를 이용하여 의존 관계에 관여할 필요가 없게 되므로 컨테이너 API에 종속되는 것을 줄일 수 있다. 개발자들은 단지 빈 설정(Bean Definition)파일에서 의존관계가 필요하다는 정보를 추가하기만 하면 된다.
+
+- Dependency Injection(DI)의 기본적인 원칙은 '객체는 Bean에 생성자나 set메소드를 통해서만 필요로 하는 객체를 정의한다는 것'입니다. 그러면 container는 bean 객체를 생성할 때, bean에서 정의한 의존성을 주입합니다.
+
+- 종속성 삽입에는 두 가지 방법이 있다.
+
+  
+
+- Constructor Injection
+
+  
+
+- 생성자 기반의 DI는 다수의 arguments를 갖는 생성자를 호출하여 종속성을 주입한다. <constructor-arg> element를 사용한다.
+
+- 즉, 처음에 생성자를 만들 때 파라미터가 있도록 해서 객체가 생성될 때 바로 주입합니다. 생성자를 호출할 때 그 인수에 원하는 걸 넣으면
+
+  
+
+- Setter Injection
+
+  
+
+- Setter 기반의 DI는 argument가 없는 생성자를 통해 bean 객체가 생성된 후, setter 메소드를 호출하여 종속성을 주입한다. <property> element를 사용한다.
+
+  
+
+- <constructor-arg>, <property>의 sub-element type으로 여러 값들을 지정할 수 있습니다.
+
+  
+
+- type과 index, value
+
+- <value>
+
+- <ref> - 다른 bean을 참조할 수 있습니다.
+
+  
+
+- bean - 그 bean 객체를 참조. id와 같아야 합니다.
+
+- local - 같은 xml 설정 파일 내의 bean 객체 참조
+
+- parent - 현재 container의 부모 container의 bean 객체를 참조
+
+  
+
+- Inner beans - <property/> or <constructor-arg/> element 안에 있는 </bean> element를 inner bean이라고 합니다. 여기는 정의한다 해도 무시되기 때문에 정의하지 않아도 됩니다.
+
+- Collections - <list/>, <set/>, <map/>, <props/> element가 사용됩니다.
+
+- Collection 병합 - 부모 bean의 collection과 자식 bean의 collection을 병합할 수 있습니다.
+
+- <null/> - null값을 갖게 할 수 있습니다.
+
+  
+
+- 종속되지만 종속성이 직접 나타나지 않는 경우(static 메소드에 의해 초기화가 되어야 하는 경우)도 있습니다. 그럴 경우, depends-on 속성을 사용하여 명시적으로 종속성을 표현할 수 있습니다.
+
+- ApplicationContext는 시작시에 모든 bean을 객체화하는데 lazy-init을 사용하면 시작 시가 아니라 처음으로 필요로 했을 때 생성되게 할 수 있습니다. 그러나 시작 시에 객체화 하는 게 잘못된 설정이 있는 경우 즉시 발견할 수 있기 때문에 더 좋습니다.
+
+- 서로 관계있는 bean 들을 자동으로 엮어줄 수 있습니다. autowire 속성을 쓰면 되는데, 여기에는 모드가 따로 있습니다. property이름으로 자동엮기를 한다든가, 타입으로 자동엮기를 한다든가… 또 제외시켜줄 수도 있습니다.
+
+- dependecy-check 속성을 이용해서 bean의 모든 property가 지정되었는지 확인시켜줄 수 있습니다.
+
+- container에 존재하는 대부분의 bean은 singleton입니다. 이런 bean이 다른 bean과 collaborate할 경우, property를 정의함으로써 종속성을 조절해야 합니다. 하지만 bean들의 생명주기 자체가 다르다면 문제가 발생합니다. 이 문제를 해결하기 위해선 Lookup method injection를 쓰면 됩니다. lookup 메소드 삽입은 container가 관리하고 있는 bean의 메소드를 override해서 container 안에 있는 다른 bean을 찾을 수 있게 하는 기능입니다. override하기 위해서 동적으로 상속 클래스를 생성합니다.
+
+  
+
+- Bean scope
+
+  
+
+- Bean정의는 실제 bean 객체를 생성하는 방식을 정의하는 것이다. 하나의 bean 정의에는 다수의 객체가 생성될 수 있다. 그래서 객체의 범위또한 정의할 수 있습니다.
+
+- spring framework는 5가지의 scope를 제공합니다.
+
+  
+
+- singleton(default) - 하나의 Bean 정의에 대해서 단 하나의 인스턴스만 존재합니다. 그래서 ref로 공유하는 형식
+
+- prototype - 하나의 Bean 정의에 대해서 다수의 객체. 매순간 새로운 bean 객체
+
+- request - 하나의 Bean 정의에 대해서 HTTP request 생명주기 안에 자신만의 하나의 객체만 존재
+
+- session - 하나의 Bean 정의에 대해서 HTTP session 생명주기 안에 자신만의 하나의 객체만 존재
+
+- global session - 하나의 Bean 정의에 대해서 HTTP global session 생명주기 안에 자신만의 하나의 객체만 존재
+
+  
+
+- Customizing the nature of a bean - Spring Framework는 container 내부의 bean 행동을 변화시킬 수 있는 다양한 callback interface를 제공합니다.
+
+  
+
+- Lifecycle callbacks
+
+  
+
+- Initialization callbacks
+
+  
+
+- InitalizingBean interface를 구현하면 bean에 필요한 모든 property를 설정한 후, 초기화 작업을 수행한다. 그러나 code가 spring과 coupling 되어 잘 쓰지 않는다. 이 대안으로 bean을 정의할 때 init-method 속성을 사용한다.
+
+  
+
+- Destruction callbacks
+
+  
+
+- DisposableBean interface를 구현하면, container가 파괴될 때 bean이 callback을 받을 수 있다. 하지만 이도 coupling되어 잘 쓰지 않는다. destroy-mothod 속성을 이용해 bean을 정의할 때 쓸 수 있다.
+
+  
+
+- Knowing who you are
+
+  
+
+- BeanFactoryWare interface를 사용하면, 자신을 생성한 BeanFactory를 알 수 있고 다른 bean을 검색할 수 있다 하지만 얘도 coupling을 발생시킨다. 이 대안으로 ObjectFactoryCreatingFactoryBean을 쓰면 된다. bean을 찾아주는 객체를 참조할 수 있다.
+
+  
+
+- Bean definition inheritance
+
+  
+
+- 자식 bean을 정의하면 필요에 따라 부모 bean으로부터 상속받아 설정 정보를 덮어쓰거나(override) 추가할 수 있다. xml에서는 parent 속성을 사용하면 된다.
+
+- 자식 bean의 정의에 class가 명시되어 있지 않을 경우, 부모 bean 정의의 값을 사용한다. 만약 자식 bean 정의에 class가 명시되어 있다면 자식 bean은 부모 bean 정의의 모든 property 값을 받아들일 수 있어야 한다.(상속받는다)
+
+- 부모 bean 정의에서 abstract를 true로 설정한다면 class를 지정하지 않는다. 자식이 해야되는 거니까.
+
+  
+
+- Container extension points - Spring IoC container는 특별한 통합 interface의 구현체를 삽입하여 확장할 수 있다.
+
+  
+
+- BeanPostProcessors를 사용한 확장
+
+  
+
+- BeanPostProcessors interface는 다수의 callback 메소드를 정의하고 있는데 이 메소드를 구현함으로써 자신만의 객체화 로직, 종속성 해결 로직등을 제공할 수 있다.
+
+- 특정 class가 Container에 post-processor로 등록되면, post-processor는 container에서 생성되는 각각의 bean 객체에 대해서 container 객체화 메소드 전에 callback을 받는다.
+
+- 중요한 것은 BeanFactory는 post-processor를 다루는 방식에 있어서 ApplicationContext와는 조금 다르다. ApplicationContext는 BeanPostProcessor interface를 구현한 bean을 자동적으로 인식하고 post-processor로 등록한다. 하지만 BeanFactory 구현을 사용하면 post-processor는 다음과 같이 명시적으로 등록되어야 한다. 명시적 등록은 불편해서 BeanFactory 구현보다는 ApplicationContext 구현을 사용한다.
+
+  
+
+- BeanFactoryPostProcesors를 사용한 확장
+
+  
+
+- 얘를 사용하면 bean 설정 메타정보를 처리한다는 것이다. spring IoC container는 BeanFacktoryPostProcessors가 설정 메타 정보를 읽고, container가 실제로 bean을 객체화하기 전에 그 정보를 변경할 수 있도록 허용한다.
+
+- BeanFactory의 경우, 수동으로 실행되고, ApplicationContext의 경우 자동으로 실행된다.
+
+  
+
+- FactoryBeans를 사용한 확장
+
+  
+
+- FactoryBean interface를 구현한 객체는 스스로 factory가 된다.
+
+  
+
+- The ApplicationContext
+
+  
+
+- ApplicationContext는 BeanFactory를 확장한 것으로 BeanFactory의 기능 외, 여러 기능을 제공한다.
+
+  
+
+- BeanFactory보다는 ApplicationContext를 사용한다.
+
+- ApplicationContext는 Event 처리를 위해 ApplicationEvent, ApplicationListener interface를 제공한다. ApplicationListener interface를 구현한 bean은 ApplicationContext에 발생한 모든 ApplicationEvent를 전달받는다. (RefreshedEvent, Started, Stopped, Closed, Handled 정도의 이벤트가 있다.
+
+  
+
+- Conveinenet, ApplicationContext instantiation for web
+
+  
+
+- servlet context listener는 웹 어플리케이션을 위한 servlet context가 생성되어 첫 번째 요청을 처리할 상태가 된 직후 수행된다. 그래서 servlet context listener가 Spring Application을 초기화하라 최적의 장소이다.
+
+- 그래서 <listener>안에 ContextLoaderListener를 넣으면 된다.
+
+  
+
+- Annotation-based configuration
+
+  
+
+- Spring은 의존성 주입을 위해 annotation을 사용할 수 있다. annotation을 사용하기 위해서는 Spring container에 특정 BeanPostProcessors를 등록해야만 한다. 항상 그렇듯이, 이들 BeanPostProcessors가 개별적인 bean 정의로 등록될 수 있지만, context namespace를 사용하여 등록할 수도 있다.
+
+- @Required
+
+  
+
+- bean property setter 메소드에 적용된다. 이 annotation은 단순히 bean property가 설정 시 반드시 설정되어야만 한다는 것을 나타낸다. 설정이 이루어지지 않는 경우, container는 Exception을 던진다.
+
+  
+
+- @Autowired
+
+  
+
+- 전통적인 setter 메소드에 적용된다. 다른 이름을 가지거나, 생성자 및 field에도 적용될 수 있다. array나 collection에도 쓸 수 있다. 대상이 되는 bean이 없을 경우 실패한다. type을 기반으로 동작한다.
+
+  
+
+- Qualifier를 사용한 annotation 기반의 자동 엮음
+
+  
+
+- type을 이용한 autowire는 대상이 다수가 발생할 수 있기 때문에, 선택 시 추가적인 제어가 필요하다. 이 때 @Qulifier annotation을 사용하면 특정 argument를 qualifier와 관련시킴으로써, 타입을 찾을 대상을 좁힐 수 있다. 즉, autowire의 대상을 찾을 때 상세한 제어를 제공하기 위함이다.
+
+  
+
+- @Resource
+
+  
+
+- name 속성을 가지고, Spring은 그 값을 삽입할 bean 이름으로 인식한다. name의 속성을 설정하지 않은 경우, bean type으로 대상을 찾는다.
+
+  
+
+- Classpath scanning for managed components
+
+  
+
+- @Component and further stereotype annotations
+
+  
+
+- Auto-detection Components
+
+  
+
+- Spring은 stereotyped class(@Component, @Repository, @Service, @Controller)를 자동으로 탐지하고 ApplicationContext에 일치하는 BeanDefinition을 등록하는 기능을 제공한다.
+
+  
+
+- Naming autodetected components
+
+  
+
+- ??
+
+  
+
+- Providing a scope for autodetected components
+
+  
+
+- 다른 scope가 필요할 때 @scope로 바꿔줄 수 있다.
+
+  
+
+- @Repository
+
+- @Component
+
+  
+
+- Bean Definition Profiles
+
+  
+
+- 동일한 id의 bean을 여러 개 정의하여 사용자의 설정으로 활성화시킨 Profile의 해당 bean이 Runtime시에 동작하도록 하는 기능이다. 보통 개발시점과 운영시점에 bean의 Profile 설정 변경만으로 Spring Container에서 Bean적용이 달리 적용되도록 하는데 쓰인다.
+
+- Profile 설정 방법
+
+  
+
+- XML설정
+
+  
+
+- 그냥 똑같이 bean id값만 쓰면 된다. profile을 속성으로 넣고 활성화 시키면 해당 bean이 동작한다.
+
+  
+
+- Annotation 설정
+
+  
+
+- @Profile을 통해서 설정가능하다. @Configuration과 함께 @Profile("Profile명")을 클래스에 쓰게 되면 내부 메소드에 붙은 @Bean을 통해 Bean들이 등록된다.
+
+  
+
+- Profile 활성화
+
+  
+
+- 선언적인 Profile 활성화(web.xml, 환경변수, 프로퍼티등
+
+  
+
+- web.xml이나 jvm 실행 시, 환경변수, Property 값으로 Profile을 활성화시킬 수 있다.
+
+  
+
+- Java 코드를 통한 Profile 활성화
+
+  
+
+- Environment라는 인터페이스를 통해서 해당 프로파일을 활성화시킬 수 있다. setActiveProfiles라는 메소드로 Profile을 활성화시키고 해당 configuration xml을 로딩한다. Profile이 Production으로 설정되어 있는 bean은 Skip된다.
+
+  
+
+- JUnit4테스트의 @ActiveProfile 어노테이션을 통한 Profile활성화
+
+  
+
+- JUnit4에서 Test class에 @ActiveProfile을 붙임으로써 Profile활성화가 가능하다. @ContextConfiguration과 함께 쓰며, @ActiveProfile뒤에 Profile명을 붙이면 해당 Profile이 활성화된다.
+
+  
+
+- Generic
+
+  
+
+- Autowire 및 Qualifier
+
+  
+
+- bean id는 다른데 class는 같은 클래스를 가리킨다면 오류를 발생시킨다.
+
+- Qualifier 어노테이션에 personA를 특정하여 처리할 수 있으나 개별적으로 하나하나 지정해야 한다.
+
+  
+
+- Generic을 이용하면 된다. 추상화 클래스 Employee를 구현한 Manager, Admin을 Generic으로 설정하면 Generic에 대하여 Autowire 주입 대상이 된다. Manager, Admin을 구현하고 Autowire 어노테이션에 의해 자동 주입된다.
+
+  
+
+- AOP(Aspect Oriented Programming) 서비스
+
+  
+
+- 객체지향 프로그래밍은 많은 장점에도 불구하고, 다수의 객체들에 분산되어 중복적으로 존재하는 공통 관심사가 존재한다. 이들은 프로그램을 복잡하게 만들고, 코드의 변경을 어렵게 한다.
+
+- 이런 객체지향 프로그래밍의 문제점을 보완해준 게 AOP이다. 핵심 관심사를 분리하여 프로그램 모듈화를 향샹시킨다.
+
+- 관점은 프로그램의 핵심 관심사에 걸쳐 적용되는 공통 프로그램 영역을 의미한다. 예를 들면, 로깅, 인증, 권한 확인, 트랜잭션은 비즈니스 기능 구현 시에 공통적으로 적용되는 요소이며 하나의 관점으로 정의될 수 있다.
+
+- 즉, 각 코드에 분산되어 있던 관심들(횡단 관심사)은 엮기(Weaving)라는 방식을 이용하여 분리된 관점을 핵심 관심사와 엮는다.
+
+- AOP의 주요 개념
+
+  
+
+- 관점(Aspect)
+
+  
+
+- 구현하고자 하는 횡단 관심사의 기능
+
+  
+
+- 결합점(Join point)
+
+  
+
+- 관점을 삽입하여 실행 가능한 어플리케이션의 특정 지점
+
+  
+
+- 포인트컷(Pointcut)
+
+  
+
+- 결합점 집합을 의미한다. 포인트컷은 어떤 결합점을 사용할 것인지를 결정하기 위해 패턴 매칭을 이용하여 룰을 정의한다.
+
+  
+
+- 충고(Advice)
+
+  
+
+- 관점의 실제 구현체로 결합점에 삽입되어 동작할 수 있는 코드. 충고는 결합점과 결합하여 동작하는 시점에 따라 before advice, after advice, around advice 타입으로 구분된다.
+
+  
+
+- 엮기(Weaving)
+
+  
+
+- 대상 객체에 적용하여 새로운 프록시 객체를 생성하는 과정. 엮기 방식은 다음과 같이 구분된다.
+
+  
+
+- 컴파일 시 or 클래스 로딩 시 or 런타임 시(spring - 프록시를 통해 핵심 관심사를 구현한 객체에 접근)
+
+  
+
+- 도입(Introduction)
+
+  
+
+- 새로운 메소드나 속성을 추가한다. Spring AOP는 충고(Advice)를 받는 대상 객체에 새로운 인터페이스를 추가할 수 있다.
+
+  
+
+- AOP 프록시
+
+  
+
+- 대상 객체에 Advice가 적용된 후 생성되는 객체
+
+  
+
+- 대상 객체는 충고(Advice)를 받는 객체이다. Spring AOP는 런타임 프록시를 사용하므로 대상 객체는 항상 프록시 객체가 된다.
+
+  
+
+- AspectJ 어노테이션을 이용한 AOP 지원
+
+  
+
+- @AspectJ 설정하기
+
+  
+
+- @AspectJ를 사용하기 위해서는 다음 코드를 Spring 설정에 추가한다. <aop:aspectj-autoproxy>
+
+  
+
+- 관점 정의하기
+
+  
+
+- @Aspect 어노테이션을 추가하여 Aspect를 생성한다.
+
+  
+
+- 포인트컷 정의하기
+
+  
+
+- 결합점을 지정하여 advice가 언제 실행될 지를 지정하는데 사용된다. Spring AOP는 Spring bean에 대한 메소드 실행 결합점만을 지원하므로…
+
+  
+
+- 충고(Advice) 정의하기
+
+  
+
+- 관점의 실제 구현체로 포인터컷 표현식과 일치하는 결합점에 삽입되어 동작할 수 있는 코드.
+
+  
+
+- XML 스키마 기반 AOP 지원
+
+  
+
+- Aspect를 지원하기 위해 aop 네임스페이스를 제공한다.
+
+- 관점(Aspect) 정의하기
+
+  
+
+- bean으로 정의된 일반 java 객체는 관점으로 정의될 수 있다. <aop:aspect> 요소를 사용하여 정의한다.
+
+  
+
+- 포인트 컷
+
+  
+
+- bean의 메소드 실행점을 지정하는 것 <aop:config> 요소 내에 정의
+
+  
+
+- 충고는 각 동작마다 다르다. <aop:before>처럼.
+
+- 관점(Aspect) 실행하기.
+
+  
+
+MVC
+
+  
+
+- MVC 패턴은 코드를 기능에 따라 Model, View, Controller 3가지 요소로 분리한다.
+
+- Spring MVC Architecture
+
+  
+
+- Spring Framework는 간단한 설정만으로 Struts나 Webwork같은 Web Framework를 사용할 수 있지만, 자체적으로 MVC Web Framework를 가지고 있다. mvc라는 기본요소 외에도 아래와 같은 특성을 가지고 있다.
+
+  
+
+- DispatcherServelt, HandlerMapping, Controller, Interceptor, ViewResolver, View 등 각 컴포넌트들의 역할이 명확하게 분리되어 있다.
+
+- HandlerMapping, Controller, View 등 컴포넌트들에 다양한 인터페이스 및 구현 클래스를 제공함으로써 경우에 따라 선택하여 사용할 수 있다.
+
+- 비즈니스 로직에 집중한 코드를 작성할 수 있다.
+
+- 웹 요청 파라미터와 커맨드 클래스간에 데이터 매핑 기능을 제공한다.
+
+- 데이터 검증을 할 수 있는, Validator와 Error 처리 기능을 제공한다.
+
+- JSP Form을 쉽게 구성하도록 Tag를 제공한다.
+
+  
+
+- 순서
+
+  
+
+- Client의 요청이 들어오면 DispatchServlet이 가장 먼저 받는다.
+
+- HandlerMapping이 요청에 해당하는 Controller를 return한다.
+
+- Controller는 비즈니스 로직을 수행하고 결과 데이터를 ModelAndView에 반영하여 return 한다.
+
+- ViewResolver는 view name을 받아 해당하는 View 객체를 return 한다.
+
+- View는 Model 객체를 받아 rendering한다.
+
+  
+
+- DispatcherServlet
+
+  
+
+- 유일한 Front Controller
+
+- 모든 웹 요청의 진입점, 웹 요청을 처리하며, 결과 데이터를 Client에게 응답한다.
+
+- spring MVC Framework를 사용하기 위해선 web.xml에 DispatchServlet을 설정하고, DispatchServlet이 WebApplicationContext를 생성할 수 있도록 빈(Bean) 정보가 있는 파일들도 설정해줘야 한다.
+
+- SimpleUrlHandlerMapping - Ant-Style 패턴 매칭을 지원하며, 하나의 Controller에 여러 url을 mapping할 수 있다.
+
+  
+
+- MVC 네임스페이스 그러나 어려워서 변경이 불가능한 경우에는 mvc:annotation-driven을 쓰지 않고 필요한 bean을 수동으로 넣어줘야 하는 경우도 있다.
+
+  
+
+- url별로 Interceptor를 적용하기 위해선 <mvc.interceptors>태그를 사용한다.
+
+  
+
+- Controller 처리를 위한 설정을 쉽게 하도록 Spring mvc 네임스페이스를 제공한다.
+
+- Controller 작성 시에 직접 Controller 인터페이스를 구현하지 말고, 구현 클래스를 확장해서 작성해라.
+
+  
+
+//?? AOP를 왜 쓰는지?
+
+  
+
+- Spring의 원리
+
+  
+
+post나 get으로 요청을 하면 spring에서 Servlet??로 모두 받는다. URL을 가지고
+
+  
+
+HashMap을 이용해서 키와 밸류를 통해 시분할로 객체, 클래스를 얻어온다. 그런데
+
+  
+
+만약에 사용자가 많아서 여러 개를 요청했다면 new를 여러 개 해야되는데 그러면
+
+  
+
+동시요청이 되므로 안 된다. 그리고 속도가 많이 걸린다. 그래서 요청마다 lock을
+
+  
+
+걸기도 하는데 이래도 안 된다. 이래서 개발을 해도 느려진다.
+
+  
+
+이러한 이유로 스프링을 쓰게 된다. 원래는 퀄리티가 매우 낮지만 스프링을 쓰면
+
+  
+
+Bean으로 관리하게 되고, singleton으로 static에 올라가니까(메모리에 올리고
+
+  
+
+시작하니까) 바로바로 가져올 수 있는 것이다. 결과물을 빨리
+
+  
+
+만들어 낼 수 있고.
+
+  
+
+- @Bean을 선언하면 다 싱글턴 패턴으로 객체에 올라옴.
+
+  
+
+@contoller 얘도 메모리에 다 들어가있음.
 
 
 

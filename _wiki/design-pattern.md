@@ -3,7 +3,7 @@ layout  : wiki
 title   : design pattern
 summary : 
 date    : 2019-06-20 15:10:34 +0900
-updated : 2019-06-20 15:11:00 +0900
+updated : 2019-06-21 11:24:22 +0900
 tags    : 
 toc     : true
 public  : true
@@ -89,3 +89,55 @@ MVC 디자인 패턴
 xml, json을 출력하는 view를 만들어 줬었음. saxhandler 쓰고 그럤음.. 회원관리도  arraylist에 넣는 방식으로 함
 
 FrontController -- Controller -- Service -- DAO -- DB 순으로 작업한다.
+
+# Iterator 패턴이란?
+
+-   Iterator 패턴은 반복이 필요한 자료구조를 모두 동일한 인터페이스를 통해 접근할 수 있습니다. iterator 인스턴스 속에 요소들을 넣은 다음, iterator 인스턴스의 메소드를 이용해 자료구조를 활용하면 됩니다.
+    
+-   Iterator 패턴은 값을 1씩 증가시키는 변수 i의 역할을 합니다. 변수 i의 역할을 추상화해서 일반화한 것이 iterator 패턴입니다.
+    
+-   Iterator 인터페이스를 이용해서 Iterator 인스턴스를 만들면 Iterator 인스턴스를 이용해 반복하는데 필요한 메소드를 사용할 수 있습니다.
+    
+
+-   boolean hasNext() - 다음 요소가 더 있다면 true를 리턴합니다. 없다면 false
+    
+-   Object next() - 다음 요소를 리턴합니다. 다음 요소가 없다면 예외를 일으킵니다.
+    
+-   void remove() - 최근 요소를 삭제합니다.
+    
+
+Iterator 패턴을 쓰는 이유는?
+
+-   자료구조에서 List만 쓴다면 for문으로 index를 하나씩 올리는 방법으로 쓰면 되지만 자료구조에는 List만 있는 것이 아닙니다. Tree, Graph, Map, Trie 등을 쓸 때는 for의 index 접근을 못하는 구조가 많습니다.
+    
+-   이런 집합체(List, Tree, Graph Map 등등)를 모두 동일한 인터페이스를 사용하면 얼마나 편할까요? 그래서 생겨난 것이 Iterator 패턴입니다.
+    
+-   즉 어떤 컬렉션(ArrayList, HashMap 등등)이 와도 Iterator 패턴을 이용하면 동일한 방식으로 모든 요소에 접근할 수 있습니다.
+    
+
+Iterator 패턴을 어떻게 쓸까?
+
+public  static  void  main(String args[]) {  
+  
+LinkedList list = new LinkedList();  
+list.add(1);  
+list.add(2);  
+list.add(3);  
+list.add(4);  
+  
+Iterator<LinkedList> it = list.iterator();  
+  
+while(it.hasNext()){  
+System.out.println(it.next());  
+}  
+}
+
+reference
+
+-   [https://namu.wiki/w/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4#s-3.5](https://namu.wiki/w/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4#s-3.5)
+    
+-   [http://jeong-pro.tistory.com/86](http://jeong-pro.tistory.com/86)
+    
+-   [https://blog.seotory.com/post/2016/03/java-singleton-pattern](https://blog.seotory.com/post/2016/03/java-singleton-pattern)
+
+

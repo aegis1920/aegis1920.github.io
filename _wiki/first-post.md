@@ -3,7 +3,7 @@ layout  : wiki
 title   : 첫 글 
 summary : 4주간의 고생, 그 놈의 utf-8
 date    : 2019-06-19 17:31:35 +0900
-updated : 2019-06-20 13:28:06 +0900
+updated : 2019-06-24 17:12:07 +0900
 tags    : 
 toc     : true
 public  : true
@@ -40,7 +40,7 @@ vimwiki를 사용하는 건 좋았는데 Jekyll을 써본 적이 없어 정말 �
 ### 문제의 장면
 `bundle exec jekyll serve`를 하게 되면 아래 사진과 같이 뜬다. 정말 이 장면만 뻥 안 치고 100번은 본 것 같다. 게다가 윈도우라서 그런지 매번 켤 때마다 `chcp 65001`도 쳤어야 했다...ㅠㅠ
 
-![utf-8-한글문제](/wiki-img/utf-8-problem.png)
+![utf-8-한글문제](/wiki-img/blog_first-post/utf-8-problem.png)
 
 한글은 utf-8이 맞는데 하면서 구글링을 하고 또 했다. `config.yml`에 `encoding: utf-8`을 해줘도 안 되고 뭘 해도 안 됐다. 이유를 모르겠어서 포기했다.
 
@@ -48,14 +48,14 @@ vimwiki를 사용하는 건 좋았는데 Jekyll을 써본 적이 없어 정말 �
 
 jekyll을 이해하려고 보낸 시간이 좀 아깝기도 하고 이 때가 아니면 또 도전할 일이 없을 것 같아 처음부터 다시 실행해봤다. 안 되는 게 말이 안 되니까. 처음부터 다시 해보던 도중 아차!하고 떠올랐다. 내가 옛날에 gvim을 설치하고 나서 어떤 파일을 열었는데 한글이 모두 깨져있어서 구글링해보니 mswin.vim에 아래와 같은 코드를 쓰라고 했던 게 생각났다. mswin.vim에 가보니 그대로 그렇게 되어있었다.
 
-![cp949](/wiki-img/cp949.PNG)
+![cp949](/wiki-img/blog_first-post/cp949.PNG)
 
 와 설마 이 encoding이 cp949로 되어있어서 utf-8로 되는 게 아닌가? 하고 바로 file 커맨드로 확인했다.
 
 
-![filecommand](/wiki-img/filecommand.PNG)
+![filecommand](/wiki-img/blog_first-post/filecommand.PNG)
 
-![utf8](/wiki-img/utf8.PNG)
+![utf8](/wiki-img/blog_first-post/utf8.PNG)
 
 ## 완성
 
@@ -67,6 +67,6 @@ jekyll을 이해하려고 보낸 시간이 좀 아깝기도 하고 이 때가 �
 
 minima인 기본 테마로 썼었다. category도 추가했었지만 불편한 게 많았다. post를 쓸 때 날짜를 앞에다 쓰는 게 너무 귀찮았고 이걸 없애주는 게 collection인 걸 알았지만 collection만 쓰면 utf-8문제가 일어났다. 원래 쓰고있었던 tistory를 그대로 쓰는 것도 생각했다. 하지만 vim을 계속 사용하고 싶기도 했고 post도 내 마음대로 올릴 수 있다는 점에서 git 블로그가 마음에 들었다.
 
-![utf8](/wiki-img/myoriginblog.PNG)
+![utf8](/wiki-img/blog_first-post/myoriginblog.PNG)
 
-![utf8](/wiki-img/vimrc.PNG)
+![utf8](/wiki-img/blog_first-post/vimrc.PNG)

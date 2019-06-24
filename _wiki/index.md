@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-06-23 16:38:30 +0900
+updated : 2019-06-24 09:13:40 +0900
 tags    : index
 toc     : true
 public  : true
@@ -52,6 +52,7 @@ latex   : false
     * [[HTML5-and-DTD]]
     * [[Java-System_out_println]]
     * [[Ruby-bundle]]
+    * [[AL-ML]]
 * [[vim]]
     * [[myvimrc]]
     * [[vim-study]]

@@ -3,7 +3,7 @@ layout  : wiki
 title   : database
 summary : 
 date    : 2019-06-20 15:34:41 +0900
-updated : 2019-06-20 15:35:54 +0900
+updated : 2019-06-25 15:53:15 +0900
 tags    : 
 toc     : true
 public  : true
@@ -278,9 +278,8 @@ DB가 진입장벽이 높다. 신입이 들어가기 어렵다. 이직률이 적
 
 or 품목별로 취소도 가능할 수 있는지. 한 주문에 상품이 하나만 있나? 
 
-
-
-
+3. from, where, select, order by. 순으로 실행. select가 마지막이 아니다.(X)
+4. outer left, right 방향. 그 방향대로 기준이 되면서 직원 부서 테이블이 없더라도 가져온다(O)
 
 
 

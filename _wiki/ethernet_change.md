@@ -3,7 +3,7 @@ layout  : wiki
 title   : autohotkey를 이용한 이더넷 설정 자동화
 summary : 반복되는 일은 꼭 자동화하자
 date    : 2019-06-25 11:34:05 +0900
-updated : 2019-06-25 12:03:30 +0900
+updated : 2019-06-25 13:29:50 +0900
 tags    : 
 toc     : true
 public  : true
@@ -50,29 +50,27 @@ MouseClick, left,  100, 235
 sleep, 1000
 MouseClick, left,  338, 273
 sleep, 1000
-send, 70
+send, *
 send, {right}
-send, 12
+send, *
 send, {right}
-send, 24780
+send, *
 send, {tab}
-send, 2552552480
+send, *
 send, {tab}
-send, 70
+send, *
 send, {right}
-send, 12
+send, *
 send, {right}
-send, 2401
+send, *
 send, {tab}
 send, {tab}
-send, 16812663
+send, *
 send, {right}
-send, 1
+send, *
 send, {tab}
-send, 16812663
+send, *
 send, {right}
-send, 2
-
-
+send, *
 ```
 

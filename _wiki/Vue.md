@@ -3,7 +3,7 @@ layout  : wiki
 title   : Vue
 summary : 
 date    : 2019-06-20 15:40:27 +0900
-updated : 2019-06-25 12:27:38 +0900
+updated : 2019-06-25 14:06:28 +0900
 tags    : 
 toc     : true
 public  : true
@@ -66,3 +66,16 @@ vue를 쓰면 제이쿼리를 안 쓴다. viewmodel이 코드를 짤 수 있다.
 7. 알러진. 속성으로도 하고
 8. 동적으로 자주 변경되는 데이터이거나, 비동기에 의해서 동적으로 자주 변경되는 데이터일 때 가장 적합한 표현. 하나의 객체로 만드는 것이 아니라. 객체를 리턴해야 하므로 return이 있어야 하고 data() { return {info : []}} 정의한 게 리턴된다. (X)
 9. 
+
+SPA LifeCycle
+
+옛날에는 요청을하면 HTML 전체를 줬는데 SPA는 HTML을 받고 AJAX로 서버와 통신한다. 
+
+자바스크립트가 계속 돌면서 AJAX로 인해 필요한 정보를 계속해서 가져오고 준다. 
+
+SPA는 초기 구동 속도가 느리다. IE8 이하는 지원하지 않는다. 보안에 신경써야 한다.
+
+firebase Cloud Function을 써보자. firebase functions sample이라는 github repository가 있다. 
+
+
+

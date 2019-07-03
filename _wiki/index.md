@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-07-01 13:44:29 +0900
+updated : 2019-07-04 00:06:18 +0900
 tags    : index
 toc     : true
 public  : true
@@ -19,6 +19,7 @@ latex   : false
 * math
 * [[book]]
     * [[The-Essence-of-Object-Orientation]]
+    * [[almost-all-internet-history]]
 * movie
 * [[design-pattern]]
 * programming-language

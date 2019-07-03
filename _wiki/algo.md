@@ -3,7 +3,7 @@ layout  : wiki
 title   : algo
 summary : 
 date    : 2019-06-20 14:23:08 +0900
-updated : 2019-06-25 16:21:52 +0900
+updated : 2019-07-03 22:53:14 +0900
 tags    : 
 toc     : true
 public  : true
@@ -15,6 +15,11 @@ latex   : false
 
 # 알고리즘
 
+## 풀기 전에 생각해봐야될 것들
+
+* 시간복잡도를 먼저 생각해본다. 
+* 1억 연산에 1초 걸린다.
+* 원리나 증명보다는 먼저 써보면서 익히자.
 
 ## backtracking
 
@@ -506,6 +511,31 @@ DP(동적 계획법)도 메모리와 시간싸움.
 정올의 1077문제 배낭채우기1같은 경우, 2, 5, 10, 3의 순서로 한 번에 해줘도 되고, 2를 다 한 후, 5 해주고, 10 하고 이런 식으로 해도 된다. 최대 가치니까 MAX값 구해서 찾아주면 된다. 
 
  
+## BFS(Breadth First Search)
+
+```java
+void bfs(int start){
+
+    Queuequeue<int> queue;
+    queue.push(start);
+    check[start] = true;
+    dist[start] = 0;
+    while(!queue.isEmpty()){
+        // queue에서 뺄 때 check을 해주면 안 된다. 왜냐면 큐에 중복된 게 다 들어가고 나서 뺄 때 체크를 해주는 거니까. 넣을 때 check를 해줘야 중복되지 않게 큐에 들어간다.
+        int nx = queue.poll(); // queue.front(); queue.pop();
+        for(가능한 모든 다음 정점 y){
+            if(check[y] == false){
+                queue.offer(y)
+                check[y] = true; // 방문배열 검사는 꼭 넣을 때 해줘야 한다.
+                dist[y] = dist[x] + 1;
+            }
+        }
+        
+    }
+        
+
+}
+```
 
 DFS와 BFS는 트리나 그래프 탐색에서 나온 것. 
 

@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-06-21 15:45:17 +0900
+updated : 2019-07-04 17:08:37 +0900
 tags    : 
 toc     : true
 public  : true
@@ -14,6 +14,107 @@ latex   : false
 {:toc}
 
 # javascript
+
+## 자바스크립트의 버전
+* ECMAScript(ES)의 버전에 따라서 결정된다. 예를 들어, ES5 ES6와 같이
+
+## 변수
+* 변수는 var, let, const로 선언할 수 있다. 어떤 것을 사용하는 가에 따라서 scope가 달라진다.
+```javascript
+var a = 2;
+var a = "aaa";
+var a = 'aaa';
+var a = true;
+var a = [];
+var a = {};
+var a = undefined;
+```
+## 연산자
+
+비교는 `==`보다는 `===`를 사용한다. `==`로 인한 다양한 오류 상황이 있다.
+```javascript
+0 == false;
+"" == false;
+null == false;
+0 == "0";
+null==undefined;
+```
+## 자바스크립트의 타입
+
+```javascript
+undefined, null, boolean, number, string, object, function, array, Date, RegExp
+```
+
+## 자바스크립트 문자열
+
+```javascript
+typeof "a";    //string
+typeof 'a';    //string
+"ab:cd".split(":"); //["ab","cd"]
+"ab:cd".replace(":", "$"); //"ab$cd"
+" abcde  ".trim();  //"abcde"
+```
+## 함수(아주 중요함!)
+
+함수는 여러 개의 인자를 받아서, 그 결과를 출력한다.
+파라미터의 개수와 인자의 개수가 일치하지 않아도 오류가 나지 않는다. 값이 할당되지 않았다면 undefined라는 값을 갖게 된다.
+
+함수에 함수가 연결되어 있으면 Call Stack으로 함수가 쌓인다.
+
+### hoisting
+
+자바스크립트 함수는 실행되기 전에 함수 안에 필요한 변수값들을 미리 다 모아서 선언한다.
+호이스팅은 함수 표현식과 선언문에서 다르게 동작되기 때문에 조심해야 한다.
+끌어올려지는 것은 선언이다.
+
+아래와 같이 되어있으면 `var printName;`만 오기 때문에 `console.log()`안에서 printName()을 실행하려고 해도 `printName`으로 인식해서 `printName is not a function`이 뜨게 된다. 
+```javascript
+function test() { 
+    console.log(printName()); 
+    var printName = function() {
+        return 'anonymouse';
+    }
+}
+```
+### arguments
+
+함수가 실행되면 그 안에는 arguments라는 특별한 지역변수가 자동으로 생성된다.
+arguements 타입은 객체이고 배열의 형태로 하나씩 접근할 수 있다. 배열타입은 아니기에 배열의 메소드는 사용할 수 없다.
+
+### arrow function
+
+점점 많이 사용되고 있는 syntax
+
+```javascript
+function getName(name) {
+   return "Kim " + name ;
+}
+
+//위 함수는 아래 arrow함수와 같다.
+var getName = (name) => "Kim " + name;
+```
+
+## window 객체
+
+window는 디폴드 개념임으로 생략할 수 있다.
+`window.setTimeout()`과 `setTimeout()`은 같다.
+비동기로 동작한다.
+
+## 콜백함수
+
+나중에 실행되는 함수를 보고 callback함수라고 한다. 아래 함수를 실행시키면 start와 end가 먼저 찍히고 그 다음에 msg에 있는 문자열이 찍힌다.
+```javascript
+function run() {
+    console.log("start");
+    setTimeout(function() {
+        var msg = "hello codesquad";
+        console.log(msg);  //이 메시지는 즉시 실행되지 않습니다.
+    }, 1000);
+    console.log("end");
+}
+
+run();
+```
 
 ## datatype
 

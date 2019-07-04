@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-07-04 00:06:18 +0900
+updated : 2019-07-04 10:34:06 +0900
 tags    : index
 toc     : true
 public  : true
@@ -89,6 +89,7 @@ latex   : false
     * [[XSLT]]
     * [[Project]]
     * [[Vuetify]]
+    * [[browser]]
 * error
     * [[git-push-remote]]
 * autohotkey

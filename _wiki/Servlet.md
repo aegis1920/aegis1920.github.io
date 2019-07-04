@@ -3,7 +3,7 @@ layout  : wiki
 title   : Servlet
 summary : 
 date    : 2019-06-20 15:28:48 +0900
-updated : 2019-06-20 15:29:06 +0900
+updated : 2019-07-04 14:26:30 +0900
 tags    : 
 toc     : true
 public  : true
@@ -15,8 +15,40 @@ latex   : false
 
 # Servlet
 
+## Servlet이란?
+자바 웹 어플리케이션의 구성요소 중 동적인 처리를 하는 프로그램. WAS에 동작하는 Java 클래스. 서블릿은 HttpServlet 클래스를 상속받아야 한다. 
+
+## 서블릿 작성 방법
+* Servlet 3.0 이상
+    * web.xml 파일을 사용하지 않음
+    * java annotation을 사용한다.
+* Servlet 3.0 미만
+    * Servlet을 등록할 때 web.xml에 등록
+
+
 ## Servlet LifeCycle
 
+서블릿 요청을 받으면 해당 서블릿이 메모리에 있는지 확인. 메모리에 없으면 해당 서블릿 클래스를 메모리에 올린다. 그리고 init() 메소드를 실행한다. 그리고 나서 service() 메소드를 실행한다. 만약 메모리에 있다면 service()를 실행한다.
+
+service 메소드는 템플릿 메소드 패턴으로 구현한다.
+
+WAS가 종료되거나, 웹 어플리케이션이 새롭게 갱신될 경우 destroy() 메소드가 실행된다.
+
+## 요청과 응답
+
+웹 브라우저가 WAS에게 요청을 보내면 HttpServletRequest와 HttpServletResponse 객체를 생성한다. 여기에 요청 정보를 담고 매핑된 서블릿에게 전달한다. HttpServletResponse 객체는 어떤 클라이언트가 보냈는지와 여러 가지를 담은 걸 서블릿에게 보낸다. 
+
+HttpServletRequest
+
+http프로토콜의 request정보를 서블릿에게 전달하기 위한 목적으로 사용합니다.
+헤더정보, 파라미터, 쿠키, URI, URL 등의 정보를 읽어 들이는 메소드를 가지고 있습니다.
+Body의 Stream을 읽어 들이는 메소드를 가지고 있습니다.
+
+
+HttpServletResponse
+
+WAS는 어떤 클라이언트가 요청을 보냈는지 알고 있고, 해당 클라이언트에게 응답을 보내기 위한 HttpServleResponse객체를 생성하여 서블릿에게 전달합니다.
+서블릿은 해당 객체를 이용하여 content type, 응답코드, 응답 메시지등을 전송합니다.
 
 
 ## DD(Deployment Descripter), web.xml

@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-07-04 17:08:37 +0900
+updated : 2019-07-05 15:48:08 +0900
 tags    : 
 toc     : true
 public  : true
@@ -15,7 +15,7 @@ latex   : false
 
 # javascript
 
-## 자바스크립트의 버전
+# 자바스크립트의 버전
 * ECMAScript(ES)의 버전에 따라서 결정된다. 예를 들어, ES5 ES6와 같이
 
 ## 변수
@@ -103,6 +103,8 @@ window는 디폴드 개념임으로 생략할 수 있다.
 ## 콜백함수
 
 나중에 실행되는 함수를 보고 callback함수라고 한다. 아래 함수를 실행시키면 start와 end가 먼저 찍히고 그 다음에 msg에 있는 문자열이 찍힌다.
+
+setTimeout은 비동기로 실행되기때문에 동기적인 다른 실행이 끝나야 실해왼다. 
 ```javascript
 function run() {
     console.log("start");
@@ -1733,7 +1735,7 @@ o	substringData()	//얘는 start에서 end까지 데이터를 alert해줌.
 <head>
 <style>
 #target{
-font-size:77px;
+,ont-size:77px;
 font-family: georgia;
 border-bottom:1px solid black;
 padding-bottom:10px;

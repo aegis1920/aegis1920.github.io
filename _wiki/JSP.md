@@ -3,7 +3,7 @@ layout  : wiki
 title   : JSP
 summary : 
 date    : 2019-06-20 15:28:28 +0900
-updated : 2019-06-21 13:45:56 +0900
+updated : 2019-07-05 17:44:23 +0900
 tags    : 
 toc     : true
 public  : true
@@ -222,5 +222,9 @@ JSP는 JavaServerPages의 약자로 Java를 이용한 서버 사이드 스크립
     
 -   그리고 WAS에 따라 지원하는 JSP 및 Servlet 스펙의 버전이 달라집니다. 그 이유는 JSP는 Servlet으로 변환되어 실행되기 때문입니다. 그래서 톰캣 서버같은 경우 버전을 잘 살피고 실행해야됩니다.
 
-
+```
+<%! 문장 %> [[선언문]]
+<% 문장%>
+<%=문장%>
+```
 

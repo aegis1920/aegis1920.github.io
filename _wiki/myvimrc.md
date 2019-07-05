@@ -3,7 +3,7 @@ layout  : wiki
 title   : "내 vimrc"
 summary : 
 date    : 2019-06-19 17:23:47 +0900
-updated : 2019-06-20 16:11:44 +0900
+updated : 2019-07-05 17:55:55 +0900
 tags    : 
 toc     : true
 public  : true
@@ -136,6 +136,10 @@ function! NewTemplate()
 endfunction
 
 autocmd BufRead,BufNewFile *.md :call NewTemplate()
+
+
+" md 파일을 열 때 markdown syntax를 적용시켜서 열게 함
+autocmd BufNewFile,BufFilePre,BufRead *.md,*.markdown,*.mkd set filetype=markdown
 
 " 새로운 라인을 시작할 때, smart하게 auto indent를 해준다.
 set smartindent

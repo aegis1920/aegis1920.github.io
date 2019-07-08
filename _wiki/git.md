@@ -3,7 +3,7 @@ layout  : wiki
 title   : git
 summary : 
 date    : 2019-06-20 09:23:50 +0900
-updated : 2019-06-21 13:18:02 +0900
+updated : 2019-07-08 15:27:44 +0900
 tags    : 
 toc     : true
 public  : true
@@ -22,6 +22,7 @@ latex   : false
 ## 구조
 
 git은 전체 기록과 각 기록을 추적할 수 있는 정보를 포함하고 있는 저장소다. 메인저장소와 격리시켜 따로 개발할 수 있는 branch 기능이 있으며 개발이 완료되면 메인저장소와 합칠 수 있다. 또한 원격으로 저장할 수 있는 github이라는 사이트가 있다. 즉, git을 호스팅하는 가장 큰 사이트다. 인터넷만 있다면 어디서든지 다운받거나 다른 사람의 소스파일을 볼 수 있다.
+게다가 비슷한 파일이 많아질수록 용량은 많아지고 파일과 파일 사이에 뭐가 바뀌었는지 차이를 알기 힘듭니다.  **그래서 이를 관리하는 소프트웨어가 GIT이라는 버전 관리 시스템입니다.**
 
 ## git의 기초
 
@@ -94,9 +95,6 @@ git branch -d hotfix
 git branch
 git branch -v
 ```
-# my blog git post
-
-# Git
 
 ## Git의 기본 이해(큰 줄기)
 
@@ -117,16 +115,13 @@ hello에서 실험을 하고 있다가 master로 가고 싶다면? 그냥 checko
 ## VCS(Version Control System)란?
 
 1.  Local VCS
-    
-    -   파일이 하나 있고 간단한 데이터베이스에 파일의 변경 사항만을 기록하는 것입니다.
+    - 파일이 하나 있고 간단한 데이터베이스에 파일의 변경 사항만을 기록하는 것입니다.
 2.  CVCS(Centralized Version Control System)
-    
-    -   중앙 서버에서 파일들을 가져옵니다. 관리자가 누가 뭘 하는지 꼼꼼히 관리할 수 있고 편리하지만 중앙 서버가 다운되면 진행 중인 작업을 모두 날려버릴 수 있습니다.
-    -   CVS, Subversion, Perforce 등…
+    - 중앙 서버에서 파일들을 가져옵니다. 관리자가 누가 뭘 하는지 꼼꼼히 관리할 수 있고 편리하지만 중앙 서버가 다운되면 진행 중인 작업을 모두 날려버릴 수 있습니다.
+    - CVS, Subversion, Perforce 등…
 3.  **DVCS(Distributed Version Control System)**
-    
-    -   클라이언트가 저장소를 통째로 복제해서 가져옵니다. 그래서 서버에 문제가 생겨도 어느 클라이언트든 복제된 저장소를 다시 서버로 복제시키면 서버가 복구됩니다. + 원격 저장소도 있어 여러 방법으로 함께 작업할 수 있습니다.
-    -   Git, Mercurial, Bazaar, Darcs 등…
+    - 클라이언트가 저장소를 통째로 복제해서 가져옵니다. 그래서 서버에 문제가 생겨도 어느 클라이언트든 복제된 저장소를 다시 서버로 복제시키면 서버가 복구됩니다. + 원격 저장소도 있어 여러 방법으로 함께 작업할 수 있습니다.
+    - Git, Mercurial, Bazaar, Darcs 등…
 
 ## Git의 장점과 철학
 
@@ -641,5 +636,6 @@ Merge할 branch(test)가 가리키고 있던 commit이 현재의 branch(master)�
 -   [http://meetup.toast.com/posts/106](http://meetup.toast.com/posts/106)
 -   [https://github.com/JJoriping/git-training-1](https://github.com/JJoriping/git-training-1)
 -   [https://git-scm.com](https://git-scm.com/)  (강력추천)
+- [https://learngitbranching.js.org/](실습으로 배울 수 있는 곳)
 
 

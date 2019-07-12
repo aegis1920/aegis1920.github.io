@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-07-10 13:59:22 +0900
+updated : 2019-07-12 13:53:17 +0900
 tags    : index
 toc     : true
 public  : true
@@ -14,12 +14,14 @@ latex   : false
 * [[algorithm]]
     * [[Computataional-Thinking]]
     * [[algo]]
+    * [[topology-sort]]
 * [[how-to]]
     * [[programming]]
 * math
 * [[book]]
     * [[The-Essence-of-Object-Orientation]]
     * [[almost-all-internet-history]]
+    * [[tdd-kent-beck]]
 * movie
 * [[design-pattern]]
 * programming-language

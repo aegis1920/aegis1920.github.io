@@ -3,7 +3,7 @@ layout  : wiki
 title   : git
 summary : 
 date    : 2019-06-20 09:23:50 +0900
-updated : 2019-07-08 15:27:44 +0900
+updated : 2019-07-10 18:03:40 +0900
 tags    : 
 toc     : true
 public  : true
@@ -94,6 +94,9 @@ git branch -d hotfix
 
 git branch
 git branch -v
+
+git fetch --prune // 원격 저장소에서 지워진 브랜치를 로컬에 반영
+
 ```
 
 ## Git의 기본 이해(큰 줄기)

@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-07-05 17:05:42 +0900
+updated : 2019-07-14 15:13:32 +0900
 tags    : index
 toc     : true
 public  : true
@@ -102,3 +102,4 @@ latex   : false
     * [[DEVIEW-2018-review]]
     * [[google-search-knowhow-seminar]]
     * [[ms-chatbot-seminar]]
+    * [[toy-story-side-project]]

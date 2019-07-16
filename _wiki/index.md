@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-07-14 22:02:59 +0900
+updated : 2019-07-16 16:35:45 +0900
 tags    : index
 toc     : true
 public  : true
@@ -96,6 +96,8 @@ latex   : false
     * [[ajax]]
     * [[nodejs]]
     * [[express]]
+    * [[jwt]]
+    * 
 * error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

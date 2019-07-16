@@ -3,7 +3,7 @@ layout  : wiki
 title   : algo
 summary : 
 date    : 2019-06-20 14:23:08 +0900
-updated : 2019-07-03 22:53:14 +0900
+updated : 2019-07-16 17:54:42 +0900
 tags    : 
 toc     : true
 public  : true
@@ -17,9 +17,11 @@ latex   : false
 
 ## 풀기 전에 생각해봐야될 것들
 
-* 시간복잡도를 먼저 생각해본다. 
-* 1억 연산에 1초 걸린다.
-* 원리나 증명보다는 먼저 써보면서 익히자.
+* 시간복잡도(N의 제한, 입력의 크기)를 먼저 생각해본다. 
+* 1억 연산에 1초가 걸린다.
+* 원리나 증명도 중요하지만 응용하는 것이 더 중요하다. 즉, 먼저 써보면서 익히자.
+* 개발은 모든 것을 스스로 해결하는 것을 요구하지 않는다.
+* 
 
 ## backtracking
 
@@ -121,7 +123,6 @@ CPU연산을 1억번 연산당 1초정도가 걸린다. 자바의 경우, 2초 �
 
 그리디는 검증을 하기가 쉽지 않다. 풀 수만 있다면 베스트. 하지만 검정이 뒷받침되지 않으면 아예 시도를 안 하는 게 좋다. 
 
- 
 
 재귀함수에서도 엄청 들어가다가 너무 들어갔다 싶으면 중간에 나오는 방법도 있음.
 
@@ -513,20 +514,23 @@ DP(동적 계획법)도 메모리와 시간싸움.
  
 ## BFS(Breadth First Search)
 
+* 한 정점에서 시작해서 연결된 모든 정점을 1번씩 방문
+* 간선의 가중치가 1일 때 최소 비용/최단 거리를 구할 수 있다
+* 시작점이 있어야 하고, 같은 정점을 두 번 이상 방문하면 안 된다
+
 ```java
 void bfs(int start){
 
     Queuequeue<int> queue;
     queue.push(start);
-    check[start] = true;
-    dist[start] = 0;
+    check[start] = true; // dist[start] = 0; // dist배열을 -1로 초기화해 체크배열로도 쓸 수 있다.
     while(!queue.isEmpty()){
         // queue에서 뺄 때 check을 해주면 안 된다. 왜냐면 큐에 중복된 게 다 들어가고 나서 뺄 때 체크를 해주는 거니까. 넣을 때 check를 해줘야 중복되지 않게 큐에 들어간다.
         int nx = queue.poll(); // queue.front(); queue.pop();
         for(가능한 모든 다음 정점 y){
-            if(check[y] == false){
+            if(check[y] == false){ // dist[y] == -1
                 queue.offer(y)
-                check[y] = true; // 방문배열 검사는 꼭 넣을 때 해줘야 한다.
+                check[y] = true; // 방문배열 검사는 꼭 넣을 때 해줘야 한다. // dist[y] = dist[x] + 1;
                 dist[y] = dist[x] + 1;
             }
         }
@@ -1167,6 +1171,29 @@ pdf.
 
 브루트포스와 좀 더 개선된 코드, 두 개의 코드로 표현할 수 있다. 
 
+## Brute Force(브루트 포스)
+
+* 모든 경우의 수를 다 시도해보는 알고리즘
+* 시간복잡도는 O(전체 경우의 수 * 하나를 시도하는데 걸리는 시간)
+
+### 재귀함수를 이용한 브루트포스
+
+```java
+void go(int x){
+     if(정답을 찾음){
+        정답을 찾은 처리;
+     }
+     if(불가능한 경우) return;
+     for(가능한 모든 다음 정점 y){
+        if(check[y] == false){
+            check[y] = true;
+            go(y);
+        }
+     }
+}
+check[시작] = true;
+go(시작);
+```
 
 
 선택된 정점의 간선들 가중치를 계속해서 더하면 그게 최소가 되는 것

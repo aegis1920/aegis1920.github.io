@@ -3,7 +3,7 @@ layout  : wiki
 title   : JSP
 summary : 
 date    : 2019-06-20 15:28:28 +0900
-updated : 2019-07-05 17:44:23 +0900
+updated : 2019-07-17 18:33:13 +0900
 tags    : 
 toc     : true
 public  : true
@@ -15,9 +15,69 @@ latex   : false
 
 # JSP
 
+## JSP란?
+
+## JSP Life Cycle이란?
+
+## JSP 문법
+
+## JSP 내장 객체
+
+## Redirect
+
+* 서버가 클라이언트의 요청에 대해 특정 URL로 이동하라고 하는 것
+* 서버는 클라이언트에게 HTTP 상태코드 302로 응답하는데 이때 헤더 내 Location 값에 이동할 URL을 추가한다.
+* 클라이언트가 리다이렉션 응답(HTTP 상태코드 302)을 받게 되면 헤더의 Location에 써져있는 URL로 재요청을 보낸다.
+* 이때 브라우저의 주소창은 새 URl로 바뀌게 된다.
+* Servlet이나 JSP는 리다이렉트하기 위해 HttpServletResponse 클래스의 sendRedirect()를 사용한다.
+* 클라이언트가 요청을 두 번 보내게 된다는 걸 기억해야된다.
+* 요청이 들어갈 때 request 객체와 response 객체가 생기는데 요청이 두 번 들어오므로 첫 번째 요청 때 생겼던 객체와 두 번째 요청 때 생기는 객체는 당연히 다르다.
+
+## Forward
+
+* 포워드가 실행된 다음에는 URL이 바뀌지 않는다.
+* 즉, `/front`다음에 forward를 통해 `/next`로 갔서 작업하고 클라이언트에게 응답했다면 포워드라서 URL이 그대로 `/front`이다.
+* 서버가 다른 서버(같은 어플리케이션)에게 HttpServletRequest, HttpServletResponse를 넘겨주는 것이기 때문에 요청(request, response)이 바뀌지 않는다.
+
+## Servlet과 JSP의 연동
+
+* Servlet은 프로그램 로직이 수행되기에 유리하다.
+* JSP는 결과를 출력하기에 Servlet보다 유리하다. HTML문을 그냥 입력하면 되니까
+* 즉, 프로그램의 로직은 Servlet에서, 결과 출력은 JSP에서 하는 게 좋다.
+* Servlet에서 수행해서 포워딩을 통해 JSP로 보낸 후, EL과 JSTL로 마무리한다.
+* JSP에서 자바코드를 최대한 줄여라
+
+## Scope
+
+### Page Scope
+
+* 페이지 내에서 지역변수처럼 jsp나 서블릿이 실행하는 동안에만 정보를 유지하고자 할 때 사용된다.
+* PageContext라는 추상 클래스를 사용한다
+* JSP 페이지에서 pageContext라는 내장 객체로 사용가능하다
+* forward가 될 경우 다른 페이지에 가는 것이기 때문에 해당 Page scope에 지정된 변수는 메모리에서 사라지고 새로 만들어진다.
+* 즉, 하나의 페이지가 수행될 때까지 값을 저장하고 있는 것이 pageScope이다.
+* 예를 들면, pageContext.setAttribute, pageContext.getAttribute로 사용한다.
+
+### Request Scope
+
+
+* HTTP 요청을 WAS가 받아서 웹 브라우저에게 응답할 때까지 변수가 유지되는 경우 사용
+* HttpServletRequest 객체를 사용한다.
+* JSP에서는 request 내장 변수를 사용한다.
+* servlet에서는 HttpServletRequest 객체를 사용한다
+* 다른 서블릿이나 다른 jsp에서 이용할 수 있도록, forward시 값을 유지하고자 사용한다.
+* 예를 들면, request.setAttribute, request.getAttribute로 사용하며 forward하기 전에 request 객체의 setAttribute() 메소드로 값을 설정한 후, 서블릿이나 jsp에게 결과를 전달하여 값을 출력하는데 이처럼 forward 되는 동안 값이 유지된다.
+
+### Session Scope
+
+* 웹 브라우저 별로 변수가 관리되는 경우 사용
+
+### Application Scope
+
+* 웹 어플리케이션이 시작되고 종료될 때까지 변수가 유지되는 경우 사용
+
 jsp는 서블릿이다. xxx.jsp -> xxx.java -> xxx.class
 
-녹음함. 
 
 <% @ 지시어 속성명="값" %>
 

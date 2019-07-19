@@ -3,7 +3,7 @@ layout  : wiki
 title   : JSP
 summary : 
 date    : 2019-06-20 15:28:28 +0900
-updated : 2019-07-17 18:33:13 +0900
+updated : 2019-07-18 09:39:09 +0900
 tags    : 
 toc     : true
 public  : true
@@ -71,6 +71,9 @@ latex   : false
 ### Session Scope
 
 * 웹 브라우저 별로 변수가 관리되는 경우 사용
+* 웹 브라우저간의 탭 간에 세션정보가 공유되기 때문에, 각각의 탭에서 같은 세션정보를 사용할 수 있다
+* HttpSession 인터페이스를 구현한 객체를 사용한다
+* 
 
 ### Application Scope
 

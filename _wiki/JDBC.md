@@ -3,7 +3,7 @@ layout  : wiki
 title   : JDBC
 summary : 
 date    : 2019-06-20 15:34:02 +0900
-updated : 2019-06-20 15:34:23 +0900
+updated : 2019-07-22 22:34:21 +0900
 tags    : 
 toc     : true
 public  : true
@@ -15,13 +15,22 @@ latex   : false
 
 # JDBC
 
+## JDBC(Java Database Connectivity)란?
+
+* 자바를 이용한 DB 접속과 SQL문장의 실행, 실행 결과로 얻은 데이터를 핸들링하기 위한 방법에 대한 규약
+* 자바 프로그램 내에서 SQL 문을 실행하기 위한 자바 API
+* DB 벤더(MySQL, Oracle 등..) 에서는 JDBC 인터페이스를 구현한 드라이버를 제공한다
+
 MySQL과 Oracle과 같이 다른 DBMS더라도 똑같이 사용할 수 있도록 JDBC API라는 걸 SUN에서 제공해줬다. JDBC는 인터페이스의 집합. 즉, 리모컨의 사용법을 익히는 느낌. 그래서 Oracle이나 Mysql이나 똑같이 사용할 수 있게 된다. 약속된 메소드를 만들어서 제공해주기 때문에. 컴파일을 할 수 있지만 반응할 수 있는 알맹이 (DBMS)가 필요하다. 그러한 라이브러리를 받아와야 하는데 그걸 JDBC 드라이버(JDBC Class Library)라고 한다. 인터페이스 집합의 알맹이들을 위해서 
 
 동작원리가 모두 다형성이다. 컴파일은 네모(인터페이스)로 동작하지만 실행은 세모(mysql)로 동작, 컴파일은 네모(인터페이스)로 동작하지만 실행은 세모(Oracle)로 동작. JDBC 라이브러리인 드라이버만 바꿔주면 된다. 코드는 바뀌지 않는다. 그래서 DAO는 독립성을 가질 수 있다. 
 
-
+1
 
 ## 사용법
+
+* Maven을 사용한다면 디펜던시를 추가해도 되고
+* 그냥 JDBC 라이브러리를 다운받아 복사해서 import 해도 된다
 
 1. Driver Class Loading(어쩌구 저쩌꾸 클래스가 있음. DB랑 접속할 수 있도록 해주는 도우미), 다중 DB에 접근할 수 있다. 테스트는 무료 DB로 하고, 진짜 할 때는 유료 DB로 하는 경우가 있다. (Driver class 등록) ==> 한 번만 수행되면 된다. jdbc jar file 추가해야된다. build path로 추가.
    - DriverManager(나 너의 관리 받을게~ 등록.)

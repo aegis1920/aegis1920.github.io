@@ -3,7 +3,7 @@ layout  : wiki
 title   : JSP
 summary : 
 date    : 2019-06-20 15:28:28 +0900
-updated : 2019-07-18 09:39:09 +0900
+updated : 2019-07-21 15:46:59 +0900
 tags    : 
 toc     : true
 public  : true
@@ -73,11 +73,61 @@ latex   : false
 * 웹 브라우저 별로 변수가 관리되는 경우 사용
 * 웹 브라우저간의 탭 간에 세션정보가 공유되기 때문에, 각각의 탭에서 같은 세션정보를 사용할 수 있다
 * HttpSession 인터페이스를 구현한 객체를 사용한다
-* 
+* JSP에서는 session 내장 변수를 사용한다.
+* 서블릿에서는 HttpServletRequest 객체의 getSession() 메소드를 이용하여 session 객체를 얻는다
+* 값을 저장할 때는 session 객체의 setAttribute(), 읽을 때는 getAttribute()를 사용한다
+* 장바구니처럼 사용자별로 유지가 되어야 할 정보가 있을 때 사용한다
 
 ### Application Scope
 
 * 웹 어플리케이션이 시작되고 종료될 때까지 변수가 유지되는 경우 사용
+* ServletContext 인터페이스를 구현한 객체를 사용한다
+* jsp에서는 application 내장 객체를 이용한다
+* 서버에는 여러개의 웹 어플리케이션이 있고 웹 어플레케이션 하나 당 하나의 어플리케이션 객체를 사용한다
+* 값을 저장할 때는 application 객체의 setAttribute(), 값을 읽을 때는 getAttribute()를 사용한다
+* 모든 클라이언트가 공통으로 사용해야 할 값들이 있을 때 사용한다
+
+## jsp의 표현식
+
+### EL(Expression Language)
+
+* 값을 표현하는데 사용되는 스크립트 언어로 JSP의 기본 문법을 보완한다
+* 예를 들어, `request.getParameter("code")`가 원본이라고 했을 때 `${param.code}`라고 쓰면 된다
+* 기본 객체 : pageContext, pageScope, requestScope, sessionScope, applicationScope, param, paramValutes, header, headerValues, cookie, initParam
+* scope에 맞게 설정이 가능하고, 여러 연산이 가능하다
+
+### JSTL
+
+* JSTL을 사용하려면 해당하는 jar 파일을 받아서 import해야 한다.
+
+```html
+<c:if test="${n == 0}">
+n은 과 0과 같습니다.
+</c:if>
+
+<c:choose>
+    <c:when test="${score >=90 }">
+    A학점입니다.
+    </c:when>
+    <c:when test="${score >=80 }">
+    B학점입니다.
+    </c:when>
+    <c:when test="${score >=70 }">
+    C학점입니다.
+    </c:when>
+    <c:when test="${score >=60 }">
+    D학점입니다.
+    </c:when>
+    <c:otherwise>
+    F학점입니다.
+    </c:otherwise>            
+</c:choose>
+
+<c:forEach items="${list}" var="item">
+${item } <br>
+</c:forEach>
+```
+
 
 jsp는 서블릿이다. xxx.jsp -> xxx.java -> xxx.class
 

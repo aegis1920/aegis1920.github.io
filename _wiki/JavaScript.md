@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-07-05 15:48:08 +0900
+updated : 2019-07-23 15:38:44 +0900
 tags    : 
 toc     : true
 public  : true
@@ -104,7 +104,7 @@ window는 디폴드 개념임으로 생략할 수 있다.
 
 나중에 실행되는 함수를 보고 callback함수라고 한다. 아래 함수를 실행시키면 start와 end가 먼저 찍히고 그 다음에 msg에 있는 문자열이 찍힌다.
 
-setTimeout은 비동기로 실행되기때문에 동기적인 다른 실행이 끝나야 실해왼다. 
+setTimeout은 비동기로 실행되기때문에 동기적인 다른 실행이 끝나야 실행된다. 
 ```javascript
 function run() {
     console.log("start");
@@ -224,7 +224,9 @@ innerFunction(); // 바로 불러올 수 없다. 함수 내부에 있기 때문�
 
 ## Array
 
-뭔가 생각대로 되는 배열이지만 그만큼 더 헷갈리기 쉽다.
+* 뭔가 생각대로 되는 배열이지만 그만큼 더 헷갈리기 쉽다.
+* 배열 안에 함수가 들어갈 수 도 있고 객체도 들어갈 수 있다.
+
 
 ```javascript
 var arr1 = [];
@@ -258,7 +260,28 @@ var arr5 = new Array(3,1,25);
 console.log(arr5.length);
 ```
 
+### 배열 탐색
+
+* foreach
+* i++과 같은 증가시켜주는 코드가 필요없다
+```javascript
+["apple", "tomato"].forEach(function(value){
+    console.log(value);
+});
+```
+* map
+```javascript
+var newArr = ["apple","tomato"].map(function(value, index){
+    return index + "번째 과일은 " + value + "입니다";
+});
+console.log(newArr);
+```
+
 ## Object
+
+* key, value 구조의 자료구조
+* Javascript로 데이터를 표현하기 위해서는 Array, Object를 사용한다
+* Object형태는 {}로 그 자료를 표현하며, 서버와 클라이언트 간에 데이터를 교환할 때 Object 포맷과 비슷한 방법으로 데이터를 보낸다
 
 ```javascript
 var person = {
@@ -281,6 +304,22 @@ console.log(this.age); // window 객체에서 찾으므로 undefined가 뜬다.
 var person2 = new Object();
 person2.name = "강다니엘";
 person2.age = 24;
+```
+
+### 객체의 탐색
+
+* for-in 구문
+```javascript
+for(key in obj){
+    console.log(obj[key])
+}
+```
+
+* Object.keys()와 forEach
+```javascript
+Object.keys(obj).forEach(function(key) {
+	console.log(obj[key]);
+});
 ```
 
 ### 클로저
@@ -350,7 +389,10 @@ onclick="changeColor()"
 -->
 ```
 
-## dom 트리에 노드 추가하기
+
+## DOM 조작 API
+
+### dom 트리에 노드 추가하기
 
 ```javascript
 window.onload = function(){
@@ -367,7 +409,53 @@ window.onload = function(){
 };
 ```
 
-## Dom 조작
+### 몇 가지 유용 DOM 엘리먼트 속성
+
+* tagName : 엘리먼트의 태그명 반환
+* textContent : 노드의 텍스트 내용을 설정하거나 반환
+* nodeType : 노드의 노드 유형을 숫자로 반환
+ 
+
+### DOM 탐색 속성
+
+* childNodes
+    * 엘리먼트의 자식 노드의 노드 리스트 반환(텍스트 노드, 주석 노드 포함)
+* firstChild
+    * 엘리먼트의 첫 번째 자식 노드를 반환. 공백까지 자식으로 본다.
+* firstElementChild
+    * 첫 번째 자식 엘리먼트를 반환. 공백을 자식으로 보지 않는다.
+* parentElement
+    * 엘리먼트의 부모 엘리먼트 반환 
+* nextSibling
+    * 동일한 노드 트리 레벨에서 다음 노드를 반환 
+* nextElementSibling
+    * 동일한 노드 트리 레벨에서 다음 엘리먼트 반환
+
+### DOM 조작 메소드
+
+* removeChild()
+    * 엘리먼트의 자식 노드 제거 
+* appendChild()
+    * 마지막 자식 노드로 자식 노드를 엘리먼트에 추가
+* insertBefore()
+    * 기존 자식노드 앞에 새 자식 노드를 추가
+* cloneNode()
+    * 노드를 복제
+* replaceChild()
+    * 엘리먼트의 자식 노드 바꿈
+* closest()
+    * 상위로 올라가면서 가장 가까운 엘리먼트를 반환
+ 
+
+### HTML을 문자열로 처리해주는 DOM 속성 / 메소드
+
+* innerText
+    * 지정된 노드와 모든 자손의 텍스트 내용을 설정하거나 반환
+* innerHTML
+    * 지정된 엘리먼트의 내부 html을 설정하거나 반환. set, get 둘 다 가능.
+* insertAdjacentHTML()
+    * HTML로 텍스트를 지정된 위치에 삽입
+
 
 ```javascript
 // 전체 문서에서 태그 이름이 div인 Element Node들 모두 찾아서 리스트 형태로 줌

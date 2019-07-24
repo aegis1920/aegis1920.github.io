@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-07-24 19:46:14 +0900
+updated : 2019-07-25 00:02:01 +0900
 tags    : 
 toc     : true
 public  : true
@@ -51,7 +51,32 @@ latex   : false
 * BeanPostProcessor : 컨테이너의 기본로직을 오버라이딩하여 인스턴스화 와 의존성 처리 로직 등을 개발자가 원하는 대로 구현 할 수 있도록 한다.
 * BeanFactoryPostProcessor : 설정된 메타 데이터를 커스터마이징 할 수 있다.
 
+## Bean이란?
 
+* 스프링에서 일반적인 Java 클래스를 Bean 클래스라고 부른다
+* 기본 생성자를 가지고 있다
+* 필드는 private으로 선언한다
+* getter, setter 메소드를 가진다
+* getName(), setName() 메소드를 name 프로퍼티(property)라고 한다.
+* Spring 컨테이너가 관리하는 객체를 Bean이라고 말한다
+* Spring은 Bean을 생성할 때 기본적으로 싱글톤 객체로 생성한다
+
+```xml
+<bean id="userBean" class="kr.or.connect.diexam01.UserBean"></bean>
+<!-- 위 코드와 아래의 코드는 같은 의미를 갖는다 -->
+UserBean userBean = new UserBean();
+```
+
+```xml
+<bean id="e" class="kr.or.connect.diexam01.Engine"></bean>
+<bean id="car" class="kr.or.connect.diexam01.Car">
+	<property name="engine" ref="e"></property>
+</bean>
+<!-- 위 코드와 아래의 코드는 같은 의미를 갖는다 -->
+Engine e = new Engine();
+Car c = new Car();
+c.setEngine( e );
+```
 ## 새로 시작?
 
 FrontController 디자인 패턴

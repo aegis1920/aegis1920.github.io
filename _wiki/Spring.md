@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-06-21 13:44:56 +0900
+updated : 2019-07-24 19:46:14 +0900
 tags    : 
 toc     : true
 public  : true
@@ -13,7 +13,46 @@ latex   : false
 * TOC
 {:toc}
 
+## Spring
+
 # Spring MVC
+
+# Spring Framework
+
+## Spring Framework란?
+
+* 엔터프라이즈급 어플리케이션을 구축할 수 있는 가벼운 솔루션
+* 원하는 부분만 가져다 사용할 수 있도록 모듈화가 잘 되어 있다(약 20개의 모듈로 구성)
+* IoC 컨테이너이며, AOP를 지원한다
+* 선언적으로 트랜잭션을 관리할 수 있다
+
+### 컨테이너(Container)
+
+* 컨테이너는 인스턴스의 생명주기를 관리하며, 생성된 인스턴스에게 추가적인 기능을 제공한다
+* 예를 들어, Servlet을 실행해주는 WAS(tomcat등...)는 Servlet 컨테이너를 가지고 있다
+* WAS는 웹 브라우저로부터 서블릿 URL에 해당하는 요청을 받으면, 서블릿을 메모리에 올린 후 실행한다. 개발자가 서블릿 클래스를 작성했지만, 실제로 메모리에 올리고 실행하는 것은 WAS의 Servlet 컨테이너
+* 생성된 인스턴스들에게 추가적인 기능을 제공한다
+
+### IoC(Inversion of Control)
+
+* 컨테이너가 코드 대신 Object의 제어권을 갖고 있어 IoC(제어의 역전)이라 한다
+* 예를 들어, 서블릿 클래스는 개발자가 만들지만, 그 서블릿 메소드를 알맞게 호출하는 것은 WAS다
+* 이렇게 개발자가 만든 클래스나 메소드를 다른 프로그램이 대신 실행해주는 것을 제어의 역전이라고 한다.
+
+### DI(Dependency Injection)
+
+* 클래스 사이의 의존 관계를 빈(Bean)설정 정보를 바탕으로 컨테이너가 자동으로 연결해주는 것
+* 개발자가 직접 코드로 new를 써서 인스턴스를 생성하는 것이 아니라 컨테이너가 어노테이션을 통해 인스턴스를 할당해줄 수 있는 것
+
+### Spring에서 제공하는 IoC/DI 컨테이너
+
+* BeanFactory : IoC/DI에 대한 기본 기능을 갖고 있다
+* ApplicationContext : BeanFactory의 모든 기능을 포함하며, 일반적으로 BeanFactory보다 추천된다. 트랜잭션처리, AOP등에 대한 처리를 할 수 있다. BeanPostProcessor, BeanFactoryPostProcessor등을 자동으로 등록하고, 국제화 처리, 어플리케이션 이벤트 등을 처리할 수 있다
+* BeanPostProcessor : 컨테이너의 기본로직을 오버라이딩하여 인스턴스화 와 의존성 처리 로직 등을 개발자가 원하는 대로 구현 할 수 있도록 한다.
+* BeanFactoryPostProcessor : 설정된 메타 데이터를 커스터마이징 할 수 있다.
+
+
+## 새로 시작?
 
 FrontController 디자인 패턴
 

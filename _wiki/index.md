@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-08-05 16:24:12 +0900
+updated : 2019-08-05 17:24:03 +0900
 tags    : index
 toc     : true
 public  : true
@@ -117,3 +117,5 @@ latex   : false
     * [[google-search-knowhow-seminar]]
     * [[ms-chatbot-seminar]]
     * [[toy-story-side-project]]
+    * [[job-tips]]
+    * [[boost-course-ace-summer-2th-pass]]

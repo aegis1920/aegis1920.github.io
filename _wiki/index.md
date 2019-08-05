@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-07-24 19:47:37 +0900
+updated : 2019-08-05 16:24:12 +0900
 tags    : index
 toc     : true
 public  : true
@@ -22,6 +22,7 @@ latex   : false
     * [[The-Essence-of-Object-Orientation]]
     * [[almost-all-internet-history]]
     * [[tdd-kent-beck]]
+    * [[mastering-tcp-ip]]
 * movie
 * [[design-pattern]]
 * programming-language
@@ -57,6 +58,7 @@ latex   : false
     * [[Ruby-bundle]]
     * [[AL-ML]]
     * [[framework-vs-library]]
+    * [[http-vs-https]]
 * [[vim]]
     * [[myvimrc]]
     * [[vim-study]]
@@ -102,7 +104,6 @@ latex   : false
     * [[maven]]
     * [[rest-api]]
     * [[web-api]]
-    * 
     * 
 * error
     * [[git-push-remote]]

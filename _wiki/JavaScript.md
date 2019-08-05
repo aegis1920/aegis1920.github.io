@@ -3,23 +3,27 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-07-23 15:38:44 +0900
+updated : 2019-08-05 17:22:27 +0900
 tags    : 
 toc     : true
 public  : true
 parent  : what
 latex   : false
+
 ---
-* TOC
-{:toc}
+
+[TOC]
 
 # javascript
 
 # 자바스크립트의 버전
-* ECMAScript(ES)의 버전에 따라서 결정된다. 예를 들어, ES5 ES6와 같이
+
+- ECMAScript(ES)의 버전에 따라서 결정된다. 예를 들어, ES5 ES6와 같이
 
 ## 변수
-* 변수는 var, let, const로 선언할 수 있다. 어떤 것을 사용하는 가에 따라서 scope가 달라진다.
+
+- 변수는 var, let, const로 선언할 수 있다. 어떤 것을 사용하는 가에 따라서 scope가 달라진다.
+
 ```javascript
 var a = 2;
 var a = "aaa";
@@ -29,9 +33,11 @@ var a = [];
 var a = {};
 var a = undefined;
 ```
+
 ## 연산자
 
 비교는 `==`보다는 `===`를 사용한다. `==`로 인한 다양한 오류 상황이 있다.
+
 ```javascript
 0 == false;
 "" == false;
@@ -39,6 +45,7 @@ null == false;
 0 == "0";
 null==undefined;
 ```
+
 ## 자바스크립트의 타입
 
 ```javascript
@@ -54,6 +61,7 @@ typeof 'a';    //string
 "ab:cd".replace(":", "$"); //"ab$cd"
 " abcde  ".trim();  //"abcde"
 ```
+
 ## 함수(아주 중요함!)
 
 함수는 여러 개의 인자를 받아서, 그 결과를 출력한다.
@@ -68,6 +76,7 @@ typeof 'a';    //string
 끌어올려지는 것은 선언이다.
 
 아래와 같이 되어있으면 `var printName;`만 오기 때문에 `console.log()`안에서 printName()을 실행하려고 해도 `printName`으로 인식해서 `printName is not a function`이 뜨게 된다. 
+
 ```javascript
 function test() { 
     console.log(printName()); 
@@ -76,6 +85,7 @@ function test() {
     }
 }
 ```
+
 ### arguments
 
 함수가 실행되면 그 안에는 arguments라는 특별한 지역변수가 자동으로 생성된다.
@@ -94,17 +104,23 @@ function getName(name) {
 var getName = (name) => "Kim " + name;
 ```
 
-## window 객체
+### 콜백함수
 
-window는 디폴드 개념임으로 생략할 수 있다.
-`window.setTimeout()`과 `setTimeout()`은 같다.
-비동기로 동작한다.
+- 함수형 프로그래밍(함수를 인자처럼 사용)에서 발생한 패러다임
+- `array.forEatch(function(element){})`처럼 함수안에 익명의 함수를 넣어서 동작하게 한다.
+- `setInterval(callback, 1000)`처럼 원하는 시점에 함수를 실행시킬 수 있다.
+- 대부분의 콜백 함수는 익명함수로 작성된다.
+- 함수는 일급 객체이기 때문에 변수로도 선언할 수 있고
+- 비동기로 실행한다는 뜻.
+- console.log는
+- 콜백함수는 클로저다.
 
-## 콜백함수
+
 
 나중에 실행되는 함수를 보고 callback함수라고 한다. 아래 함수를 실행시키면 start와 end가 먼저 찍히고 그 다음에 msg에 있는 문자열이 찍힌다.
 
 setTimeout은 비동기로 실행되기때문에 동기적인 다른 실행이 끝나야 실행된다. 
+
 ```javascript
 function run() {
     console.log("start");
@@ -117,6 +133,45 @@ function run() {
 
 run();
 ```
+
+## 비동기처리
+
+페이지를 새로 부르지 않으면서  작은 부분만 새롭게 갱신하고 싶을 때 비동기 통신. 
+
+동기 통신 - url을 받아서 화면 전체가 바뀌는 것. 
+
+비동기통신은 스스로 코드를 짜야한다. 
+
+
+- 자바스크립트는 특정 코드의 연산이 끝날 때까지 코드의 실행을 멈추지 않고 다음 코드를 먼저 실행한다.
+- 비동기 처리가 필요한 이유는 요청을 100개 보냈을 때 서버가 요청 응답을 언제 해줄지도 모르는데 마냥 기다릴 수는 없는 노릇이기 때문.
+- 예를 들어, ajax, setTimeout() 등등이 있다.
+
+XMLHttpRequest
+true는 비동기 여부를 true, false 준다. 비동기면 true. 
+`request.open('GET', '/data.html', true)`
+`request.send();`
+requset.responseText;를 불러올 때는 스트링으로 따로 바꿔준다. 
+
+1. 리퀘스트 객체부터 만들기
+2. 응답을 주는지, 다 왔는지, 
+3. 리퀘스트에 레디스테이트체인지를 붙인다. 
+4. 4이면서 성공인 상황만. 
+5. readyState = 4는 무조건 해주기
+6. 다 끝내면 send. 
+7. get방식은 url 뒤에 붙인다.
+8. input.send(id-sfdsa&pd)
+9. get으로 보내는지, post로 보내
+10. 제이쿼리는 비동기 통신 메소드가 있다.
+11. 에이잭스는 모든 걸 세팅하고 
+12. post는 비동기 버전을
+13. 익스 8버전은 지원하지 않는다. 그리도 제이쿼리로 짜면 쉽다.
+
+## window 객체
+
+window는 디폴드 개념임으로 생략할 수 있다.
+`window.setTimeout()`과 `setTimeout()`은 같다.
+비동기로 동작한다.
 
 ## datatype
 
@@ -149,7 +204,9 @@ function myFunction() {
     // this는 window 객체를 뜻한다. 그냥 함수에서 this를 선언만 한 것뿐.
     console.log("myFunction : "+this.name);
 }
+
 ```
+
 ## function
 
 같은 이름의 함수를 두 번 정의하면 두 개의 함수 중에 아래 쪽에 있는 함수가 실행되고, 윗쪽에 있는 함수는 실행되지 않는다. 
@@ -185,6 +242,7 @@ function viewConsole(msg) {
 // viewConsole()이 아니다. ()가 없다. 리턴 값이 아니라 함수 자체를 의미하기 때문에
 // viewConsole("Hello");
 display(viewConsole);
+
 ```
 
 ### 호이스팅
@@ -199,6 +257,7 @@ var sum = function(){
     }
     return result;
 };
+
 ```
 
 
@@ -220,13 +279,13 @@ function outerFunction() {
 
 outerFunction();
 innerFunction(); // 바로 불러올 수 없다. 함수 내부에 있기 때문에
+
 ```
 
 ## Array
 
-* 뭔가 생각대로 되는 배열이지만 그만큼 더 헷갈리기 쉽다.
-* 배열 안에 함수가 들어갈 수 도 있고 객체도 들어갈 수 있다.
-
+- 뭔가 생각대로 되는 배열이지만 그만큼 더 헷갈리기 쉽다.
+- 배열 안에 함수가 들어갈 수 도 있고 객체도 들어갈 수 있다.
 
 ```javascript
 var arr1 = [];
@@ -258,30 +317,36 @@ for(var i=0; i<arr4.length; ++i){
 // 배열의 요소가 3, 1, 25인 배열
 var arr5 = new Array(3,1,25);
 console.log(arr5.length);
+
 ```
 
 ### 배열 탐색
 
-* foreach
-* i++과 같은 증가시켜주는 코드가 필요없다
+- foreach
+- i++과 같은 증가시켜주는 코드가 필요없다
+
 ```javascript
 ["apple", "tomato"].forEach(function(value){
     console.log(value);
 });
+
 ```
-* map
+
+- map
+
 ```javascript
 var newArr = ["apple","tomato"].map(function(value, index){
     return index + "번째 과일은 " + value + "입니다";
 });
 console.log(newArr);
+
 ```
 
 ## Object
 
-* key, value 구조의 자료구조
-* Javascript로 데이터를 표현하기 위해서는 Array, Object를 사용한다
-* Object형태는 {}로 그 자료를 표현하며, 서버와 클라이언트 간에 데이터를 교환할 때 Object 포맷과 비슷한 방법으로 데이터를 보낸다
+- key, value 구조의 자료구조
+- Javascript로 데이터를 표현하기 위해서는 Array, Object를 사용한다
+- Object형태는 {}로 그 자료를 표현하며, 서버와 클라이언트 간에 데이터를 교환할 때 Object 포맷과 비슷한 방법으로 데이터를 보낸다
 
 ```javascript
 var person = {
@@ -304,22 +369,27 @@ console.log(this.age); // window 객체에서 찾으므로 undefined가 뜬다.
 var person2 = new Object();
 person2.name = "강다니엘";
 person2.age = 24;
+
 ```
 
 ### 객체의 탐색
 
-* for-in 구문
+- for-in 구문
+
 ```javascript
 for(key in obj){
     console.log(obj[key])
 }
+
 ```
 
-* Object.keys()와 forEach
+- Object.keys()와 forEach
+
 ```javascript
 Object.keys(obj).forEach(function(key) {
 	console.log(obj[key]);
 });
+
 ```
 
 ### 클로저
@@ -352,13 +422,14 @@ var p2 = new Person("강다니엘", 24);
 console.log(p1.getAge());
 p2.setAge(-10);
 console.log(p2.getAge());
+
 ```
 
 ## event
 
 `window.onload = function(){}` : 렌더링이 모두 끝나고나서 실행되는 함수
 
-* `$(function(){})`와 같다.
+- `$(function(){})`와 같다.
 
 어떤 것을 클릭했을 때 어떤 함수를 실행하고 싶다면
 
@@ -377,6 +448,7 @@ changeBtn.addEventListener("click", changeColor);
 changeBtn.addEventListener("click", setMessage);
 
 
+
 ```
 
 아니면 아예 onclick 속성으로 줄 수 있다. 
@@ -387,8 +459,8 @@ changeBtn.addEventListener("click", setMessage);
 onclick="changeColor()"
 로 줘야 한다. 함수를 호출하는 거니까 ()를 붙여주고.
 -->
-```
 
+```
 
 ## DOM 조작 API
 
@@ -407,55 +479,53 @@ window.onload = function(){
         this.appendChild(eNode);
     });
 };
+
 ```
 
 ### 몇 가지 유용 DOM 엘리먼트 속성
 
-* tagName : 엘리먼트의 태그명 반환
-* textContent : 노드의 텍스트 내용을 설정하거나 반환
-* nodeType : 노드의 노드 유형을 숫자로 반환
- 
+- tagName : 엘리먼트의 태그명 반환
+- textContent : 노드의 텍스트 내용을 설정하거나 반환
+- nodeType : 노드의 노드 유형을 숫자로 반환
 
 ### DOM 탐색 속성
 
-* childNodes
-    * 엘리먼트의 자식 노드의 노드 리스트 반환(텍스트 노드, 주석 노드 포함)
-* firstChild
-    * 엘리먼트의 첫 번째 자식 노드를 반환. 공백까지 자식으로 본다.
-* firstElementChild
-    * 첫 번째 자식 엘리먼트를 반환. 공백을 자식으로 보지 않는다.
-* parentElement
-    * 엘리먼트의 부모 엘리먼트 반환 
-* nextSibling
-    * 동일한 노드 트리 레벨에서 다음 노드를 반환 
-* nextElementSibling
-    * 동일한 노드 트리 레벨에서 다음 엘리먼트 반환
+- childNodes
+  - 엘리먼트의 자식 노드의 노드 리스트 반환(텍스트 노드, 주석 노드 포함)
+- firstChild
+  - 엘리먼트의 첫 번째 자식 노드를 반환. 공백까지 자식으로 본다.
+- firstElementChild
+  - 첫 번째 자식 엘리먼트를 반환. 공백을 자식으로 보지 않는다.
+- parentElement
+  - 엘리먼트의 부모 엘리먼트 반환 
+- nextSibling
+  - 동일한 노드 트리 레벨에서 다음 노드를 반환 
+- nextElementSibling
+  - 동일한 노드 트리 레벨에서 다음 엘리먼트 반환
 
 ### DOM 조작 메소드
 
-* removeChild()
-    * 엘리먼트의 자식 노드 제거 
-* appendChild()
-    * 마지막 자식 노드로 자식 노드를 엘리먼트에 추가
-* insertBefore()
-    * 기존 자식노드 앞에 새 자식 노드를 추가
-* cloneNode()
-    * 노드를 복제
-* replaceChild()
-    * 엘리먼트의 자식 노드 바꿈
-* closest()
-    * 상위로 올라가면서 가장 가까운 엘리먼트를 반환
- 
+- removeChild()
+  - 엘리먼트의 자식 노드 제거 
+- appendChild()
+  - 마지막 자식 노드로 자식 노드를 엘리먼트에 추가
+- insertBefore()
+  - 기존 자식노드 앞에 새 자식 노드를 추가
+- cloneNode()
+  - 노드를 복제
+- replaceChild()
+  - 엘리먼트의 자식 노드 바꿈
+- closest()
+  - 상위로 올라가면서 가장 가까운 엘리먼트를 반환
 
 ### HTML을 문자열로 처리해주는 DOM 속성 / 메소드
 
-* innerText
-    * 지정된 노드와 모든 자손의 텍스트 내용을 설정하거나 반환
-* innerHTML
-    * 지정된 엘리먼트의 내부 html을 설정하거나 반환. set, get 둘 다 가능.
-* insertAdjacentHTML()
-    * HTML로 텍스트를 지정된 위치에 삽입
-
+- innerText
+  - 지정된 노드와 모든 자손의 텍스트 내용을 설정하거나 반환
+- innerHTML
+  - 지정된 엘리먼트의 내부 html을 설정하거나 반환. set, get 둘 다 가능.
+- insertAdjacentHTML()
+  - HTML로 텍스트를 지정된 위치에 삽입
 
 ```javascript
 // 전체 문서에서 태그 이름이 div인 Element Node들 모두 찾아서 리스트 형태로 줌
@@ -562,6 +632,7 @@ var content = document.getElementById("content");
 content.parentNode.removeChild(content);
 // 그 노드의 부모를 찾아서 지워줘야 함. 매개변수로 그 자식을 줘야 한다.
 
+
 ```
 
 
@@ -574,148 +645,75 @@ content.parentNode.removeChild(content);
 
 ## jquery
 
-지원하는 것들
+### jquery를 쓰는 이유
 
 1. 크로스 브라우징
-2. DOM 때문에 쓴다.
+2. DOM 조작
    1. 좀 더 편리하게 쓰도록 도와준다
 3. Event 처리
    1. 존재하는 얘들한테만 이벤트를 붙였지만 미래에 동적으로 추가되는 얘들까지 생각해서 이벤트핸들러를 만들어줄 수 있다.
 4. AJAX 지원
-   1. 비동기 통신. 10%가 통신 코드이고 90%가 DOM코드이다. 엄청 복잡해진다.
-5. Effect
-   1. CSS3를 이용하면 이미 가능하지만 jquery는 CSS3 이전부터 나왔었기 때문에
-   2. 애니메이션적인 효과를 주기위해서.
+   1. 비동기 통신. 10%가 통신 코드이고 90%가 DOM코드이다. jquery를 안 쓰면 복잡하다.
 
+### $(); 매개변수에 어떤 게 올 수 있나?
 
-
-jquery를 쓰기위한 준비물
-
-1. download
-2. CDN(url)
-
-
-
-jQuery();로 써도 되고, $();로 써도 된다.
-
-
-
-$(); 매개변수에 어떤 게 올 수 있나?
-
-1. CSS의 선택자가 올 수 있다. $("#header")
+1. CSS의 선택자가 올 수 있다. `$("#header")`
    1. 원래 있던 얘에다가 기능을 덛붙여서 준다. 그래서 리턴받은 건 붙여서 준 기능밖에 못 쓴다. 상속이라고 생각하면 될듯. 그래서 스크립트에서는 없었던 유용한 기능을 쓸 수 있다. 
-   2. 가령 header에 1,2라는 기능이 있다면 \$("#header")이 리턴받아 오는 건 1, 2라는 기능에서 확장된 3, 4라는 기능이 리턴된다. 그래서 \$("#header").3 처럼 쓸 수 있다. \$("#header").1은 쓰지 못하고. 직접적인 객체 자체가 $로 되기 때문에.
+   2. 가령 header에 1,2라는 기능이 있다면 `$("#header")`이 리턴받아 오는 건 1, 2라는 기능에서 확장된 3, 4라는 기능이 리턴된다. 그래서 `\$("#header").3` 처럼 쓸 수 있다. `\$("#header").1`은 쓰지 못하고. 직접적인 객체 자체가 `$`로 되기 때문에.
 2. HTML 코드 
-   1. \$("\<p> 점심 \<p>") 는 마크업에 상응하는 서브트리를 리턴한다. p를 나타내는 더 확장된 기능!
+   1. `$("\<p> 점심 \<p>")` 는 마크업에 상응하는 서브트리를 리턴한다. p를 나타내는 더 확장된 기능!
 3. JavaScript 객체
-   1. 스크립트 객체를 jquery를 주면 
-   2. \$(document) 
-   3. document에서 jquery의 기능을 붙인 Object 형태를 준다. 
+   1. 스크립트 객체를 jquery를 주면 `$(document)`로 document에서 jquery의 기능을 붙인 Object 형태를 준다.
 4. function
-   1. \$(function)
-   2. window.onload()같은 자동으로 문서 로딩이 끝나면 반응할 수 있는 함수로 준다.
-
-## 비동기처리
-
-페이지를 새로 부르지 않으면서  작은 부분만 새롭게 갱신하고 싶을 때 비동기 통신. 
-
-동기 통신 - url을 받아서 화면 전체가 바뀌는 것. 
-
-비동기통신은 스스로 코드를 짜야한다. 
-
-XMLHttpRequest
-
-// true는 비동기 여부를 true, false 준다. 비동기면 true. 
-
-request.open('GET', '/data.html', true)
-
-request.send();를 해주면 끝. 그냥 다음 코드 실행.
-
-로딩중처럼 뭔가 보여주고 싶을 때 0~4일 때는 보여주고, 4일 때는 안 보이게. 
-
-document.body.innerHTML
-
-requset.responseText;를 불러올 때는 스트링으로 따로 바꿔준다. 
-
-1. 리퀘스트 객체부터 만들기
-2. 응답을 주는지, 다 왔는지, 
-3. 리퀘스트에 레디스테이트체인지를 붙인다. 
-4. 4이면서 성공인 상황만. 
-5. readyState = 4는 무조건 해주기
-6. 다 끝내면 send. 
-7. get방식은 url 뒤에 붙인다.
-8. input.send(id-sfdsa&pd)
-9. get으로 보내는지, post로 보내
-10. 제이쿼리는 비동기 통신 메소드가 있다.
-11. 에이잭스는 모든 걸 세팅하고 
-12. post는 비동기 버전을
-13. 익스 8버전은 지원하지 않는다. 그리도 제이쿼리로 짜면 쉽다. 제이쿼리는 무조건
-14. 
+   1. `$(function)`. `window.onload()`같은 자동으로 문서 로딩이 끝나면 반응할 수 있는 함수로 준다.
 
 
 # JavaScript_opentutorials
 
-<JAVA Script>
 웹 브라우저는 html, css, java script로 나타낸다. 
 HTML : 정보를 표현한다.(웹의 시작)
 CSS : 정보를 꾸며준다.
 Java Script : HTML을 프로그래밍적으로 제어한다.
-java script를 배우면 Web browser, node.js, google apps script같은 호스트 환경을 프로그래밍적으로 이용할 수 있다. 
 
-크롬 개발자 도구(크롬에서 F12)를 들어가서 Element 오른쪽에 >기호처럼 생긴 게 있다 이걸 누르면 Console이 뜨는데 자바스크립트 문장을 실시간으로 쉽게 입력할 수 있다. (줄바꿈은 shift+enter
-)
 
-<HTML에서 java script 로드하기>
-1.	inline방식. inline방식은 태그에 직접 자바스크립트를 기술하는 방식이다. 장점은 태그에 연관된 스크립트가 분명하게 드러난다는 점이다. 하지만 정보와 제어가 섞여 있기 때문에 정보로서의 가치가 떨어진다.
-<!DOCTYPE html>
-<html>
-<body>
-<input type="button" onclick="alert('Hello world')" value="Hello world" />
-</body>
-</html>
+## Object Model
 
-onclick은 클릭했을 때 뒤의 해당하는 값을 실행한다. onclick=”~”는 html의 문법이고 alert()은 javascript의 문법이다. 이런 걸 웹 브라우저는 어떻게 알까? onclick이라는 속성의 값은 javascript라는 약속이 이미 되어있기 때문이다. 정보와 제어가 같이 모여 있으면 유지보수하기 어렵기 때문에 좋지 않다. 
-2.	<script></script> 태그를 만들어서 여기에 자바스크립트 코드를 삽입하는 방식이다. 하지만 더 나은 방법이 있다.
-3.	js를 별도의 파일로 분리할 수 있다. 장점은 보다 엄격하게 정보와 제어를 분리할 수 있다. 하나의 js파일을 여러 웹 페이지에서 로드함으로써 js의 재활용성을 높일 수 있다. 이게 바로 유지보수의 편의성을 도모한 것이다. 서버쪽에 부담도 줄일 수 있고 파일을 별도로 빼 놓으면 서버가 받는 데이터 량을 줄여줄 수 있다. 
-4.	script 파일의 위치. script를 head태그에 위치시킬 수도 있다. 하지만 이것보다 head태그 끝나는 지점에 하는 게 좋다. 웹 브라우저는 script태그를 발견하면 다운로드하기 시작하고 실행한다음 그 다음에 나머지 내용을 실행한다. 그런데 head태그에 나타나게 되면 script에 있는 어떤 id값이 나중 태그를 가리키는 값을 갖는 경우 그 값이 존재하지 않는 값을 호출하게 될 수 있기 때문이다. 이 오류를 없애는 방법이 있긴 하다. window.onload = function(){}안에 넣게 되면 에러가 없어지는데 그 이유는 window객체의 저 onload메소드는 모든 코드가 다 읽은 후에 실행되는 것이기 때문이다. 화면을 다 만들고 실행한다. 
-
-<Object Model>
 웹 브라우저의 구성요소들은 하나하나가 객체화 되어있다. 사용자가 자바스크립트로 제어할 수 있도록 자바스크립트를 만든 사람이 자바스크립트를 객체로 만들어서 우리들에게 제공하고 있다. 즉, 브라우저에서 이미 각각의 태그들마다 미리 객체를 만들어 놓고 준비해두고 있는 것이다. 우리들은 태그에 해당하는 객체의 속성 값, 메소드를 호출해서 그 객체를 제어할 수 있고 그 객체가 가지고 있는 태그를 제어할 수 있게 된다.
+
 Object Model은 테두리와 같은 역할을 한다. JSC, BOM, DOM들이 그들이다. 가장 큰 틀의 분류라고 할 수 있다.
 window는 두 가지의 의미를 가지고 있다. 전역객체와 window.frame을 제어하기 위한 객체로서의 의미가 있다.
-window.document라고 하면 document에 접근할 수 있다. 하지만 전역객체이기 때문에 document를 써도 window가 암시적으로 들어가 있기때문에 상관없다. 이로서 document는 window객체의 프로퍼티라는 걸 알 수 있다.
-<!DOCTYPE html>
-<html>
-<body>
-<img src="https://s3.ap-northeast-2.amazonaws.com/opentutorials-user-file/course/94.png" />
-</body>
-</html>
-위 코드의 html파일을 실행시키고 개발자 도구에 
-var imgs = document.getElementsByTagName(‘img’);를 쳐보자.
-document의 객체에는 getElementsByTagName()메소드를 가지고 있다. 이는 TagName을 이용해서 Element를 가져온다(리턴해준다)는 뜻이다. 그럼 imgs라는 변수에 리턴 값이 들어온다. Elements를 보면 s가 붙어있는데 복수라는 것이므로(여러 개의 값이므로) 배열을 리턴해준다는 것을 알 수 있다. 
-imgs[0]이라고 하면 첫 번째에 해당하는 객체를 의미한다. 
-속성을 주려면 imgs[0].style.width=’300px’; 치게 되면 실제로 코드가 바뀌게 된다. 이처럼 화면에 렌더링이 이미 끝난 태그를 수정하기 위해선 태그를 의미하는 객체를 찾아야 한다. 그 객체가 document에 들어있는 것!
-document object model(DOM) 는 body태그나 img 태그라던지 제어하는 역할을 한다! 즉, 문서를 제어해준다.
-Browser Object Model(BOM)은 웹페이지의 내용을 제외한 브라우저의 각종 요소들을 객체화시킨 것이다. 전역객체 window의 프로퍼티에 속한 객체들이 이에 속한다. (ex. window.alert(‘hello world’);를 치게되면 hello wolrd가 나온다. window라는 객체가 있고 alert이라는 메소드를 호출함으로써 나오게 된다. )
-java script core는 공통적인 객체이다. google apps script나 node.js에는 DOM이나 BOM이 없다. 하지만 java script core는 모두 가지고 있는 객체다. javaScript 언어 자체에 정의되어있는 객체들이다.
+window.document라고 하면 document에 접근할 수 있다. 하지만 전역객체이기 때문에 document를 써도 window가 암시적으로 들어가 있기때문에 상관없다. 이로서 document는 window객체의 프로퍼티라는 걸 알 수 있다. window.alert(‘hello world’);도 마찬가지
 
-<Browser Object Model(BOM)>
+### DOM
+Document Object Model(DOM)
+window 객체의 document 프로퍼티를 통해서 사용할 수 있다. Window 객체가 창을 의미한다면 Document 객체는 윈도우에 로드된 문서를 의미한다고 할 수 있다. 
+문서를 자바스크립트로 제어하려면 제어의 대상에 해당되는 객체를 찾는 것이 제일 먼저 할 일이다. 문서 내에서 객체를 찾는 방법은 document 객체의 메소드를 이용한다. 
+document.getElementsByTagName
+getElementsByTagName은 인자로 전달된 태그 명에 해당하는 객체들을 찾아서 그 리스트를 NodeList라는 유사 배열에 담아서 반환한다. NodeList는 배열은 아니지만 length와 배열접근 연산자를 사용해서 엘리먼트를 조회할 수 있다.(첫 번째면 [0]) 만약 조회의 대상을 좁히려면 특정 객체를 다시 지정하고 .을 통해서 넣어준다.
+
+
+document.getElementsByClassName
+getElementsByClassName은 class 속성의 값을 기준으로 객체를 조회할 수 있다.
+
+
+document.getElementById(s가 붙지 않는다!)
+getElementById는 id 값을 기준으로 객체를 조회한다. 성능면에서 가장 우수하다. (유일무이한 식별자라서 하나만 가능하다.)
+
+
+document.querySelector
+querySelector는 css 선택자의 문법을 이용해서 객체를 조회할 수 있다.
+
+
+document.querySelectorAll
+querySelector과 기본적인 동작방법은 같지만 모든 객체를 조회한다는 점이 다르다. (그 선택자에 해당하는 태그들은 모두 바뀐다.)
+
+* document object model(DOM) 는 body태그나 img 태그라던지 제어하는 역할을 한다! 즉, 문서를 제어해준다.
+### BOM(Browser Object Model)
 -전역객체 window
 window 객체는 모든 객체가 소속된 객체이고, 전역 객체이면서, 창이나 프레임을 의미한다.
 alert(‘hello world’); 나 window. alert(‘hello world’); 나 같은 의미다. window를 생략한 것과 같은 의미를 지닌다. 
 변수도 마찬가지다. var를 해주지 않으면 전역 변수가 되는데 a =1;를 window.a라고 쳐도 된다.
 객체도 마찬가지. b = {id = 1}; 을 불러올 때 window.b를 쳐도 된다. 그냥 다 소속이 되어있다.
-
--사용자와 커뮤니케이션 하기
-alert : 경고창이라고 부른다. 사용자에게 정보를 제공하거나 디버깅등의 용도로 많이 사용한다.
-<input type=”button” value=”alert” onclick=”alert(‘hello world’)”>
-하지만 최근에는 자바스크립트를 사용할 때 개발자 도구에서 console.log를 사용한다.(확인 누르기 귀찮으니까.)
-
-confirm : 확인을 누르면 true, 취소를 누르면 false를 리턴한다.
-if(confirm('ok?')){ alert('ok'); } else { alert('cancel'); }
-
-prompt : 사용자로부터 입력 값을 받을 수 있다.
-if(prompt('id?') === 'egoing'){ alert('welcome'); } else {alert('fail');}
 
 -Location 객체
 Location 객체는 문서의 주소와 관련된 객체로 window 객체의 프로퍼티다. 이 객체를 이용해서 윈도우의 문서 URL을 변경할 수 있고, 문서의 위치와 관련해서 다양한 정보를 얻을 수 있다.
@@ -744,236 +742,26 @@ platform은 브라우저가 동작하고 있는 운영체제에 대한 정보다
 Navigator 객체는 브라우저 호환성을 위해서 주로 사용하지만 모든 브라우저에 대응하는 것은 쉬운 일이 아니므로 아래와 같이 기능 테스트를 사용하는 것이 더 선호되는 방법이다. 
 여러분이 갖고있는 웹 브라우저가 어떤 기능을 갖고있는지 없는지 확인할 때 쓴다.
 예를 들어 Object.keys라는 메소드는 객체의 key 값을 배열로 리턴하는 Object의 메소드다. 이 메소드는 ECMAScript5에 추가되었기 때문에 오래된 자바스크립트와는 호환되지 않는다. 아래의 코드를 통해서 호환성을 맞출 수 있다. (Object.keys가 없다면 기능을 만들어주고 있다면 써주고. 다 볼 필요 없다.)
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
-if (!Object.keys) {
-Object.keys = (function () {
-'use strict';
-var hasOwnProperty = Object.prototype.hasOwnProperty,
-hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
-dontEnums = [
-'toString',
-'toLocaleString',
-'valueOf',
-'hasOwnProperty',
-'isPrototypeOf',
-'propertyIsEnumerable',
-'constructor'
-],
-dontEnumsLength = dontEnums.length;
-return function (obj) {
-if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
-throw new TypeError('Object.keys called on non-object');
-}
-var result = [], prop, i;
-for (prop in obj) {
-if (hasOwnProperty.call(obj, prop)) {
-result.push(prop);
-}
-}
-if (hasDontEnumBug) {
-for (i = 0; i < dontEnumsLength; i++) {
-if (hasOwnProperty.call(obj, dontEnums[i])) {
-result.push(dontEnums[i]);
-}
-}
-}
-return result;
-};
-}());
-}
+
+* Browser Object Model(BOM)은 웹페이지의 내용을 제외한 브라우저의 각종 요소들을 객체화시킨 것이다. 전역객체 window의 프로퍼티에 속한 객체들이 이에 속한다. 
+
+
 -창 제어
 window.open 메소드는 새 창을 생성한다. window.open은 a태그와 같은 역할이라고 볼 수 있다.
-window.open의 두 번째 인자에는 값이 있는데 _self와 _blank는 약속된 값이다.(_self는 현재 창에서 뜨게 한다, _blank는 새 창!) 아래는 메소드 사용법이다. 
-<!DOCTYPE html>
-<html>
-<style>li {padding:10px; list-style: none}</style>
-<body>
-<ul>
-<li>
-첫번째 인자는 새 창에 로드할 문서의 URL이다. 인자를 생략하면 이름이 붙지 않은 새 창이 만들어진다.<br />
-<input type="button" onclick="open1()" value="window.open('demo2.html');" />
-</li>
-<li>
-두번째 인자는 새 창의 이름이다. _self는 스크립트가 실행되는 창을 의미한다.<br />
-<input type="button" onclick="open2()" value="window.open('demo2.html', '_self');" />
-</li>
-<li>
-_blank는 새 창을 의미한다. <br />
-<input type="button" onclick="open3()" value="window.open('demo2.html', '_blank');" />
-</li>
-<li>
-창에 이름을 붙일 수 있다. open을 재실행 했을 때 동일한 이름의 창이 있다면 그곳으로 문서가 로드된다.<br />
-<input type="button" onclick="open4()" value="window.open('demo2.html', 'ot');" />
-</li>
-<li>
-세번재 인자는 새 창의 모양과 관련된 속성이 온다.<br />
-<input type="button" onclick="open5()" value="window.open('demo2.html', '_blank', 'width=200, height=200, resizable=yes');" />
-</li>
-</ul>
-<script>
-function open1(){
-window.open('demo2.html');
-}
-function open2(){
-window.open('demo2.html', '_self');
-}
-function open3(){
-window.open('demo2.html', '_blank');
-}
-function open4(){
-window.open('demo2.html', 'ot');
-}
-function open5(){
-window.open('demo2.html', '_blank', 'width=200, height=200, resizable=no');
-}
-</script>
-</body>
-</html>
+window.open의 두 번째 인자에는 값이 있는데 _self와 _blank는 약속된 값이다.(_self는 현재 창에서 뜨게 한다, _blank는 새 창!) 아래는 메소드 사용법이다. _self와 _blank 이외에도 여러가지 속성이 있다.
 
 새로운 창에 접근할 수도 있다. (입력한 값이 바로 입력되어 나타나도록.) 이는 보안 상의 이유로 실제 서버에서만 동작하고, 같은 도메인의 창에 대해서만 작동한다.
-<!DOCTYPE html>
-<html>
-<body>
-<input type="button" value="open" onclick="winopen();" />
-<input type="text" onkeypress="winmessage(this.value)" />
-<input type="button" value="close" onclick="winclose()" />
-<script>
-function winopen(){
-win = window.open('demo2.html', 'ot', 'width=300px, height=500px');
-}
-function winmessage(msg){
-win.document.getElementById('message').innerText=msg;
-}
-function winclose(){
-win.close();
-}
-</script>
-</body>
-</html>
-window.open이라고 하는 메소드를 통해서 새 창을 열게 되면 window.open이라는 메소드는 window.open에 첫 번째 인자의 window 객체를 리턴하게 된다. (win에게 들어가게 됌.) 그리고this.value는 사용자가 입력한 입력 값으로 작용하게 되고 그 메시지가 innerText 프로퍼티를 바꿔주게 됨으로써 입력한대로 새 창에 나타나게 된다.
-같은 도메인인 경우에만 작업이 가능한 이유는 다른 사람이 만든 웹 페이지에 가서 악의적으로 이용할 수도 있기 때문이다. 서비스를 바꿔버릴 수도 있으니까. 팝업도 비슷한 경우인데 팝업이 뜨는 건 사용자가 귀찮아하는 걸 알고 웹 브라우저에서 기본적으로 차단하도록 만들었다. 사용자가 허락하지 않는 한 뜨지 않는다. ( 스크립트 태그에 window.open('demo2.html'); 이 코드만 써 놓아서 다른 창을 띄우면 이게 팝업이 된다. 사용자가 버튼을 눌러서 가는 거면 괜찮지만.)
 
-<Document Object Model(DOM)>
-window 객체의 document 프로퍼티를 통해서 사용할 수 있다. Window 객체가 창을 의미한다면 Document 객체는 윈도우에 로드된 문서를 의미한다고 할 수 있다. 
-문서를 자바스크립트로 제어하려면 제어의 대상에 해당되는 객체를 찾는 것이 제일 먼저 할 일이다. 문서 내에서 객체를 찾는 방법은 document 객체의 메소드를 이용한다. 
-document.getElementsByTagName
-getElementsByTagName은 인자로 전달된 태그 명에 해당하는 객체들을 찾아서 그 리스트를 NodeList라는 유사 배열에 담아서 반환한다. NodeList는 배열은 아니지만 length와 배열접근 연산자를 사용해서 엘리먼트를 조회할 수 있다.(첫 번째면 [0]) 만약 조회의 대상을 좁히려면 특정 객체를 다시 지정하고 .을 통해서 넣어준다.
-<!DOCTYPE html>
-<html>
-<body>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-</ul>
-<ol>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-</ol>
-<script>
-var ul = document.getElementsByTagName('ul')[0]; // 맨 뒤에 배열연산자 사용 가능.
-var lis = ul.getElementsByTagName('li');
-for(var i=0; lis.length; i++){
-lis[i].style.color='red'; 
-}
-</script>
-</body>
-</html>
+### JSC
+* java script core는 공통적인 객체이다. google apps script나 node.js에는 DOM이나 BOM이 없다. 하지만 java script core는 모두 가지고 있는 객체다. javaScript 언어 자체에 정의되어있는 객체들이다.
 
-document.getElementsByClassName
-getElementsByClassName은 class 속성의 값을 기준으로 객체를 조회할 수 있다.
-<!DOCTYPE html>
-<html>
-<body>
-<ul>
-<li>HTML</li>
-<li class="active">CSS</li>
-<li class="active">JavaScript</li>
-</ul>
-<script>
-var lis = document.getElementsByClassName('active');
-for(var i=0; i < lis.length; i++){
-lis[i].style.color='red'; 
-}
-</script>
-</body>
-</html>
 
-document.getElementById(s가 붙지 않는다!)
-getElementById는 id 값을 기준으로 객체를 조회한다. 성능면에서 가장 우수하다. (유일무이한 식별자라서 하나만 가능하다.)
-<!DOCTYPE html>
-<html>
-<body>
-<ul>
-<li>HTML</li>
-<li id="active">CSS</li>
-<li>JavaScript</li>
-</ul>
-<script>
-var li = document.getElementById('active');
-li.style.color='red';
-</script>
-</body>
-</html>
 
-document.querySelector
-querySelector는 css 선택자의 문법을 이용해서 객체를 조회할 수 있다.
-<!DOCTYPE html>
-<html>
-<body>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-</ul>
-<ol>
-<li>HTML</li>
-<li class="active">CSS</li>
-<li>JavaScript</li>
-</ol>
-<script>
-var li = document.querySelector('li');
-li.style.color='red';
-var li = document.querySelector('.active');
-li.style.color='blue';
-</script>
-</body>
-</html>
 
-document.querySelectorAll
-querySelector과 기본적인 동작방법은 같지만 모든 객체를 조회한다는 점이 다르다. (그 선택자에 해당하는 태그들은 모두 바뀐다.)
-<!DOCTYPE html>
-<html>
-<body>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-</ul>
-<ol>
-<li>HTML</li>
-<li class="active">CSS</li>
-<li>JavaScript</li>
-</ol>
-<script>
-var lis = document.querySelectorAll('li');
-for(var name in lis){
-lis[name].style.color = 'blue';
-}
-</script>
-</body>
-</html>
 
-<jQuery>
+### jQuery
 라이브러리 – 자주 사용하는 로직을 재사용할 수 있도록 고안된 소프트웨어를 라이브러리라고 한다.
 jQuery는 DOM을 내부에 감추고 보다 쉽게 웹 페이지를 조작할 수 있도록 돕는 도구이다.
-jQuery를 사용하기 위해서는 jQuery를 HTML에 로드해야 한다. (CDN이라는 걸 이용하면 script 태그에 그냥 주소만 입력하면 된다. 스트리밍 형식으로 한다고 보면 된다.)
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 이렇게 부트스트랩처럼 해주고 script 태그 안에는 아래 코드가 들어간다.
-jQuery( document ).ready(function( $ ) {
-$('body').prepend('<h1>Hello world</h1>');
-});
-중가로 사이에 코드를 넣으면 된다. 지금 예시는 prepend로 앞에 선택한 body에 hello world를 쓴다는 뜻이다. 
 
 <제어 대상을 찾기(jQuery)>
 jQuery를 이용하면 DOM을 사용하는 것보다 훨씬 효율적으로 필요한 객체를 조회할 수 있다. jQuery는 객체를 조회할 때 CSS 선택자를 이용한다. 
@@ -983,56 +771,19 @@ $()는 jQurey function이라고 불린다. 이 함수의 인자로 CSS 선택자
 DOM(위)과 jQuery(아래)
 var lis = document.getElementsByTagName('li');
 for(var i=0; i&lt;lis.length; i++){
-lis[i].style.color='red'; 
---------------------------------------------
-$('li').css('color', 'red')
 
-var lis = document.getElementsByClassName('active');
-for(var i=0; i &lt; lis.length; i++){
-lis[i].style.color='red'; 
---------------------------------------------
-$('.active').css('color', 'red')
-
-var li = document.getElementById('active');
-li.style.color='red';
-li.style.textDecoration='underline';
---------------------------------------------
-$('#active').css('color', 'red').css('textDecoration', 'underline');
-여기 id에서 css('color', 'red')가 리턴 값이 나오고 거기다 다시 .을 찍어서 그 객체에 대해서 다시 효과를 줄 수 있다. 이걸 chaining이라고 한다. 
-
-<HTMLElement>
 getElement* 메소드를 통해서 원하는 객체를 조회했다면 이 객체들을 대상으로 구체적인 작업을 처리해야 한다. 이를 위해서는 획득한 객체가 무엇인지 알아야 한다. 그래야 적절한 메소드나 프로퍼티를 사용할 수 있다.
 아래 코드는 getElement*의 리턴 값을 보여준다.
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li id="active">JavaScript</li>
-</ul>
-<script>
-var li = document.getElementById('active');
-console.log(li.constructor.name);
-var lis = document.getElementsByTagName('li');
-console.log(lis.constructor.name);
-</script>
-의미하는 객체가 li와 lis에 들어가고 그 객체의 이름을 알기 위해서는 constructor.name(생성자의 이름)을 이용한다. 
-HTMLLIElement와 HTMLCollection이 나오게 된다. 
-즉, 조회한 객체가 단수(document.getElementById)면 리턴 데이터 타입은 HTMLLIElement, 복수(document.getElementsByTagName)면 HTMLCollection이 나오게 된다. 여기서 HTMLLIElement는 HTMLElement HTMLCollection 객체는 유사배열을 이용하고 있다. (실행결과가 하나인 경우가 단수, 여러 개인 경우가 복수.)
-jQuery가 이 HTMLElement를 내부에 감추고 있는 것이다. 
-<a id="anchor" href="http://opentutorials.org">opentutorials</a>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li id="list">JavaScript</li>
-</ul>
-<input type="button" id="button" value="button" />
-<script>
+
+```javascript
 var target = document.getElementById('list');
 console.log(target.constructor.name);
 var target = document.getElementById('anchor');
 console.log(target.constructor.name);
 var target = document.getElementById('button');
 console.log(target.constructor.name);
-</script>
+```
+
 위 코드도 실행시켜보면 HTMLLIElement, HTMLAnchorElement, HTMLInputElement가 나오게 된다.
 엘리먼트를 보면 각각 속성이 다른 것을 알 수 있는데 위의 a태그는 href의 속성을 가지고 있고 input에 보면 type과 value 속성이 있다. 이를 통해서 알 수 있는 것은 엘리먼트의 종류에 따라서 리턴되는 객체가 조금씩 다르다는 것이다.
 w3c의 문서로 가보면 더 정확히 할 수 있다. HTMLLIElement는
@@ -1042,53 +793,7 @@ attribute long value;
 };
 위 코드로 속성이 정의가 되어있다. 엘리먼트 객체에 따라서 프로퍼티가 다르다는 것을 알 수 있고 :(콜론)이 나와있는 게 바로 상속 표시라는 걸 알 수 있다. 즉, HTMLLIElement는 HTMLElement에 상속받고 있었던 것! 자식과 부모였던 거다. 동일한 기능은 HTMLElement 객체가 이미 갖고 있었고 프로퍼티로 나눠준 것이다!
 HTMLAnchorElement도 마찬가지다.
-interface HTMLAnchorElement : HTMLElement {
-attribute DOMString accessKey;
-attribute DOMString charset;
-attribute DOMString coords;
-attribute DOMString href;
-attribute DOMString hreflang;
-attribute DOMString name;
-attribute DOMString rel;
-attribute DOMString rev;
-attribute DOMString shape;
-attribute long tabIndex;
-attribute DOMString target;
-attribute DOMString type;
-void blur();
-void focus();
-};
-
-모든 엘리먼트는 HTMLElement의 자식이다. 따라서 HTMLElement의 프로퍼티를 똑같이 가지고 있다. 동시에 엘리먼트의 성격에 따라서 자신만의 프로퍼티를 가지고 있는데 이것은 엘리먼트의 성격에 따라서 달라진다. HTMLElement는 Element의 자식이고 Element는 Node의 자식이다. Node는 Object의 자식이다. 이러한 관계를 DOM Tree라고 한다.
- 
-
-<HTMLCollection>
 HTMLCollection은 리턴 결과가 복수인 경우에 사용하게 되는 객체다. 유사배열로 배열과 비슷한 사용방법을 가지고 있지만 배열은 아니다. HTMLCollection의 목록은 실시간으로 변경돼서 제거하게 되면 바로 그 목록에서 빠지게 된다. 
-console.group()은 console.groupEnd() 사이의 console.log를 그룹핑해서 보여줄 수 있는 메소드이다.(뭐가 뭐의 소속인지 파악이 잘 된다. ) before는 세 개의 log가 나오고 after은 두 개의 log가 나오게 된다. 
-<!DOCTYPE html>
-<html>
-<body>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li id="active">JavaScript</li>
-</ul>
-<script>
-console.group('before');
-var lis = document.getElementsByTagName('li');
-for(var i = 0; i < lis.length; i++){
-console.log(lis[i]);
-}
-console.groupEnd();
-console.group('after');
-lis[1].parentNode.removeChild(lis[1]);
-for(var i = 0; i < lis.length; i++){
-console.log(lis[i]);
-}
-console.groupEnd();
-</script>
-</body>
-</html>
 
 <jQuery 객체>
 jQuery 객체란 jQuery 함수의 리턴 값으로 jQuery 함수를 이용해서 선택한 엘리먼트들에 대해서 처리할 작업을 프로퍼티로 가지고 있는 객체다. jQuery 객체의 가장 중요한 특성은 암시적인 반복을 수행한다는 것이다. DOM과 다르게 jQuery 객체의 메소드를 실행하면 선택된 엘리먼트 전체에 대해서 동시에 작업이 처리된다. 암시적 반복은 값을 설정할 때만 동작한다.
@@ -1097,20 +802,8 @@ li.css(‘text-decoration’,’underline’);의 뜻은 첫 번째 인자의 �
 li.css(‘text-decoration’,’underline’);을 하고 li.css(‘text-decoration’);을 치면 값을 가져와서 underline이 나오게 된다. 거기다 신기한 건 ‘가져오기’를 할 때는 첫 번째 엘리먼트에 등장하는 값만 가져오게 된다.
 chaining도 적용이 되서 li.css().css().css() 와 같이 연결해서 지정할 수도 있다. 
 그러면 두 번째 엘리먼트의 값을 가져오고 싶으면 어떻게 해야할까? li[0], li[1] 이런 식으로 줘야 된다.
-<ul>
-<li>html</li>
-<li>css</li>
-<li>JavaScript</li>
-</ul>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script>
-console.log($('li').length);
-console.log($('li')[0]);
-var li = $('li');
-for(var i=0; i<li.length; i++){
-console.log(li[i]);
-}
-</script>
+
+
 여기서 주의할 점은 li[i]의 값은 해당 엘리먼트에 대한 jQuery 객체가 아니라 DOM 객체이기 때문에 값을 줄 때 그냥 li[1].css(‘color’,’red’); 하게 되면 오류가 나온다.( li[0].constructor을 쳐보면 function HTMLLIElement가 나오게 된다. jQuery함수가 아니라 DOM객체란 얘기!) 따라서 jQuery의 기능을 이용해서 객체를 제어하려면 jQuery 함수를 이용해야 되니까. $(li[i]).css(‘color’,’red’); 로 감싸야된다.
 신기하네. li는 jQuery 객체인데 배열로 주는 li[0]은 아니니까. 
 다른 방법이 또 있다.
@@ -1128,7 +821,7 @@ Element 객체와 HTMLElement 객체는 상속관계가 한 줄로 쭉 이어져
 Element 객체는 엘리먼트를 추상화한 객체다. HTMLElement 객체와의 관계를 이해하기 위해서는 DOM의 취지에 대한 이해가 선행되야 한다. DOM은 HTML만을 제어하기 위한 모델이 아니다!! HTML이나 XML, SVG, XUL과 같이 마크업 형태의 언어를 제어하기 위한 규격이기 때문에 Element는 마크업 언어의 일반적인 규격에 대한 속성을 정의하고 있고, 각각의 구체적인 언어(HTML,XML,SVG)를 위한 기능은 HTMLElement, SVGElement, XULElement와 같은 객체를 통해서 추가해서 사용하고 있다.
 크롬 개발자 도구에는 어떤 태그, 객체에 대해서 상속관계를 보여주는 기능이 있는데 Elements에서 Properties에 가면 상속뿐만 아니라 속성까지 모두 보여주고 있어 어떤 객체가 서로 영향을 주는지 알아볼 수 있다. 
 DOM의 계층 구조에서 Element 객체의 위치는 아래와 같다.
- 
+
 Element 객체의 주요 기능에는 여러 기능을 가진 API들이 있다고 할 수 있는데 식별자, 조회, 속성 기능이 있다.
 식별자 - 문서내에서 특정한 엘리먼트를 식별하기 위한 용도로 사용되는 API
 o	Element.classList
@@ -1148,10 +841,10 @@ o	Element.setAttribute(name, value)
 o	Element.hasAttribute(name);
 o	Element.removeAttribute(name);
 
+- 식별자 API
+  엘리먼트를 제어하기 위해서는 그 엘리먼트를 조회하기 위한 식별자가 필요하다. HTML에서 엘리먼트의 이름과 id 그리고 class는 식별자로 사용된다. 식별자 API는 이 식별자를 가져오고 변경하는 역할을 한다.
+  Element.tagName : 해당 엘리먼트의 태그 이름을 알아낸다. 태그 이름을 변경하지는 못한다.
 
--	식별자 API
-엘리먼트를 제어하기 위해서는 그 엘리먼트를 조회하기 위한 식별자가 필요하다. HTML에서 엘리먼트의 이름과 id 그리고 class는 식별자로 사용된다. 식별자 API는 이 식별자를 가져오고 변경하는 역할을 한다.
-Element.tagName : 해당 엘리먼트의 태그 이름을 알아낸다. 태그 이름을 변경하지는 못한다.
 <ul>
 <li>html</li>
 <li>css</li>
@@ -1162,6 +855,7 @@ console.log(document.getElementById('active').tagName)
 </script>
 
 Element.id : 문서에서 id는 단 하나만 등장할 수 있는 식별자다. 아래 예제는 id의 값을 읽고 변경하는 방법을 보여준다. 
+
 <ul>
 <li>html</li>
 <li>css</li>
@@ -1175,6 +869,7 @@ console.log(active.id);
 </script>
 
 Element.className : 클래스는 여러개의 엘리먼트를 그룹핑할 때 사용한다. 사용하기 까다로워서 최근에는 잘 쓰지 않는다. (자바스크립트의 예악어라서 HTML의 class와 어울리지 않는다. 이처럼 프로퍼티의 이름이 같지 않을 수 있다. )
+
 <ul>
 <li>html</li>
 <li>css</li>
@@ -1190,6 +885,7 @@ active.className += " readed"
 </script>
 
 Element.classList : className에 비해서 훨씬 편리한 사용성을 제공한다.
+
 <ul>
 <li>html</li>
 <li>css</li>
@@ -1203,9 +899,10 @@ console.log(i, active.classList[i]);
 var active = document.getElementById(‘active’);하고 active.classList라고 치게 되면 DOMtokenList라는 객체가 나오게 된다. 이 객체 안에 있는 프로퍼티라고 보면된다. 배열의 형태처럼
 active.classList[0], active.classList[1]로 쉽게 조회가 가능하고 추가도 active.classList.add() 이렇게. 삭제는 active.classList.remove() 토글은 active.classList.toggle() // 사라졌다 없어졌다. 있으면 없어지고 없으면 있게 해준다. //이런 식으로 쉽게 접근할 수 있다. (클래스는 띄어쓰기로 구분되어 다중적용이 된다.)
 
--	조회 API
-조회 API는 엘리먼트를 조회하는 기능이다. 조회 방법에 대해서는 이미 여러차례 살펴봤기 때문에 이번 시간에 알아볼 내용은 조회 대상을 제한하는 방법에 대한 것이다. 
-지금까지 document.getElementsBy* 메소드를 통해서 엘리먼트를 조회했다. document 객체는 문서 전체를 의미하는 엘리먼트이기 때문에 document의 조회 메소드는 문서 전체를 대상으로 엘리먼트를 조회한다. Element 객체 역시도 getElementsBy* 엘리먼트를 가지고 있는데 Element 객체의 조회 메소드는 해당 엘리먼트의 하위 엘리먼트를 대상으로 조회를 수행한다. 
+- 조회 API
+  조회 API는 엘리먼트를 조회하는 기능이다. 조회 방법에 대해서는 이미 여러차례 살펴봤기 때문에 이번 시간에 알아볼 내용은 조회 대상을 제한하는 방법에 대한 것이다. 
+  지금까지 document.getElementsBy* 메소드를 통해서 엘리먼트를 조회했다. document 객체는 문서 전체를 의미하는 엘리먼트이기 때문에 document의 조회 메소드는 문서 전체를 대상으로 엘리먼트를 조회한다. Element 객체 역시도 getElementsBy* 엘리먼트를 가지고 있는데 Element 객체의 조회 메소드는 해당 엘리먼트의 하위 엘리먼트를 대상으로 조회를 수행한다. 
+
 <ul>
 <li class="marked">html</li>
 <li>css</li>
@@ -1233,14 +930,15 @@ console.log(list[i].textContent);
 console.groupEnd();
 </script>
 
--	속성 API
-속성은 HTML에서 태그명만으로는 부족한 부가적인 정보라고 할 수 있다. 이 속성을 어떻게 제어하는가 알아보자. 
-o	Element.getAttribute(name) // 속성 값을 가져온다. name은 원하는 속성 값 이름.
-o	Element.setAttribute(name, value) // 설정!
-o	Element.hasAttribute(name); // 속성이 있는지 없는지.
-o	Element.removeAttribute(name);
+- 속성 API
+  속성은 HTML에서 태그명만으로는 부족한 부가적인 정보라고 할 수 있다. 이 속성을 어떻게 제어하는가 알아보자. 
+  o	Element.getAttribute(name) // 속성 값을 가져온다. name은 원하는 속성 값 이름.
+  o	Element.setAttribute(name, value) // 설정!
+  o	Element.hasAttribute(name); // 속성이 있는지 없는지.
+  o	Element.removeAttribute(name);
 
 <a id="target" href="http://opentutorials.org">opentutorials</a>
+
 <script>
 var t = document.getElementById('target');
 console.log(t.getAttribute('href')); //http://opentutorials.org
@@ -1249,7 +947,9 @@ console.log(t.hasAttribute('title')); // true, title 속성의 존재여부를 �
 t.removeAttribute('title'); // title 속성을 제거한다.
 console.log(t.hasAttribute('title')); // false, title 속성의 존재여부를 확인한다.
 </script>
+
 모든 엘리먼트의 HTML속성은 JavaScript 객체의 속성과 프로퍼티로 제어가 가능하다. (attribute 방식과 property 방식이 다르다. 처음 알았네;; attribute는 속성 즉, 어떤 값의 개념을 뜻하는 것 같고 property는 프로퍼티 구체적인 성질, 소유물 같은 느낌.)
+
 <p id="target">
 Hello world
 </p>
@@ -1273,6 +973,7 @@ maxlength	maxLength
 왼쪽이 그냥 html속성을 말할 때, 오른쪽이 javascript에서 property를 말할 때이다. 그래서 프로퍼티 방식으로 접근할 때는 조심해야한다.
 심지어 속성과 프로퍼티는 값이 다를수도 있다. 아래 코드를 실행한 결과는 속성과 프로퍼티의 값이 꼭 같은 것은 아니라는 것을 보여준다.
 <a id="target" href="./demo1.html">ot</a> // 상대 경로로 설정되어있을 때
+
 <script>
 //현재 웹페이지가 http://localhost/webjs/Element/attribute_api/demo3.html 일 때 
 var target = document.getElementById('target');
@@ -1282,9 +983,10 @@ console.log('target.href', target.href); //얘는 다 나온다.
 console.log('target.getAttribute("href")', target.getAttribute("href")); //얘는 상대 경로만 나오게 된다.
 </script>
 
--	jQuery 속성 제어 API
-jQuery 객체의 메소드 중 setAttribute, getAttribute에 대응되는 메소드는 attr이다. 또한 removeAttribute에 대응되는 메소드로는 removeAttr이 있다. 
-<a id="target" href="http://opentutorials.org">opentutorials</a>
+- jQuery 속성 제어 API
+  jQuery 객체의 메소드 중 setAttribute, getAttribute에 대응되는 메소드는 attr이다. 또한 removeAttribute에 대응되는 메소드로는 removeAttr이 있다. 
+  <a id="target" href="http://opentutorials.org">opentutorials</a>
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 var t = $('#target');
@@ -1296,6 +998,7 @@ t.removeAttr('title'); // title 속성을 제거한다.
 DOM과 마찬가지로 jQuery도 속성(attribute)과 프로퍼티를 구분한다. 속성은 attr, 프로퍼티는 prop 메소드를 사용한다. 
 <a id="t1" href="./demo.html">opentutorials</a>
 <input id="t2" type="checkbox" checked="checked" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 // 현재 문서의 URL이 아래와 같다고 했을 때
@@ -1307,7 +1010,9 @@ var t2 = $('#t2');
 console.log(t2.attr('checked')); // checked
 console.log(t2.prop('checked')); // true
 </script>
+
 장점은 뭐가 있을까? 하나의 이름으로 통합되어 있고 짧다. 게다가 아까 말한 프로퍼티 방식이 여러가지 장점이 있음에도 불구하고 실제 이름과 다른 경우가 있어 불편하다고 헀는데 jQuery를 이용하면  내부적으로 보정을 해준다. class나 className이나 둘 다 가능하도록!
+
 <div id="t1">opentutorials</div>
 <div id="t2">opentutorials</div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -1316,11 +1021,12 @@ $('#t1').prop('className', 'important');
 $('#t2').prop('class', 'current'); 
 </script>
 
--	jQuery 조회 범위 제한
-이전 수업에서 Element 객체에서 getElementsBy* 메소드를 실행하면 조회의 범위가 그 객체의 하위 엘리먼트로 제한된다는 것을 알아봤다. jQuery에서는 어떻게 이러한 작업을 할 수 있을까?
+- jQuery 조회 범위 제한
+  이전 수업에서 Element 객체에서 getElementsBy* 메소드를 실행하면 조회의 범위가 그 객체의 하위 엘리먼트로 제한된다는 것을 알아봤다. jQuery에서는 어떻게 이러한 작업을 할 수 있을까?
 
 selector context
 가장 간편한 방법은 조회할 때 조회 범위를 제한하는 것이다. 그 제한된 범위를 jQuery에서는 selector context라고 한다.
+
 <ul>
 <li class="marked">html</li>
 <li>css</li>
@@ -1337,6 +1043,7 @@ selector context
 //$ 함수 인자의 첫 번째 인자에 효과를 주고자하는 엘리먼트를 넣고 두 번째 인자에 selector context가 오는데 첫 번째 인자에 해당하는 selector를 제어하려고 하는 엘리먼트를 넣는다. 
 $( ".marked", "#active").css( "background-color", "red" );
 </script>
+
 $( "#active .marked").css( "background-color", "red" ); 얘도 같은 의미가 된다.
 
 .find()
@@ -1348,7 +1055,7 @@ $('#active').css('color','blue').find('.marked').css( "background-color", "red" 
 find를 너무 복잡하게 사용하면 코드를 유지보수하기 어렵게 된다. 
 <Node 객체>
 Node 객체는 DOM에서 시조와 같은 역할을 한다. 다시 말해서 모든  DOM 객체는 Node 객체를 상속받는다. 
- 
+
 Node 객체의 주요한 임무는 아래와 같다. 
 관계
 엘리먼트는 서로 부모, 자식, 혹은 형제자매 관계로 연결되어 있다. 각각의 Node가 다른 Node와 연결된 정보를 보여주는 API를 통해서 문서를 프로그래밍적으로 탐색할 수 있다.
@@ -1386,6 +1093,7 @@ o	Node.previousSibling
 이전 형제 노드
 
 <body id="start">
+
 <ul>
 <li><a href="./532">html</a></li> 
 <li><a href="./533">css</a></li>
@@ -1408,6 +1116,7 @@ console.log(5, ul.childNodes); //text, li, text, li, text, li, text
 console.log(6, ul.childNodes[1]); // li(html)
 console.log(7, ul.parentNode); // body
 </script>
+
 </body>
 첫 번째 자식 노드를 했을 때 #text가 나오는 이유는  body> 바로 뒤에 공백 또는 줄 바꿈 데이터(문자)가 있기 때문이다. 이게 존재한다면 이것도 노드에 해당한다. 이 메소드들은 text 객체가 가지고 있고 start.childNodes -> 텍스트 정보도 같이 포함된다.
 노드 중간에 text가 나오게 되서 보기 힘든 부분이 있는데 ecma5에 추가된 API로 공백 text노드는 걸러지게 할 수 있다. 브라우저마다 공백 text노드의 유무가 틀려서 오는 혼란 때문에 생겼다고 한다.
@@ -1448,6 +1157,7 @@ DOCUMENT_POSITION_CONTAINED_BY 16
 DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC 32
 
 아래는 노드 종류 API를 이용해서 노드를 처리하는 예제이다. 함수가 자기 자신을 호출하는 것을 재귀함수라고 하는데 이를 이용해서 할 수 있다. 
+
 <!DOCTYPE html>
 <html>
 <body id="start">
@@ -1517,8 +1227,10 @@ o	document.createTextNode(data)
 <li>HTML</li>
 <li>CSS</li>
 </ul>
+
 <input type="button" onclick="callAppendChild();" value="appendChild()" />
 <input type="button" onclick="callInsertBefore();" value="insertBefore()" />
+
 <script>
 function callAppendChild(){
 var target = document.getElementById('target');
@@ -1541,12 +1253,15 @@ target.insertBefore(li, target.firstChild); // 두 번째 엘리먼트를 보면
 노드제거
 o	removeChild(child)
 노드 제거를 위해서는 아래 API를 이용한다. 이 때 메소드는 삭제 대상의 부모 노드 객체의 것을 실행해야 한다는 점에 유의하자. 보면 중간에 parentNode가 들어간다. 삭제하는 부모도 알아야하니 비판을 많이 받는다.
+
 <ul>
 <li>HTML</li>
 <li>CSS</li>
 <li id="target">JavaScript</li>
 </ul>
+
 <input type="button" onclick="callRemoveChild();" value="removeChild()" />
+
 <script>
 function callRemoveChild(){
 var target = document.getElementById('target');
@@ -1556,12 +1271,15 @@ target.parentNode.removeChild(target);
 노드 바꾸기
 o	replaceChild(newChild, oldChild)
 새로운 대상이 첫 번째 인자, 바꾸려고하는 대상이 두 번째 인자에 오게 된다.
+
 <ul>
 <li>HTML</li>
 <li>CSS</li>
 <li id="target">JavaScript</li>
 </ul>
+
 <input type="button" onclick="callReplaceChild();" value="replaceChild()" />
+
 <script>
 function callReplaceChild(){
 var a = document.createElement('a');
@@ -1575,6 +1293,7 @@ target.replaceChild(a,target.firstChild);
 -jQuery 노드 변경 API
 추가
 추가와 관련된 주요한 메소드는 4가지다. 각각의 관계를 그림으로 나타내면 아래와 같다.
+
 <div class="target">
 content1
 </div>
@@ -1593,14 +1312,17 @@ $(‘.target’)을 썼으니 클래스가 target인 것은 모두 해당된다.
 
 제거
 제거와 관련된 API는 remove와 empty가 있다. remove는 선택된 엘리먼트를 제거하는 것이고 empty는 선택된 엘리먼트의 텍스트 노드를 제거하는 것이다. 즉, empty는 텍스트는 사라지고 div는 남는다.
+
 <div class="target" id="target1">
 target 1
 </div>
 <div class="target" id="target2">
 target 2
 </div>
+
 <input type="button" value="remove target 1" id="btn1" />
 <input type="button" value="empty target 2" id="btn2" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('#btn1').click(function(){
@@ -1614,14 +1336,17 @@ $('#target2').empty();
 교체
 replaceAll과 replaceWith는 모두 노드의 내용을 교체하는 API이다. replaceWith가 제어 대상을 먼저 지정하는 것에 반해서 replaceAll은 제어 대상을 인자로 전달한다.
 구문적인 차이일 뿐이다. 거의 같은 기능인데 바꿀 대상이 어디에 오느냐 차이.
+
 <div class="target" id="target1">
 target 1
 </div>
 <div class="target" id="target2">
 target 2
 </div>
+
 <input type="button" value="replaceAll target 1" id="btn1" />
 <input type="button" value="replaceWith target 2" id="btn2" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('#btn1').click(function(){
@@ -1634,6 +1359,7 @@ $('#target2').replaceWith('<div>replaceWith</div>');
 
 복사
 노드를 복사하는 방법을 알아보자. clone이라는 메소드를 이용한다. 즉, $(‘#source’).clone()으로 복사를 먼저 한 후에, 그 복사한 것을 교체하는 것이다. 
+
 <div class="target" id="target1">
 target 1
 </div>
@@ -1641,8 +1367,10 @@ target 1
 target 2
 </div>
 <div id="source">source</div>
+
 <input type="button" value="clone replaceAll target 1" id="btn1" />
 <input type="button" value="clone replaceWith target 2" id="btn2" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('#btn1').click(function(){
@@ -1655,11 +1383,14 @@ $('#target2').replaceWith($('#source').clone());
 
 이동
 추가 메소드를 이용하면 되는데 DOM manipulation API의 인자로 특정 노드를 선택하면 이동의 효과가 난다. 
+
 <div class="target" id="target1">
 target 1
 </div>
 <div id="source">source</div>
+
 <input type="button" value="append source to target 1" id="btn1" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('#btn1').click(function(){
@@ -1671,12 +1402,15 @@ $('#target1').append($('#source'));
 노드 변경 API에서는 여러 메소드를 이용해서 노드를 제어하는 방법에 대해서 알아봤다. 그런데 이 방식은 복잡하고 장황하다. 좀 더 편리하게 노드를 조작하는 방법을 알아보자.
 innerHTML
 innerHTML는 문자열로 자식 노드를 만들 수 있는 기능을 제공한다. 또한 자식 노드의 값을 읽어올 수 도 있다. 해당하는 엘리먼트의 하위 엘리먼트의 HTML코드를 알아올 수 있다. 또한 초기화 설정을 해주면 자식 노드를 만들 수도 있다.
+
 <ul id="target">
 <li>HTML</li>
 <li>CSS</li>
 </ul>
+
 <input type="button" onclick="get();" value="get" />
 <input type="button" onclick="set();" value="set" />
+
 <script>
 function get(){
 var target = document.getElementById('target');
@@ -1692,12 +1426,15 @@ outerHTML은 innerHTML과 똑같은데 하위뿐만 아니라 자기 자신까�
 target을 포함한 ul까지 나오게 되는 것. 그래서 outer은 자식을 만들 때 자기 자신까지 포함되니까 아예 바꿔줄 수도 있는 것이다. 
 HTML이라 태그나 텍스트가 모두 표현된 것이다. Text를 쓰면 말 그대로 text만 나오게 된다.
 innerText, outerText과 다르게 이 API들은 값을 읽을 때는 HTML 코드를 제외한 문자열을 리턴하고, 값을 변경할 때는 HTML의 코드를 그대로 나타낸다.
+
 <ul id="target">
 <li>HTML</li>
 <li>CSS</li>
 </ul>
+
 <input type="button" onclick="get();" value="get" />
 <input type="button" onclick="set();" value="set" />
+
 <script>
 function get(){
 var target = document.getElementById('target');
@@ -1712,13 +1449,16 @@ target.innerText = "<li>JavaScript Core</li><li>BOM</li><li>DOM</li>";
 insertAdjacentHTML()
 좀 더 정교하게 문자열을 이용해서 노드를 변경하고 싶을 때 사용한다. 즉, 바깥의 앞에다 할 건지 뒤에다 할 건지 안의 앞에다 할 건지 뒤에다 할 건지.
 첫 번째 인자는 위치에 해당하는 4개의 값 중 하나를 넣을 수 있고 그 위치에 넣을 태그를 두 번째 인자에 넣는다. 이런 API를 통해서 자신이 원하는 곳에 추가할 수 있다. 복잡한 DOM을 사용하지 않고 편리하게 문서를 변경가능.
+
 <ul id="target">
 <li>CSS</li>
 </ul>
+
 <input type="button" onclick="beforebegin();" value="beforebegin" />
 <input type="button" onclick="afterbegin();" value="afterbegin" />
 <input type="button" onclick="beforeend();" value="beforeend" />
 <input type="button" onclick="afterend();" value="afterend" />
+
 <script>
 function beforebegin(){
 var target = document.getElementById('target');
@@ -1740,6 +1480,7 @@ target.insertAdjacentHTML('afterend','<h1>Server Side</h1>');
 
 <Doucment 객체>
 Document 객체는 DOM의 스팩이고 이 것이 웹 브라우저에서는 HTMLDocument 객체로 사용된다. HTMLDocument 객체는 문서 전체를 대표하는 객체라고 할 수 있다. 주요 역할은 엘리먼트나 노드를 생성하게 해주는 메소드를 갖고 있다는 것이다.. 문서에서 사용될 어떤 노드를 만들어주는 역할을 한다.
+
 <script>
 //document 객체는 window 객체의 소속이다.
 console.log(window.document);
@@ -1747,6 +1488,7 @@ console.log(window.document);
 console.log(window.document.childNodes[0]);
 console.log(window.document.childNodes[1]);
 </script>
+
 노드 생성 API
 document  객체의 주요 임무는 새로운 노드를 생성해주는 역할이다. 이에 대한 내용은 노드 변경 API에서 학습했기 때문에 여기서는 언급하지 않는다.
 o	createElement()
@@ -1761,6 +1503,7 @@ Document 객체도 Node의 자식이므로 childNodes를 사용할 수 있다. d
 <Text 객체>
 텍스트 객체는 텍스트 노드에 대한 DOM 객체로 CharacterData를 상속 받는다. CharactorData는 문서상에서는 드러나지 않는다. 아래는 텍스트 노드를 찾는 예제다. 주목할 것은 DOM에서는 공백이나 줄바꿈도 텍스트 노드라는 점이다.
 가령 <p>생활코딩</p> 이라고 치면 태그 사이에 있는 생활코딩이 Text 객체이다. 중요한 건 공백이다.
+
 <p id="target1"><span>Hello world</span></p>
 <p id="target2">
 <span>Hello world</span>
@@ -1776,6 +1519,7 @@ console.log(e);
 }
 console.log(t2.nextSibling.firstChild.nodeValue);
 </script>
+
 위 코드에서 target1은 공백이 없어서 firstChild를 해주면 그대로 span이 나오게 된다. 또 firstChild를 해주면 Hello world가 나오게 된다.(t1.firstChild.firstChild)
 그런데 target2는 공백이 있기 때문에 얘도 text노드라 firstChild를 하게되면 text가 떠버리게 된다.
 즉, DOM에서는 공백조차도 어떤 객체에 맵핑되어있다는 것이다.
@@ -1871,6 +1615,7 @@ alert(target.substringData(start.value, end.value));
 <문서의 기하학적 특성>
 -요소의 크기와 위치
 우선 엘리먼트의 크기를 알아내는 방법을 살펴보자.
+
 <style>
 body{
 padding:0;
@@ -1894,6 +1639,7 @@ console.log(t.getBoundingClientRect());
 
 몇 픽셀 정도 떨어져있는지 알아보고 싶을 때 사용하는 API가 getBoundingClientRect이다.(width나 height값을 IE는 제공하지 않는다.) 
 만약 엘리먼트가 중첩되어 있다면 어떻게 될까?
+
 <style>
 body{
 padding:0;
@@ -1926,6 +1672,7 @@ console.log(t.offsetParent);
 요소의 위치를 생각할 때는 사실 조금 더 복잡해진다. 왜냐하면 문서가 브라우저의 크기보다 큰 경우는 스크롤이 만들어지는데 스크롤에 따라서 위치의 값이 달라지기 때문이다. 이를 이해하기 위해서는 우선 viewport에 대한 이해가 선행되어야 한다.
 오른쪽의 그림처럼 뷰포트는 문서의 내용 중 사용자에게 보여주는 영역을 의미한다. 따라서 문서의 좌표가 있고 뷰포트의 좌표가 있다. 우리가 위에서 살펴본 getBoundingClientRect는 viewport의 좌표를 사용한다. 
 아래 예제를 실행해보면 1초에 한 번씩 getBoundingClientRect의 top속성(y축의 값)과 window.pageYOffset의 값이 출력된다.
+
 <style>
 body{
 padding:0;
@@ -1957,6 +1704,7 @@ console.log('getBoundingClientRect : ', t.getBoundingClientRect().top, 'pageYOff
 getBoundingClientRect()는 정확히 말하면 body에서 엘리먼트까지가 아니라 body에서 viewport까지의 거리인 것이다. getBoundingClientRect()과 pageYOffset의 값을 더하면 엘리먼트와 바디 사이의 값을 알 수 있다. 
 -스크롤
 그럼 문서의 스크롤 값을 변경하는 것은 어떻게 하는 것일까? scrollLeft와 scrollTop 프로퍼티를 이용하면 된다. scrollTo(x, y)가 바로 x와 y값이다.
+
 <style>
 body{
 padding:0;
@@ -1972,7 +1720,9 @@ width:100px;
 height:2000px;
 }
 </style>
+
 <input type="button" id="scrollBtn" value="scroll(0, 1000)" />
+
 <script>
 document.getElementById('scrollBtn').addEventListener('click', function(){
 window.scrollTo(0, 1000);
@@ -1987,6 +1737,7 @@ Coding
 -스크린의 크기
 스크린의 크기는 모니터의 크기와 브라우저 뷰포트의 크기가 있다. 이를 알아내는 방법은 아래와 같다.
 window.inner*은 뷰포트의 크기를 나타내고, screen.*은 스크린의 크기를 나타낸다.
+
 <script>
 console.log('window.innerWidth:', window.innerWidth, 'window.innerHeight:', window.innerHeight);
 console.log('screen.width:', screen.width, 'screen.height:', screen.height);
@@ -1995,6 +1746,7 @@ console.log('screen.width:', screen.width, 'screen.height:', screen.height);
 <이벤트>
 이벤트란 어떤 사건을 의미한다. 브라우저에서의 사건이란 사용자가 클릭했을 ‘때’, 스크롤을 했을 ‘때’, 필드의 내용을 바꾸었을 ‘때’와 같은 것을 의미한다.
 onclick 속성의 자바스크립트 코드(alert(window.location))는 사용자가 이 버튼을 클릭 했을 '때' 실행된다. 즉 js 개발자는 어떤 일이 발생했을 때 실행 되어야 하는 코드를 등록하고, 브라우저는 그 일이 발생했을 때 등록된 코드를 실행하게 된다. 이러한 방식을 이벤트 프로그래밍이라고 한다.
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -2028,24 +1780,29 @@ document.getElementById를 쓰면 길어서 불편하기도 하고 복사를 해
 -프로퍼티 리스너 방식
 프로퍼티 리스너 방식은 이벤트 대상에 해당하는 객체의 프로퍼티로 이벤트를 등록하는 방식이다. 인라인 방식에 비해서 HTML과 JavaScript를 분리할 수 있다는 점에서 선호되는 방식이지만 뒤에서 배울 addEventListener 방식을 추천한다. 
 <input type="button" id="target" value="button" />
+
 <script>
 var t = document.getElementById('target');
 t.onclick = function(){
 alert('Hello world');
 }
 </script>
+
 보면 onclick이 함수에 있다.
 이벤트가 실행된 맥락의 정보가 필요할 때는 이벤트 객체를 사용한다. 이벤트 객체는 이벤트가 실행될 때 이벤트 핸들러의 인자로 전달하기로 약속되어 있다. 그래서 매개변수를 event라고 해야 다양한 정보를 얻을 수 있다. 버튼을 클릭하면 버튼에 해당되는 이벤트 핸들러가 호출되는데 그 때 인자로 event 객체를 전달하는 것이다. 그리고 event의 객체 안에 target이라는 프로퍼티가 있는데 이벤트가 호출된 시점에서 그 이벤트가 어디에서 발생한 것인지 알려주는 프로퍼티이다.
 <body>
 <input type="button" id="target" value="button" />
+
 <script>
 var t = document.getElementById('target');
 t.onclick = function(event){
 alert('Hello world, '+event.target.value)
 }
 </script>
+
 그런데 e8 이하 버전에서는 이벤트 객체를 핸들러의 인자가 아니라 전역객체의 event 프로퍼티로 제공한다. 또한 target 프로퍼티도 지원하지 않는다. 아래는 이 문제를 해소하기 위한 코드다.
 <input type="button" id="target" value="button" />
+
 <script>
 var t = document.getElementById('target');
 t.onclick = function(event){
@@ -2054,12 +1811,14 @@ var target = event.target || event.srcElement;
 alert('Hello world, '+target.value)
 }
 </script>
+
 최신 웹브라우저의 크롬 같은 경우에는 console.dir(event)라고 쓰면 event 객체에 뭐가 있는지 나오게 되는데 오래된 웹 브라우저에는 나오지 않으니 console.dir(window.event)라고 써야된다. 아예 새로 생성해주는 방법도 있는데 event || window.event를 쓰면 된다. 이는 첫 번째 값이 없다면 뒤쪽에 있는 값을 사용하겠다는 뜻이다. 
 
 -addEventListener()
 addEventListener()은 이벤트를 등록하는 가장 권장되는 방식이다. 이 방식을 이용하면 여러 개의 이벤트 헨들러를 이용할 수 있다.
 addEventListener()는 첫 번째 인자로 이벤트 타입을 받게 되어있고 두 번째 인자에는 전달한 이벤트 헨들러가 있게 된다. 이벤트 타입의 행동을 할 때 두 번째 인자에 있는 함수가 실행된다. 이는 프로퍼티 방식과 똑같이 작동한다. event 매개변수가 있다. 
 <input type="button" id="target" value="button" />
+
 <script>
 var t = document.getElementById('target');
 t.addEventListener('click', function(event){
@@ -2081,6 +1840,7 @@ alert('Hello world, '+event.target.value);
 
 이 방식의 중요한 장점은 하나의 이벤트 대상에 복수의 동일 이벤트 타입 리스너를 등록할 수 있다는 점이다. 전 강의 코드에서 onclick을 복사해서 두 번 썼다면 첫 번째에 있는 메소드는 사라지는데 그 이유는 다른 건 단 하나의 이벤트 헨들러만 가능했기 때문이다. 하지만 addEventListener는 이벤트를 여러 개 추가해도 된다. 순차적으로 실행된다.
 <input type="button" id="target" value="button" />
+
 <script>
 var t = document.getElementById('target');
 t.addEventListener('click', function(event){
@@ -2094,6 +1854,7 @@ alert(2);
 그리고 또한 이벤트 객체를 이용하면 복수의 엘리먼트에 하나의 리스너를 등록해서 재사용할 수 있다. event.targer.id를 하면 어디서 호출된 것인지 알 수 있다.
 <input type="button" id="target1" value="button1" />
 <input type="button" id="target2" value="button2" />
+
 <script>
 var t1 = document.getElementById('target1');
 var t2 = document.getElementById('target2');
@@ -2119,6 +1880,7 @@ HTML 태그는 중첩되어 있다.(html안에 body안에 div안에…등등) �
 간단하게 말하자면 가장 상위 부모로부터 이벤트가 실행되어 나가는 것을 캡쳐링이라고 하고 가장 깊숙한 곳, 즉, 자식에서 부모로 이벤트가 실행되어 나가는 것을 버블링이라고 한다.
 
 <html>
+
 <head>
 <style>
 html{border:5px solid red;padding:30px;}
@@ -2127,11 +1889,13 @@ fieldset{border:5px solid blue;padding:30px;}
 input{border:5px solid black;padding:30px;}
 </style>
 </head>
+
 <body>
 <fieldset>
 <legend>event propagation</legend>
 <input type="button" id="target" value="target"> 
 </fieldset>
+
 <script>
 
 function handler(event){
@@ -2173,6 +1937,7 @@ o	폼에서 submit 버튼을 누르면 데이터가 전송된다.
 o	a 태그를 클릭하면 href 속성의 URL로 이동한다.
 이러한 기본적인 동작들을 기본 이벤트라고 하는데 사용자가 만든 이벤트를 이용해서 이러한 기본 동작을 취소할 수 있다.
 inline은 이벤트의 리턴 값이 false이면 기본 동작이 취소된다. if안에 .checked로 true면 false를 실행한다.
+
 <p>
 <label>prevent event on</label><input id="prevent" type="checkbox" name="eventprevent" value="on" />
 </p>
@@ -2186,6 +1951,7 @@ inline은 이벤트의 리턴 값이 false이면 기본 동작이 취소된다. 
 </p>
 
 property 방식은 inline과 마찬가지로 리턴 값이 false이면 기본 동작이 취소된다.
+
 <p>
 <label>prevent event on</label><input id="prevent" type="checkbox" name="eventprevent" value="on" />
 </p>
@@ -2207,7 +1973,9 @@ if(document.getElementById('prevent').checked)
 return false;
 };
 </script>
+
 addEventListener 방식은 조금 다르다. 이벤트 객체의 preventDefalut메소드를 실행해야 기본 동작이 취소 된다. (ie9 이하 버전에서는 event.returnValue를 false를 지정해야 한다.) 
+
 <p>
 <label>prevent event on</label><input id="prevent" type="checkbox" name="eventprevent" value="on" />
 </p>
@@ -2239,6 +2007,7 @@ event.preventDefault();
 폼과 관련된 이벤트 타입을 알아보자.
 submit
 submit은 폼의 정보를 서버로 전송하는 명령인 submit시에 일어난다. form 태그에 적용된다. 아래 예제는 전송 전에 텍스트 필드에 값이 입력 되었는지를 확인한다. 만약 값이 입력되지 않았다면 전송을 중단한다. addEventListener의 첫 번째 인자에 submit이 들어간다. 동작취소는 전에 배웠던 거.
+
 <form id="target" action="result.html">
 <label for="name">name</label> <input id="name" type="name" />
 <input type="submit" />
@@ -2255,8 +2024,11 @@ event.preventDefault();
 
 change
 change는 폼 컨트롤의 값이 변경되었을 때 발생하는 이벤트다. input(text,radio,checkbox), textarea, select 태그에 적용된다. 입력을 다 끝내고 포커스를 빠져나왔을 때. change가 적용된다.
+
 <p id="result"></p>
+
 <input id="target" type="name" />
+
 <script>
 var t = document.getElementById('target');
 t.addEventListener('change', function(event){
@@ -2267,6 +2039,7 @@ document.getElementById('result').innerHTML=event.target.value;
 blur, focus
 focus는 엘리먼트에 포커스가 생겼을 때, blur은 포커스가 사라졌을 때 발생하는 이벤트다. 포커스가 생기면 폼 주변이 옅은 파란색으로 변한다. 다음 태그를 제외한 모든 태그에서 발생한다. <base>, <bdo>, <br>, <head>, <html>, <iframe>, <meta>, <param>, <script>, <style>, <title> 
 <input id="target" type="name" />
+
 <script>
 var t = document.getElementById('target');
 t.addEventListener('blur', function(event){
@@ -2279,19 +2052,24 @@ alert('focus');
 
 -문서로딩
 <html>
+
 <head>
 <script>
 var t = document.getElementById('target');
 console.log(t);
 </script>
 </head>
+
 <body>
+
 <p id="target">Hello</p>
+
 </body>
 </html>
 위 코드는 실행이 될까? 실행결과는 null이다. 왜냐하면 <p id="target">Hello</p>가 로딩되기 전에 자바스크립트가 실행되었기 때문이다. id를 찾아야되는데 id가 없으니까. 이를 해결하기 위해서 body태그 맨 밑에 script태그를 넣는 방법이 있는데 이 방법 말고도 다른 방법이 있다.
 웹 페이지를 프로그래밍적으로 제어하기 위해서는 웹페이지의 모든 요소에 대한 처리가 끝나야 한다. 이것을 알려주는 이벤트가 load, DOMContentLoaded이다.
 window.onload와 같은 방법이 load 이벤트이다.
+
 <head>
 <script>
 window.addEventListener('load', function(){
@@ -2300,12 +2078,16 @@ console.log(t);
 })
 </script>
 </head>
+
 <body>
+
 <p id="target">Hello</p>
+
 </body>
 load이벤트를 써주고 뒤에 그 함수를 집어넣어준다. load 이벤트는 문서내의 모든 리소스(이미지, 스크립트)의 다운로드가 끝난 후에 실행된다. 이것을 에플리케이션의 구동이 너무 지연되는 부작용을 초래할 수 있다.
 그에 대한 또 다른 방법이 있는데 뭐냐면 바로 DOMConetentLoaded이다. 엘리먼트 자체에 대한 화면의 처리가 끝난 다음에 발생하는 이벤트다. DOMContentLoaded는 문서에서 스크립트 작업을 할 수 있을 때 실행되기 때문에 이미지 다운로드를 기다릴 필요가 없다 (얘는 IE9 이후부터 가능하다)
 <html>
+
 <head>
 <script>
 window.addEventListener('load', function(){
@@ -2316,8 +2098,11 @@ console.log('DOMContentLoaded');
 })
 </script>
 </head>
+
 <body>
+
 <p id="target">Hello</p>
+
 </body>
 </html>
 
@@ -2351,6 +2136,7 @@ o	event.ctrlKey
 마우스 이벤트와 관련한 작업에서는 마우스 포인터의 위치를 알아내는 것이 중요할 때가 있는데 이런 경우 이벤트 객체의 clientX와 clientY를 사용한다.
 
 <html>
+
 <head>
 <style>
 body{
@@ -2375,7 +2161,9 @@ border:1px solid gray;
 }
 </style>
 </head>
+
 <body>
+
 <div id="target">
 </div>
 <table>
@@ -2485,6 +2273,7 @@ t.addEventListener('contextmenu', handler);
 jQuery는 이벤트와 관련해서 편리한 기능을 제공한다.  아래 예제는 직접 이벤트 프로그래밍을 하는 것과 jQuery를 이용하는 것의 차이점을 보여준다. 일단 코드 분량부터 차이가 난다. 순수하게 코딩하면 웹 브라우저의 호환성에 따라 기능테스트 코드까지 들어가게 되는데  jQuery는 크로스 브라우징을 알아서 처리해주고, 이벤트를 보다 적은 코드로 구현할 수 있도록 해준다.
 <input type="button" id="pure" value="pure" />
 <input type="button" id="jquery" value="jQuery" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 // 순수하게 구현했을 때
@@ -2518,6 +2307,7 @@ selector
 selector 파라미터는 이벤트 대상을 필터링한다. 개발자가 ul에 이벤트를 담기는 했으나 a나 li 태그에 이벤트 핸들러를 주고 싶은 경우에 쓴다. 여기서 this의 의미는 a, li다. 즉, 사용자가 ul을 클릭했을 때가 아닌 a, li 태그를 클릭했을 때 이벤트가 발생한다. 주의 할 것은 ul 엘리먼트는 이벤트가 발생하지 않는다는 점이다. 이것은 jQuery에서 이벤트 버블링을 구현하는 방법이기도 하다.
 late binding
 jQuery는 존재하지 않는 엘리먼트에도 이벤트를 등록할 수 있는 놀라운 기능을 제공한다. 아래 코드를 보자
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('ul').on('click','a, li', function(event){
@@ -2536,6 +2326,7 @@ console.log(this.tagName);
 하나의 엘리먼트에 여러 개의 이벤트 타입을 동시에 등록하는 방법을 알아보자.
 방법1 : 이벤트 타입을 주는 곳에 공백을 주면 두 개의 이벤트 타입이 동일한 이벤트 핸들러를 쓸 수 있다.
 <input type="text" id="target" />
+
 <p id="status"></p>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
@@ -2544,7 +2335,9 @@ $('#target').on('focus blur', function(e){
 $('#status').html(e.type);
 })
 </script>
+
 방법2 : on에 그냥 객체를 주는 방법도 있다.
+
 <script>
 var handler = function(e){$(‘#status’.html(e.type);}
 $('#target').on({
@@ -2561,6 +2354,7 @@ $('#target').on('focus' : handler).on(‘blur’ : handler);
 이벤트를 제거할 때는 off를 사용한다. .off(‘focus’);만 쓸 수도 있는데 이렇게 하면 focus를 여러 번 썼던 게 모두 제거된다. 그렇다면 내가 원하는 건 되고 원하지 않는 건 안 되게 하려면? 내가 삭제하려고 하는 focus쪽에 함수까지 붙이면 된다.
 <input type="text" id="target"></textarea>
 <input id="remove" type="button" value="remove" />
+
 <p id="status"></p>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
@@ -2596,8 +2390,11 @@ echo $d1->format('H:i:s');
 ?>
 
 demo1.html 아래 코드는 time.php에 접속해서 현재 시간을 페이지에 표시한다. demo1.html의 execute 버튼을 누르면 demo1.html이 time1.php로 가서 시간 정보를 가져와서 출력한다. 자바스크립트에서 만든 정보가 아니고 php에 있는 정보를 가져온다. 
+
 <p>time : <span id="time"></span></p>
+
 <input type="button" id="execute" value="execute" />
+
 <script>
 document.querySelector('input').addEventListener('click', function(event){
 var xhr = new XMLHttpRequest();
@@ -2623,6 +2420,7 @@ xhr.send()하게 되면 xhr객체가 그 방식으로 통신을 시작하게 된
 
 POST방식
 POST 방식으로 데이터를 전송하는 방법을 알아보자. 아래 예제는 시간대와 시간의 출력 형식을 지정하는 예제다.
+
 <p>time : <span id="time"></span></p>
 <select id="timezone">
 <option value="Asia/Seoul">asia/seoul</option>
@@ -2632,7 +2430,9 @@ POST 방식으로 데이터를 전송하는 방법을 알아보자. 아래 예�
 <option value="Y-m-d H:i:s">Y-m-d H:i:s</option>
 <option value="Y-m-d">Y-m-d</option>
 </select>
+
 <input type="button" id="execute" value="execute" />
+
 <script>
 document.querySelector('input').addEventListener('click', function(event){
 var xhr = new XMLHttpRequest();
@@ -2647,6 +2447,7 @@ data += '&format='+document.getElementById('format').value;
 xhr.send(data); 
 });
 </script> 
+
 위 코드를 잘 보면 데이터 전송방법을 GET에서 POST로 변경했다. 그리고 서버로 전송할 데이터 타입의 형식(MIME)를 지정한다.
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 여기서 setRequestHeader()를 써서 내용의 타입을 지정해줘야 한다. Content-Type을  application/x-www-form-urlencoded로 지정하게 되면 전송하는 데이터가 마치 html의 form을 통해서 전달된 것처럼 서버에서는 인식하게 된다. 
@@ -2690,8 +2491,11 @@ echo implode(',', $timezones);
 위 코드에서 timezones라는 변수에 배열을 넣었는데 implode라는 메소드를 통해서 하나의 문자로 만들고 있다. implode는 두 개의 인자를 갖는다. 첫 번째 인자로 구분된 곳을 메꿔줘서 배열의 원소들을 묶어 하나의 문자열로 만들어주는 것이다.(첫 번째 인자가 '-'이면 "Asia/Seoul-America/New_York"이 된다.) 하나의 텍스트로 만든다.
 자, 이제 클라이언트쪽에서 이를 받아 처리한다.
 demo2.html
+
 <p id="timezones"></p>
+
 <input type="button" id="execute" value="execute" />
+
 <script>
 document.querySelector('input').addEventListener('click', function(event){
 var xhr = new XMLHttpRequest();
@@ -2711,6 +2515,7 @@ document.querySelector('#timezones').innerHTML = _str;
 xhr.send(); 
 }); 
 </script>
+
 주목해야할 부분은 아래 코드다.
 var _tzs = xhr.responseText;
 var tzs = _tzs.split(',');
@@ -2727,8 +2532,11 @@ echo json_encode($timezones);
 ?>
 json_encode는 PHP의 데이터를 JSON 형식으로 전환해주는 PHP의 내장함수다. decode는 반대다. 언어마다 JSON화 시킬 수 있는 API들이 있다. 다 다르다.
 html 코드에서 JSON.parse만 해주면 된다.
+
 <p id="timezones"></p>
+
 <input type="button" id="execute" value="execute" />
+
 <script>
 document.querySelector('input').addEventListener('click', function(event){
 var xhr = new XMLHttpRequest();
@@ -2751,6 +2559,7 @@ xhr.send();
 아무리 복잡한 데이터 형식도 JSON.parse()을 쓰면 된다. 그러나 모든 데이터 형식을 지원하는 건 아니다. Object나 Array등등...이고 이것도 언어마다 다르다.
 서버로 JSON 데이터를 전송하는 것도 가능하다. 아래 예제를 참고하자.
 demo4.html
+
 <p>time : <span id="time"></span></p>
 <select id="timezone">
 <option value="Asia/Seoul">asia/seoul</option>
@@ -2760,7 +2569,9 @@ demo4.html
 <option value="Y-m-d H:i:s">Y-m-d H:i:s</option>
 <option value="Y-m-d">Y-m-d</option>
 </select>
+
 <input type="button" id="execute" value="execute" />
+
 <script>
 document.querySelector('input').addEventListener('click', function(event){
 var xhr = new XMLHttpRequest();
@@ -2775,6 +2586,7 @@ xhr.setRequestHeader("Content-Type", "application/json");
 xhr.send(JSON.stringify(data)); 
 });
 </script>
+
 time.php
 <?php
 $data = json_decode(file_get_contents('php://input'), true);
@@ -2782,7 +2594,6 @@ $d1 = new DateTime;
 $d1->setTimezone(new DateTimezone($data['timezone']));
 echo $d1->format($data['format']);
 ?>
-
 
 <jQuery Ajax>
 jQuery이용해서 Ajax를 사용하게 되면 많은 이점이 있는데 그 중의 하나가 크로스브라우징의 문제를 jQuery가 알아서 해결해준다는 것이다. 뿐만 아니라 여러가지 편리한 기능들을 제공한다. 이번 시간에는 jQuery를 이용해서 Ajax 통신을 하는 법을 알아보자.
@@ -2808,8 +2619,11 @@ $d1->setTimezone(new DateTimezone("asia/seoul"));
 echo $d1->format('H:i:s');
 ?>
 demo1.html
+
 <p>time : <span id="time"></span></p>
+
 <input type="button" id="execute" value="execute" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('#execute').click(function(){
@@ -2821,6 +2635,7 @@ $('#time').append(data);
 })
 })
 </script>
+
 코드가 훨씬 간결해졌다. url을 지정해주고 type은 아무것도 쓰지 않았을 때, 즉 defalut인 경우에는 get으로 인식한다. 그 다음에 성공하면 data인자를 받는 success가 실행되고 그것은 id가 time인 곳에 data를 추가하게 된다. 
 POST방식으로 통신을 할 때는 아래와 같이 처리한다. 
 time2.php
@@ -2830,6 +2645,7 @@ $d1->setTimezone(new DateTimezone($_POST['timezone']));
 echo $d1->format($_POST['format']);
 ?>
 demo2.html
+
 <p>time : <span id="time"></span></p>
 <form>
 <select name="timezone">
@@ -2841,7 +2657,9 @@ demo2.html
 <option value="Y-m-d">Y-m-d</option>
 </select>
 </form>
+
 <input type="button" id="execute" value="execute" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('#execute').click(function(){
@@ -2855,6 +2673,7 @@ $('#time').text(data);
 })
 })
 </script>
+
 post 형식인 경우에는 post라고 타입을 지정해주고 data:$('form').serialize(), 이 메소드는 form이 갖고있는 구성요소의 값들을 형식에 맞게 바꿔줘야 하는데 알아서 바꿔주는 메소드이다. form태그의 정보를 값의 이름=값의내용&값의 형식으로 바꿔주는 것이다.. 그리고 나서 text로 추가하게 되면 바로 나타난다. 
 JSON처리
 $.ajax를 이용해서 JSON을 처리하는 방법을 알아보자.
@@ -2864,8 +2683,11 @@ $timezones = ["Asia/Seoul", "America/New_York"];
 echo json_encode($timezones);
 ?>
 demo3.html
+
 <p id="timezones"></p>
+
 <input type="button" id="execute" value="execute" />
+
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
 $('#execute').click(function(){
@@ -2882,6 +2704,7 @@ $('#timezones').html('<ul>'+str+'</ul>');
 })
 })
 </script>
+
 json이라는 데이터타입을 지정해줘야된다. json형식이라는 걸 명시적으로 해준다. 
 
 
@@ -2891,7 +2714,6 @@ json이라는 데이터타입을 지정해줘야된다. json형식이라는 걸 
 
 
 # JavaScript_language
-
 
 <JAVA script 언어>
 
@@ -3041,7 +2863,6 @@ grades['egoing'] = 10;
 grades['k8805'] = 6; // grade[‘k88’+’05’];로 써도 된다.
 grades['sorialgi'] = 80;
 
-
 alert(grades.sorialgi);
 alert(grades['sorialgi']);
 배열 -> 순서라면, 객체 -> key, value이다.
@@ -3103,11 +2924,12 @@ var pattern = /a/;
 var pattern = new RegExp(‘a’);
 new라고 해서 정규표현식 객체를 만들었고 우리가 찾고자 하는 패턴이 a라고 알려주는 것. 위의 두 문장 모두 동일한 문장이다. 정규 표현식 객체를 pattern이라는 변수에 저장하는 것이다. 
 일단 작업의 대상을 먼저 찾고 대상에 어떻게 할 것인지 정한다.
-1.	정보를 찾으면 그 정보를 추출하는 것(exec)
-2.	그 정보가 있는지 없는지(test)
-3.	다른 정보로 치환하는 것.  
-pattern.exec(‘abcdef’); // pattern에는 문자열 a를 찾고 싶다는 의지(객체)가 들어간 것이다. exec은 실행하는데 그 실행의 대상을 첫 번째 인자로 전달. 그 대상이 바로 abcdef
-so, [‘a’]를 출력함.
+
+1. 정보를 찾으면 그 정보를 추출하는 것(exec)
+2. 그 정보가 있는지 없는지(test)
+3. 다른 정보로 치환하는 것.  
+   pattern.exec(‘abcdef’); // pattern에는 문자열 a를 찾고 싶다는 의지(객체)가 들어간 것이다. exec은 실행하는데 그 실행의 대상을 첫 번째 인자로 전달. 그 대상이 바로 abcdef
+   so, [‘a’]를 출력함.
 
 var pattern = /a./; .은 어떤 문자 
 건 간에 오는 것. 그래서 쓰면 ab를 추출하게 된다. 
@@ -3220,30 +3042,31 @@ a();
 
 값으로서의 함수와 콜백
 자바스크립트에서는 함수도 객체다. 함수 자체가 값이 될 수 있다는 소리이다. (변수, 리턴값, 매개변수)
->	first class object라고 부른다.
-var a = function() {}으로 변수에 담길 수 있고 a = { b : function(){}}; 으로 객체에 담길 수도 있다. 여기서 b를 보면 key의 역할을 하고 있는데 이렇게 객체의 속성 값으로 담겨진 함수를 메소드라고 부른다.  
-함수는 값이기 때문에 다른 함수의 인자로 전달될 수도 있다. 겁나 쩐당…
-function cal(func, num){ //함수 이름과 인자를 받아서increase(1) 이렇게 리턴한다.
-return func(num)
-}
-function increase(num){
-return num+1
-}
-function decrease(num){
-return num-1
-}
-alert(cal(increase, 1)); //여기보면 cal의 인자로 increase 함수와 1을 보내주고있다.
-alert(cal(decrease, 1));
-함수는 함수의 리턴값으로도 사용할 수 있다.
-function cal(mode){
-var funcs = {
-'plus' : function(left, right){return left + right},
-'minus' : function(left, right){return left - right}
-}
-return funcs[mode];//함수를 반환해주고 있다. 
-}
-alert(cal('plus')(2,1)); // cal이라는 함수의 리턴값이 funcs[‘plus’]니까 다시 들어가는 것!
-alert(cal('minus')(2,1)); 
+
+> first class object라고 부른다.
+> var a = function() {}으로 변수에 담길 수 있고 a = { b : function(){}}; 으로 객체에 담길 수도 있다. 여기서 b를 보면 key의 역할을 하고 있는데 이렇게 객체의 속성 값으로 담겨진 함수를 메소드라고 부른다.  
+> 함수는 값이기 때문에 다른 함수의 인자로 전달될 수도 있다. 겁나 쩐당…
+> function cal(func, num){ //함수 이름과 인자를 받아서increase(1) 이렇게 리턴한다.
+> return func(num)
+> }
+> function increase(num){
+> return num+1
+> }
+> function decrease(num){
+> return num-1
+> }
+> alert(cal(increase, 1)); //여기보면 cal의 인자로 increase 함수와 1을 보내주고있다.
+> alert(cal(decrease, 1));
+> 함수는 함수의 리턴값으로도 사용할 수 있다.
+> function cal(mode){
+> var funcs = {
+> 'plus' : function(left, right){return left + right},
+> 'minus' : function(left, right){return left - right}
+> }
+> return funcs[mode];//함수를 반환해주고 있다. 
+> }
+> alert(cal('plus')(2,1)); // cal이라는 함수의 리턴값이 funcs[‘plus’]니까 다시 들어가는 것!
+> alert(cal('minus')(2,1)); 
 
 당연히 배열에다가 함수의 값으로도 사용할 수 있다.
 var process = [
@@ -3332,7 +3155,6 @@ for(var index in arr) {
 console.log(arr[index]());
 }
 
-
 i가 for문에 있는 i일 뿐이지 arr[i] = function() 함수의 외부변수의 값이 아니기 때문이다.
 이렇게 고쳐줘야 한다.
 var arr = []
@@ -3416,7 +3238,7 @@ sum의 o1 소속의 메소드가 된다는 것은 이렇게 바꿔 말할 수 �
 만약 apply의 첫번째 인자로 null을 전달하면 apply가 실행된 함수 인스턴스는 전역객체(브라우저에서는 window)를 맥락으로 실행되게 된다.
 
 <시즌 3 객체지향 프로그래밍>
- 
+
 객체지향 프로그래밍(Object-Oriented Programming)은 좀 더 나은 프로그램을 만들기 위한 프로그래밍 패러다임으로 로직을 상태(state)와 행위(behave)로 이루어진 객체로 만드는 것이다. 이 객체들을 마치 레고 블럭처럼 조립해서 하나의 프로그램을 만드는 것이 객체지향 프로그래밍이라고 할 수 있다.
 예를 들어, 사이트를 만들다 보면 기능별로 구성하고 싶은 생각이 들 것이다. 로직(변수, 메소드)들을 구분해서 article_a, article_b… 이런 식으로 변수를 그룹핑하듯이. 이렇게 그룹핑된 것들을 객체라고 한다. 이렇게 분류를 해 놓으면 다른 곳에서 또 사용할 수 있으니 재활용성을 높여준다. 그러나 너무 또 다른 곳에서 막 사용하니까 보안의 문제도 높아져 여러가지 기능이 추가됐다. 
 모든 처리의 중심에 함수를 두는 자바스크립트를 공부하다 보면 객체지향을 이렇게도 추구 할 수도 있는 거구나 하는 놀라움을 느낄 수 있다.
@@ -3590,7 +3412,6 @@ Programmer.prototype.coding = function(){
 return "hello world"; // 얘가 추가 된 것이다.
 }
 
-
 var p1 = new Programmer('egoing');
 document.write(p1.introduce()+"<br />");
 document.write(p1.coding()+"<br />"); 	//prototype이라는 프로퍼티로 인해 추가가 된 것이구나. 
@@ -3724,7 +3545,9 @@ function func(b){		//b와a는 같은 값을 참조하고 있고
 func(a);
 console.log(a.id);
 
+## 출처
 
+- opentutorails javascript
 
 
 

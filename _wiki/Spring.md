@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-07-25 00:02:01 +0900
+updated : 2019-07-25 19:57:46 +0900
 tags    : 
 toc     : true
 public  : true
@@ -51,7 +51,9 @@ latex   : false
 * BeanPostProcessor : 컨테이너의 기본로직을 오버라이딩하여 인스턴스화 와 의존성 처리 로직 등을 개발자가 원하는 대로 구현 할 수 있도록 한다.
 * BeanFactoryPostProcessor : 설정된 메타 데이터를 커스터마이징 할 수 있다.
 
-## Bean이란?
+## xml파일을 이용한 설정
+
+### Bean이란?
 
 * 스프링에서 일반적인 Java 클래스를 Bean 클래스라고 부른다
 * 기본 생성자를 가지고 있다
@@ -77,6 +79,162 @@ Engine e = new Engine();
 Car c = new Car();
 c.setEngine( e );
 ```
+
+## JavaConfig를 이용한 설정(annotation)
+
+### @Configuration
+
+* 스프링 설정 클래스를 선언하는 어노테이션
+* ApplicationContext 중에서 AnnotationConfigApplicationContext는 JavaConfig클래스(@Configuration이 달려있는 클래스)를 읽어들여 IoC와 DI를 적용한다.
+* 이때 AnnotationConfigApplicationContext는 설정파일 중에 @Bean이라는 어노테이션이 붙어있는 메소드를 자동으로 실행해서 그 결과로 리턴하는 객체들을 기본적으로 싱글턴으로 관리하게 해준다.
+
+### @Bean
+
+* bean을 정의하는 어노테이션
+
+### @ComponentScan
+
+* 파라미터로 들어온 패키지 이하에서 @Controller, @Service, @Repository, @Component 어노테이션이 붙은 클래스를 찾아 메모리에 모두 올리고 DI를 주입하도록 한다. 즉 컨테이너에 bean으로 등록시켜준다
+* 위와 같은 어노테이션이 붙어있지 않은 객체들은 bean이라는 어노테이션을 이용해서 직접 생성해주는 방식으로 클래스를 관리해줘야 한다.
+* 파라미터로 패키지명을 꼭 잘 줘야한다
+
+### @Autowired
+
+* 주입 대상이 되는 bean을 컨테이너에 찾아 주입하는 어노테이션
+* Field, Constructor, Setter Method에 사용할 수 있다
+
+### main 
+
+```java
+ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		Car car = (Car)ac.getBean("car"); // Car car = ac.getBean(Car.class); 처럼 객체의 이름이 아니라 클래스 타입으로도 지정 가능하다
+```
+
+### Spring 프로그램의 구조
+
+1. Spring 컨테이너인 ApplicationContext(IoC/DI 컨테이너)는 설정파일로 ApplicationConfig 클래스를 읽는다
+2. ApplicationConfig에는 @ComponentScan이 DAO 클래스를 찾도록 설정되어있다
+3. 찾은 모든 DAO 클래스는 Spring 컨테이너가 관리하게 된다
+4. ApplicationContext는 DBConfig 클래스를 import하게 된다
+    1. getBean()이라는 메소드를 통해서 `DataSource.class`를 얻어올 수 있다
+6. DBConfig 클래스에서 DataSource와 트랜잭션 매니저 객체를 생성한다
+7. DAO는 필드로 NamedParameter와 SimpleJdbcInsert를 가지게 된다
+8. 두 객체는 모두 Spring JDBC에서 제공하는 객체로 DataSource를 사용한다
+9. DAO 생성자에 초기화된 두 개의 객체를 이용해서 DAO의 메소드를 구현한다
+
+## Spring JDBC
+
+* 그냥 JDBC 프로그래밍은 반복되는 개발 요소가 많다
+* 개발하기 지루한 JDBC의 저수준 세부사항을 스프링 프레임워크가 처리한다
+
+### Spring JDBC 패키지
+
+* org.springframework.jdbc.core
+    * JdbcTemplate 및 관련 Helper 객체 제공
+* org.springframework.jdbc.datasource
+    * DataSource를 쉽게 접근하기 위한 유틸 클래스, 트랜젝션매니져 및 다양한 DataSource 구현을 제공
+* org.springframework.jdbc.object
+    * RDBMS 조회, 갱신, 저장등을 안전하고 재사용 가능한 객제 제공
+* org.springframework.jdbc.support
+    * jdbc.core 및 jdbc.object를 사용하는 JDBC 프레임워크를 지원
+
+### JDBC Template
+
+* org.springframework.jdbc.core에서 가장 중요한 클래스
+* 리소스 생성, 연결 닫기를 알아서 해준다.
+* Statement 생성과 실행을 처리하고, SQL 명령, ResultSet을 실행한다
+
+### JDBC Template외 다른 얘들
+
+* NamedParameterJDBCTemplate
+    * JDBCTemplate에서 ?인자를 사용하는 대신 파라미터 명을 사용하여 작성하는 걸 지원한다
+* SimpleJDBCInsert
+    * 테이블에 쉽게 데이터 insert 기능을 제공한다
+
+## DTO
+
+* Data Transfer Object의 약자
+* 계층간 데이터 교환을 위한 자바빈즈.
+* DTO는 로직을 가지고 있지 않고 순수한 데이터 객체
+* 필드와 getter, setter를 가진다
+
+## DAO
+
+* Data Access Object의 약자
+* 데이터를 조회하거나 조작하는 기능을 전담하도록 만든 객체
+
+## ConnectionPool
+
+* DB연결은 비용이 많이 든다
+* ConnectionPool은 미리 Connection을 여러 개 맺어둔다
+* Connection이 필요하면 ConnectionPool에게 빌려서 사용한 후 반납한다
+* Connection이 제한적이기 때문에 가능한 빨리 사용하고 빨리 반납해야 한다
+
+### DataSource
+
+* ConnectionPool을 관리하는 목적으로 사용되는 객체
+* Connection을 얻어오고 반납하는 등의 작업을 수행한다
+
+###
+
+@Import()는 설정파일을 여러 개로 나눠서 작성할 수 있게 해준다. 데이터베이스 연결에 관련된 설정은 따로 빼주고 싶을 때 쓴다
+* `@Import({DBConfig.class})`이런 식으로 DBConfig라는 클래스를 포함시켜줄 수 있다
+
+## Spring MVC
+
+### Spring MVC란?
+
+* Model-View-Controller
+* Model은 뷰가 렌더링하는데 필요한 데이터
+* View는 실제로 보이는 부분. JSP, XML등으로 결과를 표현
+* Controller는 사용자의 액션에 응답하는 컴포넌트. Model을 업데이트하고 여러 액션을 수행
+
+### MVC Model 1 아키텍처
+
+* 브라우저가 요청하면 해당 요청을 JSP가 받음
+* 요청만큼 JSP가 필요
+* Java bean(DAO같은 클래스)을 이용해서 데이터베이스를 사용함
+* JSP 자체에 Java와 HTML이 섞여있으니 유지보수가 어려움
+
+### MVC Model 2 아키텍처
+
+* 요청 자체를 서블릿(Controller)이 받음
+* 서블릿이 Java bean(Model)을 이용해서 DB에서 데이터를 꺼내오고
+* JSP(View)를 통해서 결과를 화면에 보여준다
+
+### Spring MVC
+
+* Spring 프레임워크의 Web 모듈에 구현되어 있는 것을 말함
+* MVC Model 2에서 FrontController를 추가한 것. 이렇게 발전된 형태를 Spring MVC라고 부른다
+* FrontController 하나가 요청을 모두 받는다. 그래서 관련된 URL을 하나의 클래스에서 다 처리할 수 있도록 한다
+* 나머지는 MVC Model 2와 같다
+
+![springmvc](../wiki-img/spring/springmvc.png)
+
+* 모든 요청을 Dispatcher Servlet이라는 서블릿 클래스가 받는다.
+* Dispatcher Servlet은 요청을 처리해줄 컨트롤러와 메소드가 뭔지 Handler Mapping에게 물어본다
+* Handler mapping 객체들은 우리가 설정한 xml이나 java파일을 통해 요청에 맞는 컨트롤러가 뭔지 알아낸다.
+* 그리고나서 Handler Adapter에게 실행을 요청한다
+* 그러면 결정된 컨트롤러와 해당 메소드가 실행된다.
+
+### Spring MVC 실습
+
+* Spring MVC에서 DispatcherServlet이 FrontController의 역할을 한다
+* DispatcherServlet이 FrontController의 역할을 한다는 설정을 해줘야 한다
+* 설정을 해주기 위한 3가지 방법이 있다
+    * web.xml에 설정
+        * xml spring 설정을 읽어들이도록 DispatcherServlet을 설정
+```xml
+WebMVCContextConfig.xml에 어떤 일을 해야될 건지 적는다.
+```
+        * Java config spring 설정을 읽어들이도록 DispatcherServlet을 설정
+
+    * javax.servlet.ServletContainerInitializer 사용(servlet 3.0 이상에서 사용)
+
+    * org.springframework.web.WebApplicationInitializer 인터페이스를 구현해서 사용
+
+
+
 ## 새로 시작?
 
 FrontController 디자인 패턴

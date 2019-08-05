@@ -3,7 +3,7 @@ layout  : wiki
 title   : Ajax
 summary : 
 date    : 2019-07-05 17:05:42 +0900
-updated : 2019-07-23 15:37:41 +0900
+updated : 2019-08-05 17:58:19 +0900
 tags    : 
 toc     : true
 public  : true
@@ -33,11 +33,11 @@ function ajax(data) {
  oReq.send();
 }
 ```
+addEventListener의 매개변수로 있는 익명함수는 open()이나 send()보다 더 늦게 실행되는 비동기 함수다. 이벤트 큐에 보관되다가 load 이벤트(서버로부터 데이터를 브라우저가 받으면) 그 때 call stack에 실행되고 있는 함수가 없어서 비어있다면 stack에 올라와서 실행된다. 
 
-a
+서버로부터 받은 JSON 데이터는 문자열 형태이므로 바로 실행할 수 없고 `JSON.parse()`를 이용해 자바스크립트 객체로 변환해야 데이터에 접근할 수 있다.
 
-## hello world
-
+XHR 통신은 다른 도메인 간에 보안을 이유로 요청이 안 된다. 이를 회피하기 위해서 JSONP, CORS라는 방법이 쓰이고 있다.
 
 
 

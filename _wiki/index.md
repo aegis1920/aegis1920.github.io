@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-08-05 17:24:03 +0900
+updated : 2019-08-06 15:22:51 +0900
 tags    : index
 toc     : true
 public  : true
@@ -104,7 +104,7 @@ latex   : false
     * [[maven]]
     * [[rest-api]]
     * [[web-api]]
-    * 
+    * [[web-animation]]
 * error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

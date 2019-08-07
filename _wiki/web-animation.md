@@ -3,7 +3,7 @@ layout  : wiki
 title   : 웹 애니메이션에 대해서 알아보자.
 summary : 
 date    : 2019-08-06 15:22:51 +0900
-updated : 2019-08-06 18:20:09 +0900
+updated : 2019-08-07 09:08:18 +0900
 tags    : 
 toc     : true
 public  : true
@@ -91,7 +91,7 @@ requestAnimationFrame(run);
 * transition을 이용해 애니메이션을 구현할 수 있다. Javascript 애니메이션 방법보다 빠르다.
 * 특히 모바일 웹에서는 transform을 사용한 element의 조작을 많이 구현한다.
 * GPU 가속을 이용하는 속성(translateXX(), scale(), rotate(), opacity 등..)을 사용하면 애니메이션 처리가 빠르다.
-* 아래 코드는 버튼을 누르면 left에 100px씩 추가해 움직이고 transition을 left 속성에 추가해 움직이도록 한다.
+* 아래 코드는 버튼을 누르면 left에 100px씩 추가해 움직이고 transition을 left 속성에 추가해 애니메이션으로 움직이도록 한다.
 
 ```html
 <html>

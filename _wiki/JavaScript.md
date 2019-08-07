@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-05 17:22:27 +0900
+updated : 2019-08-07 15:17:35 +0900
 tags    : 
 toc     : true
 public  : true
@@ -16,9 +16,10 @@ latex   : false
 
 # javascript
 
-# 자바스크립트의 버전
+## 자바스크립트의 버전
 
 - ECMAScript(ES)의 버전에 따라서 결정된다. 예를 들어, ES5 ES6와 같이
+- 보통 위치는 body의 끝 태그 바로 전에 작성한다.
 
 ## 변수
 
@@ -319,6 +320,9 @@ var arr5 = new Array(3,1,25);
 console.log(arr5.length);
 
 ```
+
+* array에 for문을 쓸 때 그냥 for, for in, for of, some, forEach 등 여러가지를 쓸 수 있는데 이 중에서 array.forEach으로 쓰는 게 가장 좋다.
+* `arrayforEach(v=console.log('each' + v))`
 
 ### 배열 탐색
 
@@ -2050,26 +2054,39 @@ alert('focus');
 });
 </script>
 
--문서로딩
-<html>
+## 문서의 로딩
 
+### body태그 맨 밑에 script 태그
+
+* 아래 코드의 실행결과는 null이다.
+* <p id="target">Hello</p>가 로딩되기 전에 자바스크립트가 실행되었기 때문. id를 찾아야되는데 id가 없으니까.
+* 이를 해결하기 위해서 body태그 맨 밑에 script태그를 넣는 방법이 있다.
+* 이 방법 말고도 다른 방법이 있다.
+* 웹 페이지를 프로그래밍적으로 제어하기 위해서는 웹페이지의 모든 요소에 대한 처리가 끝나야 한다. 그 처리가 끝났다고 알려주는 이벤트가 load, DOMContentLoaded이다.
+
+```html
+<html>
 <head>
 <script>
 var t = document.getElementById('target');
 console.log(t);
 </script>
 </head>
-
 <body>
-
 <p id="target">Hello</p>
-
 </body>
 </html>
-위 코드는 실행이 될까? 실행결과는 null이다. 왜냐하면 <p id="target">Hello</p>가 로딩되기 전에 자바스크립트가 실행되었기 때문이다. id를 찾아야되는데 id가 없으니까. 이를 해결하기 위해서 body태그 맨 밑에 script태그를 넣는 방법이 있는데 이 방법 말고도 다른 방법이 있다.
-웹 페이지를 프로그래밍적으로 제어하기 위해서는 웹페이지의 모든 요소에 대한 처리가 끝나야 한다. 이것을 알려주는 이벤트가 load, DOMContentLoaded이다.
-window.onload와 같은 방법이 load 이벤트이다.
+```
 
+### load
+
+* load이벤트를 써주고 뒤에 그 함수를 집어넣어준다. 
+* load 이벤트는 문서내의 모든 리소스(이미지, 스크립트)의 다운로드가 끝난 후에 실행된다. 
+* 리소스의 다운로드가 끝난 후에 실행되기 때문에 이미지나 스크립트 등에 프로그래밍을 해야된다면 load를 써야한다.
+* 그러나 이것은 에플리케이션의 구동이 너무 지연되는 부작용을 초래할 수 있다.
+* 그래서 그에 대한 또 다른 방법이 있다.
+
+```html
 <head>
 <script>
 window.addEventListener('load', function(){
@@ -2078,16 +2095,20 @@ console.log(t);
 })
 </script>
 </head>
-
 <body>
-
 <p id="target">Hello</p>
-
 </body>
-load이벤트를 써주고 뒤에 그 함수를 집어넣어준다. load 이벤트는 문서내의 모든 리소스(이미지, 스크립트)의 다운로드가 끝난 후에 실행된다. 이것을 에플리케이션의 구동이 너무 지연되는 부작용을 초래할 수 있다.
-그에 대한 또 다른 방법이 있는데 뭐냐면 바로 DOMConetentLoaded이다. 엘리먼트 자체에 대한 화면의 처리가 끝난 다음에 발생하는 이벤트다. DOMContentLoaded는 문서에서 스크립트 작업을 할 수 있을 때 실행되기 때문에 이미지 다운로드를 기다릴 필요가 없다 (얘는 IE9 이후부터 가능하다)
-<html>
+```
 
+### DOMContentLoaded
+
+* 바로 DOMConetentLoaded이다. 엘리먼트 자체에 대한 화면의 처리가 끝난 다음에 발생하는 이벤트
+* DOMContentLoaded는 문서에서 스크립트 작업을 할 수 있을 때 실행되기 때문에 이미지 다운로드를 기다릴 필요가 없다
+* 얘는 IE9 이후부터 가능하다
+* 로딩 속도 성능에 유리해 실무에서 가장 많이 쓰이는 방법이다.
+
+```html
+<html>
 <head>
 <script>
 window.addEventListener('load', function(){
@@ -2096,15 +2117,221 @@ console.log('load');
 window.addEventListener('DOMContentLoaded', function(){
 console.log('DOMContentLoaded');
 })
+
+// 또는
+
+document.addEventListener("DOMContentLoaded", function(){
+    startSomething();
+});
+
 </script>
 </head>
-
 <body>
-
 <p id="target">Hello</p>
-
 </body>
 </html>
+```
+
+## Event Delegation(이벤트 위임)
+
+### Event Bubbling(이벤트 버블링)
+
+```html
+<ul>
+  <li>
+    <img src="https://images-na.,,,,,/513hgbYgL._AC_SY400_.jpg" class="product-image" >    </li>
+  <li>
+    <img src="https://images-n,,,,,/41HoczB2L._AC_SY400_.jpg" class="product-image" >    </li>
+  <li>
+    <img src="https://images-na.,,,,51AEisFiL._AC_SY400_.jpg" class="product-image" >  </li>
+ <li>
+    <img src="https://images-na,,,,/51JVpV3ZL._AC_SY400_.jpg" class="product-image" >
+ </li>
+</ul>
+```
+
+* 위와 같은 코드가 있을 때 각각 li에 이벤트를 주려면 어떻게 해야할까?
+* 반복문으로 list에 넣어 각각 li마다 addEventListener를 줄 수 있다.
+
+```javascript
+var log = document.querySelector(".log");
+var lists = document.querySelectorAll("ul > li");
+
+for(var i=0,len=lists.length; i < len; i++) {
+  lists[i].addEventListener("click", function(evt) {
+     log.innerHTML = "clicked" + evt.currentTarget.firstChild.src;
+  });
+}
+```
+
+* 그러나 이렇게 하면 list가 동적으로 추가될 대 추가된 Element에 addEventListener를 또 등록해줘야 한다.
+* ul에 이벤트를 줘보자.
+
+```javascript
+ul.addEventListener("click",function(evt) {
+    console.log(evt.currentTarget, evt.target);
+});
+```
+
+* ul > li > img가 있을 때 img를 클릭해도 evt.currentTarget이나 evt.target이나 둘 다 뜨게 된다.
+* evt.currentTarget은 ul을 의미하고 evt.target은 img를 의미한다.
+* 이벤트 버블링이 일어나 img만 눌러도 ul에 이벤트를 등록한 게 가능하다.
+* 즉, 클릭한 지점이 하위 엘리먼트(img)라고 해도 그것을 감싸고 있는 상위 엘리먼트(ul)까지 올라가서 이벤트 리스너가 있는지 찾는다.
+* 참고로 버블링의 반대를 캡쳐링(Capturing)이라고 한다.
+* img의 padding 부분을 클릭하면 li가 나온다.
+* padding 부분을 클릭하더라도 소스 이름이 나오게 하려면 어떻게 해야될까?
+
+```javascript
+var ul = document.querySelector("ul");
+ul.addEventListener("click",function(evt) {
+    if(evt.target.tagName === "IMG") {
+      log.innerHTML = "clicked" + evt.target.src;
+    } else if (evt.target.tagName === "LI") {
+      log.innerHTML = "clicked" + evt.target.firstElementChild.src;
+    }
+});
+```
+
+* 위 코드와 같이 짜주면 클릭했을 때 target의 태그 이름이 IMG였을 때와 바로 상위 엘리먼트가 LI(firstElementChlid라 공백이 있어도 상관없다.)일 때 모두 소스 이름이 나오도록 할 수 있다.
+* 위와 같이 짜주면 li가 새로 등록되더라도 ul에 포함되어 소스이름이 나온다.
+
+## HTML Templating
+
+*  반복적인 HTML 부분을 template으로 만들어두고, ajax로 서버에서 온 데이터(JSON)을 결합해서 화면에 추가하는 작업
+* 문자열의 replace 작업을 통해 치환해줄 수 있다. 메소드 체이닝 방식으로 계속해서 호출해줄 수 있다.
+
+```javascript
+var data = {  title : "hello",
+              content : "lorem dkfief",
+              price : 2000
+           };
+var html = "<li><h4>{title}</h4><p>{content}</p><div>{price}</div></li>";
+
+html.replace("{title}", data.title)
+    .replace("{content}", data.content)
+    .replace("{price}", data.price)
+```
+
+* HTML Template을 따로 보관을 해둬야 하는데 두 가지 방법이 있다.
+    * 양이 많은 경우 서버에서 template.html같은 파일로 보관해서 ajax로 요청해 받아온다.
+    * 양이 적은 경우 HTML 코드 안에 숨겨둔다.
+        * `<script id="template-list-item" type="text/template"></script>`와 같이 타입을 javascript가 아닌 다르게 적는다면 렌더링하지 않고 무시하기 때문에 `document.querySelector("#template-list-item");`으로 쉽게 가져올 수 있다.
+
+```javascript
+var data = [
+        {title : "hello",content : "lorem dkfief",price : 2000},
+        {title : "hello",content : "lorem dkfief",price : 2000}
+];
+
+//html 에 script에서 가져온 html template.
+var html = document.querySelector("#template-list-item").innerHTML;
+
+var resultHTML = "";
+
+for(var i=0; i<data.length; i++) {
+    resultHTML += html.replace("{title}", data[i].title)
+                      .replace("{content}", data[i].content)
+                      .replace("{price}", data[i].price);
+}
+
+document.querySelector(".content").innerHTML = resultHTML;
+```
+
+### Tab UI 실습
+
+* Tab 메뉴를 누르면 Ajax를 통해 데이터를 가져온 후 그 데이터 노출
+* HTML Templating 작업
+* DOM API 사용
+
+<html>
+<header>
+    <link rel="stylesheet" href="tabui.css">
+    <style>
+    h2 {
+    text-align: center
+}
+h2,
+h4 {
+    margin: 0px;
+}
+.tab {
+    width: 600px;
+    margin: 0px auto;
+}
+.tabmenu {
+    background-color: bisque;
+}
+.tabmenu>div {
+    display: inline-block;
+    width: 146px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+.content {
+    padding: 5%;
+    background-color: antiquewhite;
+}
+</style>
+</header>
+
+<body>
+    <h2> TAB UI TEST</h2>
+
+    <div class="tab">
+        <div class="tabmenu">
+            <div>crong</div>
+            <div>jk</div>
+            <div>pobi</div>
+            <div>honux</div>
+        </div>
+        <section class="content">
+            <h4>hello jk</h4>
+            <p>golf, facebook</p>
+        </section>
+    </div>
+    <script>
+    // template을 만드는 작업. 클릭한 것과 이름이 같을 때 데이터를 바꿔준다.
+        function makeTemplate(data, clickedName) {
+            var html = document.getElementById("tabcontent").innerHTML;
+            var resultHTML = "";
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].name === clickedName) {
+                    resultHTML = html.replace("{name}", data[i].name)
+                        .replace("{favorites}", data[i].favorites.join(" "));
+                    break;
+                }
+            }
+            document.querySelector(".content").innerHTML = resultHTML;
+        }
+        // ajax를 보냄. 클릭된 것을 같이 보낸다.
+        function sendAjax(url, clickedName) {
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", function () {
+                var data = JSON.parse(oReq.responseText);
+                makeTemplate(data, clickedName);
+            });
+            oReq.open("GET", url);
+            oReq.send();
+        }
+        
+        // 클릭했을 때 ajax를 보냄.
+        var tabmenu = document.querySelector(".tabmenu");
+        tabmenu.addEventListener("click", function (evt) {
+            sendAjax("./json.txt", evt.target.innerText);
+        });
+    </script>
+
+    <script id="tabcontent" type="my-template">
+            <h4>hello {name}</h4>
+            <p>{favorites}</p>
+       </script>
+</body>
+
+</html>
+
+
 
 -마우스
 이벤트 타입

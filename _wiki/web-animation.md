@@ -1,9 +1,9 @@
 ---
 layout  : wiki
 title   : 웹 애니메이션에 대해서 알아보자.
-summary : 
+summary : requestAnimationFrame()을 다시 알아보자.
 date    : 2019-08-06 15:22:51 +0900
-updated : 2019-08-07 09:08:18 +0900
+updated : 2019-08-09 12:42:14 +0900
 tags    : 
 toc     : true
 public  : true
@@ -36,12 +36,12 @@ window.clearInterval(interval); // interval 함수를 멈추게 한다.
 ```
 
 * 그러나 지연 문제가 발생할 수 있다.
-* setInterval함수가 실행하고 있는 도중에 Mouse Click Callback이라든지 다른 함수가 실행되면 실행되어야 할 이벤트 콜백이 지연된다.
-* 일반적으로는 setInterval을 통해서 애니메이션을 구현하지 않는다.
+* setInterval함수가 실행하고 있는 도중에 Mouse Click Callback이라든지 다른 함수가 실행되면 실행되어야 할 이벤트 콜백이 지연된다. 또한 종종 프레임이 누락되어 버벅거리는 현상이 일어난다.
+* 그래서 일반적으로는 setInterval을 통해서 애니메이션을 구현하지 않는다.
 
 ### setTimeout
 
-* 지정된 시간 이후에 한 번만 실행되는 코드
+* 지정된 시간 이후에 **한 번만** 실행되는 코드
 * 재귀호출을 통해 시간을 계속 지정해서 실행되게 할 수 있다.
 * setTimeout()이 불리고 이 콜백 함수는 콜 스택에서 비워진다. 그래서 stackoverflow 같은 현상이 일어나지 않는다.
 
@@ -66,7 +66,10 @@ animate();
 * animation 주기를 16.6미만으로 하는 경우 불필요한 frame이 생성되는데 그 대안으로 생긴 것이 requestAnimationFrame
 * requestAnimationFrame을 한 번 실행시켜주고 재귀호출을 해준다.
 * canvas, svg를 사용하면서 그래픽 작업을 하게 될 때 복잡한 애니메이션을 다룰 때 꽤 유용하게 쓰인다.
+* 현재 창이나 탭이 보이지 않으면 애니메이션이 중지된다.
 * 아래 코드는 left값을 증가시켜 오른쪽으로 가게 만드는 코드
+
+> 계속되는 재귀호출을 통해서 실행되는데 count의 의미가 정확히 뭔지 모르겠다. +1을 해주면 1 frame을 증가시켜주는 건지... 결정적으로 어느 시간동안 반복적으로 작업을 해줘야 한다고 할 때 어떻게 해줘야 될 지 모르겠다.
 
 ```javascript
 var count = 0;

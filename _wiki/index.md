@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-08-10 15:21:40 +0900
+updated : 2019-08-10 22:05:43 +0900
 tags    : index
 toc     : true
 public  : true
@@ -108,6 +108,7 @@ latex   : false
     * [[web-animation]]
     * [[vender-prefix]]
     * [[template-literals]]
+    * [[polyfill]]
 * error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

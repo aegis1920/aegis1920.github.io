@@ -3,7 +3,7 @@ layout  : wiki
 title   : JSP
 summary : 
 date    : 2019-06-20 15:28:28 +0900
-updated : 2019-07-21 15:46:59 +0900
+updated : 2019-08-12 17:19:34 +0900
 tags    : 
 toc     : true
 public  : true
@@ -23,6 +23,8 @@ latex   : false
 
 ## JSP 내장 객체
 
+* 프로그래머가 선언하지 않아도 쓸 수 있는 객체
+
 ## Redirect
 
 * 서버가 클라이언트의 요청에 대해 특정 URL로 이동하라고 하는 것
@@ -36,8 +38,9 @@ latex   : false
 ## Forward
 
 * 포워드가 실행된 다음에는 URL이 바뀌지 않는다.
-* 즉, `/front`다음에 forward를 통해 `/next`로 갔서 작업하고 클라이언트에게 응답했다면 포워드라서 URL이 그대로 `/front`이다.
+* 즉, `/front`다음에 forward를 통해 `/next`로 가서 작업하고 클라이언트에게 응답했다면 포워드라서 URL이 그대로 `/front`이다.
 * 서버가 다른 서버(같은 어플리케이션)에게 HttpServletRequest, HttpServletResponse를 넘겨주는 것이기 때문에 요청(request, response)이 바뀌지 않는다.
+* 하나의 서블릿에 여러 개의 요청이 왔을 때 그 요청들을 포워딩으로 넘겨줄 수 있다.
 
 ## Servlet과 JSP의 연동
 

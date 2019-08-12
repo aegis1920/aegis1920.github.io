@@ -3,7 +3,7 @@ layout  : wiki
 title   : Maven
 summary : 
 date    : 2019-07-21 15:48:42 +0900
-updated : 2019-07-22 21:57:53 +0900
+updated : 2019-08-12 17:10:18 +0900
 tags    : 
 toc     : true
 public  : true
@@ -87,5 +87,10 @@ latex   : false
 * JSTL을 쓰려면 따로 라이브러리를 추가해야 한다.
 * EL은 다이나믹 웹 모듈의 버전이 2.4부터 사용할 수 있으므로 2.3일 경우 EL의 표기법의 결과가 출력되지 않는다.
 * EL을 쓰려면 web.xml 파일과 .settings/org.eclipse.wst.common.project.facet.core.xml을 수정해야 한다.
+
+## CMD로 하는 Maven
+
+* apache 사이트에서 maven.zip을 받아 tomcat처럼 환경변수를 설정해준다.
+* 그러면 cmd에서도 `mvn -version`이라든지, `mvn archetype:generate` 등 명령어로 maven 프로젝트를 만들어줄 수 있다.
 
 

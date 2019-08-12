@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-07 15:17:35 +0900
+updated : 2019-08-11 00:29:24 +0900
 tags    : 
 toc     : true
 public  : true
@@ -326,25 +326,68 @@ console.log(arr5.length);
 
 ### 배열 탐색
 
-- foreach
-- i++과 같은 증가시켜주는 코드가 필요없다
+#### foreach
+
+* 가장 기본적인 Loop 메소드
+* 임시변수 i같은 걸 할당하지 않는다.
+* forEach 콜백함수로 **첫 번째 인자로 각 요소의 값**이 들어온다.
+* 콜백함수의 인자로 element, idx, arr이 들어올 수 있다.
 
 ```javascript
+
+// element 하나만 들어오는 경우
+
 ["apple", "tomato"].forEach(function(value){
     console.log(value);
 });
 
+// element와 index, array까지 들어오는 경우
+
+var charSets = ['ab', 'bb', 'cd', 'ab', 'cc', 'ab', 'dd', 'ab'];
+function replaceElement(element, idx, arr) {
+    if (element == 'ab') {
+        arr[idx] = '**'; 
+    }
+} 
+charSets.forEach(replaceElement); 
+console.log(charSets);
 ```
 
-- map
+#### map
+
+* 각 배열 원소에 콜백 함수를 적용한다
+* 원래 배열 Array와 동일한 사이즈의 배열을 return한다
+* forEach로도 새로 배열을 선언해서 해줄 수 있지만 map이 더 빠르다
+* forEach와 똑같이 element, index, array까지 들어올 수 있다.
+* 배열로 결과를 리턴받고 싶을 때는 map을 쓰는 것이 유리하다.
 
 ```javascript
 var newArr = ["apple","tomato"].map(function(value, index){
     return index + "번째 과일은 " + value + "입니다";
 });
 console.log(newArr);
-
 ```
+
+#### filter
+
+* 조건에 맞는지 판단하고 true이면 새로운 배열에 추가한다.
+* 콜백 함수의 return은 boolean이다. 즉, return이 true인 요소만 모아서 추가한다.
+* 모두 조건에 만족하지 않는다면 빈 배열이 반환된다
+* 보통 JSON에서 특정 값을 filter 시킬 때 좋다
+
+```javascript
+var arr = [    
+  {"name":"apple", "count": 2},    
+  {"name":"orange", "count": 5},    
+  {"name":"pear", "count": 3},    
+  {"name":"orange", "count": 16}
+];    
+var newArr = arr.filter(function(item){    
+  return item.name === "orange";
+});  
+console.log("Filter results:",newArr);
+```
+
 
 ## Object
 

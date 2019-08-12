@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-08-12 15:30:50 +0900
+updated : 2019-08-12 15:43:27 +0900
 tags    : index
 toc     : true
 public  : true
@@ -23,6 +23,7 @@ latex   : false
     * [[almost-all-internet-history]]
     * [[tdd-kent-beck]]
     * [[mastering-tcp-ip]]
+    * [[read-500-books-a-year]]
 * movie
 * [[design-pattern]]
 * programming-language
@@ -106,6 +107,9 @@ latex   : false
     * [[rest-api]]
     * [[web-api]]
     * [[web-animation]]
+    * [[vender-prefix]]
+    * [[template-literals]]
+    * [[polyfill]]
 * error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

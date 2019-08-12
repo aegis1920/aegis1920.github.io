@@ -19,7 +19,7 @@ latex   : false
 * IDE : C9
 * Language : ruby
 * Framework : ruby on rails
-* github : ![https://github.com/aegis1920/likelion_CRUD_project](https://github.com/aegis1920/likelion_CRUD_project)
+* github : [https://github.com/aegis1920/likelion_CRUD_project](https://github.com/aegis1920/likelion_CRUD_project)
 
 #  Scaffold
 1. scaffold는 '발판, 기반이 되는 구조물'이라는 뜻입니다.
@@ -476,5 +476,5 @@ end
 
 ## 배워서 무엇을 했나?
 
-* ![삼육대학교 멋쟁이 사자처럼](http://sahmyook.likelion.org/)
+* [삼육대학교 멋쟁이 사자처럼](http://sahmyook.likelion.org/)
 * 불평불만을 수시로 접수할 수 있는 웹 페이지

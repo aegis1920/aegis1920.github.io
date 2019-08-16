@@ -1,19 +1,24 @@
 ---
 layout  : wiki
-title   : JSP 1.2와 JSP 2.0의 차이
+title   : 톰캣 버전별 차이
 summary : 
-date    : 2019-06-21 11:20:00 +0900
-updated : 2019-06-21 11:20:34 +0900
+date    : 2019-08-16 22:38:09 +0900
+updated : 2019-08-16 22:44:09 +0900
 tags    : 
 toc     : true
 public  : true
-parent  : study
+parent  : 
 latex   : false
 ---
 * TOC
 {:toc}
 
-# JSP 1.2와 JSP 2.0의 차이
+## 톰캣의 버전별 차이
+
+* 톰캣의 버전마다 Java, Servlet, JSP, EL, WebSocket 등의 스펙이 모두 다르다.
+* EL을 쓰기 위해서 또는 DD를 무엇으로 할지 등등에 따라 달라진다.
+
+## JSP 1.2와 JSP 2.0의 차이
 
 1.  EL을 모든 표준/사용자 정의 컴포넌트에서 사용할 수 있다.
     
@@ -112,3 +117,4 @@ latex   : false
   
 
 나중에 게시판 만들 때 쓰임.
+

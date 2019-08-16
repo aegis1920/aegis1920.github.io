@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-08-12 15:43:27 +0900
+updated : 2019-08-16 22:43:47 +0900
 tags    : index
 toc     : true
 public  : true
@@ -52,7 +52,6 @@ latex   : false
     * [[Clean-Code]]
     * [[get-vs-post]]
     * [[about-scanf]]
-    * [[JSP1.2-JSP2.0]]
     * [[NA-NULL-in-R]]
     * [[HTML5-and-DTD]]
     * [[Java-System_out_println]]
@@ -61,6 +60,7 @@ latex   : false
     * [[framework-vs-library]]
     * [[http-vs-https]]
     * [[ruby-on-rails-likelion]]
+    * [[tomcat-version-diff]]
 * [[vim]]
     * [[myvimrc]]
     * [[vim-study]]
@@ -110,6 +110,7 @@ latex   : false
     * [[vender-prefix]]
     * [[template-literals]]
     * [[polyfill]]
+    * [[cors]]
 * error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

@@ -3,7 +3,7 @@ layout  : wiki
 title   : Ajax
 summary : 
 date    : 2019-07-05 17:05:42 +0900
-updated : 2019-08-12 18:24:38 +0900
+updated : 2019-08-16 20:29:33 +0900
 tags    : 
 toc     : true
 public  : true
@@ -14,6 +14,15 @@ latex   : false
 {:toc}
 
 # AJAX 
+
+## AJAX의 역사
+
+* 일부 데이터만 갱신하고 싶어도 페이지 전체를 받아와야하기 때문에 낭비가 많았다.
+* MS가 iframe을 도입해 콘텐츠를 비동기 방식으로 로딩할 수 있는 방법을 찾아냈다.
+* 그 이후 MS가 만든 XMLHTTP Active X 기술을 모질라가 받아들여 XMLHttpRequest를 만든다.
+* 그리고 나서 AJAX라는 용어가 나타났는데 그 의미는 웹 클라이언트 측에서 Page Refresh 없이 비동기적으로 콘텐츠를 변경하기 위해 사용하는 모든 기술을 지칭한다는 것이었다.
+
+## AJAX를 쓰는 방법
 
 * 이 기술은 웹에 데이터를 갱신할 때, 브라우저 새로고침 없이 서버로부터 데이터를 받는 것이 좋겠다는 생각에서 출발했다.
 * addEventListener는 자기 자신 안에 있는 콜백함수, 즉 function()을 이벤트 큐에 보관을 해놓는다.

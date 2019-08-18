@@ -3,7 +3,7 @@ layout  : wiki
 title   : algo
 summary : 
 date    : 2019-06-20 14:23:08 +0900
-updated : 2019-07-21 13:44:01 +0900
+updated : 2019-08-18 18:45:55 +0900
 tags    : 
 toc     : true
 public  : true
@@ -29,6 +29,9 @@ latex   : false
 `i += 1` 보다 `i++`이 더 빠르다
 `i *= 2` 보다 `i<<1`이 더 빠르다
 `i /= 2` 보다 `i>>1`이 더 빠르다
+
+
+
 
 
 ## backtracking

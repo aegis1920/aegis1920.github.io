@@ -3,7 +3,7 @@ layout  : wiki
 title   : JSP
 summary : 
 date    : 2019-06-20 15:28:28 +0900
-updated : 2019-08-12 17:19:34 +0900
+updated : 2019-08-18 15:12:49 +0900
 tags    : 
 toc     : true
 public  : true
@@ -161,18 +161,26 @@ jsp는 init이나 service(), destroy()등 우리 마음대로 못 한다. 마음
 
 ## page 이동기법(겁나 중요하다)
 
-1. Redirection -> 주체가 브라우저. 요청 2번 발생, 응답 2번 발생. but 사용자는 한 번만 발생한 줄 알고 있다. 
-   1. login.html -> login.do -> main.html
-2. Forwarding ->  브라우저 요청 1번 발생, 응답 1번 발생
-   1. login.html -> login.do(브라우저는 여기에 머물러 있다. 보이는 컨텐츠와 url이 일치하지 않다. url은 login.do지만 정작 보여지는 화면은 main.html이다)
-      1. 사용자는 페이지처럼 동작하기 때문에 인자로 처리할 값을 전달한다. 
-   2. request forwarding
-      1. 뒤에 이동하는 페이지에 그대로 준다.
-   3. response forwarding
-   4. forwarding을 하면 응답을 안 보낸다. forwarding이 끝나야 응답이 간다. request가 forwarding갈 때 그 둘을 받는다. 그게 포워딩 개념.
-   5. 저장하는 행위는 덧붙이는 개념
-   6. parameter니 헤더니 이런 건 ..?
-   7. 애트리뷰트랑 파라미터를 헷갈리지 말자. 
+### Redirection
+
+- 주체가 브라우저. 요청 2번 발생, 응답 2번 발생. but 사용자는 한 번만 발생한 줄 알고 있다. 
+- login.html -> login.do -> main.html
+- 그래서 `<% response.sendRedirect("page"); %>`를 쓰거나 `location.href="https://localhost:8080${pageContext.request.contextPath}/page.jsp"`를 쓰게 될 때 Controller에 가서 해당하는 Mapping으로 간 후 `~/page` 주소로 나타난다.
+
+
+### Forwarding
+
+- 브라우저 요청 1번 발생, 응답 1번 발생
+1. login.html -> login.do(브라우저는 여기에 머물러 있다. 보이는 컨텐츠와 url이 일치하지 않다. url은 login.do지만 정작 보여지는 화면은 main.html이다)
+  1. 사용자는 페이지처럼 동작하기 때문에 인자로 처리할 값을 전달한다.
+- 그래서 `<jsp:forward page="page.jsp"/>`를 쓰면 Controller를 안 거치고 `~/`에서 page.jsp를 찾아 보여준다. 이 때 경로를 보면 바뀌지 않은 `~/`로 되어있다.
+2. request forwarding
+  1. 뒤에 이동하는 페이지에 그대로 준다.
+3. response forwarding
+4. forwarding을 하면 응답을 안 보낸다. forwarding이 끝나야 응답이 간다. request가 forwarding갈 때 그 둘을 받는다. 그게 포워딩 개념.
+5. 저장하는 행위는 덧붙이는 개념
+6. parameter니 헤더니 이런 건 ..?
+7. 애트리뷰트랑 파라미터를 헷갈리지 말자. 
 
 MVC 패턴을 지키려면 request에 그런 역할이 있다. 
 

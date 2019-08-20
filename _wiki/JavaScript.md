@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-20 19:11:48 +0900
+updated : 2019-08-20 22:47:38 +0900
 tags    : 
 toc     : true
 public  : true
@@ -2177,6 +2177,7 @@ console.log(t);
 * load이벤트를 써주고 뒤에 그 함수를 집어넣어준다. 
 * load 이벤트는 문서내의 모든 리소스(이미지, 스크립트)의 다운로드가 끝난 후에 실행된다. 
 * 리소스의 다운로드가 끝난 후에 실행되기 때문에 이미지나 스크립트 등에 프로그래밍을 해야된다면 load를 써야한다.
+* 
 * 그러나 이것은 에플리케이션의 구동이 너무 지연되는 부작용을 초래할 수 있다.
 * 그래서 그에 대한 또 다른 방법이 있다.
 
@@ -2193,6 +2194,21 @@ console.log(t);
 <p id="target">Hello</p>
 </body>
 ```
+
+* 아래와 같이 코드가 있고 ajax() 함수가 이미지를 로딩하는 메소드라고 할 때 이미지가 모두 로딩되고 난 뒤에 실행하고 싶다면 여기 안에다 메소드를 넣어주면 된다.
+
+```javascript
+function ajax() {
+	var oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", function() {
+		JSON.parse(this.responseText));
+        // load되고 난 뒤의 메소드 실행
+	});
+	oReq.open("GET", "./api/~");
+	oReq.send();
+}
+```
+
 
 ### DOMContentLoaded
 

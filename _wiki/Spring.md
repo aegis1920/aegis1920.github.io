@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-07-25 19:57:46 +0900
+updated : 2019-08-21 00:28:39 +0900
 tags    : 
 toc     : true
 public  : true
@@ -175,14 +175,140 @@ ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig
 * ConnectionPool을 관리하는 목적으로 사용되는 객체
 * Connection을 얻어오고 반납하는 등의 작업을 수행한다
 
-###
+### JDBC를 위한 pom.xml 설정
 
+* `spring-jdbc`, `spring-tx` 추가
+* mysql을 쓸거면 `mysql-connector-java`를 추가.
+* datasource도 여러 종류가 있는데 그 중에서도 apache에서 제공해주는 `commons-dbcp2`
+
+### ApplicationConfig.java에서 설정해주기
+
+* `@Configuration`이라는 어노테이션을 붙여야 실행되면서 설정 정보를 읽어들인다.
 @Import()는 설정파일을 여러 개로 나눠서 작성할 수 있게 해준다. 데이터베이스 연결에 관련된 설정은 따로 빼주고 싶을 때 쓴다
-* `@Import({DBConfig.class})`이런 식으로 DBConfig라는 클래스를 포함시켜줄 수 있다
+* `@Import({DBConfig.class})`이런 식으로 DBConfig라는 클래스를 포함시켜줄 수 있다.
+* `@ComponentScan(basePackages = { "kr.or.connect.daoexam.dao" })`를 쓰면 자동으로 `@Repository`가 붙어있는 클래스를 Bean으로 등록해준 거랑 같은 역할을 해준다. 또한 중괄호를 콤마찍고 여러 개 써줄 수 있다.
+
+### DBConfig에 들어갈 것들
+
+* application.properties에 들어갈 정보들
+* `@Bean`어노테이션을 붙인 DataSource 클래스
+
+### NamedParameterJdbcTemplate와 Dao
+
+* DAO 패키지에 DaoSqls.java로 sql만 담은 파일과 DAO.java 파일을 만든다.
+
+#### DAO에 들어갈 것들
+
+* DAO니까 `@Repository`를 써주자
+* jdbcTemplate이 아닌 NamedParameterJdbc를 쓰기 위한 선언
+* `query()`의 첫 번째 매개변수에는 sql 문이 들어간다.
+* 두 번째 매개변수는 sql문에 바인딩할 값이 없으므로 `Collections.emptyMap()`으로 선언해준다.
+* 세 번째 매개변수는 select 한 건, 한 건의 결과를 DTO에 저장할 목적으로 사용한다. BeanPropertyRowMapper을 통해서 칼럼의 값을 자동으로 DTO에 담아준다.
+* `query()`는 생성한 DTO를 List에 담아주는 역할을 한다.
+* `import static kr.or.connect.daoexam.dao.RoleDaoSqls.*;`처럼 `import static`을 해주면 클래스의 이름 없이 가져올 수 있다.
+* **DBMS에서는 칼럼명이 단어와 단어를 구분할 때 _를 사용한다. 또한 DTO에서는 카멜 표기법을 이용해서 적어준다.**
+* 예를 들어서, DTO가 `roleId`라면 DBMS에서는 `role_id`로 적는다. 당연하게 DTO에서 getter와 setter또한 이름이 잘 맞춰져 있어야 한다.
+* DBMS에서 sql문을 적어줄 때 `*`으로 적는 것보다 하나하나 컬럼명을 나열해주는 것이 좋다.
+
+#### insert
+
+* insert문을 실행시키기 위해서는 SimpleJdbcInsert라는 객체가 필요하다
+* withTableName()은 어떤 테이블에 넣을 것인지를 말해준다
+* 맵 객체를 생성해주고 execute()를 하면 값이 알아서 저장된다.
+* return값은 정수로 몇 건이 입력됐다고 나온다.
+
+#### update
+* `:roleId`가 바인딩 되는 부분으로 jdbcTemplate의 `?`와 같다.
+* 첫 번째 파라미터는 sql, 두 번째 파라미터는 params는 맵 객체
+* SqlParameterSource 객체가 맵으로 바꿔주는 일을 수행한다.
+
+#### delete
+
+* 객체는 2개의 값인데 id인 값 하나만 넣고 싶을 때는 그냥 map을 이용해서 넣어주면 된다
+* delete도 `update()`를 이용한다.
+
+#### select
+
+* 해당 조건에 맞는 값이 없다면 예외를 발생시킨다. 따로 예외 처리를 해줘야 한다.
+* `queryForObject()`를 쓴다.
+
+```java
+@Repository
+public class RoleDao {
+	private NamedParameterJdbcTemplate jdbc; // NamedParameterJdbcTemplate를 쓰기 위함
+    private SimpleJdbcInsert insertAction; // insert문을 쓰기 위함
+	private RowMapper<Role> rowMapper = BeanPropertyRowMapper.newInstance(Role.class);
+
+	public RoleDao(DataSource dataSource) {
+		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+        this.insertAction = new SimpleJdbcInsert(dataSource)
+                .withTableName("role"); // insert에 필요한 것
+	}
+	
+	public List<Role> selectAll(){
+		return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
+	}
+    
+    // insert
+    public int insert(Role role) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(role);
+		return insertAction.execute(params);
+	}
+    
+    // update
+	public int update(Role role) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(role);
+		return jdbc.update(UPDATE, params);
+	}
+    
+    // delete
+    public int deleteById(Integer id) {
+		Map<String, ?> params = Collections.singletonMap("roleId", id);
+		return jdbc.update(DELETE_BY_ROLE_ID, params);
+	}
+	
+    // select
+	public Role selectById(Integer id) {
+		try {
+			Map<String, ?> params = Collections.singletonMap("roleId", id);
+			return jdbc.queryForObject(SELECT_BY_ROLE_ID, params, rowMapper);		
+		}catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+}
+```
+
+* 아래와 같이 insert나 update나 객체를 통해서 넣어주면 SqlParameterSource가 map으로 바꿔준다.
+
+```java
+public class JDBCTest {
+
+	public static void main(String[] args) {
+		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+
+		RoleDao roleDao = ac.getBean(RoleDao.class);
+		
+		Role role = new Role();
+		role.setRoleId(201);
+		role.setDescription("PROGRAMMER");
+		
+		int count = roleDao.insert(role);
+		System.out.println(count + "건 입력하였습니다.");
+			
+		int count = roleDao.update(role);
+		System.out.println(count +  " 건 수정하였습니다.");
+	}
+
+}
+```
+
+
 
 ## Spring MVC
 
-### Spring MVC란?
+### MVC란?
 
 * Model-View-Controller
 * Model은 뷰가 렌더링하는데 필요한 데이터
@@ -510,6 +636,8 @@ Spring은 다양하게 쓸 줄 알아야 한다.
 프레임워크의 결과물, 관련된 파일들.  그 파일들을 하나 파일로 관리하긴 어렵다. 쓰지도 않는 리소스 소모가 더 많기 때문에. 파일. 라이브러리 끼리의 의존성이 있다. 그 의존성을 메이븐이 관리해준다. C가 동작하기 위해선 B가 필요하고 B가 동작하기 위해서는 A가 필요하고... 프레임 워크는 내가 짠 게 아니기 때문에 메이븐을 통해서 필요한 라이브러리를 받아서 관리해준다.
 
 pom.xml에 properties는 상수같은 느낌. 
+
+Spring에 관련된 것을 사용하려면 spring-context를 추가해준다.
 
 ```xml
 <dependency>

@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-16 22:36:29 +0900
+updated : 2019-08-20 19:11:48 +0900
 tags    : 
 toc     : true
 public  : true
@@ -343,7 +343,9 @@ console.log(arr5.length);
 
 ### 배열 탐색
 
-#### foreach
+* for문 대신 forEach, map, filter를 잘 쓰면 좋다.
+
+#### forEach
 
 * 가장 기본적인 Loop 메소드
 * 임시변수 i같은 걸 할당하지 않는다.
@@ -376,7 +378,7 @@ console.log(charSets);
 * 원래 배열 Array와 동일한 사이즈의 배열을 return한다
 * forEach로도 새로 배열을 선언해서 해줄 수 있지만 map이 더 빠르다
 * forEach와 똑같이 element, index, array까지 들어올 수 있다.
-* 배열로 결과를 리턴받고 싶을 때는 map을 쓰는 것이 유리하다.
+* **배열로 결과를 리턴받고 싶을 때**는 map을 쓰는 것이 유리하다.
 
 ```javascript
 var newArr = ["apple","tomato"].map(function(value, index){
@@ -384,6 +386,14 @@ var newArr = ["apple","tomato"].map(function(value, index){
 });
 console.log(newArr);
 ```
+```javascript
+// 만약 원래 data가 object로 되어있으면 object를 만들어서 원하는 값을 바꾸고 리턴해주자.
+var newData = priceData.map(function(v){
+    var obj = {title: v.title, content : v.content, price : v.price * 10};
+    return obj;
+});
+```
+
 
 #### filter
 
@@ -405,6 +415,30 @@ var newArr = arr.filter(function(item){
 console.log("Filter results:",newArr);
 ```
 
+* filter와 map을 섞어서 써줄 수 있다.
+* 또한 원본 데이터인 data는 유지된다.(immutable)
+
+```javascript
+var newData = data.filter(function(v){
+    return v.price > 5000 ;
+}).map(function(v) {
+    var obj = {title : v.title, content : v.content, price : v.price};
+    return obj;
+})
+```
+
+### reduce
+
+* 배열의 모든 요소에 대해 지정된 콜백 함수를 호출한다.
+* 콜백 함수의 반환 값을 누적하여 반환한다.
+* 매개변수로 누적을 시작하기 위한 초기값이며 선택사항이다.
+
+```javascript
+// 0이 초기값이다.
+var totalPrice = data.reduce(function(prevValue, product) { return prevValue + product.price; }, 0);
+
+console.log(totalPrice);
+```
 
 ## Object
 

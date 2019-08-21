@@ -3,7 +3,7 @@ layout  : wiki
 title   : Dispatcher Servlet에 대해서
 summary : 
 date    : 2019-08-21 08:58:30 +0900
-updated : 2019-08-21 18:43:17 +0900
+updated : 2019-08-21 22:19:28 +0900
 tags    : 
 toc     : true
 public  : true
@@ -105,6 +105,53 @@ latex   : false
 </web-app>
 
 ```
+
+- dispatcher servlet의 java config 파일(WebMvcContextConfiguration.java)
+```java
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = {"kr.or.connect.mvcexam.controller"})
+public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
+	// css나 img나 js같은 요청들이 들어왔을 때 바로 컨트롤러로 가는 게 아니라 여기를 거치게 만들고 여기서 찾으라고 만들어 놓은 것.
+	// 옛날에는 web.xml에서 경로를 하나하나 다르게 줘서 구별했었다.(.do라든지...)
+	// 이게 없다면 다 controller에 가서 찾게 된다. 
+	@Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/META-INF/resources/webjars/").setCachePeriod(31556926);
+        registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
+        registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(31556926);
+        registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
+    }
+ 
+	// 매핑 정보가 없는 URL 요청은 Spring의 DefaultServletHttpRequestHandler가 처리하도록 해준다.
+    // Spring의 DefaultServletHttpRequestHandler은 WAS의 DefaultServlet에게 해당 일을 넘기게 된다. 그러면 WAS는 DefaultServlet이 static한 자원을 읽어서 보여주게 한다.
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+   
+    // 특정 URL에 대한 처리를 controller 클래스를 작성하지 않고 매핑할 수 있도록 해준다.
+    // 요청 자체가 "/"로 들어오면 main이라는 이름의 view로 보여주게 하는 것
+    // view name은 아래 함수인 viewResolver라는 객체를 이용해서 찾는다.
+    @Override
+    public void addViewControllers(final ViewControllerRegistry registry) {
+    		System.out.println("addViewControllers가 호출됩니다. ");
+        registry.addViewController("/").setViewName("main");
+    }
+    
+    // 여기에 view 정보 주고 있다.
+    // view는 WEB-INF/views/main.jsp라는 파일을 찾아주는 것.
+    @Bean
+    public InternalResourceViewResolver getInternalResourceViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        return resolver;
+    }
+    // 이러한 설정들을 읽어서 DispatcherServlet이 동작하게 된다.
+}
+```
+
 
     * javax.servlet.ServletContainerInitializer 사용(servlet 3.0 이상에서 사용)(여기서 설명 X)
     * org.springframework.web.WebApplicationInitializer 인터페이스를 구현해서 사용(여기서 설명 X)

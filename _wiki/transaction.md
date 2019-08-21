@@ -1,9 +1,9 @@
 ---
 layout  : wiki
-title   : 트랜잭션
+title   : 트랜잭션이란?
 summary : 
 date    : 2019-06-20 15:35:20 +0900
-updated : 2019-06-20 15:35:39 +0900
+updated : 2019-08-21 22:54:38 +0900
 tags    : 
 toc     : true
 public  : true
@@ -14,6 +14,29 @@ latex   : false
 {:toc}
 
 # 트랜잭션
+
+- MVC 모델에서 보통 하나의 비즈니스 로직은 하나의 트랜잭션으로 동작한다.
+
+## 트랜잭션의 특징
+
+- 원자성
+    - 1~5번까지의 작업이 있는데 4번에서 오류가 났다면 1~5번까지 모두 rollback해야된다.5번까지 다 했을 때는 commit
+- 일관성
+    - 작업 처리 결과가 항상 일관성이 있어야 한다.
+- 독립성
+    - 둘 이상의 트랜잭션이 동시에 실행되고 있을 때 하나의 트랜잭션이 완료될 때까지 다른 트랜잭션이 끼어들 수 없다.
+- 지속성
+    - 트랜잭션이 성공적으로 완료됐을 경우, 결과는 영구적으로 반영되어야 함
+
+## Spring에서 트랜잭션의 처리 방법
+
+### @EnableTransactionManagement
+
+- Spring Java Config파일에서 트랜잭션을 활성화 할 때 사용하는 애노테이션.
+- Java Config를 사용하게 되면 PlatformTransactionManager 구현체를 모두 찾아서 그 중에 하나를 매핑해 사용합니다.
+- 특정 트랜잭션 메니저를 사용하고자 한다면 TransactionManagementConfigurer를 Java Config파일에서 구현하고 원하는 트랜잭션 메니저를 리턴하도록 합니다.
+- 아니면, 특정 트랜잭션 메니저 객체를 생성시 @Primary 애노테이션을 지정합니다.
+
 
 Connection 단위로 트랜잭션을 관리한다.
 

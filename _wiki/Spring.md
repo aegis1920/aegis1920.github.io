@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-08-21 00:28:39 +0900
+updated : 2019-08-21 19:50:46 +0900
 tags    : 
 toc     : true
 public  : true
@@ -339,25 +339,13 @@ public class JDBCTest {
 
 * 모든 요청을 Dispatcher Servlet이라는 서블릿 클래스가 받는다.
 * Dispatcher Servlet은 요청을 처리해줄 컨트롤러와 메소드가 뭔지 Handler Mapping에게 물어본다
-* Handler mapping 객체들은 우리가 설정한 xml이나 java파일을 통해 요청에 맞는 컨트롤러가 뭔지 알아낸다.
-* 그리고나서 Handler Adapter에게 실행을 요청한다
-* 그러면 결정된 컨트롤러와 해당 메소드가 실행된다.
+* Handler mapping 객체들은 우리가 설정한 xml이나 java파일을 통해 요청에 맞는 컨트롤러가 무엇인지, 해당되는 메소드가 어떤 건지 dispatcher Servlet에게 알려준다.
+* dispatcher Servlet은 Handler Adapter에게 실행을 요청한다
+* Handler Adapter는 Controller에게 실행하도록 하고 Controller는 view name을 handler Adapter에게 리턴한다. Handler Adapter는 Dispatcher Servlet에게 말해주고 리턴된 view name을 view resolver에게 건네준다.
+
 
 ### Spring MVC 실습
 
-* Spring MVC에서 DispatcherServlet이 FrontController의 역할을 한다
-* DispatcherServlet이 FrontController의 역할을 한다는 설정을 해줘야 한다
-* 설정을 해주기 위한 3가지 방법이 있다
-    * web.xml에 설정
-        * xml spring 설정을 읽어들이도록 DispatcherServlet을 설정
-```xml
-WebMVCContextConfig.xml에 어떤 일을 해야될 건지 적는다.
-```
-        * Java config spring 설정을 읽어들이도록 DispatcherServlet을 설정
-
-    * javax.servlet.ServletContainerInitializer 사용(servlet 3.0 이상에서 사용)
-
-    * org.springframework.web.WebApplicationInitializer 인터페이스를 구현해서 사용
 
 
 
@@ -2124,4 +2112,152 @@ Bean으로 관리하게 되고, singleton으로 static에 올라가니까(메모
 @contoller 얘도 메모리에 다 들어가있음.
 
 
+### BoostCourse Web
+
+@Configuration
+
+org.springframework.context.annotation의 Configuration 애노테이션과 Bean 애노테이션 코드를 이용하여 스프링 컨테이너에 새 로운 빈 객체를 제공할 수 있다.
+ 
+
+@EnableWebMvc
+
+DispatcherServlet의 RequestMappingHandlerMapping, RequestMappingHandlerAdapter, ExceptionHandlerExceptionResolver, MessageConverter 등 Web에 필요한 빈들을 대부분 자동으로 설정해준다.
+xml로 설정의 <mvc:annotation-driven/> 와 동일하다.
+기본 설정 이외의 설정이 필요하다면 WebMvcConfigurerAdapter 를 상속받도록 Java config class를 작성한 후, 필요한 메소드를 오버라이딩 하도록 한다.
+
+@ComponentScan
+
+ComponentScan애노테이션을 이용하면 Controller, Service, Repository, Component애노테이션이 붙은 클래스를 찾아 스프링 컨테이너가 관리하게 된다.
+DefaultAnnotationHandlerMapping과 RequestMappingHandlerMapping구현체는 다른 핸드러 매핑보다 훨씬 더 정교한 작업을 수행한다. 이 두 개의 구현체는 애노테이션을 사용해 매핑 관계를 찾는 매우 강력한 기능을 가지고 있다. 이들 구현체는 스프링 컨테이너 즉 애플리케이션 컨텍스트에 있는 요청 처리 빈에서 RequestMapping애노테이션을 클래스나 메소드에서 찾아 HandlerMapping객체를 생성하게 된다.
+HandlerMapping은 서버로 들어온 요청을 어느 핸들러로 전달할지 결정하는 역할을 수행한다.
+DefaultAnnotationHandlerMapping은 DispatcherServlet이 기본으로 등록하는 기본 핸들러 맵핑 객체이고, RequestMappingHandlerMapping은 더 강력하고 유연하지만 사용하려면 명시적으로 설정해야 한다.
+ 
+
+WebMvcConfigurerAdapter
+
+org.springframework.web.servlet.config.annotation. WebMvcConfigurerAdapter
+@EnableWebMvc 를 이용하면 기본적인 설정이 모두 자동으로 되지만, 기본 설정 이외의 설정이 필요할 경우 해당 클래스를 상속 받은 후, 메소드를 오버라이딩 하여 구현한다.
+ 
+
+Controller(Handler) 클래스 작성하기
+
+@Controller 애노테이션을 클래스 위에 붙인다.
+맵핑을 위해 @RequestMapping 애노테이션을 클래스나 메소드에서 사용한다.
+ 
+
+@RequestMapping
+
+Http 요청과 이를 다루기 위한 Controller 의 메소드를 연결하는 어노테이션
+Http Method 와 연결하는 방법
+ - @RequestMapping(value="/users", method=RequestMethod.POST)
+ - From Spring 4.3 version (@GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping)
+Http 특정 해더와 연결하는 방법
+ - @RequestMapping(method = RequestMethod.GET, headers = "content-type=application/json")
+Http Parameter 와 연결하는 방법
+ - @RequestMapping(method = RequestMethod.GET, params = "type=raw")
+Content-Type Header 와 연결하는 방법
+ - @RequestMapping(method = RequestMethod.GET, consumes = "application/json")
+Accept Header 와 연결하는 방법
+ - @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+
+#### Spring MVC가 지원하는 Controller 메소드 인수 타입
+
+- HttpServletRequest, HttpServletResponse, HttpSession, MultipartFile 등등... 그래서 request를 꺼내서 쓸 수 있다. 
+
+#### Spring MVC가 지원하는 메소드 인수 어노테이션
+
+@RequestParam
+
+Mapping된 메소드의 Argument에 붙일 수 있는 어노테이션
+@RequestParam의 name에는 http parameter의 name과 멥핑
+@RequestParam의 required는 필수인지 아닌지 판단
+ 
+
+@PathVariable
+
+@RequestMapping의 path에 변수명을 입력받기 위한 place holder가 필요함
+place holder의 이름과 PathVariable의 name 값과 같으면 mapping 됨
+required 속성은 default true 임
+
+PathVariable은 ?와 맵핑된다. 이름이 같아야 함. .
+ 
+@RequestHeader
+
+요청 정보의 헤더 정보를 읽어들 일 때 사용
+@RequestHeader(name="헤더명") String 변수명
+
+#### Spring MVC가 지원하는 메소드 리턴 값
+
+- ModelAndView, Model, Map, String, 등등... 
+- 여기에 addAttribute()를 통해 여러 가지를 한꺼번에 넣어줄 수 있다.
+
+#### Controller 실습
+
+```java
+
+@Controller
+public class PlusController {
+    
+    // GET 방식이면서 URL경로가 plusform일 때 여기로 온다. String을 리턴해주기때문에 DispatcherServlet Config 파일에 있는 대로 views폴더 아래에 있는 plusform.jsp를 찾게 된다.
+	@GetMapping(path = "/plusform")
+	public String plusform() {
+		return "plusForm";
+	}
+    
+    // RequestParam을 써서 input태그에서 name이 똑같은 걸 찾는다. 그리고 ModelMap도 줘서 여기에 한 번에 담아서 보내줄 수 있다. 받는 쪽에서는 그냥 EL태그로 써주면 된다.
+	@PostMapping(path = "/plus")
+	public String plus(@RequestParam(name = "value1", required = true) int value1,
+			@RequestParam(name = "value2", required = true) int value2, ModelMap modelMap) {
+		int result = value1 + value2;
+
+		modelMap.addAttribute("value1", value1);
+		modelMap.addAttribute("value2", value2);
+		modelMap.addAttribute("result", result);
+		return "plusResult";
+	}
+}
+
+@Controller
+public class UserController {
+    
+    // 원래 GetMapping이었던 것을 바꾼 것. 똑같다.
+	@RequestMapping(path="/userform", method=RequestMethod.GET)
+	public String userform() {
+		return "userform";
+	}
+	
+    // User라는 DTO가 있다면 @ModelAttribute를 사용해서 DTO에 넣어줄 수 있다.
+	@RequestMapping(path="/regist", method=RequestMethod.POST)
+	public String regist(@ModelAttribute User user) {
+
+		System.out.println("사용자가 입력한 user 정보입니다. 해당 정보를 이용하는 코드가 와야합니다.");
+		System.out.println(user);
+		return "regist";
+	}
+}
+
+@Controller
+public class GoodsController {
+
+    // 경로에 {}을 주고 @PathVariable을 통해 URL에 변수를 줄 수 있다. 이름이 같으면 매핑된다.
+	@GetMapping("/goods/{id}")
+	public String getGoodsById(@PathVariable(name = "id") int id,
+			@RequestHeader(value = "User-Agent", defaultValue = "myBrowser") String userAgent,
+			HttpServletRequest request, ModelMap model) {
+
+		String path = request.getServletPath();
+
+		System.out.println("id : " + id);
+		System.out.println("user_agent : " + userAgent);
+		System.out.println("path : " + path);
+
+		model.addAttribute("id", id);
+		model.addAttribute("userAgent", userAgent);
+		model.addAttribute("path", path);
+		return "goodsById";
+	}
+}
+
+
+```
 

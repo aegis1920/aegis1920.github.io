@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-08-21 19:50:46 +0900
+updated : 2019-08-22 16:30:40 +0900
 tags    : 
 toc     : true
 public  : true
@@ -2260,4 +2260,195 @@ public class GoodsController {
 
 
 ```
+### 레이어드 아키텍쳐(Layered Architecture)
 
+- 비즈니스 로직을 수행하는 메소드를 가지고 있는 객체를 서비스 객체라고 한다.
+- 하나의 비즈니스 로직은 하나의 트랜잭션으로 동작한다.
+- Presentation Layer(Controller) -> Service Layer(Service) -> Repository Layer(DAO) 순으로 들어간다.
+
+#### 레이어드 아키텍쳐 실습
+
+- 잘 모르는 DAO 부분과 SQL, ServiceImpl을 보자
+
+- DAO
+```java
+@Repository
+public class GuestbookDao {
+	private NamedParameterJdbcTemplate jdbc;
+	private SimpleJdbcInsert insertAction;
+	private RowMapper<Guestbook> rowMapper = BeanPropertyRowMapper.newInstance(Guestbook.class);
+
+	public GuestbookDao(DataSource dataSource) {
+		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+        // id 컬럼의 값을 입력해주는 것.
+		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("guestbook").usingGeneratedKeyColumns("id");
+	}
+
+    // start와 limit이라는 변수를 줬다.
+	public List<Guestbook> selectAll(Integer start, Integer limit) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("start", start);
+		params.put("limit", limit);
+		return jdbc.query(SELECT_PAGING, params, rowMapper);
+	}
+
+    // insert문을 내부적으로 생성해서 실행하고, 자동으로 생성된 id값을 리턴해준다.
+	public Long insert(Guestbook guestbook) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(guestbook);
+		return insertAction.executeAndReturnKey(params).longValue();
+	}
+    
+    // id에 해당하는 번호를 지운다.
+	public int deleteById(Long id) {
+		Map<String, ?> params = Collections.singletonMap("id", id);
+		return jdbc.update(DELETE_BY_ID, params);
+	}
+
+	public int selectCount() {
+		return jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
+	}
+}
+
+```
+- SQL
+
+```java
+public class GuestbookDaoSqls {
+	public static final String SELECT_PAGING = "SELECT id, name, content, regdate FROM guestbook ORDER BY id DESC limit :start, :limit";
+	public static final String DELETE_BY_ID = "DELETE FROM guestbook WHERE id = :id";
+	public static final String SELECT_COUNT = "SELECT count(*) FROM guestbook";
+}
+```
+
+- ServiceImpl
+
+```java
+@Service
+public class GuestbookServiceImpl implements GuestbookService{
+	@Autowired
+	GuestbookDao guestbookDao;
+	
+	@Autowired
+	LogDao logDao;
+
+	@Override
+	@Transactional
+	public List<Guestbook> getGuestbooks(Integer start) { // 읽기만 하는 메소드니까 트랜잭션을 붙여준다. 붙여주면 readOnly의 형태로 connection을 사용한다.
+		List<Guestbook> list = guestbookDao.selectAll(start, GuestbookService.LIMIT);
+		return list;
+	}
+
+	@Override
+	@Transactional(readOnly=false)
+	public int deleteGuestbook(Long id, String ip) { // 얘는 readonly로 하면 트랜잭션이 적용되지 않는다.
+		int deleteCount = guestbookDao.deleteById(id);
+		Log log = new Log();
+		log.setIp(ip);
+		log.setMethod("delete");
+		log.setRegdate(new Date());
+		logDao.insert(log);
+		return deleteCount;
+	}
+
+	@Override
+	@Transactional(readOnly=false)
+	public Guestbook addGuestbook(Guestbook guestbook, String ip) { // 얘도 readonly를 false로
+		guestbook.setRegdate(new Date());
+		// 자동으로 id값을 가져온다.
+		Long id = guestbookDao.insert(guestbook);
+		guestbook.setId(id);
+		
+		// 일부러 예외를 발생시키면 트랜잭션이 어떻게 되는지
+//		if(1 == 1)
+//			throw new RuntimeException("test exception");
+//			
+		Log log = new Log();
+		log.setIp(ip);
+		log.setMethod("insert");
+		log.setRegdate(new Date());
+		logDao.insert(log);
+		
+		
+		return guestbook;
+	}
+
+	@Override
+	public int getCount() {
+		return guestbookDao.selectCount();
+	}
+}
+
+```
+
+### RestController
+
+#### @RestController
+
+- spring 4에서 Rest API 또는 Web API를 개발하기 위해 등장한 어노테이션
+- 이전 버전의 @Controller와 @ResponseBody를 포함한다.
+
+#### JSON 응답하기
+
+- `@RestController`를 써주면 컨트롤러의 메소드에서 JSON으로 변환될 객체를 반환한다.
+- jackson 라이브러리를 추가할 경우 객체를 JSON으로 변환하는 MessageConvertor가 사용되도록 `@EnableWebMvc`에서 기본으로 설정되어 있다.
+- jackson을 추가하지 않으면 500 오류가 난다.
+
+#### JSON 객체로 보내기
+
+- get으로 `http://localhost:8080/guestbook/guestbooks`에 요청을 보내면 JSON 형태로 오는 것을 알 수 있다.
+- `application/json` 요청이기 때문에 DispathcerServlet은 jsonMessageConvert를 내부적으로 사용해서 Map 객체를 json으로 변환해서 전송하게 된다.
+- Guestbook으로 객체를 전송해도 json으로 변환돼서 간다.
+- 만약 서블릿을 이용해 JSON으로 보내야 한다면 JSON 라이브러리를 따로 써서 JSONObject 클래스같은 걸 써서 받고 보내고 해야 한다.(gson도 있다)
+- 클라이언트에서는 문자열로만 보내서 JSON.stringify나 JSON.parse로 받아도 되고...
+
+```java
+@RestController
+@RequestMapping(path="/guestbooks")
+public class GuestbookApiController {
+	@Autowired
+	GuestbookService guestbookService;
+	
+	// 리턴되는 Map을 JSON객체로 자동으로 만들어준다.다른 얘들도 모두 JSON 객체로 만들어줌.
+	고
+	@GetMapping
+	public Map<String, Object> list(@RequestParam(name="start", required=false, defaultValue="0") int start) {
+		
+		List<Guestbook> list = guestbookService.getGuestbooks(start);
+		
+		int count = guestbookService.getCount();
+		int pageCount = count / GuestbookService.LIMIT;
+		if(count % GuestbookService.LIMIT > 0)
+			pageCount++;
+		
+		List<Integer> pageStartList = new ArrayList<>();
+		for(int i = 0; i < pageCount; i++) {
+			pageStartList.add(i * GuestbookService.LIMIT);
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pageStartList", pageStartList);
+		
+		return map;
+	}
+	
+	@PostMapping
+	public Guestbook write(@RequestBody Guestbook guestbook,
+						HttpServletRequest request) {
+		String clientIp = request.getRemoteAddr();
+		// id가 입력된 guestbook이 반환된다.
+		Guestbook resultGuestbook = guestbookService.addGuestbook(guestbook, clientIp);
+		return resultGuestbook;
+	}
+	
+	@DeleteMapping("/{id}")
+	public Map<String, String> delete(@PathVariable(name="id") Long id,
+			HttpServletRequest request) {
+		String clientIp = request.getRemoteAddr();
+		
+		int deleteCount = guestbookService.deleteGuestbook(id, clientIp);
+		return Collections.singletonMap("success", deleteCount > 0 ? "true" : "false");
+	}
+}
+```

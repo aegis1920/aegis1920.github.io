@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-20 22:47:38 +0900
+updated : 2019-08-22 19:43:31 +0900
 tags    : 
 toc     : true
 public  : true
@@ -3211,6 +3211,16 @@ document.write("key : "+key+" value : "+grades[key]+"<br />");
 여기서 document.write에 grades.key라고 쓰면 잘 실행이 될까?
 안 된다. 왜냐하면 for(key in grades)에서 key는 순전히 차례대로 ‘egoing’, ‘k8805’를 의미한다. 이는 string인데 grades[key]를 하면 grades[‘egoing’]으로 출력이 되지만 grades.key는 grades.’egoing’이므로 undefined가 뜨게 된다. 본래 값인 grades.egoing을 하면 잘 된다. .이라는 게 오묘한 기호인 것 같다. 
 
+### 객체와 this
+
+- 자바스크립트에서는 객체 리터럴이라는 표현식을 통해 객체를 쉽게 만들 수 있다.
+- 객체 안에서 this는 그 객체 자신을 가리킨다.
+- 현재 컨텍스트가 참조하고 있는 객체를 알기 위해 this를 사용한다.
+- headObj.lastTime처럼 객체 안의 변수를 직접 접근하면 안 좋다. 메소드를 통해서 접근하는 게 좋다. 
+- 비슷한 분류의 것들을 하나로 묶어두는 게 좋다.
+- ES6에서는 function 키워드를 생략할 수 있다.
+- todo라는 객체에 todos라는 배열이 있고 other라는 객체에도 todos라는 배열이 있을 때 `todo.showTodo.call(other)`를 통해 todo에 있는 함수를 호출하지만 이걸 other에 있는 todos에 적용시켜줄 수 있다. 
+
 객체에는 객체를 담을 수도 있고, 함수를 담을 수도 있다.
 this는 약속되어있는 변수로 이 함수가 속해 있는 객체를 가리킨다. (즉, grades를 가리킨다.)
 var grades = {
@@ -3229,6 +3239,15 @@ document.write(name+':'+this.list[name]+"<br />"); //console.log(name, this.list
 };}}
 grades.show(); // 해주면 정보가 나오게 된다. 여기서는 함수 안에 들어있는 게 아니기 때문에 this를 써줄 수 없다.
 이처럼 그룹핑해서 프로그래밍하는 것이 객체 지향 프로그래밍이다..
+
+### bind
+
+- setTimeout과 같은 상황에서 안에 this를 써주면 그 객체가 나오지 않고 undefined가 나온다. 
+- 그러나 setTimeout의 바깥부분에서 bind(this)를 써주면 제대로 객체를 가리킨다.
+- bind는 새로운 함수를 반환한다.
+- 신기한 건 ES6에서 arrow함수를 쓰면서 bind를 쓴다면 또 다르다. arrow함수에서는 비동기더라도 this가 객체 자신을 가리킨다
+
+
 
 모듈
 모듈이란 코드를 여러 개의 파일로 분리하는 것이다. -> 가독성을 높여주고 메모리 낭비를 줄이는 효과
@@ -3888,6 +3907,7 @@ console.log(a.id);
 
 
 
+## boostcourse
 
 
 

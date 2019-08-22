@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-22 19:43:31 +0900
+updated : 2019-08-22 22:38:11 +0900
 tags    : 
 toc     : true
 public  : true
@@ -3907,7 +3907,6 @@ console.log(a.id);
 
 
 
-## boostcourse
 
 
 

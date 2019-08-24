@@ -3,7 +3,7 @@ layout  : wiki
 title   : Javascript
 summary : 
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-22 22:38:11 +0900
+updated : 2019-08-24 15:06:37 +0900
 tags    : 
 toc     : true
 public  : true
@@ -24,6 +24,7 @@ latex   : false
 ## 변수
 
 - 변수는 var, let, const로 선언할 수 있다. 어떤 것을 사용하는 가에 따라서 scope가 달라진다.
+- 숫자를 연산할 때 항상 double형으로 계산된다. 그래서 `5/2`를 하면 `2.5`가 나오게 된다. 정수부분만 구하고 싶다면 `Math.floor()`를 쓰자.
 
 ```javascript
 var a = 2;
@@ -37,7 +38,8 @@ var a = undefined;
 
 ## 연산자
 
-비교는 `==`보다는 `===`를 사용한다. `==`로 인한 다양한 오류 상황이 있다.
+- 비교는 `==`보다는 `===`를 사용한다. `==`로 인한 다양한 오류 상황이 있다.
+- `"1" == 1`은 `true`이고, `"1" === 1`은 `false`이다.
 
 ```javascript
 0 == false;
@@ -54,6 +56,8 @@ undefined, null, boolean, number, string, object, function, array, Date, RegExp
 ```
 
 ## 자바스크립트 문자열
+
+* 자바스크립트에서 한 번 생성된 문자열은 읽기만 가능하고 수정은 불가능하다.
 
 ```javascript
 typeof "a";    //string
@@ -445,6 +449,7 @@ console.log(totalPrice);
 - key, value 구조의 자료구조
 - Javascript로 데이터를 표현하기 위해서는 Array, Object를 사용한다
 - Object형태는 {}로 그 자료를 표현하며, 서버와 클라이언트 간에 데이터를 교환할 때 Object 포맷과 비슷한 방법으로 데이터를 보낸다
+- 객체의 속성을 만들 때 이름을 `full-name`과 같이 연산자가 있는 걸 쓰면 안 된다.
 
 ```javascript
 var person = {
@@ -3887,8 +3892,8 @@ function func(b) {	// b =a
 func(a);
 console.log(a);	//복제하고 하기 때문에 영향을 주지 않는다.
 
-var a = {‘id’ : 1};	//a에 담겨있는 게 객체다!
-function func b {	//b=a; //여기까지 a와 b 둘 다 ‘id’ : 1만 가리키고 있지만
+var a = {‘id’ : 1};	//a에 담겨있는 게 객체다!:wq
+리키고 있지만
 	b = {‘id : 2’};	// 얘로 인해서 b는 새로운 객체를 갖게 된다.
 }
 func(a);

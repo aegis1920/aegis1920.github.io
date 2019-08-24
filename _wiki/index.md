@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-08-22 22:38:24 +0900
+updated : 2019-08-24 00:03:04 +0900
 tags    : index
 toc     : true
 public  : true
@@ -12,7 +12,13 @@ latex   : false
 {:toc}
 
 * [[algorithm]]
+    * [[algorithm-basic]]
     * [[Computataional-Thinking]]
+    * [[data-structure]]
+    * [[sort-algorithm]]
+    * [[search-algorithm]]
+    * [[security-algorithm]]
+    * [[etc-algorithm]]
     * [[algo]]
     * [[topology-sort]]
 * [[how-to]]
@@ -131,3 +137,4 @@ latex   : false
     * [[job-tips]]
     * [[boost-course-ace-summer-2th-pass]]
     * [[boost-course-fe-ptj3-2-review]]
+    * [[boost-course-fe-ptj3-2-review2]]

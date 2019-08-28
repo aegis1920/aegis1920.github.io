@@ -3,7 +3,7 @@ layout  : wiki
 title   : 웹 애니메이션에 대해서 알아보자.
 summary : requestAnimationFrame()을 다시 알아보자.
 date    : 2019-08-06 15:22:51 +0900
-updated : 2019-08-09 12:42:14 +0900
+updated : 2019-08-28 21:05:55 +0900
 tags    : 
 toc     : true
 public  : true
@@ -91,6 +91,8 @@ requestAnimationFrame(run);
 
 ## CSS 애니메이션
 
+### 기본 transition
+
 * transition을 이용해 애니메이션을 구현할 수 있다. Javascript 애니메이션 방법보다 빠르다.
 * 특히 모바일 웹에서는 transform을 사용한 element의 조작을 많이 구현한다.
 * GPU 가속을 이용하는 속성(translateXX(), scale(), rotate(), opacity 등..)을 사용하면 애니메이션 처리가 빠르다.
@@ -127,4 +129,32 @@ requestAnimationFrame(run);
     </script>
 </html>
 ```
+
+### CSS animation
+
+- CSS로만 구성되어있기 때문에 좋은 성능을 보여준다.
+
+#### css animation의 속성들
+
+- animation-name
+    - `@keyframes` 속성에서 설정한 애니메이션의 이름. 설정해야 애니메이션을 호출해서 재생할 수 있다.
+- animation-duration
+    - 애니메이션을 한 번 재생하는데 걸리는 시간
+- animation-delay
+    - 시작을 지연할 시간을 설정. 예를 들어, 1초라면 1초 뒤에 애니메이션이 시작된다.
+- animation-direction
+    - 애니메이션의 재생 방향을 결정한다
+    - `@keyframes` 속성에서 from ~ to가 순방향, to ~ from이 역방향이다.
+- animation-iteration-count
+    - 애니메이션을 재생하는 횟수
+    - 기본 값은 1
+    - `infinite`로 설정해서 무한으로 동작하게 할 수도 있다.
+- animation-play-state
+    - 재생 여부를 판단해준다. 기본값이 `running`인데 재생한다는 소리고 `paused`를 하게 되면 중간에 멈추게 할 수 있다.
+- animation-timing-function
+    - 느리게 출발했다가 빨라지고 느리게 도착하는 등 재생하는 동안 효과를 줄 수 있다.
+- `keyframes`
+    - from, to를 써도 되고, 0%, 100%를 써도 된다.
+    - 프레임마다 효과를 줄 수 있다. 
+
 

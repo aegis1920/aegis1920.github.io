@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-08-24 00:03:04 +0900
+updated : 2019-08-30 10:34:36 +0900
 tags    : index
 toc     : true
 public  : true
@@ -120,7 +120,7 @@ latex   : false
     * [[DispatcherServlet]]
     * [[JQuery]]
     * [[handlebar]]
-    * 
+    * [[web3j]]
 * error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-09-03 10:04:33 +0900
+updated : 2019-09-04 11:29:10 +0900
 tags    : index
 toc     : true
 public  : true
@@ -121,6 +121,7 @@ latex   : false
     * [[JQuery]]
     * [[handlebar]]
     * [[web3j]]
+    * [[blockchain]]
 * error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

@@ -3,7 +3,7 @@ layout  : wiki
 title   : Computational Thinking
 summary : 
 date    : 2019-06-20 14:21:59 +0900
-updated : 2019-06-20 14:22:51 +0900
+updated : 2019-09-06 14:07:24 +0900
 tags    : 
 toc     : true
 public  : true
@@ -92,9 +92,38 @@ Ex) $f(n) = n*f(n-1)​$
 
 ## 순열
 
-서로 다른 n개의 원소에서 r개를 중복없이 골라 순서에 상관있게 일렬로 나열하는 것을 n개에서 r개를 선택하는 순열이라고 한다. 
+- 서로 다른 n개의 원소에서 r개를 중복없이 골라 순서에 상관있게 일렬로 나열하는 것을 n개에서 r개를 선택하는 순열이라고 한다. 
 
 $_{n}\mathrm{P}_{r} = \frac{n!}{(n-r)!}$, $_{n}\mathrm{P}_{r} = _{n}\mathrm{C}_{r} * r!$
+
+- 중복이 없는 순열 코드
+- N개 중에서 M개를 순서와 상관있으면서 중복없이 뽑는다.
+- 중복이 없을 때는 체크를 따로 해줘야 한다. 
+
+```java
+public static void permutation(int depth, int[] resArr, boolean[] arrCheck) {
+		// M개를 뽑는다.
+		if(depth == M) {
+			for(int res : resArr) {
+				System.out.print(res + " ");
+			}
+			System.out.println();
+			
+			return;
+		}
+		
+		// N개 중에서
+		for(int i = 1 ; i <= N ; i++) {
+			if(arrCheck[i]) continue;
+			arrCheck[i] = true;
+			resArr[depth] = i;
+			permutation(depth+1, resArr, arrCheck);
+			arrCheck[i] = false;
+		}
+	}
+```
+
+
 
 ## 조합
 
@@ -117,11 +146,61 @@ $_{n}\mathrm{C}_{r}​$ 또는 ${n \choose r}​$ 로 쓰며, $_{n}\mathrm{C}_{r
   * 이는 원소 n개인 집합의 부분 집합의 수와 같다. 원소를 한 개, 두 개, 세 개..뽑는 것으로 ${}_n\mathrm{C}_0 + {}_n\mathrm{C}_1 + ... {}_n\mathrm{C}_n$ 과 같다.
   * 파스칼의 삼각형에서 n일 때 그 행의 합을 구하는 것과 같다.
 
+- 중복이 없는 조합 코드
+- N개 중에서 M개를 순서와 상관없으면서 중복없이 뽑는다.
+- 오름차순으로 정렬되어있는 배열이라면 훨씬 쉽게 코드를 짤 수 있다.
+- 처음 시작을 0또는 1같이 맨 처음으로 하고 현재 있는 숫자보다 계속해서 더 크면 되므로 작거나 같을 때 continue시켜주면 된다.
+- 대신 계속 커져야하는 것을 보장받아야하기 때문에 해쉬처럼 N의 범위보다 큰 값을 정해야한다. 
+- 이러면 순열과 같이 체크배열을 따로 안 만들어줘도 돼서 좋다.
+- 그리고 이 방법은 for문 하나가 아니라 for문이 두 개라도 조건에 `r * 1000 + c`으로 만들어줄 수 있기때문에 더 범용성이 높다.
+
+```java
+public static void combination(int depth, int[] resArr, int limit) {
+		if(depth == M) {
+			for(int res : resArr) {
+				System.out.print(res + " ");
+			}
+			System.out.println();
+			
+			return;
+		}
+		
+		for(int i = 1 ; i <= N ; i++) {
+			// 해쉬처럼 일부러 크게 만들어서 다음 것보다 작은, 유일한 값을 만든다.
+			if(i * 100 <= limit) continue;
+			resArr[depth] = i;
+			combination(depth+1, resArr, i * 100);
+		}
+	}
+```
+
 ## 중복순열
 
 서로 다른 n개의 원소에서 r개를 중복이 가능하도록 골라 순서에 상관있게 일렬로 나열하는 것을 n개에서 r개를 선택하는 중복순열이라고 한다.
 
 $_{n}\mathrm{\pi}_{k} = n^k​$ 
+
+- 중복이 있는 순열 코드
+- N개 중에서 M개를 순서와 상관 있으면서 중복있이 뽑는다.
+
+```java
+public static void permutation(int depth, int[] resArr) {
+		if(depth == M) {
+			for(int res : resArr) {
+				System.out.print(res + " ");
+			}
+			System.out.println();
+			
+			return;
+		}
+		
+		// N개 중에서
+		for(int i = 1 ; i <= N ; i++) {
+			resArr[depth] = i;
+			permutation(depth+1, resArr);
+		}
+	}
+```
 
 ## 중복조합
 
@@ -130,7 +209,29 @@ $_{n}\mathrm{\pi}_{k} = n^k​$
 * Ex) 1과 2에서 세 개를 취하는 중복조합은 111, 112, 122, 222가 있다.
 * $_{n}\mathrm{H}_{r} = _{n+r-1}\mathrm{C}_{r}​$
 
+- 중복이 있는 조합 코드
+- N개 중에서 M개를 순서와 상관 없으면서 중복있이 뽑는다.
+- 중복이 있게 하려면 큰 대신 같은 값일 때도 허락해주도록 하면된다. 작거나 같음이 아니라 작을 때만 continue 시켜준다.
 
+```java
+public static void combination(int depth, int[] resArr, int limit) {
+		if(depth == M) {
+			for(int res : resArr) {
+				System.out.print(res + " ");
+			}
+			System.out.println();
+			
+			return;
+		}
+		
+		for(int i = 1 ; i <= N ; i++) {
+			// 해쉬처럼 일부러 크게 만들어서 다음 것보다 작은, 유일한 값을 만든다.
+			if(i * 100 < limit) continue;
+			resArr[depth] = i;
+			combination(depth+1, resArr, i * 100);
+		}
+	}
+```
 
 ## 증명하는 방법
 

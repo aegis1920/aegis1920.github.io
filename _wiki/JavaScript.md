@@ -1,9 +1,9 @@
 ---
 layout  : wiki
 title   : Javascript
-summary : 
+summary : 현재 코드 자체가 안에 쓰여있어서 페이지 자체에 적용된다. 여유가 있을 때 수정해야겠다...
 date    : 2019-06-20 15:20:25 +0900
-updated : 2019-08-24 15:06:37 +0900
+updated : 2019-09-16 22:21:04 +0900
 tags    : 
 toc     : true
 public  : true

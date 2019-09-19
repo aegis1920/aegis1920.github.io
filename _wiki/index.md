@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-09-11 23:59:44 +0900
+updated : 2019-09-19 18:57:21 +0900
 tags    : index
 toc     : true
 public  : true
@@ -67,6 +67,7 @@ latex   : false
     * [[http-vs-https]]
     * [[ruby-on-rails-likelion]]
     * [[tomcat-version-diff]]
+    * [[algo-b-test-study]]
 * [[vim]]
     * [[myvimrc]]
     * [[vim-study]]

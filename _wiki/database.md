@@ -3,7 +3,7 @@ layout  : wiki
 title   : database
 summary : 
 date    : 2019-06-20 15:34:41 +0900
-updated : 2019-06-25 15:53:15 +0900
+updated : 2019-09-24 10:18:15 +0900
 tags    : 
 toc     : true
 public  : true
@@ -280,6 +280,70 @@ or 품목별로 취소도 가능할 수 있는지. 한 주문에 상품이 하�
 
 3. from, where, select, order by. 순으로 실행. select가 마지막이 아니다.(X)
 4. outer left, right 방향. 그 방향대로 기준이 되면서 직원 부서 테이블이 없더라도 가져온다(O)
+
+#### DB 질의 모음
+
+DATABASE 질의
+
+1. 전체 부서의 모든 애트리뷰트들을 검색하라.
+2. 모든 부서의 부서 번호와 부서 이름을 검색하라.
+3. 모든 사원의 직급을 검색하라.
+4. 모든 사원들의 상이한 직급을 검색하라.
+5. 2번 부서에 근무하는 사원들에 관한 모든 정보를 검색하라.
+6. 이씨 성을 가진 사원들의 이름, 직급, 소속 부서번호를 검색하라.
+7. 직급이 과장이면서 1번 부서에서 근무하는 사원들의 이름과 급여를 검색하라. 
+8. 직급이 과장이면서 1번 부서에 속하지 않은 사원들의 이름과 급여를 검색하라.
+9. 급여가 3000000원 이상이고 , 4500000원 이하인 사원들의 이름, 직급, 급여를 검색하라. 그리고 BETWEEN도 써봐라.
+10. 1번 부서나 3번 부서에 소속된 사원들에 관한 모든 정보를 검색하라. (IN을 써서)
+11. 직급이 과장인 사원들에 대하여 이름과, 현재의 급여, 급여가 10% 인상됐을 때의 값을 검색하라.
+12. MANAGER가  NULL인 사람의 모든 정보를 검색하라. (그리고 AND, OR, NOT에 대해 NULL의 관계를 쓰시오.)
+13. 2번 부서에 근무하는 사원들의 급여, 직급, 이름을 검색하여 급여를 오름차순으로 정렬하라. (내림차순으로도 해보라.) (그리고 부서가 같을 경우는?)
+14. 모든 사원들의 평균 급여와 최대 급여를 검색하라.
+15. 모든 사원들에 대해서 사원들이 속한 부서번호별로 그룹화하고, 각 부서마다 부서번호, 평균 급여, 최대 급여를 검색하라. 
+16. 모든 사원들에 대해서 사원들이 속한 부서번호별로 그룹화하고, 평균 급여가 2500000원이상인 부서에 대해서 부서번호, 평균 급여, 최대 급여를 검색하라. 
+17. 김창섭이 속한 부서이거나 개발 부서의 부서번호를 검색하라.
+18. 모든 사원의 이름과 이 사원이 속한 부서이름을 검색하라.
+19. 모든 사원에 대해서 사원의 이름과 직속 상사의 이름을 검색하라. (조심하자. 의!)
+20. 모든 사원에 대해서 소속 부서이름, 사원의 이름, 직급, 급여를 검색하라. 부서 이름에 대해서 오름차순, 부서이름이 같은 경우에는 SALARY에 대해서 내림차순으로 정렬하라. 
+21. 박영권과 같은 직급을 갖는 모든 사원들의 이름과 직급을 검색하라. 
+22. 영업부나 개발부에 근무하는 사원들의 이름을 검색하라. (조인의 경우도 있다.)
+23. 영업부나 개발부에 근무하는 사원들의 이름을 검색하라. (여러 애트리뷰트가 이루어진 걸 반환하는 경우)
+
+24. 자신이 속한 부서의 사원들의 평균 급여보다 많은 급여를 받는 사원들에 대해서 이름, 부서번호, 급여를 검색하라. (자신이 속한 부서의 사원들의 평균 급여! 잘 생각해보자.)
+
+25. DEPARTMENT 릴레이션에 (5, HE, NULL) 투플을 삽입하는 INSERT문을 써라.
+
+26. EMPLOYEE 릴레이션에서 급여가 3000000이상인 사원들의 이름, 직급, 급여를 검색하여 HIGH_SALARY라는 릴레이션에 삽입하라. HIGH_SALARY 릴레이션은 이미 생성되어 있다고 가정한다. 
+
+27. DEPARTMENT 릴레이션에서 4번 부서를 삭제하라.
+
+28. 사원번호가 2106인 사원의 소속 부서를 3번 부서로 옮기고, 급여를 5% 올려라.
+
+
+
+<답지>
+17. (SELECT DNO FROM EMPLOYEE WHERE EMPNAME = '김창섭') UNION (SELECT DEPTNO FROM DEPARTMENT WHERE DEPTNAME = '개발'); //부서번호 자체를 따로 나눠서 릴레이션으로 합집합을 해줄 수 있다.
+18. SELECT EMPNAME, DEPTNAME FROM EMPLOYEE, DEPARTMENT WHERE DNO = DEPTNO;
+//기본적인 조인이니까 반드시 외우자
+19. SELECT E.EMPNAME, M.EMPNAME FROM EMPLOYEE E, EMPLOYEE M WHERE M.MANAGER = E.EMPNO;
+20. SELECT DEPTNAME, EMPNAME, TITLE, SALARY FROM EMPLOYEE, DEPARTMENT WHERE DNO = DEPTNO ORDER BY DNO ASC, SALARY DESC;
+21. SELECT EMPNAME, TITLE FROM EMPLOYEE WHERE TITLE = (SELECT TITLE FROM EMPLOYEE WHERE EMPNAME = 'PYG'); //진짜 말 그대로 어떤 애트리뷰트가 나오는지 확인을 시켜줘야된다.
+22. SELECT EMPNAME FROM EMPLOYEE, DEPARTMENT WHERE DNO = DEPTNO AND  (DEPTNAME = 'business' OR DEPTNAME = 'dev');
+또는 
+SELECT EMPNAME FROM EMPLOYEE WHERE DNO IN ( SELECT DEPTNO FROM DEPARTMENT WHERE DEPTNAME = 'business' OR DEPTNAME = 'dev');
+23. SELECT EMPNAME FROM EMPLOYEE WHERE EXISTS ( SELECT * FROM DEPARTMENT WHERE DNO = DEPTNO AND( DEPTNAME = 'business' OR DEPTNAME = 'dev')); //똑같이 조인을 해줘야 딱 그것만 TRUE로 나올 수 있다. 
+24. SELECT EMPNAME, DNO, SALARY FROM EMPLOYEE E WHERE SALARY > (SELECT AVG(SALARY) FROM EMPLOYEE WHERE DNO = E.DNO);
+
+
+
+SELECT AO.ANIMAL_ID, AO.NAME FROM ANIMAL_INS AI RIGHT OUTER JOIN ANIMAL_OUTS AO ON AI.ANIMAL_ID = AO.ANIMAL_ID
+WHERE AI.ANIMAL_ID IS NULL 
+ORDER BY AO.ANIMAL_ID
+
+
+
+
+
 
 
 

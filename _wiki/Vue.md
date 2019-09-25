@@ -3,7 +3,7 @@ layout  : wiki
 title   : Vue
 summary : 
 date    : 2019-06-20 15:40:27 +0900
-updated : 2019-06-25 14:06:28 +0900
+updated : 2019-09-25 15:59:20 +0900
 tags    : 
 toc     : true
 public  : true
@@ -77,5 +77,189 @@ SPA는 초기 구동 속도가 느리다. IE8 이하는 지원하지 않는다. 
 
 firebase Cloud Function을 써보자. firebase functions sample이라는 github repository가 있다. 
 
+## Vuex
+### state
+- 중앙 집중 저장소
+- store.js 파일 안에 작성
+- main.js 파일 안에서 Vue를 생성할 때 store가 있어야 함
+- $store로 불러올 수 있다. 
+- state가 data와 같은 곳
+### getters
+- 중복된 호출을 없애기 위해 getters가 존재한다.
+- 함수로 이루어져 있음
+- state의 computed 역할을 하는데 state를 쓴다고 얘기를 해줘야 함.
 
+### map getters
+- 원하는 컴포넌트 내로 getters를 불러주는 역할
+- import를 시켜줘야 함. `import {mapGetters} from 'vuex'`라고 쓰고 computed에 ...mapGetters([])로 불러와야 한다. 배열이 아니라 객체로 받아서 이름을 바꿔서 줄 수도 있다.
+- mapState([])와 같이 state도 불러와줄 수 있다.
+
+### mutations
+- state를 변화시키는 mutations
+- 각각의 컴포넌트 내에서 mutations 내에 있는 함수를 commit해서 변화시킨다.
+- mapMutations([])를 통해서 써준다.
+- 동기로 동작.
+
+### actions
+- mutations에 비동기 로직들이 포함되면 순서를 알기가 어려워 비동기 로직은 actions에서 실행하게 된다.
+- actions를 실행하는 것은 dispatch. 그리고나서 commit을 한다.
+- context, payload가 있다. context를 간단하게 써준 게 {commit}.
+- 불러올 때 `this.$store.dispath('addUsers', userObj)`로 불러온다.
+- ...mapActions(['addUsers'])
+
+### 예시
+
+SignUp.vue file
+
+```javascript
+
+
+import { mapMutations } from 'vuex'
+
+export default{
+    data(){
+        return{
+        
+        }
+    },
+    methods:{
+
+        // ...mapMutations(['addUsers', 'double']),
+        ...mapActions(['addUsers']),
+        signUp(){
+        
+        }
+        
+        // this.addUsers(userObj)
+        // this.$store.dispatch('addUsers', userObj)
+        this.addUsers(userObj)
+        
+
+    }
+}
+
+```
+
+AllUsers.vue 파일
+
+```javascript
+import { mapState, mapGetters } from 'vuex'
+
+export default{
+    data(){
+        return{
+        
+        }
+    },
+    computed: {
+        // 이러면 그냥 이름대로 {{count}} 처럼 써주면 된다.
+        ...mapGetters({
+            count: 'allUsersCount',
+            seouls: 'countOfSeoul',
+            percent: 'percentOfSeoul'
+        }),
+        mapState(['allUsers'])
+    }
+        
+
+}
+```
+
+store.js 파일
+
+```javascript
+getters: {
+    allUserCount: state => {
+        return state.allUsers.length
+    },
+    countOfSeoul: state => {
+        let count = 0
+        state.allUsers.forEach(user => {
+            if(user.address === 'Seoul') count++
+        })
+        return count
+    },
+    percentOfSeoul: (state, getters) => {
+        return Math.round(getters.countOfSeoul / getters.allUserCount * 100)
+    }
+},
+mutations: {
+    addUsers: (state, payload) => {
+    state.allUsers.push(payload)
+    }
+},
+actions: {
+    addUsers: ({commit}, payload) => {
+        commit('addUsers', payload)
+    }
+}
+```
+
+## 로그인 프로세스
+
+- 이메일과 비밀번호를 계속 가지고 있거나 계속 요청을 하게 되면 누군가 중간에 가져갈 수 있기 때문에 보안상 문제가 된다. 
+
+1. 이메일과 비밀번호를 서버에게 요청
+2. 서버는 토큰을 클라이언트에게 준다.
+
+- 토큰은 짧은 주기로 갱신하여 사용되기 때문에 중간에 빼앗기더라도 시간이 지나면 무용지물이 된다. 보안상 안전하다.
+
+- Local Storage에 남기는 것은 아주 위험하다. 다른 사람이 볼 수 있으니까.
+- 새로고침할 때마다 유효한지 알아보는 함수는 보통 main.js 파일에 넣는다.
+
+store.js
+
+```javascript
+
+actions : {
+    login({ dispatch }, loginObj) {
+        axios
+            .post(URL, loginObj)
+            .then(res => {
+                let token = res.data.token
+                localStorage.setItem("access_token", token)
+                dispatch("getMemberInfo")
+            })
+            .catch(() => {
+                alert("이메일과 비밀번호를 확인하세요")
+            })
+    
+    }
+
+}
+
+
+getMemberInfo({ commit }) {
+    let token = localStorage.getItem("access_token")
+    let config = {
+        headers: {
+            "access-token": token
+        }
+    }
+
+    axios
+        .get(URL, config)
+        .then(response => {
+            let userInfo = {
+            }
+            commit("loginSuccess", userInfo)
+        })
+        .catch(() => {
+            alert("이메일과 비밀번호를 확인하세요")
+        })
+}
+```
+
+main.js
+
+```javascript
+new Vue({
+    router,
+    store,
+    beforeCreate(){
+        this.$store.dispatch("getMemberInfo")
+    },
+    render: h => h(App)
+}).$mount(""#app")
+```
 

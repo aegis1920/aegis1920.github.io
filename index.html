@@ -16,9 +16,17 @@ adsense: false
         기억 보조용 위키
     <div>
     </div>
+    <div>
+        <a href="/blog/">블로그</a>
+        /
+        <a href="/tag/">태그</a>
+    </div>
     <div class="contact">
 {% if site.github_username %}
         <a href="https://github.com/{{ site.github_username }}">GitHub</a>
+{% endif %}
+{% if site.twitter_username %}
+        <a href="https://twitter.com/{{ site.twitter_username }}">Twitter</a>
 {% endif %}
 {% if site.email %}
         <a href="mailto:{{ site.email }}">Email</a>

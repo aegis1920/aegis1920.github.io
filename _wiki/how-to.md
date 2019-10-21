@@ -1,10 +1,10 @@
 ---
-layout  : category
-title   : HOW TO
-summary :
-date    : 2017-12-23 18:17:02 +0900
-updated : 2018-02-04 15:57:05 +0900
-tags    : how-to
+layout  : wiki
+title   : how-to
+summary : 
+date    : 2019-06-19 17:20:05 +0900
+updated : 2019-06-19 17:20:31 +0900
+tags    : 
 toc     : true
 public  : true
 parent  : index
@@ -13,3 +13,4 @@ latex   : false
 * TOC
 {:toc}
 
+# 

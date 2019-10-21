@@ -1,9 +1,9 @@
 ---
 layout  : wiki
-title   : vim
+title   : algorithm 
 summary : 
-date    : 2019-06-19 17:25:00 +0900
-updated : 2019-06-19 17:25:09 +0900
+date    : 2019-06-20 14:16:48 +0900
+updated : 2019-06-20 14:20:50 +0900
 tags    : 
 toc     : true
 public  : true

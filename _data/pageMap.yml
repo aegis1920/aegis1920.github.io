@@ -1,0 +1,624 @@
+about-scanf:
+    type: wiki
+    title: 'scanf에 대해서'
+    summary: ""
+    parent: study
+    url: /wiki/about-scanf
+    updated: '2019-06-20 16:27:38 +0900'
+    children: []
+AI:
+    type: wiki
+    title: AI
+    summary: ""
+    parent: what
+    url: /wiki/AI
+    updated: '2019-06-20 17:48:21 +0900'
+    children: []
+algo:
+    type: wiki
+    title: algo
+    summary: ""
+    parent: algorithm
+    url: /wiki/algo
+    updated: '2019-06-21 13:20:45 +0900'
+    children: []
+algorithm:
+    type: wiki
+    title: algorithm
+    summary: ""
+    parent: index
+    url: /wiki/algorithm
+    updated: '2019-06-20 14:20:50 +0900'
+    children: [algo, Computataional-Thinking]
+annotation:
+    type: wiki
+    title: annotation
+    summary: ""
+    parent: what
+    url: /wiki/annotation
+    updated: '2019-06-21 13:55:18 +0900'
+    children: []
+arduino:
+    type: wiki
+    title: arduino
+    summary: ""
+    parent: what
+    url: /wiki/arduino
+    updated: '2019-06-21 13:24:38 +0900'
+    children: []
+blog:
+    type: wiki
+    title: blog
+    summary: ""
+    parent: index
+    url: /wiki/blog
+    updated: '2019-06-19 17:31:08 +0900'
+    children: [DEVIEW-2018-review, first-post, google-search-knowhow-seminar, SW-vision-tour]
+book:
+    type: wiki
+    title: book
+    summary: ""
+    parent: index
+    url: /wiki/book
+    updated: '2019-06-19 17:22:17 +0900'
+    children: [The-Essence-of-Object-Orientation]
+Clean-Code:
+    type: wiki
+    title: 클린코드
+    summary: ""
+    parent: study
+    url: /wiki/Clean-Code
+    updated: '2019-06-20 16:22:31 +0900'
+    children: []
+Compiler:
+    type: wiki
+    title: 컴파일러
+    summary: ""
+    parent: what
+    url: /wiki/Compiler
+    updated: '2019-06-21 09:23:47 +0900'
+    children: []
+Computataional-Thinking:
+    type: wiki
+    title: 'Computational Thinking'
+    summary: ""
+    parent: algorithm
+    url: /wiki/Computataional-Thinking
+    updated: '2019-06-20 14:22:51 +0900'
+    children: []
+Connection_Pool:
+    type: wiki
+    title: '커넥션 풀'
+    summary: ""
+    parent: what
+    url: /wiki/Connection_Pool
+    updated: '2019-06-20 15:33:33 +0900'
+    children: []
+Cookie-Session:
+    type: wiki
+    title: '쿠키와 세션'
+    summary: ""
+    parent: what
+    url: /wiki/Cookie-Session
+    updated: '2019-06-20 15:27:26 +0900'
+    children: []
+CSS:
+    type: wiki
+    title: CSS
+    summary: ""
+    parent: what
+    url: /wiki/CSS
+    updated: '2019-06-21 15:44:41 +0900'
+    children: []
+database:
+    type: wiki
+    title: database
+    summary: ""
+    parent: what
+    url: /wiki/database
+    updated: '2019-06-20 15:35:54 +0900'
+    children: []
+design-pattern:
+    type: wiki
+    title: 'design pattern'
+    summary: ""
+    parent: index
+    url: /wiki/design-pattern
+    updated: '2019-06-21 11:24:22 +0900'
+    children: []
+DEVIEW-2018-review:
+    type: wiki
+    title: 'DEVIEW 2018 정리 및 후기'
+    summary: ""
+    parent: blog
+    url: /wiki/DEVIEW-2018-review
+    updated: '2019-06-21 11:13:16 +0900'
+    children: []
+DTD:
+    type: wiki
+    title: DTD
+    summary: ""
+    parent: what
+    url: /wiki/DTD
+    updated: '2019-06-21 13:31:42 +0900'
+    children: []
+EL-JSTL:
+    type: wiki
+    title: 'EL과 JSTL'
+    summary: ""
+    parent: what
+    url: /wiki/EL-JSTL
+    updated: '2019-06-21 13:33:13 +0900'
+    children: []
+excel:
+    type: wiki
+    title: '"Excel Study"'
+    summary: ""
+    parent: study
+    url: /wiki/excel
+    updated: '2019-06-19 17:23:15 +0900'
+    children: []
+first-post:
+    type: wiki
+    title: '첫 글'
+    summary: '4주간의 고생, 그 놈의 utf-8'
+    parent: blog
+    url: /wiki/first-post
+    updated: '2019-06-20 13:28:06 +0900'
+    children: []
+get-vs-post:
+    type: wiki
+    title: 'get과 post의 차이점'
+    summary: ""
+    parent: study
+    url: /wiki/get-vs-post
+    updated: '2019-06-20 16:26:34 +0900'
+    children: []
+git:
+    type: wiki
+    title: git
+    summary: ""
+    parent: what
+    url: /wiki/git
+    updated: '2019-06-21 13:18:02 +0900'
+    children: []
+google-search-knowhow-seminar:
+    type: wiki
+    title: '개발자를 위한 구글 검색 노하우 okky 세미나 후기'
+    summary: ""
+    parent: blog
+    url: /wiki/google-search-knowhow-seminar
+    updated: '2019-06-21 13:54:09 +0900'
+    children: []
+how-to:
+    type: wiki
+    title: how-to
+    summary: ""
+    parent: index
+    url: /wiki/how-to
+    updated: '2019-06-19 17:20:31 +0900'
+    children: [programming]
+HTML:
+    type: wiki
+    title: HTML
+    summary: ""
+    parent: what
+    url: /wiki/HTML
+    updated: '2019-06-20 15:19:59 +0900'
+    children: []
+HTML5-and-DTD:
+    type: wiki
+    title: 'HTML5와 DTD에서의 궁금증'
+    summary: ""
+    parent: study
+    url: /wiki/HTML5-and-DTD
+    updated: '2019-06-21 13:30:24 +0900'
+    children: []
+http:
+    type: wiki
+    title: 'HTTP란?'
+    summary: ""
+    parent: what
+    url: /wiki/http
+    updated: '2019-06-21 13:27:07 +0900'
+    children: [multipart]
+index:
+    type: wiki
+    title: 'wiki index page'
+    summary: null
+    parent: null
+    url: /wiki/index
+    updated: '2019-06-21 13:55:51 +0900'
+    children: []
+Java-Access_modifier-final-static-Encapsulation:
+    type: wiki
+    title: 'Java 접근제한자, final, static, 블럭, 캡슐화(Encapsulation)'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-Access_modifier-final-static-Encapsulation
+    updated: '2019-06-20 14:48:14 +0900'
+    children: []
+Java-api-methods:
+    type: wiki
+    title: 'java.lang과 java.util 관련 클래스들'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-api-methods
+    updated: '2019-06-21 13:39:54 +0900'
+    children: []
+Java-collection:
+    type: wiki
+    title: Collection
+    summary: ""
+    parent: Java
+    url: /wiki/Java-collection
+    updated: '2019-06-20 14:49:51 +0900'
+    children: []
+Java-convention-type-comment:
+    type: wiki
+    title: 'Java 주석, 데이터 타입, 메모리(변수) 할당, 조건문, 반복문, 메소드, 배열'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-convention-type-comment
+    updated: '2019-06-20 14:45:34 +0900'
+    children: []
+Java-Exception:
+    type: wiki
+    title: Exception
+    summary: ""
+    parent: Java
+    url: /wiki/Java-Exception
+    updated: '2019-06-20 15:05:55 +0900'
+    children: []
+Java-generic:
+    type: wiki
+    title: 'Java Generic'
+    summary: ""
+    parent: ""
+    url: /wiki/Java-generic
+    updated: '2019-06-20 15:09:28 +0900'
+    children: []
+Java-inheritance-constructor-super-this:
+    type: wiki
+    title: 'Java 상속, 생성자, super, this'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-inheritance-constructor-super-this
+    updated: '2019-06-20 14:46:55 +0900'
+    children: []
+Java-innerclass:
+    type: wiki
+    title: 'inner class'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-innerclass
+    updated: '2019-06-20 14:49:28 +0900'
+    children: []
+Java-interface:
+    type: wiki
+    title: interface
+    summary: ""
+    parent: Java
+    url: /wiki/Java-interface
+    updated: '2019-06-20 14:48:42 +0900'
+    children: []
+Java-IO:
+    type: wiki
+    title: 'IO 기반 입출력'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-IO
+    updated: '2019-06-20 15:07:52 +0900'
+    children: []
+Java-JVM:
+    type: wiki
+    title: 'Java와 JVM'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-JVM
+    updated: '2019-06-21 13:43:16 +0900'
+    children: []
+Java-lambda:
+    type: wiki
+    title: 'lambda 식'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-lambda
+    updated: '2019-06-20 15:09:59 +0900'
+    children: []
+Java-network:
+    type: wiki
+    title: 'Java 네트워크 기초'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-network
+    updated: '2019-06-20 15:08:49 +0900'
+    children: []
+Java-NIO:
+    type: wiki
+    title: NIO
+    summary: ""
+    parent: Java
+    url: /wiki/Java-NIO
+    updated: '2019-06-20 15:10:19 +0900'
+    children: []
+Java-object-class-package:
+    type: wiki
+    title: 'Java 객체, 클래스, 패키지'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-object-class-package
+    updated: '2019-06-20 14:46:17 +0900'
+    children: []
+Java-overriding-overloading-polymorphism-abstract:
+    type: wiki
+    title: 'Java 오버로딩, 오버라이딩, 다형성, 추상 클래스'
+    summary: ""
+    parent: Java
+    url: /wiki/Java-overriding-overloading-polymorphism-abstract
+    updated: '2019-06-20 14:47:38 +0900'
+    children: []
+Java-System_out_println:
+    type: wiki
+    title: 'Java에서 System.out.println()이란?'
+    summary: ""
+    parent: study
+    url: /wiki/Java-System_out_println
+    updated: '2019-06-21 13:42:17 +0900'
+    children: []
+Java-thread:
+    type: wiki
+    title: thread
+    summary: ""
+    parent: Java
+    url: /wiki/Java-thread
+    updated: '2019-06-20 15:08:14 +0900'
+    children: []
+JavaScript:
+    type: wiki
+    title: Javascript
+    summary: ""
+    parent: what
+    url: /wiki/JavaScript
+    updated: '2019-06-21 15:45:17 +0900'
+    children: []
+JDBC:
+    type: wiki
+    title: JDBC
+    summary: ""
+    parent: what
+    url: /wiki/JDBC
+    updated: '2019-06-20 15:34:23 +0900'
+    children: []
+JSP:
+    type: wiki
+    title: JSP
+    summary: ""
+    parent: what
+    url: /wiki/JSP
+    updated: '2019-06-21 13:45:56 +0900'
+    children: []
+JSP1.2-JSP2.0:
+    type: wiki
+    title: 'JSP 1.2와 JSP 2.0의 차이'
+    summary: ""
+    parent: study
+    url: /wiki/JSP1.2-JSP2.0
+    updated: '2019-06-21 11:20:34 +0900'
+    children: []
+Linux:
+    type: wiki
+    title: Linux
+    summary: ""
+    parent: what
+    url: /wiki/Linux
+    updated: '2019-06-20 16:58:03 +0900'
+    children: []
+ms-chatbot-seminar:
+    type: wiki
+    title: ""
+    summary: ""
+    parent: ""
+    url: /wiki/ms-chatbot-seminar
+    updated: '2019-06-21 13:56:46 +0900'
+    children: []
+multipart:
+    type: wiki
+    title: multipart
+    summary: ""
+    parent: http
+    url: /wiki/multipart
+    updated: '2019-06-21 13:25:41 +0900'
+    children: []
+Mybatis:
+    type: wiki
+    title: Mybatis
+    summary: ""
+    parent: what
+    url: /wiki/Mybatis
+    updated: '2019-06-20 15:40:05 +0900'
+    children: []
+myvimrc:
+    type: wiki
+    title: '"내 vimrc"'
+    summary: ""
+    parent: vim
+    url: /wiki/myvimrc
+    updated: '2019-06-20 16:11:44 +0900'
+    children: []
+NA-NULL-in-R:
+    type: wiki
+    title: 'R에서 NA와 NULL, &와 &&의 차이'
+    summary: ""
+    parent: study
+    url: /wiki/NA-NULL-in-R
+    updated: '2019-06-21 11:16:44 +0900'
+    children: []
+Network:
+    type: wiki
+    title: network
+    summary: ""
+    parent: what
+    url: /wiki/Network
+    updated: '2019-06-21 10:09:22 +0900'
+    children: []
+open-source-guide:
+    type: wiki
+    title: '네이버 오픈소스 가이드'
+    summary: ""
+    parent: study
+    url: /wiki/open-source-guide
+    updated: '2019-06-20 13:49:05 +0900'
+    children: []
+OS:
+    type: wiki
+    title: OS
+    summary: ""
+    parent: what
+    url: /wiki/OS
+    updated: '2019-06-21 10:26:02 +0900'
+    children: []
+PLSQL:
+    type: wiki
+    title: PLSQL
+    summary: ""
+    parent: what
+    url: /wiki/PLSQL
+    updated: '2019-06-20 17:30:50 +0900'
+    children: []
+programming:
+    type: wiki
+    title: '프로그래밍을 잘하기 위해서는 어떻게 해야할까?'
+    summary: ""
+    parent: how-to
+    url: /wiki/programming
+    updated: '2019-06-21 10:30:00 +0900'
+    children: []
+Project:
+    type: wiki
+    title: '프로그래밍의 세계에서 Project란?'
+    summary: ""
+    parent: what
+    url: /wiki/Project
+    updated: '2019-06-21 13:48:14 +0900'
+    children: []
+Python:
+    type: wiki
+    title: python
+    summary: ""
+    parent: programming-language
+    url: /wiki/Python
+    updated: '2019-06-21 13:21:55 +0900'
+    children: []
+Ruby-bundle:
+    type: wiki
+    title: '~>의 의미와 bundle install과 bundle update의 차이'
+    summary: ""
+    parent: study
+    url: /wiki/Ruby-bundle
+    updated: '2019-06-21 13:51:33 +0900'
+    children: []
+Servlet:
+    type: wiki
+    title: Servlet
+    summary: ""
+    parent: what
+    url: /wiki/Servlet
+    updated: '2019-06-20 15:29:06 +0900'
+    children: []
+Spring:
+    type: wiki
+    title: Spring
+    summary: ""
+    parent: what
+    url: /wiki/Spring
+    updated: '2019-06-21 13:44:56 +0900'
+    children: []
+study:
+    type: wiki
+    title: study
+    summary: ""
+    parent: index
+    url: /wiki/study
+    updated: '2019-06-19 17:23:39 +0900'
+    children: [about-scanf, Clean-Code, excel, get-vs-post, HTML5-and-DTD, Java-System_out_println, JSP1.2-JSP2.0, NA-NULL-in-R, open-source-guide, Ruby-bundle]
+SW-vision-tour:
+    type: wiki
+    title: '삼성전자 SW vision tour 후기'
+    summary: ""
+    parent: blog
+    url: /wiki/SW-vision-tour
+    updated: '2019-06-21 10:31:25 +0900'
+    children: []
+The-Essence-of-Object-Orientation:
+    type: wiki
+    title: '"객체지향의 사실과 오해를 읽고..."'
+    summary: ""
+    parent: book
+    url: /wiki/The-Essence-of-Object-Orientation
+    updated: '2019-06-19 17:22:01 +0900'
+    children: []
+transaction:
+    type: wiki
+    title: 트랜잭션
+    summary: ""
+    parent: what
+    url: /wiki/transaction
+    updated: '2019-06-20 15:35:39 +0900'
+    children: []
+vim:
+    type: wiki
+    title: vim
+    summary: ""
+    parent: index
+    url: /wiki/vim
+    updated: '2019-06-19 17:25:09 +0900'
+    children: [myvimrc, vim-study]
+vim-study:
+    type: wiki
+    title: 'vim을 공부하자'
+    summary: ""
+    parent: vim
+    url: /wiki/vim-study
+    updated: '2019-06-20 16:24:49 +0900'
+    children: []
+Vue:
+    type: wiki
+    title: Vue
+    summary: ""
+    parent: what
+    url: /wiki/Vue
+    updated: '2019-06-20 16:08:42 +0900'
+    children: []
+what:
+    type: wiki
+    title: what
+    summary: ""
+    parent: index
+    url: /wiki/what
+    updated: '2019-06-20 09:23:42 +0900'
+    children: [AI, annotation, arduino, Compiler, Connection_Pool, Cookie-Session, CSS, database, DTD, EL-JSTL, git, HTML, http, JavaScript, JDBC, JSP, Linux, Mybatis, Network, OS, PLSQL, Project, Servlet, Spring, transaction, Vue, XML, XPath, XSLT]
+XML:
+    type: wiki
+    title: XML
+    summary: ""
+    parent: what
+    url: /wiki/XML
+    updated: '2019-06-21 13:38:54 +0900'
+    children: []
+XPath:
+    type: wiki
+    title: XPath
+    summary: ""
+    parent: what
+    url: /wiki/XPath
+    updated: '2019-06-21 13:34:54 +0900'
+    children: []
+XSLT:
+    type: wiki
+    title: XSLT
+    summary: ""
+    parent: what
+    url: /wiki/XSLT
+    updated: '2019-06-21 13:37:29 +0900'
+    children: []

@@ -1,17 +1,18 @@
 # Site settings
-title: 기계인간 John Grib
-url: "https://johngrib.github.io"
+title: aegis1920의 위키 블로그
+url: "https://aegis1920.github.io"
 baseurl: ""
 description: >
-    기계인간 블로그
+    aegis1920의 블로그
 
 # My information
-email: johngrib82@gmail.com
-author: 기계인간 John Grib
-profile: 유물론자
-twitter_username: John_Grib
-github_username: johngrib
-disqus_shortname: johngrib
+email: aegis1920@gmail.com
+author: aegis1920
+profile: 개발자가 되고싶어요
+github_username: aegis1920
+disqus_shortname: aegis1920
+
+encoding: UTF-8
 
 # Build settings
 plugins:
@@ -38,8 +39,8 @@ collections:
 
 # Comment Service
 disqus:
-  id: johngrib
-  shortname: johngrib
+  id: aegis1920
+  shortname: aegis1920
 
 google_analytics:
   ua: UA-110224147-1
@@ -47,8 +48,8 @@ google_analytics:
 google_adsense:
   client: ca-pub-3675948545737694
 
-blame: "https://github.com/johngrib/johngrib.github.io/blame/master/_wiki"
-edit: "https://github.com/johngrib/johngrib.github.io/edit/master/_wiki"
-issue: "https://github.com/johngrib/johngrib.github.io/issues/new"
+blame: "https://github.com/aegis1920/aegis1920.github.io/blame/master/_wiki"
+edit: "https://github.com/aegis1920/aegis1920.github.io/edit/master/_wiki"
+issue: "https://github.com/aegis1920/aegis1920.github.io/issues/new"
 
 timezone: "Asia/Seoul"

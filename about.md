@@ -1,19 +1,11 @@
 ---
 layout: page
-title:
+title: About
 permalink: /about/
-comment: false
 ---
 
-<div class="contact">
-{% if site.github_username %}
-        <a href="https://github.com/{{ site.github_username }}">GitHub</a>
-{% endif %}
-{% if site.email %}
-        <a href="mailto:{{ site.email }}">Email</a>
-{% endif %}
-        <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a>
-</div>
+# About My Page
+- 이 페이지는 [이종립님의 github.io](https://johngrib.github.io/)에서 영감을 받아 만들어졌습니다.
 
 # About Me
 
@@ -25,9 +17,5 @@ comment: false
 # Life
 
 * 실내에 있는 것을 좋아합니다.
-* 담배를 피지 않고 술은 가끔 마십니다.
-* 커피를 마시지 않습니다.
-* 오버워치를 좋아합니다.
-
-
-
+* 담배를 피지 않고 커피를 마시지 않습니다.
+* 게임을 좋아합니다.

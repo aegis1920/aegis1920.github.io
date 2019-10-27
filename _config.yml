@@ -1,55 +1,17 @@
-# Site settings
-title: aegis1920의 위키 블로그
-url: "https://aegis1920.github.io"
-baseurl: ""
-description: >
-    aegis1920의 블로그
-
-# My information
+title: aegis1920의 블로그
 email: aegis1920@gmail.com
-author: aegis1920
-profile: 개발자가 되고싶어요
-github_username: aegis1920
-disqus_shortname: aegis1920
-
-encoding: UTF-8
+description: >- 
+  개발 중인 블로그입니다.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  aegis1920
 
 # Build settings
-plugins:
-  - jekyll-paginate
-  - jekyll-gist
-
-permalink: /blog/:year/:month/:day/:title/
-
 markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-
-paginate: 10
-paginator_path: "/blog"
-paginate_path: "/blog/page:num/"
+plugins:
+  - jekyll-feed
 
 # Collections
 collections:
-    wiki:
-        output: true
-        permalink: /:collection/:path/
-
-# Comment Service
-disqus:
-  id: aegis1920
-  shortname: aegis1920
-
-google_analytics:
-  ua: UA-110224147-1
-
-google_adsense:
-  client: ca-pub-3675948545737694
-
-blame: "https://github.com/aegis1920/aegis1920.github.io/blame/master/_wiki"
-edit: "https://github.com/aegis1920/aegis1920.github.io/edit/master/_wiki"
-issue: "https://github.com/aegis1920/aegis1920.github.io/issues/new"
-
-timezone: "Asia/Seoul"
+  wiki:
+    output: true

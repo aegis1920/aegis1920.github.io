@@ -1,9 +1,9 @@
-= --- =
+---
 layout  : wiki
 title   : 소수 프로그래밍
 summary : 
 date    : 2019-11-06 10:29:58 +0900
-updated : 2019-11-06 15:51:11 +0900
+updated : 2019-11-07 12:22:55 +0900
 tags    : 
 toc     : true
 public  : true

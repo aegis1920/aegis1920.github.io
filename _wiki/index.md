@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2019-10-16 09:20:57 +0900
+updated : 2019-11-06 10:29:58 +0900
 tags    : index
 toc     : true
 public  : true
@@ -21,6 +21,7 @@ latex   : false
     * [[etc-algorithm]]
     * [[algo]]
     * [[topology-sort]]
+    * [[prime-number]]
 * [[how-to]]
     * [[programming]]
 * math

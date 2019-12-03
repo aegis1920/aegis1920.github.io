@@ -3,7 +3,7 @@ layout  : wiki
 title   : "내 vimrc"
 summary : 
 date    : 2019-06-19 17:23:47 +0900
-updated : 2019-07-05 17:55:55 +0900
+updated : 2019-12-03 16:54:51 +0900
 tags    : 
 toc     : true
 public  : true
@@ -14,6 +14,17 @@ latex   : false
 {:toc}
 
 # 제 vimrc입니다.
+
+## 나만의 gvim 설정방법
+
+1. https://www.vim.org/download.php 에서 **Self-installing executable**을 설치한다.
+2. 모두 기본 설정값으로 넘겨주고 해당하는 폰트를 컴퓨터에 설치해준다.
+3. `:cd $VIM`으로 찾아들어가면 _vimrc 파일이 있다. 그 파일에  `set clipboard=unnamed`를 써서 윈도우와 복사 & 붙여넣기가 활성화되도록 하자.
+4. 코드를 모두 복붙한다.
+5. `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim` 을 통해서 Vundle 을 해당하는 경로에 클론한다.
+6. `:PluginInstall`을 해주면 내가 썼던 플러그인들이 설치가 된다.
+
+> vimwiki를 위한 설정들이 있어서 조금 복잡할 수 있습니다 :)
 
 ```vim
 source $VIMRUNTIME/vimrc_example.vim "vimrc의 예시 설정이 들어가 있다.
@@ -216,4 +227,14 @@ set hlsearch
 
 "문법을 적용시켜준다.
 syntax on
+
+"gvim에서 한글이 깨지는 문제는 utf-8로 하면 고쳐진다. 근데 이러면 menu가 깨진다. 어차피 메뉴는 안 쓰니까...
+set encoding=utf-8
+set fileencoding=utf-8
+
 ```
+
+
+
+
+

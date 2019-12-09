@@ -3,7 +3,7 @@ layout  : wiki
 title   : git
 summary : 
 date    : 2019-06-20 09:23:50 +0900
-updated : 2019-10-05 15:07:02 +0900
+updated : 2019-12-09 17:20:13 +0900
 tags    : 
 toc     : true
 public  : true
@@ -55,7 +55,7 @@ git init을 하면 .git이 생기고 working directory에서 파일을 수정하
 >
 .git에 있는 파일들은 commited 상태이고 staging area에 추가했다면 staged 상태, 아직 staging area에 추가하지 않았다면 modified이다.
 
-## Command
+## git에서 자주 쓰이는 Command
 ```
 git clone <누군가의 git 저장소>
 
@@ -97,10 +97,14 @@ git branch -v
 
 git fetch --prune // 원격 저장소에서 지워진 브랜치를 로컬에 반영
 
+git rm --cached <file // git이 수정여부를 체크할 때 기존에 버전관리했던 건 캐시해놓기때문에 완전히 삭제하려면 이 명령을 써야한다.
+
 ```
 
 - 혹시나 `merge conflict`가 났을 때 `git merge --abort`를 쓰면 취소가 된다.
 - 저장소에 따라 merge 정책이 다르기 때문에 `rebase`를 할지, `pull`를 할지 골라야된다.
+
+
 
 ## Git의 기본 이해(큰 줄기)
 

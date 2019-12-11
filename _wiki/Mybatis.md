@@ -3,7 +3,7 @@ layout  : wiki
 title   : Mybatis
 summary : 
 date    : 2019-06-20 15:39:48 +0900
-updated : 2019-06-20 15:40:05 +0900
+updated : 2019-12-11 15:56:50 +0900
 tags    : 
 toc     : true
 public  : true
@@ -67,6 +67,12 @@ parameterType에 소문자로 string을 줘도 된다. mabatis에서 알아서 �
 9. DAO에서 selectOne을 하게 되면 select한 결과가 나오는데 하나의 결과물만 나오게 된다. 즉, primary key를 써야 한다. isbn이나 id같이. 
 10. selectList를 줄 때 결과물의 타입은 같으므로 resultType으로 줘도 된다. 또는 resultMap으로 줘도 된다. 
 11. resultMap을 정의해줄 때 어떤 타입인지 type=을 써줘야 한다. id를 적어주고 확장된 것이라고 extends를 써준다.
+
+### Mybatis를 쓰면서 깨달은 점
+
+- MySQL, MariaDB에 있는 auto increment를 설정하고 insert해줄 때 두 가지 방법이 있다.
+    - `useGeneratedKeys="true" keyProperty="id"`
+    - insert xml 태그 안에 `INSERT INTO TABLENAME(id, ~) VALUES (0, ~)` 와 같이 auto increment되는 칼럼 안에 0을 넣어주면 자동으로 증가한다.
 
 ## log
 

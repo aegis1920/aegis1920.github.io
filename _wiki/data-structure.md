@@ -3,7 +3,7 @@ layout  : wiki
 title   : 자료구조를 정리해 놓은 글
 summary : 
 date    : 2019-08-23 23:47:41 +0900
-updated : 2019-10-17 14:06:39 +0900
+updated : 2019-12-10 22:41:40 +0900
 tags    : 
 toc     : true
 public  : true
@@ -42,8 +42,116 @@ latex   : false
 
 ## 해시테이블
 
-- 해쉬함수의 결과값에 배열의 크기로 나눠서 배열의 인덱스를 구해 그 인덱스에 데이터를 넣는다.
-- 충돌이 일어나기 마련인데 리스트구조로 연결할 수 있다.
+- 데이터를 해시함수에 넣어서 인덱스(Key)를 구하고 그 안에 데이터(Value)을 넣는 방법
+- 해시함수는 나머지 연산을 한다든지, 여러 연산을 섞어서 할 수 있다.
+- 바로 접근이 가능하기 때문에 시간복잡도는 O(n)이다.
+- 인덱스 안에 있는 값을 버켓이라고 하고 해시값에 있는 값을 엔트리라고 한다.
+- 그러나 해시함수에 넣어도 똑같은 인덱스가 나올 수 있다. 이것을 **충돌(Collison)**이라고 한다.
+- 충돌을 해결하는 두 가지 방법
+    - 체이닝(Chaining) : 이미 있는 값 뒤에 리스트 형식으로 계속해서 붙인다.
+    - 선형탐사(Linear Probing) : 이미 있는 값이라면 다음 인덱스에 넣는다.
+        - 이는 자리가 꽉찰 위험이 있기 때문에 테이블 리사이징(Resizing)이 필요하다.
+
+### 체이닝 구현
+
+```java
+import java.util.LinkedList;
+
+class HashTable {
+
+	LinkedList<Node>[] data;
+
+	HashTable(int size) {
+		this.data = new LinkedList[size];
+	}
+
+	static class Node {
+		String key;
+		String value;
+
+		public Node(String key, String value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		String value() {
+			return value;
+		}
+
+		void value(String value) {
+			this.value = value;
+		}
+	}
+
+	int getHashCode(String key) {
+		int hashcode = 0;
+		for (char c : key.toCharArray()) {
+			hashcode += c;
+		}
+		return hashcode;
+	}
+
+	int convertToIndex(int hashcode) {
+		return hashcode % data.length;
+	}
+
+	Node searchKey(LinkedList<Node> list, String key) {
+		if (list == null)
+			return null;
+		for (Node node : list) {
+			if (node.key.equals(key)) {
+				return node;
+			}
+		}
+		return null;
+	}
+
+	void put(String key, String value) {
+		int hashcode = getHashCode(key);
+		int index = convertToIndex(hashcode);
+		System.out.println(key + ", hashcode : " + hashcode + " index : " + index);
+		LinkedList<Node> list = data[index];
+		if (list == null) {
+			list = new LinkedList<Node>();
+			data[index] = list;
+		}
+
+		Node node = searchKey(list, key);
+		if (node == null) {
+			list.addLast(new Node(key, value));
+		} else {
+			node.value(value);
+		}
+	}
+
+	String get(String key) {
+		int hashcode = getHashCode(key);
+		int index = convertToIndex(hashcode);
+		LinkedList<Node> list = data[index];
+		Node node = searchKey(list, key);
+		return node == null ? "Not found" : node.value();
+	}
+
+}
+
+public class HashTableTest {
+
+	public static void main(String[] args) {
+		HashTable h = new HashTable(3);
+		h.put("sung", "she is sung");
+		h.put("jin", "she is jin");
+		h.put("hee", "she is angel");
+		h.put("min", "she is cute");
+		h.put("sung", "she is efff ");
+		System.out.println(h.get("sung"));
+		System.out.println(h.get("jin"));
+		System.out.println(h.get("hee"));
+		System.out.println(h.get("min"));
+		System.out.println(h.get("jae"));
+	}
+
+}
+```
 
 ## 힙
 
@@ -70,3 +178,4 @@ latex   : false
 ## 출처
 
 - 알고리즘 도감(책)
+- 해쉬테이블 https://www.youtube.com/watch?v=Vi0hauJemxA

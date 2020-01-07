@@ -3,7 +3,7 @@ layout  : wiki
 title   : Mybatis
 summary : 
 date    : 2019-06-20 15:39:48 +0900
-updated : 2019-12-11 15:56:50 +0900
+updated : 2019-12-11 20:14:42 +0900
 tags    : 
 toc     : true
 public  : true
@@ -73,6 +73,7 @@ parameterType에 소문자로 string을 줘도 된다. mabatis에서 알아서 �
 - MySQL, MariaDB에 있는 auto increment를 설정하고 insert해줄 때 두 가지 방법이 있다.
     - `useGeneratedKeys="true" keyProperty="id"`
     - insert xml 태그 안에 `INSERT INTO TABLENAME(id, ~) VALUES (0, ~)` 와 같이 auto increment되는 칼럼 안에 0을 넣어주면 자동으로 증가한다.
+    - 그리고 DTO 클래스에 id를 추가해줘야 한다.
 
 ## log
 

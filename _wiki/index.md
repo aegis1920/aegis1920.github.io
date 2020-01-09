@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-01-07 20:43:57 +0900
+updated : 2020-01-10 02:05:12 +0900
 tags    : index
 toc     : true
 public  : true
@@ -150,3 +150,4 @@ latex   : false
     * [[about-java-data-type]]
     * [[secure-coding]]
     * [[2019-retrospect]]
+    * [[nhnforward-2019-review]]

@@ -3,7 +3,7 @@ layout  : wiki
 title   : 자료구조를 정리해 놓은 글
 summary : 
 date    : 2019-08-23 23:47:41 +0900
-updated : 2019-12-10 22:41:40 +0900
+updated : 2020-01-12 22:08:34 +0900
 tags    : 
 toc     : true
 public  : true
@@ -51,6 +51,9 @@ latex   : false
     - 체이닝(Chaining) : 이미 있는 값 뒤에 리스트 형식으로 계속해서 붙인다.
     - 선형탐사(Linear Probing) : 이미 있는 값이라면 다음 인덱스에 넣는다.
         - 이는 자리가 꽉찰 위험이 있기 때문에 테이블 리사이징(Resizing)이 필요하다.
+- 자바에 있는 HashMap과 HashTable의 차이점으로는 동기화를 들 수 있다.
+    - HashMap은 동기화를 지원하지 않아 싱글 스레드의 환경에 적합하다.
+    - HashTable은 동기화를 지원해 멀티 스레드 환경에 적합하다.
 
 ### 체이닝 구현
 

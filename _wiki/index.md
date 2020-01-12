@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-01-10 02:05:12 +0900
+updated : 2020-01-12 21:08:40 +0900
 tags    : index
 toc     : true
 public  : true
@@ -31,6 +31,7 @@ latex   : false
     * [[tdd-kent-beck]]
     * [[mastering-tcp-ip]]
     * [[read-500-books-a-year]]
+    * [[atomic-habits]]
 * movie
 * [[design-pattern]]
 * programming-language

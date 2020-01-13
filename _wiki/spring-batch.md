@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring Batch
 summary : 
 date    : 2019-12-03 21:41:14 +0900
-updated : 2019-12-12 09:30:05 +0900
+updated : 2020-01-13 17:03:33 +0900
 tags    : 
 toc     : true
 public  : true
@@ -148,7 +148,15 @@ latex   : false
 
 어떤 SQL문을 하든 가능하다. insert를 하든, select를 하든 
 
+### Spring Batch에서 application.properties 설정
 
+```java
+# 스프링부트 2.0일 때 얘를 설정해주면 해당하는 DB에 자동으로 스키마가 생성된다. 새로고침 해보면 많은 테이블들이 생성되어있다. never로 설정해서 끌 수도 있다.
+spring.batch.initialize-schema=always
+
+# 디폴트는 true, 시작 시 컨텍스트 내의 모든 스프링 배치 작업들 수행 여부, 즉 자동 작업 시작을 의미한다.
+spring.batch.job.enabled=false
+```
 
 
 

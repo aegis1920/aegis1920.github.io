@@ -3,7 +3,7 @@ layout  : wiki
 title   : Cache란?
 summary : 
 date    : 2020-01-14 01:28:57 +0900
-updated : 2020-01-14 11:46:08 +0900
+updated : 2020-01-14 11:47:21 +0900
 tags    : 
 toc     : true
 public  : true
@@ -263,4 +263,4 @@ public class LRUCache {
 
 ## 출처
 - [Cache에 대한 이론적인 정리](https://jins-dev.tistory.com/entry/Cache-%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%EB%A1%A0%EC%A0%81%EC%9D%B8-%EC%A0%95%EB%A6%AC)
-- 
+- [LRU Cache](https://doublesprogramming.tistory.com/254)

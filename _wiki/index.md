@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-01-14 01:28:57 +0900
+updated : 2020-01-20 16:15:06 +0900
 tags    : index
 toc     : true
 public  : true
@@ -32,6 +32,7 @@ latex   : false
     * [[mastering-tcp-ip]]
     * [[read-500-books-a-year]]
     * [[atomic-habits]]
+    * [[how-to-solve-it]]
 * movie
 * [[design-pattern]]
 * programming-language

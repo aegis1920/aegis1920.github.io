@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-01-31 01:22:23 +0900
+updated : 2020-02-01 11:56:58 +0900
 tags    : index
 toc     : true
 public  : true
@@ -34,6 +34,7 @@ latex   : false
     * [[atomic-habits]]
     * [[how-to-solve-it]]
     * [[springboot-aws-webservice]]
+    * [[you-can-fix-your-brain]]
 * movie
 * [[design-pattern]]
 * programming-language

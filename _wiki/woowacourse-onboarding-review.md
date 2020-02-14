@@ -3,7 +3,7 @@ layout  : wiki
 title   : 우아한 테크코스 온보딩 리뷰
 summary : 
 date    : 2020-02-11 00:20:28 +0900
-updated : 2020-02-11 00:21:25 +0900
+updated : 2020-02-14 21:16:20 +0900
 tags    : 
 toc     : true
 public  : true
@@ -30,7 +30,7 @@ latex   : false
 3. 동의 되지 않는 권위에 굴복하지 마라
 4. 아닌 것에 아니라고 말할 수 있어야 한다
 4. 항상 의구심이 들어야 한다
-5. 핸드폰을 끄자(환경을 만들자)
+5. 핸드폰을 끄자 (환경을 만들자)
 6. 페어 프로그래밍을 할 때 끌려가지 말고 주눅들지 말자
 7. 상대방과 소통할 때 칭찬할 건 칭찬하되, 껄끄러운 이야기도 할 수 있어야 한다
 8. 회고는 감정 공유만으로도 가치가 있다
@@ -42,12 +42,23 @@ latex   : false
 
 
 ### 배운 내용
-1. 말 그대로 객체 지향적으로 domain, util, view와 같이 클래스를 분리하자
-2. 하나만 틀릴 때 return false 하는 경우, List에 넣고 contains()를 하면 편하다
-3. 최대한 `private static final`로 만들기
-4. 로직은 함수로 최대한 분리하되 네이밍을 잘해서 한 눈에 알아볼 수 있도록 하자.
-5. 강제 형변환은 하지말자.
-6. 상수화가 가능한 것이면 enum을 생각하자.
+1. 객체 지향적으로 `domain, view`와 같이 객체가 하는 역할을 분명히 알고 클래스를 분리하자
+2. 객체 분리를 통해서 객체 참조가 최대한 적어지도록 하자
+3. 하나만 틀릴 때 `return false` 하는 경우, List에 넣고 `contains()`를 하거나 `stream()`의 `allMatch()`를 사용하자.
+4. 최대한 `private static final`을 통해 상수화로 만들자
+5. 로직은 함수로 최대한 분리하되 네이밍을 잘해서 한 눈에 알아볼 수 있도록 하자.
+6. `(int)`와 같은 강제 형변환은 하지말자.
+7. 상수화가 가능한 것이면 `enum`을 생각하자.
+8. `return`타입이 `boolean`인 경우, 로직을 바로 `return`에 사용해서 if문을 쓰지 않도록 해보자.
+9. 두 개의 매개변수로 어떤 함수를 적용하고 싶을 때 타입이 같다면 `BinaryOperator<T>`, 다르다면 `BiFunction<T, U, V>`를 사용해보자 (람다식을 많이 사용해보자)
+10. `Custom Exception` 클래스를 만들 경우, 규모가 커질수록 Exception이 더욱 늘어나고 관리하기가 힘들어진다. `Custom Exception`이 발생했을 때 비즈니스 로직적으로 어떤 액션을 취해야 하는 경우가 아니라면 굳이 Exception을 만들지 않아도 된다.
+11. 인라인으로 집어 넣으냐 마느냐는 한눈에 알아볼 수 있으냐 없느냐로 판단한다.
+12. 상수화된 String에 `%s`를 넣어서 `String.format()`을 사용해 더 세세하게 예외처리 String을 줄 수 있다.
+13. enum에서 values()를 주면 전체를 가져올 수 있다. 그래서 `Arrays.stream(values())`를 주면 전부 돌게 할 수 있다.
+14. 인터페이스에 `@FunctionalInterface`를 사용해서 람다식을 가능할 수 있게 해준다.
+15. 생성자를 통해 만들어주면서 동시에 `validate()`를 넣어서 유효성 검사를 해준다.
+16. List 타입인 numbers를 `new LinkedList<>(numbers)`를 통해 넣어줄 수 있다.
+17. `stream().filter(클래스명::is메서드명)`의 방식으로 boolean처리를 통해 바로 걸러줄 수 있다.
 
 #### 테스트 어노테이션
 
@@ -73,10 +84,8 @@ static Stream<Arguments> stringArrayProvider() {
 
 #### assertj 메서드
 
-`assertThatThrownBy`
-- 에러가 나는 코드를 넣어줘야 한다.
-- Matching은 정규표현식이 가능하고 그 문자열이 들어가있으면 된다. 
-- Containing에는 그 문자열이 들어가있으면 된다.
+- `assertThat()`
+- `assertThatThrownBy()`
 
 ### 출처
 - [http://toby.epril.com/?p=419](http://toby.epril.com/?p=419)

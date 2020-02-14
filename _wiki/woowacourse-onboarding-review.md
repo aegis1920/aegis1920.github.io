@@ -3,7 +3,7 @@ layout  : wiki
 title   : 우아한 테크코스 온보딩 리뷰
 summary : 
 date    : 2020-02-11 00:20:28 +0900
-updated : 2020-02-14 21:16:20 +0900
+updated : 2020-02-14 21:25:07 +0900
 tags    : 
 toc     : true
 public  : true
@@ -56,7 +56,7 @@ latex   : false
 12. 상수화된 String에 `%s`를 넣어서 `String.format()`을 사용해 더 세세하게 예외처리 String을 줄 수 있다.
 13. enum에서 values()를 주면 전체를 가져올 수 있다. 그래서 `Arrays.stream(values())`를 주면 전부 돌게 할 수 있다.
 14. 인터페이스에 `@FunctionalInterface`를 사용해서 람다식을 가능할 수 있게 해준다.
-15. 생성자를 통해 만들어주면서 동시에 `validate()`를 넣어서 유효성 검사를 해준다.
+15. 생성자를 통해 만들어주면서 동시에 `validate()`를 넣어서 유효성 검사를 해준다. **이를 통해서 `private validate()`같은 얘들은 생성자에 들어가기 때문에 테스트코드에 들어가지 않는다.
 16. List 타입인 numbers를 `new LinkedList<>(numbers)`를 통해 넣어줄 수 있다.
 17. `stream().filter(클래스명::is메서드명)`의 방식으로 boolean처리를 통해 바로 걸러줄 수 있다.
 

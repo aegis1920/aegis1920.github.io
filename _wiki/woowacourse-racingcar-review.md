@@ -3,7 +3,7 @@ layout  : wiki
 title   : 우아한 테크코스 2주차 자동차 경주 리뷰
 summary : 
 date    : 2020-02-21 17:55:58 +0900
-updated : 2020-02-21 17:57:02 +0900
+updated : 2020-02-21 18:24:38 +0900
 tags    : 
 toc     : true
 public  : true
@@ -105,7 +105,7 @@ latex   : false
 - 이렇게 테스트하기 힘든 경우, 의존관계를 없애기 위해 Random을 상위 노드로 옮기면 그 아래는 테스트하기 쉬워진다.
 - 예를 들어, `Position` 에 있던 `Random` 클래스를 `Position` 상위인 `Car` 로 옮기고 다시 `Car`에서 `Cars` 로 옮겨 여기서 생성하고 매개변수를 `int` 형으로 받아 넘겨주면 테스트하기 쉬워진다.
 - 생성자를 매개변수가 적은 쪽에서 많은 쪽을 호출하는 게 좋다.
-
+```java
     public Car(String name) {
         this(INIT_POSITION, name);
     }
@@ -114,13 +114,13 @@ latex   : false
         this.position = position;
         this.name = name);
     }
-
+```
 - Car 객체에게 MaxPosition인지 물어보기(메세지 보내기)
-
+```java
     if(car.isSame(maxPosition)) {
         winners.add(car);
     }
-
+```
 - `String`에 `trim()`을 하기 전에 `null`값 예외처리를 먼저 하자
 - 객체의 역할에 대해서 생각하기
 - `for`문을 돌면서 `add`하는 경우 `create()`와 같이 메서드로 빼자

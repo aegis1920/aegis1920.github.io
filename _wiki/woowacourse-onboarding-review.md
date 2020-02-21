@@ -1,9 +1,9 @@
 ---
 layout  : wiki
-title   : 우아한 테크코스 온보딩 리뷰
+title   : 우아한 테크코스 1주차 온보딩 리뷰
 summary : 
 date    : 2020-02-11 00:20:28 +0900
-updated : 2020-02-14 21:25:07 +0900
+updated : 2020-02-21 17:57:12 +0900
 tags    : 
 toc     : true
 public  : true

@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-02-24 15:00:58 +0900
+updated : 2020-02-28 11:48:45 +0900
 tags    : index
 toc     : true
 public  : true
@@ -165,3 +165,4 @@ latex   : false
     * [[first-class-collection]]
     * [[wrapping-primitives-and-string]]
     * [[java-enum]]
+    * [[racingcar-ladder-coordinate-1th-feedback]]

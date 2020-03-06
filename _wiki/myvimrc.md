@@ -3,7 +3,7 @@ layout  : wiki
 title   : "내 vimrc"
 summary : 
 date    : 2019-06-19 17:23:47 +0900
-updated : 2019-12-03 16:54:51 +0900
+updated : 2020-03-06 20:31:20 +0900
 tags    : 
 toc     : true
 public  : true
@@ -26,7 +26,7 @@ latex   : false
 
 > vimwiki를 위한 설정들이 있어서 조금 복잡할 수 있습니다 :)
 
-```vim
+```bash
 source $VIMRUNTIME/vimrc_example.vim "vimrc의 예시 설정이 들어가 있다.
 source $VIMRUNTIME/mswin.vim "mswin 윈도우에 맞도록 설정되어 있다. 
 behave mswin 
@@ -52,7 +52,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 
 "플러그인을 편리하게 해주는 vundle.
-call vundle#begin('')
+call vundle#begin('C:\vimPlugins')
 
 Plugin 'vundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
@@ -60,6 +60,10 @@ Plugin 'tomasr/molokai'
 Plugin 'vimwiki/vimwiki'
 Plugin 'mhinz/vim-startify'
 Plugin 'Raimondi/delimitMate'
+Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
 
 call vundle#end()
 
@@ -231,10 +235,4 @@ syntax on
 "gvim에서 한글이 깨지는 문제는 utf-8로 하면 고쳐진다. 근데 이러면 menu가 깨진다. 어차피 메뉴는 안 쓰니까...
 set encoding=utf-8
 set fileencoding=utf-8
-
 ```
-
-
-
-
-

@@ -2,7 +2,7 @@
 layout  : wiki
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-03-06 19:48:17 +0900
+updated : 2020-03-08 18:50:24 +0900
 tags    : index
 toc     : true
 public  : true
@@ -11,7 +11,7 @@ latex   : false
 * TOC
 {:toc}
 
-* [[algorithm]]
+* Algorithm
     * [[algorithm-basic]]
     * [[Computataional-Thinking]]
     * [[data-structure]]
@@ -22,10 +22,9 @@ latex   : false
     * [[algo]]
     * [[topology-sort]]
     * [[prime-number]]
-* [[how-to]]
+* How-to
     * [[programming]]
-* math
-* [[book]]
+* Book
     * [[The-Essence-of-Object-Orientation]]
     * [[almost-all-internet-history]]
     * [[tdd-kent-beck]]
@@ -37,8 +36,7 @@ latex   : false
     * [[you-can-fix-your-brain]]
     * [[oop-and-design-pattern]]
     * 
-* [[design-pattern]]
-* programming-language
+* Programming-language
     * Java
         * [[Java-JVM]]
         * [[Java-convention-type-comment]]
@@ -58,7 +56,7 @@ latex   : false
         * [[Java-lambda]]
         * [[Java-NIO]]
     * [[Python]]
-* [[study]]
+* Study
     * [[excel]]
     * [[open-source-guide]]
     * [[Clean-Code]]
@@ -76,10 +74,8 @@ latex   : false
     * [[spring-batch]]
     * [[java-convention]]
     * [[Public-Data]]
-* [[vim]]
-    * [[myvimrc]]
     * [[vim-study]]
-* [[what]]
+* What
     * [[annotation]]
     * [[arduino]]
     * [[http]]
@@ -133,13 +129,11 @@ latex   : false
     * [[blockchain]]
     * [[cache]]
     * 
-* error
+* Error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]
     * [[application-properties-value]]
-* [[autohotkey]]
-    * [[ethernet_change]]
-* [[blog]]
+* Blog
     * [[first-post]]
     * [[SW-vision-tour]]
     * [[DEVIEW-2018-review]]
@@ -168,3 +162,5 @@ latex   : false
     * [[java-enum]]
     * [[racingcar-ladder-coordinate-1th-feedback]]
     * [[woowacourse-lotto-review]]
+    * [[ethernet_change]]
+    * [[myvimrc]]

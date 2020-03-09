@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: wiki
 title:  "Welcome to Jekyll!"
 date:   2019-10-27 15:15:05 +0900
 categories: jekyll update

@@ -4,9 +4,6 @@ title: About
 permalink: /about/
 ---
 
-# About My Page
-- 이 페이지는 [이종립님의 github.io](https://johngrib.github.io/)에서 영감을 받아 만들어졌습니다.
-
 # About Me
 
 * 무신론자입니다.
@@ -19,3 +16,7 @@ permalink: /about/
 * 실내에 있는 것을 좋아합니다.
 * 담배를 피지 않고 커피를 마시지 않습니다.
 * 게임을 좋아합니다.
+* 
+# About My Page
+- 이 페이지는 [이종립님의 github.io](https://johngrib.github.io/)에서 영감을 받아 만들어졌습니다.
+

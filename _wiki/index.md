@@ -1,8 +1,8 @@
 ---
-layout  : wiki
+layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-03-08 18:56:59 +0900
+updated : 2020-03-09 13:55:54 +0900
 tags    : index
 toc     : true
 public  : true

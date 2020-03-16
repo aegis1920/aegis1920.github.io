@@ -3,7 +3,7 @@ layout  : wiki
 title   : Java Enum 정리
 summary : 
 date    : 2020-02-24 15:00:58 +0900
-updated : 2020-03-06 19:47:33 +0900
+updated : 2020-03-16 15:38:56 +0900
 tags    : 
 toc     : true
 public  : true
@@ -25,12 +25,12 @@ latex   : false
     - `Enum`으로 파일을 따로 빼도 되지만 그 객체 이외에 사용되는 곳이 없다면 그 객체의 `inner type`으로 안에 선언해준다.
     - 상수를 정의하고 그 상수에 추가 속성을 부여할 수 있는데 그 속성에 List를 넣어서 순회하며 찾도록 해줄 수 있다.
     - 추가 속성이 문자열인 것도 `Enum`으로 만들어서 `PayType.ACCOUNT_TRANSFER` 과 같이 만들어줄 수 있다
-    - `Collections.EMPTY_LIST`를 활용하자
     - Enum 안에 메서드를 만들어 활용하자.
-    - Enum의 상태값에 모두 final을 붙여주자(값을 바꿀 수 있는 것이 있으면 안된다)
+    - `static`이기 때문에 인스턴스를 공유하게 되므로 상태값을 변경하는 코드가 있으면 안된다. Enum의 상태값에 모두 final을 붙여주자
     - Enum도 get 하지마라
-    - Enum은 == 으로 비교해줄 수 있다. (Enum에 있는 상태값만큼 인스턴스가 만들어진다)
+    - Enum은 `==` 으로 비교해줄 수 있다. (Enum에 있는 상태값만큼 인스턴스가 만들어진다)
     - Enum의 반환값도 Enum으로 Wrapping한 것으로 반환하도록 노력해라
+    - Enum도 클래스와 똑같다.
 
 ### 출처
 

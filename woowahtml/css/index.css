@@ -1,0 +1,129 @@
+html {
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+}
+
+body.bodyFont {
+  font-family: "Do Hyeon", sans-serif;
+  text-align: center;
+}
+
+.container {
+  width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#cssApplyButton {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  background-color: #44c767;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
+
+#cssApplyButton:hover {
+  background-color: #5cbf2a;
+}
+
+#cssApplyButton:active {
+  background-color: #5cbf2a;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
+#jsApplyButton {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  background-color: #007dc1;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
+
+#jsApplyButton:hover {
+  background-color: #124d77;
+}
+
+#jsApplyButton:active {
+  background-color: #124d77;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
+table.type {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+}
+table.type thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  border-bottom: 3px solid #036;
+}
+table.type tbody th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+table.type td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #036;
+  color: white;
+  text-align: center;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.blur {
+  filter: blur(4px);
+}
+
+#text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%, -50%);
+}

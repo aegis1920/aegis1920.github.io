@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./css/index.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean"
+      rel="stylesheet"
+    />
+    <title>HTML의 역사</title>
+  </head>
+
+  <body>
+    <div id="overlay">
+      <div id="text">
+        <p>준은 잘생겼다? Y or N</p>
+        <input type="text" id="inputValue" />
+        <button class="check-input">확인하기</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="sectionHTML">
+        <h1>HTML에 대하여</h1>
+
+        <p>HTML은 하이퍼텍스트 마크업 언어입니다.</p>
+        <p>
+          태그를 통해 구조적 의미를 나타내는 것뿐만 아니라 링크, 인용과 그 밖의
+          항목으로 구조적인 문서를 만들 수 있습니다.
+        </p>
+        <p>HTML을 만든 사람은 웹의 아버지라고 불리는 '팀 버너스리'입니다.</p>
+        <img src="./img/tim.jpeg" id="imgTim" alt="" />
+        <p>
+          스위스에는 유럽 입자 물리 연구소 CERN이라는 저명한 물리학 연구소가
+          있는데요.
+        </p>
+        <p>
+          팀 버너스리가 효율적으로 정보를 주고 받을 수 있는 시스템을
+          1980년도부터 약 10년동안 연구한 끝에 개발했습니다.
+        </p>
+        <p>
+          또한 HTML 페이지를 볼 수 있는 세계 최초의 웹브라우저인 World Wide
+          Web을 만들기도 했습니다.
+        </p>
+      </div>
+
+      <div id="sectionVideo">
+        <h2>인터넷의 역사 동영상</h2>
+
+        <iframe
+          width="930"
+          height="523"
+          src="https://www.youtube.com/embed/21eFwbb48sE"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div id="sectionHTMLVersion">
+        <h2>HTML4, XHTML, HTML5의 차이</h2>
+
+        <p>
+          처음에 HTML 1.0 이 나왔고 그 뒤로 현재 쓰는 HTML 5까지 차근차근히
+          발전해왔습니다.
+        </p>
+        <p>
+          HTML 4.01은 HTML5 바로 이전에 나온 마크업 언어로 HTML5와는 다른 부분이
+          있습니다.
+        </p>
+
+        <img src="./img//htmlVersion.jpg" alt="" />
+
+        <table class="applyTable">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>HTML4</th>
+              <th>HTML5</th>
+            </tr>
+          </thead>
+          <tbody id="html4Table"></tbody>
+        </table>
+
+        <p>
+          XHTML은 XML과 호환성을 염두에 둔 언어이기에 좀 더 엄격한 문법을 가지고
+          있습니다.
+        </p>
+
+        <table class="applyTable">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>XHTML</th>
+              <th>HTML5</th>
+            </tr>
+          </thead>
+          <tbody id="xhtmlTable"></tbody>
+        </table>
+      </div>
+
+      <p>
+        HTML은 정보의 <b>골격</b>을 나타내고
+        <span id="cssApplyButton">CSS</span>는 그 정보를 꾸며주고
+        <span id="jsApplyButton">Javascript</span>는 동작하게 도와주는 것입니다.
+      </p>
+
+      <div class="goToGroup" style="display: inline;">
+        <ul>
+          <li><a href="#sectionHTML">go To HTML</a></li>
+          <li><a href="#sectionVideo">go To Video</a></li>
+          <li><a href="#sectionHTMLVersion">go To HTML Version</a></li>
+        </ul>
+      </div>
+
+      <footer>
+        <span>created by aegis1920</span>
+        <a href="https://github.com/aegis1920">
+          <img
+            height="20"
+            width="20"
+            src="https://unpkg.com/simple-icons@latest/icons/github.svg"
+          />
+        </a>
+        <a href="https://aegis1920.github.io">
+          <img
+            height="20"
+            width="20"
+            src="https://unpkg.com/simple-icons@latest/icons/about-dot-me.svg"
+          />
+        </a>
+      </footer>
+    </div>
+  </body>
+
+  <script type="module" src="./js/index.js"></script>
+  <script type="module" src="./js/util.js"></script>
+  <script type="module" src="./js/data.js"></script>
+
+  <script type="text/template" id="html4tableTemplate">
+    <tr>
+        <td>{division}</td>
+        <td>{html4}</td>
+        <td>{html5}</td>
+    </tr>
+  </script>
+
+  <script type="text/template" id="xhtmltableTemplate">
+    <tr>
+        <td>{division}</td>
+        <td>{xhtml}</td>
+        <td>{html5}</td>
+    </tr>
+  </script>
+</html>

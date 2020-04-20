@@ -3,7 +3,7 @@ layout  : wiki
 title   : 개발자가 반드시 정복해야 할 객체 지향과 디자인 패턴을 읽고...
 summary : 
 date    : 2020-04-17 11:35:01 +0900
-updated : 2020-04-20 00:51:27 +0900
+updated : 2020-04-20 13:53:03 +0900
 tags    : 
 toc     : true
 public  : true
@@ -118,7 +118,7 @@ class A {
 
 -> 상속은 기능이 완전히 똑같으면서 확장되는 곳에 쓰고 그게 아니라면 **상속보다는 조립을 사용하자.**
 
-- 상속을 잘한 케이스는 `LinkedHashMap`이 `HashMap`을 상속하고 
+- 상속을 잘한 케이스는 `LinkedHashMap`가 `HashMap`을 상속한 것. 상위 클래스가 그 기능을 완전히 똑같이 하고 확장만 한 형태니까.
 
 ## DI(Dependency Injection)와 서비스 로케이터
 

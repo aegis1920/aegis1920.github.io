@@ -3,7 +3,7 @@ layout  : wiki
 title   : Spring
 summary : 
 date    : 2019-06-20 15:38:30 +0900
-updated : 2019-08-22 16:30:40 +0900
+updated : 2020-04-27 00:56:27 +0900
 tags    : 
 toc     : true
 public  : true
@@ -13,11 +13,9 @@ latex   : false
 * TOC
 {:toc}
 
-## Spring
-
-# Spring MVC
-
 # Spring Framework
+
+> 정리한 내용이 너무 많아서 천천히 정리해나갈 예정입니다 ㅎㅎ;;
 
 ## Spring Framework란?
 
@@ -39,10 +37,44 @@ latex   : false
 * 예를 들어, 서블릿 클래스는 개발자가 만들지만, 그 서블릿 메소드를 알맞게 호출하는 것은 WAS다
 * 이렇게 개발자가 만든 클래스나 메소드를 다른 프로그램이 대신 실행해주는 것을 제어의 역전이라고 한다.
 
-### DI(Dependency Injection)
+## DI(Dependency Injection)
 
 * 클래스 사이의 의존 관계를 빈(Bean)설정 정보를 바탕으로 컨테이너가 자동으로 연결해주는 것
 * 개발자가 직접 코드로 new를 써서 인스턴스를 생성하는 것이 아니라 컨테이너가 어노테이션을 통해 인스턴스를 할당해줄 수 있는 것
+
+### XML 파일을 사용한 의존성 주입(DI)
+
+- `Tire tire = context.getBean("tire", Tire.class);` 타이어를 구매하는 부분
+- KoreaTire클래스나 AmeriacaTire 클래스를 지칭하는 부분이 없는데 XML 파일에 있기 때문. XML만 바꿔주고 실행하면 되기 때문에 배포할 때 매우 편함
+- XML에서 bean 태그로 가능
+
+#### 스프링 설정 파일(xml)에서 속성 주입
+
+- property 태그를 사용해 가능
+
+#### @Autowired를 통한 속성 주입(XML)
+
+- 스프링 설정 파일을 보고 자동으로 속성의 설정자 메서드에 해당하는 역할을 하겠다는 의미
+- @Autowired를 통해 car의 property를 자동으로 엮어줄 수 있으므로 property 태그 생략 가능
+- @Autowired 마법은 인터페이스 type 기준 매칭에 있다. 같은 타입을 구현한 클래스가 여러 개 있다면 그때 bean 태그의 id로 구분해서 매칭한다.
+- type을 구현한 빈이 있는지 확인 → 빈이 한 개인지 확인 → id가 일치하는 하나의 빈이 있는지 확인 → 유일한 빈을 객체에 할당
+- 즉 byType이 우선이고 그래도 못 찾는다면 byName으로 찾는다.
+
+#### @Resource를 통한 주입
+
+- 자바 표준 어노테이션인 @Resource는 @Autowired와 type과 id 매칭 우선순위가 다르다.
+- byName 먼저 찾고 그래도 못 찾으면 byType으로 찾는다.
+
+#### 의존성 주입에 대한 몇 가지 경우
+
+예시 1 : 한 개의 빈이 id 없이 tire 인터페이스를 구현했을 경우
+
+→ @Autowired나 @Resource 나 제대로 된 타입을 구현했고 하나밖에 없으므로 둘 다 문제없이 실행된다.
+
+예시 2 : 두 개의 빈이 id 없이 tire 인터페이스를 구현했을 경우
+
+→ 둘 다 2개의 빈인데 id가 없으므로 하나의 빈을 찾지 못해 오류가 난다.
+
 
 ### Spring에서 제공하는 IoC/DI 컨테이너
 

@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-05-03 16:07:40 +0900
+updated : 2020-05-05 18:29:50 +0900
 tags    : index
 toc     : true
 public  : true
@@ -52,7 +52,7 @@ latex   : false
         * [[Java-thread]]
         * [[Java-network]]
         * [[Java-generic]]
-        * [[Java-lambda]]
+        * [[java-lambda-stream-optional]]
         * [[Java-NIO]]
     * [[Python]]
     * [[Javascript]]
@@ -156,7 +156,6 @@ latex   : false
     * [[woowacourse-racingcar-review]]
     * [[java-solid]]
     * [[java-4-object-oriented-principles]]
-    * [[java-lambda-stream-optional]]
     * [[first-class-collection]]
     * [[wrapping-primitives-and-string]]
     * [[java-enum]]

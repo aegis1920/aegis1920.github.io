@@ -3,7 +3,7 @@ layout  : wiki
 title   : ConstraintValidator를 사용해보기
 summary : 
 date    : 2020-05-19 21:46:41 +0900
-updated : 2020-05-19 21:52:17 +0900
+updated : 2020-06-16 20:50:33 +0900
 tags    : 
 toc     : true
 public  : true
@@ -27,12 +27,13 @@ latex   : false
 
 ### `Post` 요청과 `Get` 요청을 받을 때 데이터 바인딩하는 방식에 차이가 있었다
 
-- Post 요청
-    - `Get`과 똑같이 `WebDataBinder`를 이용하는데 `@RequestBody`와 `@Valid`를 통해 내가 정의한 유효성 검사를 진행할 때 데이터 바인딩이 안 된다면 `MethodArgumentNotValidException`이 발생한다.
+- Post 요청 처리
+    - `WebDataBinder`를 이용하는데 `@RequestBody`와 `@Valid`를 통해 내가 정의한 유효성 검사를 진행할 때 데이터 바인딩이 안 된다면 `MethodArgumentNotValidException`이 발생한다.
     - `RequestResponseBodyMethodProcessor` 클래스의 `resolveArgument()` 메서드를 보면 잘 나와있다
     - 그리고 기본적으로 Spring은 이 예외에 대해서 400을 응답 코드로 준다
-- `Post` 요청은 이렇게 처리한다 치고, `Get` 요청은?
-    - `Post` 요청과 비슷하게 `DataBinder` 클래스에 있는 `initBeanPropertyAccess()` 를 통해 접근할 수 있다.
+- Get 요청
+    - 아무것도 적지 않고 객체 타입으로 인자를 받으면 `@ModelAttribute`가 자동으로 붙는다.
+    - 인자 타입의 오브젝트를 새로 만든다. 때문에 기본 생성자가 필요하다.
     - `@Valid`를 통해 유효성 검사를 진행하면 `BindException`이 일어나지만 던지지 않는다
     - 이 오류는 `Controller`의 `BindingResult`를 통해 잡을 수 있다.
 

@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-07-12 21:22:05 +0900
+updated : 2020-07-18 13:18:54 +0900
 tags    : index
 toc     : true
 public  : true
@@ -35,6 +35,7 @@ latex   : false
     * [[springboot-aws-webservice]]
     * [[you-can-fix-your-brain]]
     * [[oop-and-design-pattern]]
+    * [[codinghorror-effective-programming]]
 * Programming-language
     * Java
         * [[Java-JVM]]

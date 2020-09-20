@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2020-07-18 13:18:54 +0900
+updated : 2020-09-20 14:01:16 +0900
 tags    : index
 toc     : true
 public  : true
@@ -173,3 +173,4 @@ latex   : false
     * [[woowacourse-level1-review]]
     * [[use-constraintValidator]]
     * [[woowacourse-spring-chess-review]]
+    * [[my-woowacourse-pulls-review]]

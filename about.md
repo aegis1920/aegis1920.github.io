@@ -27,10 +27,8 @@ permalink: /about/
 - FrontEnd
     - React, ES6
 - DevOps
-    - MySQL, MariaDB
-    - Travis CI
+    - MySQL
     - AWS EC2, S3
-    - Nginx
 
 ## Projects
 

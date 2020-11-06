@@ -74,9 +74,10 @@ permalink: /about/
 - `Docker` 사용(`MariaDB`)
 
 ### [Naratmalssami](https://github.com/aegis1920/Naratmalssami)
-    - Vue.js, Firebase, Vuetify 등등...
-    - FCM을 이용한 Push 알림 서비스 개발
-    - 글 작성 프론트 개발
+
+- Vue.js, Firebase, Vuetify 등등...
+- FCM을 이용한 Push 알림 서비스 개발
+- 글 작성 프론트 개발
 
 ## About My Page
 

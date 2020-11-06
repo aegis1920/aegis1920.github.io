@@ -20,36 +20,60 @@ permalink: /about/
 
 ## Skill
 
-- BackEnd
-    - Java
-    - Spring Boot, Spring Data JPA
-    - Junit, Mockito
 - FrontEnd
-    - React, ES6
-- DevOps
-    - MySQL
-    - AWS EC2, S3
+    - `React` 와 `Material UI` → 간단한 페이지 UI 와 프론트 API를 개발할 수 있습니다.
+- BackEnd
+    - `Java`, `Spring Boot` → REST API 를 설계 및 개발할 수 있습니다.
+    - `Spring Data JPA` → 적절히 객체 매핑을 할 수 있습니다.
+    - `Junit 5`, `Mockito`, `H2 Database` → 테스트코드를 작성할 수 있습니다.
+    - `logback` → logging 전략을 짤 수 있습니다.
+    - `Swagger`, `Spring Rest Docs` → 문서화 경험이 있습니다.
+- Infra
+    - `MySQL`, `MariaDB` , `Flyway` → DB Migration을 한 경험이 있습니다.
+    - `AWS EC2` , `AWS S3` → 이미지 업로드 기능을 개발한 경험이 있습니다.
+    - `Git Submodule` → 보안 이슈를 해결한 경험이 있습니다.
+    - `Jacoco`, `SonarQube` → 코드 품질 관리를 한 경험이 있습니다.
 
 ## Projects
 
-- [우리동네캡짱](https://capzzang.co.kr)
-    - 지역별로 자랑글을 올리고 랭킹을 매기는 서비스 
-    - [Github](https://github.com/woowacourse-teams/2020-legeno-around-here)
-    - 글 CRUD, 댓글 CRD, 좋아요 백엔드 개발
-    - 이미지 업로드, 글 신고, 비밀번호 찾기 프론트 및 백엔드 개발
-    - 홈 화면, 지역 검색, 부문 검색, 글 작성, 글 상세, 무한 스크롤, 에러 페이지 등등 프론트 개발
-    - `Flyway` 적용
+### [우리동네캡짱](https://www.capzzang.co.kr/)
 
-- [My Woowacourse Pulls](https://chrome.google.com/webstore/detail/mywoowacoursepulls/dkeblehcoebopgclhhjfbinndbcoboom?hl=ko)
-    - 우아한 테크코스 미션에 해당하는 모든 PullRequest를 닉네임 검색으로 가져오는 서비스
-    - [개인 사이드 프로젝트 GITHUB](https://github.com/aegis1920/my-woowacourse-pulls)
-    - [My Woowacourse Pulls 개발기](https://aegis1920.github.io/wiki/my-woowacourse-pulls-review.html)
-    - `RestTemplate`을 이용한 `Github api` 사용
-    - `Nginx`의 리버스 프록시 기능을 이용하여 `https` 설정
-    - 보안을 위해 `Git Submodule` 사용
-    - `Docker` 사용(`MariaDB`)
+지역별로 자랑글을 올리고 랭킹을 매기는 서비스
 
-- [Naratmalssami](https://github.com/aegis1920/Naratmalssami)
+- 개발 기간 : 20주
+- 인원 : 4명
+- [Github 링크](https://github.com/woowacourse-teams/2020-legeno-around-here)
+
+**프로젝트 담당 작업 내용**
+
+- 프론트 Material UI 적용 및 API 작성 (홈페이지, 지역 검색, 부문 검색, 글 작성 등등)
+- 백엔드 API 및 테스트 코드 작성 (글, 댓글, 좋아요, 신고, 이미지 업로드 등등)
+- `Logging` 및 ERROR 시 슬랙 알림 구현
+- 백엔드 API 문서화
+- DB 마이그레이션
+- `Jacoco`, `SonarQube` 코드 품질 관리
+- `AWS S3` 를 이용한 이미지 업로드
+- 테스트 전체 커버리지 80% 이상
+
+### [My Woowacourse Pulls](https://chrome.google.com/webstore/detail/mywoowacoursepulls/dkeblehcoebopgclhhjfbinndbcoboom?hl=ko)
+
+우아한 테크코스 미션을 닉네임 검색으로 가져오는 서비스
+
+- 개발 기간 : 1주
+- 인원 : 1명
+- [Github 링크](https://github.com/aegis1920/my-woowacourse-pulls), [프로젝트 개발기](https://aegis1920.github.io/wiki/my-woowacourse-pulls-review.html)
+
+**프로젝트 작업 내용**
+
+- 개인 사이드 프로젝트
+- `RestTemplate`을 이용한 `Github API` 사용
+- 테스트 전체 커버리지 80% 이상
+- 사용자(우아한 테크코스 크루) 23명 확보
+- `Nginx`의 리버스 프록시 기능을 이용하여 `https` 설정
+- 보안을 위해 `Git Submodule` 사용
+- `Docker` 사용(`MariaDB`)
+
+### [Naratmalssami](https://github.com/aegis1920/Naratmalssami)
     - Vue.js, Firebase, Vuetify 등등...
     - FCM을 이용한 Push 알림 서비스 개발
     - 글 작성 프론트 개발

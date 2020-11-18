@@ -3,7 +3,7 @@ layout  : wiki
 title   : My Woowacourse Pulls 사이드 프로젝트 개발기
 summary : 
 date    : 2020-09-20 14:01:16 +0900
-updated : 2020-10-05 01:04:40 +0900
+updated : 2020-11-18 16:27:58 +0900
 tags    : 
 toc     : true
 public  : true
@@ -64,6 +64,8 @@ Github API는 전체 Pull Request를 가져오지 않았다. 이상하다 싶어
   <https://api.github.com/user/repos?page=50&per_page=100>; rel="last"
 ```
 
+> 이때는 몰랐지만 나중에 Link 헤더가 Restful 아키텍처인 HATEOAS를 의미한다는 걸 깨달았다.
+
 링크를 파싱해주는 API 없나? 해서 찾아보니 또 있었다! (([LINK](https://github.com/eclipse/egit-github/tree/master/org.eclipse.egit.github.core))) 그러나 해당 의존성을 추가하자니 마지막 페이지를 알기 위해서 너무 무거운 일이라고 생각이 들었다. 그래서 해당 링크를 참고해 직접 [Page파서](https://github.com/aegis1920/my-woowacourse-pulls/blob/master/src/main/java/com/bingbong/mywoowacoursepulls/utils/PageParser.java)를 만들어서 해결했다.
 
 ### 드디어 백엔드 끝! 그리고 인프라
@@ -100,5 +102,8 @@ git submodule update --[git submodule 디렉토리]
 
 내가 개발한 서비스를 사용하는 유저가 있다는 게 너무 행복했다. 댓글도 많이 남겨줬고 따로 DM으로 피드백도 주는 크루도 있었다. 그 자체가 너무나 고마웠다. 
 
-무엇보다 개발하면서 조금이나마 내 태도가 변했다는 걸 알 수 있었다. 불편한 게 있다면 고치려고 하고, 서비스를 만들어볼 생각을 하고, 개발하기 쉽다고 말만하고 개발하지 않는 것이 아니라 실제로 개발할 수 있는 사람이 된 나 자신이 좋았다. 앞으로도 이 태도를 유지해나가며 살고 싶다ㅎㅎ
+무엇보다 개발하면서 조금이나마 내 태도가 변했다는 걸 알 수 있었다. 불편한 게 있다면 고치려고 하고, 서비스를 만들어볼 생각을 하고, 개발하기 쉽다고 말만하고 개발하지 않는 것이 아니라 실제로 개발할 수 있는 사람이 된 나 자신이 좋았다. 앞으로도 이 태도를 유지해나가며 살고 싶다ㅎㅎ 많이 사용해주세요~
+
+다운 링크 : [LINK](https://chrome.google.com/webstore/detail/mywoowacoursepulls/dkeblehcoebopgclhhjfbinndbcoboom?hl=ko)
+Github : [LINK](https://github.com/aegis1920/my-woowacourse-pulls)
 

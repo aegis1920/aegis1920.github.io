@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2021-01-04 23:17:43 +0900
+updated : 2021-01-10 00:01:11 +0900
 tags    : index
 toc     : true
 public  : true
@@ -176,3 +176,4 @@ latex   : false
     * [[my-woowacourse-pulls-review]]
     * [[if-kakao-2020-review]]
     * [[programmer-attitude]]
+    * [[empty-string-check-equals-vs-length]]

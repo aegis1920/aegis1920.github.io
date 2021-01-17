@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2021-01-10 15:20:57 +0900
+updated : 2021-01-18 03:28:14 +0900
 tags    : index
 toc     : true
 public  : true
@@ -56,6 +56,7 @@ latex   : false
         * [[java-lambda-stream-optional]]
         * [[Java-NIO]]
         * [[effective-java-item-4]]
+        * [[effective-java-item-12]]
     * [[Python]]
     * [[Javascript]]
 * Study

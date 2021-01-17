@@ -3,7 +3,7 @@ layout  : wiki
 title   : 아이템 4 - 인스턴스화를 막으려거든 private 생성자를 사용하라
 summary : 
 date    : 2021-01-10 15:20:57 +0900
-updated : 2021-01-10 15:28:50 +0900
+updated : 2021-01-18 03:31:11 +0900
 tags    : 
 toc     : true
 public  : true
@@ -25,7 +25,7 @@ latex   : false
 
 제곱근처럼 **동일한 입력값을 넣으면 항상 동일한 결과를 리턴하는 메서드**를 만든다고 했을 때, **메서드는 어디서든 사용될 수 있으며 있는 그대로 재사용이 가능합니다.**
 
-즉, 이런 상황에서는 인스턴스를 생성하지 않고 항상 재사용이 가능하게끔 메모리에 올라가있도록 하는 것이 더 효율적입니다. 우리는 위 상황을 정적(static) 선언으로 구현할 수 있습니다.
+즉, 이런 상황에서는 인스턴스를 생성하지 않고 전역에서 사용할 수 있으며 항상 재사용이 가능하도록 하는 것이 더 효율적입니다. 우리는 그 상황을 정적(static) 선언으로 구현할 수 있습니다.
 
 **이렇게 항상 전역으로 사용할 수 있는 정적 필드와 정적 메서드가 모인 클래스를** **유틸성 클래스**라고 부릅니다. 그래서 보통 **유틸성 클래스는 필드와 메서드 모두 정적(static) 선언으로 구현**되어 있습니다.
 
@@ -37,8 +37,8 @@ public class CustomStringUtils {
     public static boolean isBlank(String input) {
         return input == null || input.trim().isEmpty();
     }
-
-	// ... 다른 static 메서드들
+    
+    // ... 다른 static 메서드들
 }
 
 ```
@@ -55,16 +55,16 @@ public class CustomStringUtils {
 
 ```java
 public class CustomStringUtils {
-
-	private CustomStringUtils() {
+    
+    private CustomStringUtils() {
         throw new IllegalStateException("유틸리티 클래스를 인스턴스화할 수 없습니다!");
     }
 
     public static boolean isBlank(String input) {
         return input == null || input.trim().isEmpty();
     }
-
-	// ... 다른 static 메서드들
+    
+    // ... 다른 static 메서드들
 }
 
 ```
@@ -89,8 +89,8 @@ public final class Math {
 
     public static final double E = 2.7182818284590452354;
     public static final double PI = 3.14159265358979323846;
-
-	// ...
+    
+    // ...
 
     public static int max(int a, int b) {
         return (a >= b) ? a : b;
@@ -107,8 +107,8 @@ public class Arrays {
 
     // Suppresses default constructor, ensuring non-instantiability.
     private Arrays() {}
-
-	// ...
+    
+    // ...
     @SafeVarargs
     @SuppressWarnings("varargs")
     public static <T> List<T> asList(T... a) {
@@ -127,7 +127,7 @@ public class Arrays {
 @Test
 void constructor() throws Exception {
     Constructor<CustomStringUtils> constructor = CustomStringUtils.class
-				.getDeclaredConstructor();
+                                                    .getDeclaredConstructor();
     constructor.setAccessible(true);
 
     assertThatThrownBy(constructor::newInstance)
@@ -151,4 +151,4 @@ void constructor() throws Exception {
 
 - 이펙티브 자바 3판
 - [http://kwon37xi.egloos.com/4844149](http://kwon37xi.egloos.com/4844149)
- 
+

@@ -3,7 +3,7 @@ layout  : wiki
 title   : 아이템 27 - 비검사 경고를 제거하라
 summary : 
 date    : 2021-01-31 19:29:02 +0900
-updated : 2021-01-31 19:30:41 +0900
+updated : 2021-01-31 19:40:28 +0900
 tags    : 
 toc     : true
 public  : true
@@ -43,7 +43,7 @@ detail하게 보려면 `-Xlint:unchecked` 를 사용해 Recompile하라고 나�
     }
     ```
 
-2. 현재 파일이 있는 디렉토리에서 `javac -Xlint:unchecked ./WarningTest.java` 실행
+2. 현재 파일이 있는 디렉토리에서 `javac -Xlint:unchecked ./현재 자바파일.java` 실행
     1. 물론 이렇게 실행하면 클래스파일이 현 위치에 생기게 됩니다
 
 참고 : 책에서는 `-Xlint:uncheck` 로 나와있지만 `-Xlint:unchecked` 가 맞습니다.
@@ -79,7 +79,7 @@ public @interface SuppressWarnings {
 
 그렇다고 클래스 전체에 박아두고 쓴다면 다른 경고를 놓칠 수 있기에 클래스 전체에 박아두는 것이 아닌, **가능한 좁은 범위에 적용하는 것이 좋습니다.**
 
-`**@SuppressWarnings("unchcked")` 를 사용한 코드는 경고 없이 컴파일 되나, 런타임에는 여전히 `ClassCastException`을 던질 수 있습니다.**
+**`@SuppressWarnings("unchcked")` 를 사용한 코드는 경고 없이 컴파일 되나, 런타임에는 여전히 `ClassCastException`을 던질 수 있습니다.**
 
 그래서 `@SuppressWarning("unchecked")` 을 사용할 때면 해당 경고를 무시해도 안전한 이유를 **항상 주석으로 남겨야 합니다.**
 

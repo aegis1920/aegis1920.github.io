@@ -3,7 +3,7 @@ layout  : wiki
 title   : 개발과 사람을 대하는 자세
 summary : 
 date    : 2021-01-04 23:17:43 +0900
-updated : 2021-01-06 00:08:08 +0900
+updated : 2021-01-31 20:54:01 +0900
 tags    : 
 toc     : true
 public  : true
@@ -27,6 +27,7 @@ latex   : false
 - 나는 왜 프로그래머가 되려고 하는가?
 - 나에게 프로그래밍이란 어떤 의미인가?
 - 나는 어떤 개발자로 살 것인가?
+- 나는 지금 Comfort Zone에 있는 건 아닐까?
 
 ## 개인 프로젝트
 

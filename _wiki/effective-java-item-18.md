@@ -3,7 +3,7 @@ layout  : wiki
 title   : 아이템 18 - 상속보다는 컴포지션을 사용하라
 summary : 
 date    : 2021-01-25 19:00:55 +0900
-updated : 2021-01-25 19:02:16 +0900
+updated : 2021-01-31 19:30:27 +0900
 tags    : 
 toc     : true
 public  : true

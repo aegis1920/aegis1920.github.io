@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2021-01-31 19:29:02 +0900
+updated : 2021-02-07 18:51:25 +0900
 tags    : index
 toc     : true
 public  : true
@@ -181,3 +181,4 @@ latex   : false
     * [[if-kakao-2020-review]]
     * [[programmer-attitude]]
     * [[empty-string-check-equals-vs-length]]
+    * [[jpa-and-transactional]]

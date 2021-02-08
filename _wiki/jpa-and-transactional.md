@@ -3,7 +3,7 @@ layout  : wiki
 title   : JPA에서 @Transactinoal에 대한 궁금증
 summary : 
 date    : 2021-02-07 18:51:26 +0900
-updated : 2021-02-07 18:52:01 +0900
+updated : 2021-02-08 12:42:49 +0900
 tags    : 
 toc     : true
 public  : true
@@ -145,6 +145,8 @@ public @interface DataJpaTest {
 `@Target(ElementType.TYPE)` 이므로 클래스 전체에 적용됩니다. `@Transactional`이 있기 때문에 모든 테스트 메서드에 `@Transactional`이 기본으로 들어가게 됩니다. 
 
 그래서 프로덕션 코드(Service 레이어)에서 `@Transactional`이 없어도 테스트코드는 통과하는 일이 일어납니다.
+
+`Post` 엔티티는 `List<Comment>`를 가지고 있으며 양방향이고 fetchType은 Lazy입니다. 전형적인 일대다 관계예요!
 
 ```java
 @Service

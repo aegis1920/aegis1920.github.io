@@ -1,0 +1,52 @@
+---
+layout  : wiki
+title   : 레거시 프로젝트 리팩토링해보기 0편
+summary : 
+date    : 2021-02-24 16:50:07 +0900
+updated : 2021-02-24 16:54:16 +0900
+tags    : 
+toc     : true
+public  : true
+parent  : 
+latex   : false
+---
+* TOC
+{:toc}
+
+현재 저는 취준중입니다. 하고싶은 건 많은데 오히려 너무 많아서 뭘 해야될 지 모르겠더라고요.
+
+"새로운 프로젝트를 최근에 배웠던 QueryDSL로 개발을 해볼까?" 아니면 "원래 있던 프로젝트를 QueryDSL로 바꾸는 건 어떨까?" 생각이 들었습니다.
+
+그러다가 "아! 그냥 전에 했던 팀 프로젝트를 리팩토링하는 건 어떨까?"를 생각하는 순간 혼자 괜히 설렜습니다ㅎㅎ
+
+새로운 프로젝트를 진행하거나 신입사원으로 파일럿 프로젝트를 진행하는 글은 많은데 원래 있던 프로젝트를 리팩토링하는 글은 많이 없더라고요.
+
+그래서! 혼자 리팩토링을 시도해보려고 합니다!
+
+나만의 새로운 프로젝트를 진행하는 것도 좋지만 이미 진행시킨 프로젝트를 리팩토링 하는 경험도 새롭다고 생각했어요! 물론 하는 도중에 추가하고 싶은 기능이 있다면 제 마음대로 추가할겁니다ㅎㅎ
+
+### 어느 부분부터 리팩토링 할 것 인가?
+
+시작하기 전에 짚고 갈 것이 있습니다. 현재 우아한 형제들에서 지원이 끊겨 AWS가 돌아가지 않고 있고, 모든 인스턴스가 내려가있습니다. 인프라쪽을 먼저 건들긴 힘들 것 같고 백엔드쪽부터 해보려고 합니다.
+
+### 리팩토링 마감기한도 있나?
+
+혼자서 프로젝트를 진행하더라도 마감기한은 필수라고 생각합니다. 실제로 돈을 받고 하는 일은 아니기에 마음은 편할 수 있으나 마감기한이 없으면 개인 프로젝트라도 늘어지더라고요 :)
+
+보통 신입의 파일럿 프로젝트를 진행하는데 5~6주 정도를 잡습니다. 피드백을 반영하고 리펙토링하는 부분은 2주정도를 잡아서 저도 그렇게 해보기로 했습니다ㅎㅎ 다만 중간에 다른 스터디가 좀 있어서 늦어질 수 있습니다 하하...
+
+### 리팩토링 지식은 어디서 얻나?
+
+팀 프로젝트 이후에 스스로 공부한 것도 있고, 우아한 형제들, 줌인터넷에서 쓰인 파일럿 프로젝트 글이나 유튜브에 나온 NHN 신입 적응기를 참고했습니다.
+
+### 원래 있던 팀 프로젝트 CI/CD
+
+![https://s3.us-west-2.amazonaws.com/secure.notion-static.com/cce1c409-437f-434b-9bc1-a7237def86ac/Screen_Shot_2021-02-24_at_4.31.04_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T074902Z&X-Amz-Expires=86400&X-Amz-Signature=ecc7991eac49e95b463364e658dfb067029d6061d06e6e7ff4b25273e24f673c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.31.04_PM.png%22](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/cce1c409-437f-434b-9bc1-a7237def86ac/Screen_Shot_2021-02-24_at_4.31.04_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T074902Z&X-Amz-Expires=86400&X-Amz-Signature=ecc7991eac49e95b463364e658dfb067029d6061d06e6e7ff4b25273e24f673c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.31.04_PM.png%22)
+
+### 원래 있던 팀 프로젝트 엔티티 구조
+
+생각보다 전형적인 구조인데요. 게시판 형태이면서 지역별, 부문별로 글을 작성할 수 있습니다. 프로젝트의 간단한 소개는 [여기](https://github.com/woowacourse-teams/2020-legeno-around-here)있습니다~
+
+![https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d182433f-4ee7-4856-91c4-aebe455f69a5/Screen_Shot_2021-02-24_at_4.40.58_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T075337Z&X-Amz-Expires=86400&X-Amz-Signature=3fe4eb78e5917f0d4ff777cb1232bf6daa2a79465cd4cdcbe498158bbdc3cebb&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.40.58_PM.png%22](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d182433f-4ee7-4856-91c4-aebe455f69a5/Screen_Shot_2021-02-24_at_4.40.58_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T075337Z&X-Amz-Expires=86400&X-Amz-Signature=3fe4eb78e5917f0d4ff777cb1232bf6daa2a79465cd4cdcbe498158bbdc3cebb&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.40.58_PM.png%22)
+
+뭐... 혼자 막 설레서 이렇게 써보긴 했는데 잘 될지는 모르겠네요ㅎㅎ 제 블로그를 보는 사람도 아무도 없겠지만 공유할 수 있는 부분은 최대한 공유하겠습니다. 혹여나 더 좋은 방법이 있거나 코드 리뷰해주실 분들은 직접 해주셔도 됩니다!

@@ -3,7 +3,7 @@ layout  : wiki
 title   : 레거시 프로젝트 리팩토링해보기 0편
 summary : 
 date    : 2021-02-24 16:50:07 +0900
-updated : 2021-02-24 16:54:16 +0900
+updated : 2021-02-28 14:54:07 +0900
 tags    : 
 toc     : true
 public  : true
@@ -41,12 +41,14 @@ latex   : false
 
 ### 원래 있던 팀 프로젝트 CI/CD
 
-![https://s3.us-west-2.amazonaws.com/secure.notion-static.com/cce1c409-437f-434b-9bc1-a7237def86ac/Screen_Shot_2021-02-24_at_4.31.04_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T074902Z&X-Amz-Expires=86400&X-Amz-Signature=ecc7991eac49e95b463364e658dfb067029d6061d06e6e7ff4b25273e24f673c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.31.04_PM.png%22](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/cce1c409-437f-434b-9bc1-a7237def86ac/Screen_Shot_2021-02-24_at_4.31.04_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T074902Z&X-Amz-Expires=86400&X-Amz-Signature=ecc7991eac49e95b463364e658dfb067029d6061d06e6e7ff4b25273e24f673c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.31.04_PM.png%22)
+
+<img src="/wiki-img/legacy_project_refactoring/originteamcicd.png" alt="originteamcicd"/>
 
 ### 원래 있던 팀 프로젝트 엔티티 구조
 
 생각보다 전형적인 구조인데요. 게시판 형태이면서 지역별, 부문별로 글을 작성할 수 있습니다. 프로젝트의 간단한 소개는 [여기](https://github.com/woowacourse-teams/2020-legeno-around-here)있습니다~
 
-![https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d182433f-4ee7-4856-91c4-aebe455f69a5/Screen_Shot_2021-02-24_at_4.40.58_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T075337Z&X-Amz-Expires=86400&X-Amz-Signature=3fe4eb78e5917f0d4ff777cb1232bf6daa2a79465cd4cdcbe498158bbdc3cebb&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.40.58_PM.png%22](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d182433f-4ee7-4856-91c4-aebe455f69a5/Screen_Shot_2021-02-24_at_4.40.58_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210224%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210224T075337Z&X-Amz-Expires=86400&X-Amz-Signature=3fe4eb78e5917f0d4ff777cb1232bf6daa2a79465cd4cdcbe498158bbdc3cebb&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen_Shot_2021-02-24_at_4.40.58_PM.png%22)
+<img src="/wiki-img/legacy_project_refactoring/originteamentity.png" alt="originteamentity"/>
+
 
 뭐... 혼자 막 설레서 이렇게 써보긴 했는데 잘 될지는 모르겠네요ㅎㅎ 제 블로그를 보는 사람도 아무도 없겠지만 공유할 수 있는 부분은 최대한 공유하겠습니다. 혹여나 더 좋은 방법이 있거나 코드 리뷰해주실 분들은 직접 해주셔도 됩니다!

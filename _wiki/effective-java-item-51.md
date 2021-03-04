@@ -3,7 +3,7 @@ layout  : wiki
 title   : 아이템 51 - 메서드 시그니처를 신중히 설계하라
 summary : 
 date    : 2021-02-28 12:59:04 +0900
-updated : 2021-02-28 13:03:11 +0900
+updated : 2021-03-04 15:47:16 +0900
 tags    : 
 toc     : true
 public  : true
@@ -213,8 +213,6 @@ public void update(UpdateReq req) {
 
 - 여러 메서드를 위한 값을 한 매개변수 타입에 우겨 넣지 말 것
 - 여러 메서드에서 필요한 값만 매개변수로 받을 것
-
-이래서 각 레이어마다 DTO가 필요하구나 생각했습니다ㅎㅎ
 
 ## 요약
 

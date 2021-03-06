@@ -1,9 +1,9 @@
 ---
 layout  : wiki
-title   : 레거시 프로젝트 리팩토링해보기 0편
+title   : 나홀로 레거시 프로젝트 리팩토링해보기 0편
 summary : 
 date    : 2021-02-24 16:50:07 +0900
-updated : 2021-02-28 14:54:07 +0900
+updated : 2021-03-06 14:22:32 +0900
 tags    : 
 toc     : true
 public  : true

@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2021-03-06 14:20:34 +0900
+updated : 2021-03-07 18:57:51 +0900
 tags    : index
 toc     : true
 public  : true
@@ -138,6 +138,7 @@ latex   : false
     * [[cache]]
     * [[mockito]]
     * [[frontend]]
+    * [[nginx]]
 * Error
     * [[git-push-remote]]
     * [[naver-translate-cors-issue]]

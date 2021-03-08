@@ -3,7 +3,7 @@ layout  : wiki
 title   : 개발과 사람을 대하는 자세
 summary : 
 date    : 2021-01-04 23:17:43 +0900
-updated : 2021-02-17 17:43:13 +0900
+updated : 2021-03-09 01:20:45 +0900
 tags    : 
 toc     : true
 public  : true
@@ -24,7 +24,26 @@ latex   : false
 - 주어진 일만 하는 게 아니라 주도적으로 일을 찾아서 적용하자
 - 시키는대로 하는 것이 아니라 근거만 확실하다면 내 주장을 펼칠 줄 알아야 한다
 
-### 끊임없이 고민하기
+## 개발 방법
+
+- 일단 최소한의 기능을 가진 프로덕트로 개발하자. 최소한의 기능을 가진 프로덕트로 개발해야 quick & dirty로 만들어도 그 과정에서 쌓이는 기술 부채가 얼마 되지 않는다.
+- quick & dirty로 개발하는 방법
+    - 잘못된 추상화만큼 코드를 재앙으로 이끄는 것도 없다. 초기에 좋은 추상을 하기 힘들다면 추상화를 하지말고 미뤄라
+    - 좋은 extract method가 떠오르지 않는다면, 그냥 하지 않는 게 더 낫다
+    - 상속 구조는 OOP에서 가장 잘하기 어려운 부분이다. 상속 계층은 되도록 만들지 않는 게 좋다
+    - depth를 늘리지 마라
+    - 안 쓰는 코드, 파일은 빠르게 삭제하자
+    - 코드 외의 기술적인 사항은 반드시 문서를 남기자
+        - 소스를 어떻게 빌드하는지
+        - 서버를 어떻게 배포하는지
+        - 서버에서 어떤 cron job이 돌고 있는지
+        - 권한은 어떻게 줬는지
+        - 서버 시작과 중단은 어떻게 하는지
+        - 서버에 어떤 설정 파일을 건드렸는지 등등...
+- Quick & dirty 방식으로 접근하되 항상 품질을 염두에 두고 접근하자
+- Quick & dirty 후에는 반드시 Clean 과정이 포함되어야 한다
+
+## 끊임없이 고민하기
 
 - 나는 어떤 삶을 살 것인가?
 - 나는 왜 프로그래머가 되려고 하는가?
@@ -53,4 +72,5 @@ latex   : false
 - [https://www.youtube.com/user/cmiscm](https://www.youtube.com/user/cmiscm)
 - 캡틴 포비
 - ifKakao 세션
-
+- [http://youngrok.com/QuickAndDirty](http://youngrok.com/QuickAndDirty)
+- [https://www.slipp.net/wiki/plugins/servlet/mobile?contentId=17924123#content/view/17924123](https://www.slipp.net/wiki/plugins/servlet/mobile?contentId=17924123#content/view/17924123)

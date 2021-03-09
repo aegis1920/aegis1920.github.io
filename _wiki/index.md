@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2021-03-07 18:57:51 +0900
+updated : 2021-03-09 20:27:08 +0900
 tags    : index
 toc     : true
 public  : true
@@ -63,6 +63,7 @@ latex   : false
         * [[effective-java-item-36]]
         * [[effective-java-item-44]]
         * [[effective-java-item-51]]
+        * [[effective-java-item-58]]
     * [[Python]]
     * [[Javascript]]
 * Study

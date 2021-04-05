@@ -1,9 +1,9 @@
 ---
 layout  : wiki
-title   : 자바 직렬화의 대안을 찾으라
+title   : 아이템 85 - 자바 직렬화의 대안을 찾으라
 summary : 
 date    : 2021-04-06 00:54:17 +0900
-updated : 2021-04-06 01:04:11 +0900
+updated : 2021-04-06 01:36:11 +0900
 tags    : 
 toc     : true
 public  : true

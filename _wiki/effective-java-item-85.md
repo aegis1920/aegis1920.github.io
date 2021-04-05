@@ -3,7 +3,7 @@ layout  : wiki
 title   : 자바 직렬화의 대안을 찾으라
 summary : 
 date    : 2021-04-06 00:54:17 +0900
-updated : 2021-04-06 00:58:33 +0900
+updated : 2021-04-06 01:04:11 +0900
 tags    : 
 toc     : true
 public  : true
@@ -106,9 +106,9 @@ void writeObjectTest() throws IOException {
             serializedPerson = baos.toByteArray();
         }
     }
-		// 요런 식으로 나옴
-		// -84, -19, 0, 5, 115, 114, 0, 57, 99, 111, 109, 46, 98, 105, 110, 103, 98, 111, 110, 103, 46, 101, 102, 102, 101, 99, 116, 105, 118, 101, 106, 97, 118, 97, 46, 105, 116, 101, 109, 56, 53, 46, 83, 101, 114, 105, 97, 108, 105, 122, 97, 98, 108, 101, 84, 101, 115, 116, 36, 80, 101, 114, 115, 111, 110, -126, 113, -121, -86, 125, 92, 57, 9, 2, 0, 2, 73, 0, 3, 97, 103, 101, 76, 0, 4, 110, 97, 109, 101, 116, 0, 18, 76, 106, 97, 118, 97, 47, 108, 97, 110, 103, 47, 83, 116, 114, 105, 110, 103, 59, 120, 112, 0, 0, 0, 21, 116, 0, 8, 98, 105, 110, 103, 98, 111, 110, 103
-		assertThat(serializedPerson).isNotEmpty();
+    // 요런 식으로 나옴
+    // -84, -19, 0, 5, 115, 114, 0, 57, 99, 111, 109, 46, 98, 105, 110, 103, 98, 111, 110, 103, 46, 101, 102, 102, 101, 99, 116, 105, 118, 101, 106, 97, 118, 97, 46, 105, 116, 101, 109, 56, 53, 46, 83, 101, 114, 105, 97, 108, 105, 122, 97, 98, 108, 101, 84, 101, 115, 116, 36, 80, 101, 114, 115, 111, 110, -126, 113, -121, -86, 125, 92, 57, 9, 2, 0, 2, 73, 0, 3, 97, 103, 101, 76, 0, 4, 110, 97, 109, 101, 116, 0, 18, 76, 106, 97, 118, 97, 47, 108, 97, 110, 103, 47, 83, 116, 114, 105, 110, 103, 59, 120, 112, 0, 0, 0, 21, 116, 0, 8, 98, 105, 110, 103, 98, 111, 110, 103
+    assertThat(serializedPerson).isNotEmpty();
 }
 
 static class Person implements Serializable {
@@ -172,35 +172,36 @@ void writeObjectTest2() throws IOException {
 
 바이트 스트림으로 직렬화하는데는 시간이 별로 걸리지 않지만 역직렬화를 잘못하면 안으로 들어가서 hashCode 메서드를 계속 호출해야하기때문에 시간이 엄청 오래걸립니다. 아래 예시가 있습니다.
 
-    ```java
-    @DisplayName("역직렬화 폭탄 테스트")
-    @Test
-    void deserializeBomb() {
-        byte[] bomb = bomb();
+```java
+@DisplayName("역직렬화 폭탄 테스트")
+@Test
+void deserializeBomb() {
+    byte[] bomb = bomb();
 
-        // 역직렬화를 하면 엄청 많은 시간이 걸린다.
-        deserialize(bomb);
-        assertThat(bomb).isNotEmpty();
-    }
+    // 역직렬화를 하면 엄청 많은 시간이 걸린다.
+    deserialize(bomb);
+    assertThat(bomb).isNotEmpty();
+}
 
-    static byte[] bomb() {
-        Set<Object> root = new HashSet<>();
-        Set<Object> s1 = root;
-        Set<Object> s2 = new HashSet<>();
-        for (int i = 0; i < 100; i++) {
-            Set<Object> t1 = new HashSet<>();
-            Set<Object> t2 = new HashSet<>();
-            t1.add("foo");
-            s1.add(t1);
-            s1.add(t2);
-            s2.add(t1);
-            s2.add(t2);
-            s1 = t1;
-            s2 = t2;
-        }
-        return serialize(root); // 직렬화 수행
+static byte[] bomb() {
+    Set<Object> root = new HashSet<>();
+    Set<Object> s1 = root;
+    Set<Object> s2 = new HashSet<>();
+    for (int i = 0; i < 100; i++) {
+        Set<Object> t1 = new HashSet<>();
+        Set<Object> t2 = new HashSet<>();
+        t1.add("foo");
+        s1.add(t1);
+        s1.add(t2);
+        s2.add(t1);
+        s2.add(t2);
+        s1 = t1;
+        s2 = t2;
     }
-    ```
+    return serialize(root); // 직렬화 수행
+}
+```
+
 <img src="/wiki-img/effective_java/serializebomb.png" alt="bookmark" height="400"/>
 
 ## 그럼 어떻게 해야하나?

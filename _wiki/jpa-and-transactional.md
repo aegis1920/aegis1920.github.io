@@ -3,7 +3,7 @@ layout  : wiki
 title   : JPA에서 @Transactinoal에 대한 궁금증
 summary : 
 date    : 2021-02-07 18:51:26 +0900
-updated : 2021-02-08 12:42:49 +0900
+updated : 2021-04-07 14:06:18 +0900
 tags    : 
 toc     : true
 public  : true
@@ -201,6 +201,8 @@ class PostServiceTest {
 즉, 프로덕션 코드는 에러가 터지는데 테스트는 통과되는 아이러니한 상황이 발생하게 됩니다.
 
 이런 상황을 방지하기 위해 테스트 코드에 `@Transactional` 이 있는지 살펴보고 있다면 없애는 것이 더 나은 테스트코드 작성법이라고 생각합니다.
+
+추가로, 저는 @DataJpaTest에 @Transactional 어노테이션이 있다는 걸 알려드리기 위해 Service 레이어의 테스트코드에 @DataJpaTest를 사용했습니다만 이는 잘못된 테스트 방법입니다. 왜냐하면 @DataJpaTest의 용도는 영속영역의 CRUD만 잘 동작하는 것을 테스트하기 위한 어노테이션이기 때문입니다. @DataJpaTest는 Repository 레이어를 테스트하는데 쓰여야 합니다.(복잡한 쿼리를 실행할 때 테스트할 경우)
 
 ## 요약
 

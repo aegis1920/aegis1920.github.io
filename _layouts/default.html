@@ -14,6 +14,20 @@
     </main>
     {%- include footer.html -%}
 
+    <!-- 단순히 random 기능만을 위한 DOM -->
+    <div style="display:none">
+    {% assign documents = site.wiki | sort: 'updated' | reverse %}
+    {%- for doc in documents -%}
+        <a class="wiki-index-content" href="{{ doc.url | relative_url }}"></a>
+    {%- endfor -%}
+    </div>
   </body>
-
+    <script>
+        function random() {
+            var list = document.querySelectorAll('.wiki-index-content'); 
+            var random = Math.floor(Math.random() * list.length);
+            var url = list[random].href;
+            window.location.href = url;
+        }
+    </script>
 </html>

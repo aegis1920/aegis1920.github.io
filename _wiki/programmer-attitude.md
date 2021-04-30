@@ -3,7 +3,7 @@ layout  : wiki
 title   : 개발과 사람을 대하는 자세
 summary : 
 date    : 2021-01-04 23:17:43 +0900
-updated : 2021-04-11 15:04:38 +0900
+updated : 2021-04-30 15:44:16 +0900
 tags    : 
 toc     : true
 public  : true
@@ -26,8 +26,19 @@ latex   : false
 - 누군가 모르는 게 있다면 화이트보드를 동원해서라도 최대한 이해할 수 있도록 설명하자
 - 표준화하려고 노력하자
 - 문서화를 잘하자 (누군가 처음 들어와도 해당 도메인을 이해할 수 있도록)
+    - 레퍼런스가 충실한 글
+    - 개성을 줄이고 건조하게 쓴 글
+    - 남에게 수정 가능성을 열어둔 글
+    - 일관된 구성
 - 내가 당연하게 쓰고 있는 기술을 잘 알고 있나?
 - 문제가 발생했을 때 해결방안보다는 원인을 분석해서 그 원인에 대해 공부하고 해결방안을 공부하자
+- 회사의 Context들을 관리하기 쉽게 한 곳에 저장하고 공유하자
+- 변화는 생각보다 어렵다. 그래서 실패해도 괜찮다.
+- 개발자의 시야는 좁다. 개발은 여러 단계 중 하나라는 걸 자각해야 한다
+- 이슈를 많이 만들고 많이 닫자
+- IDE와 이슈 상태를 연계해서 개발에 집중할 수 있도록 하자
+- TDD나 스크럼같은 제도가 중요한 게 아니라 사람이 중요합니다. 사람이 제도를 만들어갑니다
+- 이 회사가 어떤 문화가 있느냐보다 내가 와서 얼마나 바꿔갈 수 있느냐가 중요하다
 
 ## 개발 방법
 
@@ -47,6 +58,8 @@ latex   : false
         - 서버에 어떤 설정 파일을 건드렸는지 등등...
 - Quick & dirty 방식으로 접근하되 항상 품질을 염두에 두고 접근하자
 - Quick & dirty 후에는 반드시 Clean 과정이 포함되어야 한다
+- 버저닝 시스템을 확립하자. 일자 + 빌드 버전같은 방식으로.
+- 슬랙에 나의 상태를 표시한다. (휴가중, 개발중등등...)
 
 ## 끊임없이 고민하기
 
@@ -88,3 +101,8 @@ latex   : false
 - [http://youngrok.com/QuickAndDirty](http://youngrok.com/QuickAndDirty)
 - [https://www.slipp.net/wiki/plugins/servlet/mobile?contentId=17924123#content/view/17924123](https://www.slipp.net/wiki/plugins/servlet/mobile?contentId=17924123#content/view/17924123)
 - Scofe 2021 마켓컬리 생방송
+- - [OKKYCON 2021 : 협업의 기술](http://okkycon.com/2021)
+    - [https://www.youtube.com/watch?v=mS_jyMC4cxg](https://www.youtube.com/watch?v=mS_jyMC4cxg)
+    - [https://www.youtube.com/watch?v=ciu2PA6M7tw](https://www.youtube.com/watch?v=ciu2PA6M7tw)
+    - [https://www.youtube.com/watch?v=xlV82Q-ZmAA](https://www.youtube.com/watch?v=xlV82Q-ZmAA)
+    - [https://www.youtube.com/watch?v=SOplyIoUvbA](https://www.youtube.com/watch?v=SOplyIoUvbA)

@@ -3,7 +3,7 @@ layout  : wiki
 title   : 개발과 사람을 대하는 자세
 summary : 
 date    : 2021-01-04 23:17:43 +0900
-updated : 2021-04-30 15:44:16 +0900
+updated : 2021-07-12 23:00:11 +0900
 tags    : 
 toc     : true
 public  : true
@@ -24,6 +24,8 @@ latex   : false
 - 주어진 일만 하는 게 아니라 주도적으로 일을 찾아서 적용하자
 - 시키는대로 하는 것이 아니라 근거만 확실하다면 내 주장을 펼칠 줄 알아야 한다
 - 누군가 모르는 게 있다면 화이트보드를 동원해서라도 최대한 이해할 수 있도록 설명하자
+- 어딜가도 업무를 빨리 익힐 수 있도록 적응력을 기르자
+- 어떤 문제를 겪었을 때 바로 해결하자(미루지 말고 바로)
 - 표준화하려고 노력하자
 - 문서화를 잘하자 (누군가 처음 들어와도 해당 도메인을 이해할 수 있도록)
     - 레퍼런스가 충실한 글
@@ -101,7 +103,7 @@ latex   : false
 - [http://youngrok.com/QuickAndDirty](http://youngrok.com/QuickAndDirty)
 - [https://www.slipp.net/wiki/plugins/servlet/mobile?contentId=17924123#content/view/17924123](https://www.slipp.net/wiki/plugins/servlet/mobile?contentId=17924123#content/view/17924123)
 - Scofe 2021 마켓컬리 생방송
-- - [OKKYCON 2021 : 협업의 기술](http://okkycon.com/2021)
+- [OKKYCON 2021 : 협업의 기술](http://okkycon.com/2021)
     - [https://www.youtube.com/watch?v=mS_jyMC4cxg](https://www.youtube.com/watch?v=mS_jyMC4cxg)
     - [https://www.youtube.com/watch?v=ciu2PA6M7tw](https://www.youtube.com/watch?v=ciu2PA6M7tw)
     - [https://www.youtube.com/watch?v=xlV82Q-ZmAA](https://www.youtube.com/watch?v=xlV82Q-ZmAA)

@@ -3,7 +3,7 @@ layout  : wiki
 title   : 개발과 사람을 대하는 자세
 summary : 
 date    : 2021-01-04 23:17:43 +0900
-updated : 2021-07-12 23:00:11 +0900
+updated : 2021-07-17 13:42:43 +0900
 tags    : 
 toc     : true
 public  : true
@@ -37,9 +37,10 @@ latex   : false
 - 회사의 Context들을 관리하기 쉽게 한 곳에 저장하고 공유하자
 - 변화는 생각보다 어렵다. 그래서 실패해도 괜찮다.
 - 개발자의 시야는 좁다. 개발은 여러 단계 중 하나라는 걸 자각해야 한다
-- 이슈를 많이 만들고 많이 닫자
+- 이슈를 많이 만들고 많이 닫자. (지금 내가 뭘 하고 있는지 PM에게도 알릴 수 있다)
 - IDE와 이슈 상태를 연계해서 개발에 집중할 수 있도록 하자
 - TDD나 스크럼같은 제도가 중요한 게 아니라 사람이 중요합니다. 사람이 제도를 만들어갑니다
+- 코드리뷰를 하자. 코드리뷰는 생각보다 나를 더 성장시켜준다.
 - 이 회사가 어떤 문화가 있느냐보다 내가 와서 얼마나 바꿔갈 수 있느냐가 중요하다
 
 ## 개발 방법
@@ -85,6 +86,7 @@ latex   : false
 - 로컬에서 작동하는 버전을 만들어두자
 - 다양한 환경(웹, 모바일 등등)에서 돌아가는 영상을 찍어두자.
 - 가능한 혼자서 하자. 디자인과 개발 모두 혼자 해보자. 같이 하면 스케줄 자체가 달라서 일정이 꼬인다.
+- 내가 한 번 만들어본 걸 다시 만들어보는 게 중요하다. 새로운 관점이 보인다.
 
 ## 좋은 팀이란?
 
@@ -108,3 +110,4 @@ latex   : false
     - [https://www.youtube.com/watch?v=ciu2PA6M7tw](https://www.youtube.com/watch?v=ciu2PA6M7tw)
     - [https://www.youtube.com/watch?v=xlV82Q-ZmAA](https://www.youtube.com/watch?v=xlV82Q-ZmAA)
     - [https://www.youtube.com/watch?v=SOplyIoUvbA](https://www.youtube.com/watch?v=SOplyIoUvbA)
+- https://youtu.be/hq-lqWMcy_8

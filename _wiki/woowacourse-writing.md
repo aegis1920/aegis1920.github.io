@@ -1,9 +1,9 @@
 ---
 layout  : wiki
-title   : 우아한 테크코스의 글쓰기 Tip
+title   : 글쓰기 Tip
 summary : 
 date    : 2020-04-16 13:59:31 +0900
-updated : 2020-06-16 19:50:01 +0900
+updated : 2021-07-25 17:02:23 +0900
 tags    : 
 toc     : true
 public  : true
@@ -76,9 +76,21 @@ latex   : false
 19. 자기 상황을 돌아보고 쓰는 것 자체가 상담과 유사하다
 20. 내가 쓴 글을 보면서 제 3자가 되고 힘든 상황을 객관화하면서 벗어나는 효과가 있다
 
-### 출처 영상
+### 카카오 엔터프라이즈 테크니컬 라이팅
+
+- 목차는 필수
+- 다 아는 내용이라도 적자
+- 어렵게 쓰지 말자. 직관적으로 알기 쉽게 쓰자
+- 모호한 어휘는 쓰지 말자. 
+
+
+### 출처
 
 - [유시민이 말하는 글쓰기의 중요성](https://www.youtube.com/watch?v=8Ij2sB2WNoc)
 - [글쓰기의 두려움을 이기는 법 - 강원국 ('대통령의 글쓰기' 저자)](https://www.youtube.com/watch?v=S27Z_-S_aLI)
 - [유시민의 알릴레오 25회 - 베스트셀러 작가들의 글쓰기 비법](https://www.youtube.com/watch?v=JhxWhUikuPg&feature=youtu.be)
 - [유시민의 알릴레오 26회 - 글쓰기 고액과외, 무료로 해드립니다! 30:03 ~](https://www.youtube.com/watch?v=BGFklKYcdco&feature=youtu.be)
+- [https://tech-kakaoenterprise.tistory.com/102](https://tech-kakaoenterprise.tistory.com/102)
+- [https://tech-kakaoenterprise.tistory.com/105](https://tech-kakaoenterprise.tistory.com/105)
+- [https://tech-kakaoenterprise.tistory.com/100](https://tech-kakaoenterprise.tistory.com/100)
+- [https://tech.kakaoenterprise.com/110](https://tech.kakaoenterprise.com/110)

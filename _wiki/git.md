@@ -3,7 +3,7 @@ layout  : wiki
 title   : git
 summary : 
 date    : 2019-06-20 09:23:50 +0900
-updated : 2020-03-14 15:49:33 +0900
+updated : 2021-08-03 00:38:32 +0900
 tags    : 
 toc     : true
 public  : true
@@ -23,6 +23,11 @@ latex   : false
 
 git은 전체 기록과 각 기록을 추적할 수 있는 정보를 포함하고 있는 저장소다. 메인저장소와 격리시켜 따로 개발할 수 있는 branch 기능이 있으며 개발이 완료되면 메인저장소와 합칠 수 있다. 또한 원격으로 저장할 수 있는 github이라는 사이트가 있다. 즉, git을 호스팅하는 가장 큰 사이트다. 인터넷만 있다면 어디서든지 다운받거나 다른 사람의 소스파일을 볼 수 있다.
 게다가 비슷한 파일이 많아질수록 용량은 많아지고 파일과 파일 사이에 뭐가 바뀌었는지 차이를 알기 힘듭니다.  **그래서 이를 관리하는 소프트웨어가 GIT이라는 버전 관리 시스템입니다.**
+
+### git의 객체
+
+- 파일은 blob이 된다
+- commit 객체 = tree(blob 포함) + 메타정보
 
 ## git의 기초
 
@@ -47,6 +52,7 @@ working directory는 git directory가 자기 자신안에서 압축된 데이터
 staging area는 git directory에 있는 파일. 곧 커밋할 파일에 대한 정보를 저장한다.
 
 말로 생각하면 어렵지만 우리가 하던 init -> add -> commit 과정이라고 생각하면 쉽다.
+
 
 #### 총 과정
 
@@ -572,6 +578,8 @@ branch는 독립적으로 개발하게 할 수 있는 도구입니다. commit을
 
 최초로 commit하면 master라는 branch는 자동으로 마지막 commit을 가리킵니다. 그리고 HEAD라는 특수 포인터로 현재 작업 중인 branch를 가리킵니다.
 
+- HEAD는 commit을 참조할 수 있는데 이는 detached 상태라 좋지 않다.
+
 1.  Branch만들기
     -   `git branch feature`
 2.  hello라는 branch로 가기
@@ -584,6 +592,9 @@ branch는 독립적으로 개발하게 할 수 있는 도구입니다. commit을
     -   `git branch -d feature_x`
 
 ![](https://oer.gitlab.io/oer-on-oer-infrastructure/figures/git/forked-commit-history.svg)
+
+- git status
+    - git status가 깨끗한 상태라는 건 stage와 working tree가 모두 같다는 의미
 
 ### Branch workflow
 

@@ -3,7 +3,7 @@ layout  : wiki
 title   : network
 summary : 
 date    : 2019-06-21 09:37:47 +0900
-updated : 2019-08-09 16:44:48 +0900
+updated : 2021-08-03 21:10:26 +0900
 tags    : 
 toc     : true
 public  : true
@@ -224,4 +224,9 @@ SAAS(software as a service) -> 모든 것을 사업자가 제공하는 것 (컨�
         * 예를 들어, 집 주소가 공인 IP, 안방, 거실, 화장실 등이 사설 IP라고 보면 된다.
         * 사설 IP는 같은 사설망 안에서 IP가 중복되면 안 되지만 다른 사설망끼리는 IP가 중복돼도 괜찮다.
         * 공유기를 쓰고 있을 때 컴퓨터 내부에서 볼 수 있는 건 사설 IP이다. 그렇기 때문에 공인 IP를 확인하려면 따로 확인해야 한다.
+
+## 출처
+
+- [https://aws-hyoh.tistory.com/category/Network Infra 쉽게 이해하기](https://aws-hyoh.tistory.com/category/Network%20Infra%20%EC%89%BD%EA%B2%8C%20%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)
+
 

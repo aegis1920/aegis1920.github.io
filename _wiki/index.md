@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2021-08-05 20:14:41 +0900
+updated : 2021-09-24 18:14:02 +0900
 tags    : index
 toc     : true
 public  : true
@@ -198,3 +198,4 @@ latex   : false
     * [[jpa-and-transactional]]
     * [[legacy-project-refactoring-0]]
     * [[legacy-project-refactoring-1]]
+    * [linux command line text processing](linux-command-line-text-processing)

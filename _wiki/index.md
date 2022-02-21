@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2022-02-21 21:16:28 +0900
+updated : 2022-02-21 21:38:59 +0900
 tags    : index
 toc     : true
 public  : true
@@ -200,3 +200,4 @@ latex   : false
     * [[legacy-project-refactoring-1]]
     * [linux command line text processing](linux-command-line-text-processing)
     * [leaving company hacks for developers](leaving-company-hacks-for-developers)
+    * [okky code review know how](okky-code-review-know-how)

@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2022-02-21 21:38:59 +0900
+updated : 2022-10-03 19:17:21 +0900
 tags    : index
 toc     : true
 public  : true
@@ -36,6 +36,7 @@ latex   : false
     * [[you-can-fix-your-brain]]
     * [[oop-and-design-pattern]]
     * [[codinghorror-effective-programming]]
+    * [monolith to microservices](monolith-to-microservices)
 * Programming-language
     * Java
         * [[Java-JVM]]

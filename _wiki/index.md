@@ -2,7 +2,7 @@
 layout  : wiki-index
 title   : wiki index page
 date    : 2019-06-19 16:31:56 +0900
-updated : 2022-10-03 19:17:21 +0900
+updated : 2023-06-10 12:34:55 +0900
 tags    : index
 toc     : true
 public  : true
@@ -37,6 +37,7 @@ latex   : false
     * [[oop-and-design-pattern]]
     * [[codinghorror-effective-programming]]
     * [monolith to microservices](monolith-to-microservices)
+    * [unit test](unit-test)
 * Programming-language
     * Java
         * [[Java-JVM]]

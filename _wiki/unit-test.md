@@ -1,9 +1,9 @@
 ---
 layout  : wiki
-title   : [book] 단위테스트
+title   : 단위테스트 책 리뷰
 summary : 
 date    : 2023-06-10 12:00:37 +0900
-updated : 2023-06-10 12:36:55 +0900
+updated : 2023-06-10 12:40:37 +0900
 tags    : 
 toc     : true
 public  : true

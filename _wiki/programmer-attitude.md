@@ -3,7 +3,7 @@ layout  : wiki
 title   : 개발과 사람을 대하는 자세
 summary : 
 date    : 2021-01-04 23:17:43 +0900
-updated : 2023-08-06 20:55:59 +0900
+updated : 2023-08-10 11:23:59 +0900
 tags    : 
 toc     : true
 public  : true
@@ -59,7 +59,12 @@ latex   : false
     - 작업에 대한 블로그를 작성하기
     - 계속 진행할 계획이 없더라도, 다음 작업에 대한 문서를 작성하기 (다음에 할 일과 이유를 설명)
     - 작업한 것에 구멍을 발견할 수 있는 사람을 찾고 그 문제를 해결하기
-- 공유하기, 문서화, 다듬기는 매우 중요하다.
+    - 공유하기, 문서화, 다듬기는 매우 중요하다.
+- 마지막 1%까지 마무리하기 (사실 1%는 아닌 거 같다)
+    - 유지보수 문서 작성
+    - How to, FAQ 문서 작성
+    - 퍼포먼스, 사용량, 오류 지표 대시보드
+    - 테스트 자동화 등등..
 
 
 ## 의사소통
@@ -155,3 +160,4 @@ latex   : false
 - 회사 스터디
 - https://news.hada.io/topic?id=8574&utm_source=slack&utm_medium=bot&utm_campaign=T012P6ABDHQ
 - https://austinhenley.com/blog/90percent.html
+- https://jaredramsey.com/blog/20230808.html
